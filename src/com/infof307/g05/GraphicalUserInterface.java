@@ -72,6 +72,7 @@ public class GraphicalUserInterface extends Application {
      * @param gridPane the window layout
      * @param stage the window itself
      */
+    @SuppressWarnings("Duplicates")
     private void addRegistrationUI(GridPane gridPane, Stage stage) {
         Label headerLabel = new Label("Registration Form");
         headerSetup(gridPane, headerLabel);
@@ -136,6 +137,7 @@ public class GraphicalUserInterface extends Application {
      * @param gridPane the window layout
      * @param stage the window itself
      */
+    @SuppressWarnings("Duplicates")
     private void addLoginUI(GridPane gridPane, Stage stage) {
         Label headerLabel = new Label("Login Form");
         headerSetup(gridPane, headerLabel);
