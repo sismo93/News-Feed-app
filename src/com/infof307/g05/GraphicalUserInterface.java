@@ -92,13 +92,27 @@ public class GraphicalUserInterface extends Application {
         emailField.setPrefHeight(40);
         gridPane.add(emailField, 1, 2);
 
+        Label confirmEmailLabel = new Label("Confirm e-mail: ");
+        gridPane.add(confirmEmailLabel, 0, 3);
+
+        TextField confirmEmailField = new TextField();
+        confirmEmailField.setPrefHeight(40);
+        gridPane.add(confirmEmailField, 1, 3);
+
         Label passwordLabel = new Label("Password: ");
-        gridPane.add(passwordLabel, 0, 3);
+        gridPane.add(passwordLabel, 0, 4);
 
         PasswordField passwordField = new PasswordField();
         passwordField.setPrefHeight(40);
         passwordField.setPromptText("More than 8 characters with numbers...");
-        gridPane.add(passwordField, 1 , 3);
+        gridPane.add(passwordField, 1 , 4);
+
+        Label confirmPasswordLabel = new Label("Confirm password: ");
+        gridPane.add(confirmPasswordLabel, 0, 5);
+
+        PasswordField confirmPasswordField = new PasswordField();
+        confirmPasswordField.setPrefHeight(40);
+        gridPane.add(confirmPasswordField, 1 , 5);
 
         Button submitButton = submitButton(gridPane);
 
@@ -115,6 +129,11 @@ public class GraphicalUserInterface extends Application {
                     return;
                 }
 
+                if (!emailField.getText().equals(confirmEmailField.getText())) {
+                    showAlert(Alert.AlertType.ERROR, gridPane.getScene().getWindow(), "Error", "Emails do not match");
+                    return;
+                }
+
                 if (emailField.getText().isEmpty()) {
                     showAlert(Alert.AlertType.ERROR, gridPane.getScene().getWindow(), "Error", "Email can't be empty");
                     return;
@@ -122,6 +141,11 @@ public class GraphicalUserInterface extends Application {
 
                 if (!isEmailValid(emailField.getText())) {
                     showAlert(Alert.AlertType.ERROR, gridPane.getScene().getWindow(), "Error", "Email is not valid");
+                    return;
+                }
+
+                if (!passwordField.getText().equals(confirmPasswordField.getText())) {
+                    showAlert(Alert.AlertType.ERROR, gridPane.getScene().getWindow(), "Error", "Passwords do not match");
                     return;
                 }
 
@@ -135,7 +159,7 @@ public class GraphicalUserInterface extends Application {
                     return;
                 }
 
-                if (passwordField.getText().matches(".*\\d+.*")) {
+                if (!passwordField.getText().matches(".*\\d+.*")) {
                     showAlert(Alert.AlertType.ERROR, gridPane.getScene().getWindow(), "Error", "Password must contain numbers");
                     return;
                 }
@@ -176,7 +200,7 @@ public class GraphicalUserInterface extends Application {
         Button submitButton = submitButton(gridPane);
 
         // TODO
-        // Do checks with the database 
+        // Do checks with the database
         submitButton.setOnAction(new EventHandler<ActionEvent>() {
             @Override
             public void handle(ActionEvent event) {
@@ -316,7 +340,7 @@ public class GraphicalUserInterface extends Application {
         button.setPrefHeight(40);
         button.setDefaultButton(true);
         button.setPrefWidth(100);
-        gridPane.add(button, 0, 4, 2, 1);
+        gridPane.add(button, 0, 6, 2, 1);
         GridPane.setHalignment(button, HPos.CENTER);
         GridPane.setMargin(button, new Insets(20, 0, 20, 0));
 
