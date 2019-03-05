@@ -40,15 +40,4 @@ class UserTest {
         user.setEmail("newTest@test.com");
         assertEquals("newTest@test.com", user.getEmail());
     }
-
-    @Test
-    void isValidEmailTest() {
-        assertTrue(user.isEmailValid(user.getEmail()));
-    }
-
-    @Test
-    void isNotValidEmailTest() {
-        user.setEmail("notTrue");
-        assertFalse(user.isEmailValid(user.getEmail()));
-    }
 }

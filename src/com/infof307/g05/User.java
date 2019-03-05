@@ -77,15 +77,4 @@ public class User {
         this.email = email;
     }
 
-    /**
-     * Checks whether the email has a valid format or not
-     * @param email
-     * @return true if valid, false if not valid
-     */
-    public boolean isEmailValid(String email) {
-        pattern = Pattern.compile(EMAIL_REGEX, Pattern.CASE_INSENSITIVE);
-        matcher = pattern.matcher(email);
-
-        return matcher.matches();
-    }
 }
