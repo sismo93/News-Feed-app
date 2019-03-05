@@ -21,10 +21,17 @@ import java.util.regex.Pattern;
 
 public class GraphicalUserInterface extends Application {
 
+    /**
+     * Defines the email regex for validity checks
+     */
     private static final String EMAIL_REGEX = "^[\\w-\\+]+(\\.[\\w]+)*@[\\w-]+(\\.[\\w]+)*(\\.[a-z]{2,})$";
 
+    /**
+     * Starting window for the GUI
+     * @param primaryStage GUI window
+     */
     @Override
-    public void start(Stage primaryStage) throws Exception {
+    public void start(Stage primaryStage) {
         primaryStage.setTitle("FeedBuzz");
         GridPane gridPane = rootPane();
         addWelcomeUI(gridPane, primaryStage);
@@ -33,6 +40,10 @@ public class GraphicalUserInterface extends Application {
         primaryStage.show();
     }
 
+    /**
+     * Defines the base window
+     * @return GridPane
+     */
     private GridPane rootPane() {
         GridPane gridPane = new GridPane();
         gridPane.setAlignment(Pos.CENTER);
@@ -42,6 +53,10 @@ public class GraphicalUserInterface extends Application {
         return gridPane;
     }
 
+    /**
+     * Defines the window for login/register forms
+     * @return GridPane
+     */
     private GridPane formsPane() {
         GridPane gridPane = rootPane();
         ColumnConstraints columnOneConstraints = new ColumnConstraints(50, 50, Double.MAX_VALUE);
@@ -52,6 +67,11 @@ public class GraphicalUserInterface extends Application {
         return gridPane;
     }
 
+    /**
+     * Adds all fields for registration form
+     * @param gridPane the window layout
+     * @param stage the window itself
+     */
     private void addRegistrationUI(GridPane gridPane, Stage stage) {
         Label headerLabel = new Label("Registration Form");
         headerSetup(gridPane, headerLabel);
@@ -111,6 +131,11 @@ public class GraphicalUserInterface extends Application {
         });
     }
 
+    /**
+     * Adds all fields for login form
+     * @param gridPane the window layout
+     * @param stage the window itself
+     */
     private void addLoginUI(GridPane gridPane, Stage stage) {
         Label headerLabel = new Label("Login Form");
         headerSetup(gridPane, headerLabel);
@@ -149,11 +174,20 @@ public class GraphicalUserInterface extends Application {
         });
     }
 
+    /**
+     * Defines the user control panel UI
+     * @param gridPane the control panel window
+     */
     private void addControlPanelUI(GridPane gridPane) {
         Label headerLabel = new Label("Welcome to FeedBuzz 7bibi!");
         headerSetup(gridPane, headerLabel);
     }
 
+    /**
+     * Defines the welcome UI
+     * @param gridPane the welcome layout
+     * @param stage the welcome window
+     */
     private void addWelcomeUI(GridPane gridPane, Stage stage) {
         Label headerLabel = new Label("Welcome to FeedBuzz!");
         headerSetup(gridPane, headerLabel);
@@ -199,6 +233,10 @@ public class GraphicalUserInterface extends Application {
         });
     }
 
+    /**
+     * Sets up the layout and scene of the welcome pane
+     * @param stage the window itself
+     */
     private void welcomePaneSetup(Stage stage) {
         GridPane welcomePane = rootPane();
         addControlPanelUI(welcomePane);
@@ -207,6 +245,11 @@ public class GraphicalUserInterface extends Application {
         stage.show();
     }
 
+    /**
+     * Sets up the header for every applicable window
+     * @param gridPane the parent window layout
+     * @param headerLabel the title
+     */
     private void headerSetup(GridPane gridPane, Label headerLabel) {
         headerLabel.setFont(Font.font("Arial", FontWeight.BOLD, 36));
         gridPane.add(headerLabel, 0, 0, 2, 1);
@@ -214,6 +257,13 @@ public class GraphicalUserInterface extends Application {
         GridPane.setMargin(headerLabel, new Insets(20, 0, 20, 0));
     }
 
+    /**
+     * Shows the error alert with custom message
+     * @param alertType type of alert
+     * @param owner parent window
+     * @param title title of the alert
+     * @param message message of the alert
+     */
     private void showAlert(Alert.AlertType alertType, Window owner, String title, String message) {
         Alert alert = new Alert(alertType);
         alert.setTitle(title);
@@ -235,6 +285,11 @@ public class GraphicalUserInterface extends Application {
         return matcher.matches();
     }
 
+    /**
+     * Sets up the submit button layout
+     * @param gridPane the window that contains the button
+     * @return the submit button
+     */
     private Button submitButton(GridPane gridPane) {
         Button button = new Button("Submit");
         button.setPrefHeight(40);
