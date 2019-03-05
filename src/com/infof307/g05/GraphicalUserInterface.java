@@ -82,6 +82,7 @@ public class GraphicalUserInterface extends Application {
 
         TextField usernameField = new TextField();
         usernameField.setPrefHeight(40);
+        usernameField.setPromptText("More than 4 characters...");
         gridPane.add(usernameField, 1, 1);
 
         Label emailLabel = new Label("E-mail: ");
@@ -96,6 +97,7 @@ public class GraphicalUserInterface extends Application {
 
         PasswordField passwordField = new PasswordField();
         passwordField.setPrefHeight(40);
+        passwordField.setPromptText("More than 8 characters with numbers...");
         gridPane.add(passwordField, 1 , 3);
 
         Button submitButton = submitButton(gridPane);
@@ -105,6 +107,11 @@ public class GraphicalUserInterface extends Application {
             public void handle(ActionEvent event) {
                 if (usernameField.getText().isEmpty()) {
                     showAlert(Alert.AlertType.ERROR, gridPane.getScene().getWindow(), "Error", "Username can't be empty");
+                    return;
+                }
+
+                if (usernameField.getText().length() < 4) {
+                    showAlert(Alert.AlertType.ERROR, gridPane.getScene().getWindow(), "Error", "Username must have more than 4 characters");
                     return;
                 }
 
@@ -120,6 +127,16 @@ public class GraphicalUserInterface extends Application {
 
                 if (passwordField.getText().isEmpty()) {
                     showAlert(Alert.AlertType.ERROR, gridPane.getScene().getWindow(), "Error", "Password can't be empty");
+                    return;
+                }
+
+                if (passwordField.getText().length() < 8) {
+                    showAlert(Alert.AlertType.ERROR, gridPane.getScene().getWindow(), "Error", "Password must have more than 8 characters");
+                    return;
+                }
+
+                if (passwordField.getText().matches(".*\\d+.*")) {
+                    showAlert(Alert.AlertType.ERROR, gridPane.getScene().getWindow(), "Error", "Password must contain numbers");
                     return;
                 }
 
@@ -158,6 +175,8 @@ public class GraphicalUserInterface extends Application {
 
         Button submitButton = submitButton(gridPane);
 
+        // TODO
+        // Do checks with the database 
         submitButton.setOnAction(new EventHandler<ActionEvent>() {
             @Override
             public void handle(ActionEvent event) {
