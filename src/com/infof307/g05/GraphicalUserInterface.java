@@ -19,11 +19,9 @@ import javafx.stage.Window;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
-public class GraphicalInterface extends Application {
+public class GraphicalUserInterface extends Application {
 
     private static final String EMAIL_REGEX = "^[\\w-\\+]+(\\.[\\w]+)*@[\\w-]+(\\.[\\w]+)*(\\.[a-z]{2,})$";
-    private static Pattern pattern;
-    private Matcher matcher;
 
     @Override
     public void start(Stage primaryStage) throws Exception {
@@ -41,32 +39,22 @@ public class GraphicalInterface extends Application {
         gridPane.setPadding(new Insets(25, 25, 25, 25));
         gridPane.setHgap(10);
         gridPane.setVgap(10);
-
         return gridPane;
-
     }
 
     private GridPane formsPane() {
         GridPane gridPane = rootPane();
-
         ColumnConstraints columnOneConstraints = new ColumnConstraints(50, 50, Double.MAX_VALUE);
         columnOneConstraints.setHgrow(Priority.ALWAYS);
-
         ColumnConstraints columnTwoConstraints = new ColumnConstraints(500, 500, Double.MAX_VALUE);
         columnTwoConstraints.setHgrow(Priority.ALWAYS);
-
         gridPane.getColumnConstraints().addAll(columnOneConstraints, columnTwoConstraints);
-
         return gridPane;
     }
 
     private void addRegistrationUI(GridPane gridPane, Stage stage) {
         Label headerLabel = new Label("Registration Form");
-        headerLabel.setFont(Font.font("Arial", FontWeight.BOLD, 24));
-
-        gridPane.add(headerLabel, 0, 0, 2, 1);
-        GridPane.setHalignment(headerLabel, HPos.CENTER);
-        GridPane.setMargin(headerLabel, new Insets(20, 0, 20, 0));
+        headerSetup(gridPane, headerLabel);
 
         Label nameLabel = new Label("Username: ");
         gridPane.add(nameLabel, 0, 1);
@@ -89,13 +77,7 @@ public class GraphicalInterface extends Application {
         passwordField.setPrefHeight(40);
         gridPane.add(passwordField, 1 , 3);
 
-        Button submitButton = new Button("Submit");
-        submitButton.setPrefHeight(40);
-        submitButton.setDefaultButton(true);
-        submitButton.setPrefWidth(100);
-        gridPane.add(submitButton, 0, 4, 2, 1);
-        GridPane.setHalignment(submitButton, HPos.CENTER);
-        GridPane.setMargin(submitButton, new Insets(20, 0, 20, 0));
+        Button submitButton = submitButton(gridPane);
 
         submitButton.setOnAction(new EventHandler<ActionEvent>() {
             @Override
@@ -110,7 +92,7 @@ public class GraphicalInterface extends Application {
                     return;
                 }
 
-                if (isEmailValid(emailField.getText())) {
+                if (!isEmailValid(emailField.getText())) {
                     showAlert(Alert.AlertType.ERROR, gridPane.getScene().getWindow(), "Error", "Email is not valid");
                     return;
                 }
@@ -120,22 +102,18 @@ public class GraphicalInterface extends Application {
                     return;
                 }
 
+                // TODO
+                // Here are stored the user details
                 User user = new User(usernameField.getText(), passwordField.getText(), emailField.getText());
-                GridPane welcomePane = rootPane();
-                addControlPanelUI(welcomePane);
-                Scene welcomeScene = new Scene(welcomePane, 800, 500);
-                stage.setScene(welcomeScene);
-                stage.show();            }
+
+                welcomePaneSetup(stage);
+            }
         });
     }
 
     private void addLoginUI(GridPane gridPane, Stage stage) {
         Label headerLabel = new Label("Login Form");
-        headerLabel.setFont(Font.font("Arial", FontWeight.BOLD, 24));
-
-        gridPane.add(headerLabel, 0, 0, 2, 1);
-        GridPane.setHalignment(headerLabel, HPos.CENTER);
-        GridPane.setMargin(headerLabel, new Insets(20, 0, 20, 0));
+        headerSetup(gridPane, headerLabel);
 
         Label nameLabel = new Label("Username: ");
         gridPane.add(nameLabel, 0, 1);
@@ -151,13 +129,7 @@ public class GraphicalInterface extends Application {
         passwordField.setPrefHeight(40);
         gridPane.add(passwordField, 1 , 2);
 
-        Button submitButton = new Button("Submit");
-        submitButton.setPrefHeight(40);
-        submitButton.setDefaultButton(true);
-        submitButton.setPrefWidth(100);
-        gridPane.add(submitButton, 0, 4, 2, 1);
-        GridPane.setHalignment(submitButton, HPos.CENTER);
-        GridPane.setMargin(submitButton, new Insets(20, 0, 20, 0));
+        Button submitButton = submitButton(gridPane);
 
         submitButton.setOnAction(new EventHandler<ActionEvent>() {
             @Override
@@ -172,31 +144,19 @@ public class GraphicalInterface extends Application {
                     return;
                 }
 
-                GridPane welcomePane = rootPane();
-                addControlPanelUI(welcomePane);
-                Scene welcomeScene = new Scene(welcomePane, 800, 500);
-                stage.setScene(welcomeScene);
-                stage.show();
+                welcomePaneSetup(stage);
             }
         });
     }
 
     private void addControlPanelUI(GridPane gridPane) {
         Label headerLabel = new Label("Welcome to FeedBuzz 7bibi!");
-        headerLabel.setFont(Font.font("Arial", FontWeight.BOLD, 36));
-
-        gridPane.add(headerLabel, 0, 0, 2, 1);
-        GridPane.setHalignment(headerLabel, HPos.CENTER);
-        GridPane.setMargin(headerLabel, new Insets(20, 0, 20, 0));
+        headerSetup(gridPane, headerLabel);
     }
 
     private void addWelcomeUI(GridPane gridPane, Stage stage) {
         Label headerLabel = new Label("Welcome to FeedBuzz!");
-        headerLabel.setFont(Font.font("Arial", FontWeight.BOLD, 36));
-
-        gridPane.add(headerLabel, 0, 0, 2, 1);
-        GridPane.setHalignment(headerLabel, HPos.CENTER);
-        GridPane.setMargin(headerLabel, new Insets(20, 0, 20, 0));
+        headerSetup(gridPane, headerLabel);
 
         Button loginButton = new Button("Log In");
         Button registerButton = new Button("Register");
@@ -239,6 +199,21 @@ public class GraphicalInterface extends Application {
         });
     }
 
+    private void welcomePaneSetup(Stage stage) {
+        GridPane welcomePane = rootPane();
+        addControlPanelUI(welcomePane);
+        Scene welcomeScene = new Scene(welcomePane, 800, 500);
+        stage.setScene(welcomeScene);
+        stage.show();
+    }
+
+    private void headerSetup(GridPane gridPane, Label headerLabel) {
+        headerLabel.setFont(Font.font("Arial", FontWeight.BOLD, 36));
+        gridPane.add(headerLabel, 0, 0, 2, 1);
+        GridPane.setHalignment(headerLabel, HPos.CENTER);
+        GridPane.setMargin(headerLabel, new Insets(20, 0, 20, 0));
+    }
+
     private void showAlert(Alert.AlertType alertType, Window owner, String title, String message) {
         Alert alert = new Alert(alertType);
         alert.setTitle(title);
@@ -250,14 +225,25 @@ public class GraphicalInterface extends Application {
 
     /**
      * Checks whether the email has a valid format or not
-     * @param email
+     * @param email user's email
      * @return true if valid, false if not valid
      */
-    public boolean isEmailValid(String email) {
-        pattern = Pattern.compile(EMAIL_REGEX, Pattern.CASE_INSENSITIVE);
-        matcher = pattern.matcher(email);
+    private boolean isEmailValid(String email) {
+        Pattern pattern = Pattern.compile(EMAIL_REGEX, Pattern.CASE_INSENSITIVE);
+        Matcher matcher = pattern.matcher(email);
 
         return matcher.matches();
     }
 
+    private Button submitButton(GridPane gridPane) {
+        Button button = new Button("Submit");
+        button.setPrefHeight(40);
+        button.setDefaultButton(true);
+        button.setPrefWidth(100);
+        gridPane.add(button, 0, 4, 2, 1);
+        GridPane.setHalignment(button, HPos.CENTER);
+        GridPane.setMargin(button, new Insets(20, 0, 20, 0));
+
+        return button;
+    }
 }
