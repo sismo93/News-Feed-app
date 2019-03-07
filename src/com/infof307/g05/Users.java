@@ -5,9 +5,9 @@ package com.infof307.g05;
  * @codereview @tvincent
  */
 public class Users {
-    private String mail = "";
-    private String password = "";
-    private String login = "";
+    private String mail;
+    private String password;
+    private String login ;
 
     public Users(){}
     public Users(String mail, String login, String password ){
@@ -25,5 +25,15 @@ public class Users {
     public String getLogin() {
         return login;
     }
+    public  void setMail(String mail){
+        this.mail= mail;
+    }
+    public void setPassword(String password){
+        this.password = password;
+    }
+    public void setLogin(String login){
+        this.login = login;
+    }
 }
+
 
