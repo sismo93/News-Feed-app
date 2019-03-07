@@ -25,6 +25,15 @@ public class GraphicalInterface extends Application {
     private static Pattern pattern;
     private Matcher matcher;
 
+    private DAO<User> userDao;
+    private User user;
+    /**
+     * Constructor
+     * */
+    public GraphicalInterface() {
+        this.userDao = new UsersDAO();
+    }
+
     @Override
     public void start(Stage primaryStage) throws Exception {
         primaryStage.setTitle("FeedBuzz");
@@ -120,7 +129,21 @@ public class GraphicalInterface extends Application {
                     return;
                 }
 
-                User user = new User(usernameField.getText(), passwordField.getText(), emailField.getText());
+                // add User make a new User
+                user = new User(usernameField.getText(), passwordField.getText(), emailField.getText());
+
+
+                if( !userDao.mailExist(user) ||
+                        !userDao.checkLoginAndPassword(user) ||
+                            !userDao.loginExist(user)){
+                                userDao.add(user);
+                }
+
+
+
+                // add User Dao add the new user in the database
+                userDao.add(user);
+
                 GridPane welcomePane = rootPane();
                 addControlPanelUI(welcomePane);
                 Scene welcomeScene = new Scene(welcomePane, 800, 500);
@@ -255,9 +278,13 @@ public class GraphicalInterface extends Application {
      */
     public boolean isEmailValid(String email) {
         pattern = Pattern.compile(EMAIL_REGEX, Pattern.CASE_INSENSITIVE);
+
         matcher = pattern.matcher(email);
 
         return matcher.matches();
     }
+
+    public boolean isUserInDatab
+
 
 }
