@@ -4,8 +4,8 @@ import javafx.event.ActionEvent;
 
 /**
  * Controller of Menu View
- * @author @Moun
- * @codereview @Wassil
+ * @author @MnrBn
+ * @codereview @borsalinoK
  */
 
 public class MenuController {

@@ -10,8 +10,8 @@ import javafx.scene.control.TextField;
 
 /**
  * Controller of the Add View
- * @author @Moun
- * @codereview @Wassil
+ * @author @MnrBn
+ * @codereview @borsalinoK
  */
 
 public class AddController {
