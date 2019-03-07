@@ -30,6 +30,11 @@ TO DO: Informations sur la façon d'executer les tests
 
 # Misc
 
+
+# Convention de nommage
+
+
+
 ## Développement
 
 ## Screenshot
