@@ -1,3 +1,5 @@
+package com.infof307.g05;
+
 import java.util.Arrays;
 import java.net.*;
 import java.io.*;
@@ -6,7 +8,7 @@ import java.util.Arrays;
 import java.util.regex.*;
 
 /**
- * Class URLReader qui donne les articles demandées
+ * Class com.infof307.g05.URLReader qui donne les articles demandées
  */
 public class URLReader {
 
@@ -44,9 +46,9 @@ public class URLReader {
      * @return results(Articles sous forme de liste)
      * @throws Exception
      */
-    private static ArrayList Article(String url) throws Exception {
+    public static ArrayList<String[]> Article(String url) throws Exception {
         String[] urls = url.split(" ");
-        ArrayList results = new ArrayList();
+        ArrayList<String[]> results = new ArrayList<>();
         for(int i=0;i<urls.length;++i) {
             String result = "";
             URL oracle = new URL(urls[i]);
@@ -85,14 +87,15 @@ public class URLReader {
      * @return Liste de url
      * @throws Exception
      */
-    private static ArrayList Homepage(String url, String category, int nbrs) throws Exception {
-        ArrayList result = new ArrayList();
+    public static ArrayList<String> Homepage(String url, String category, int nbrs) throws Exception {
+        ArrayList<String> result = new ArrayList<>();
         URL oracle = new URL(url);
         BufferedReader in = new BufferedReader(new InputStreamReader(oracle.openStream()));
 
         String inputLine;
         while ((inputLine = in.readLine()) != null && result.size()< nbrs){
             Matcher matcher = urlPattern.matcher(inputLine);
+
             while (matcher.find() && result.size()<
                     nbrs) {
                 int matchStart = matcher.start(1);

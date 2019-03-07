@@ -4,9 +4,15 @@ import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
-import javafx.scene.control.Button;
-import javafx.scene.control.ChoiceBox;
-import javafx.scene.control.TextField;
+import javafx.scene.control.*;
+
+import javafx.stage.Window;
+
+import java.util.ArrayList;
+import java.util.Optional;
+
+import static com.infof307.g05.URLReader.Article;
+import static com.infof307.g05.URLReader.Homepage;
 
 /**
  * Controller of the Add View
@@ -38,8 +44,8 @@ public class AddController {
     public void initialize() {
         ObservableList<String> categoryList =
                 FXCollections.observableArrayList(
+                        "News",
                         "Sport",
-                        "Politique",
                         "Culture"
                 );
 
@@ -63,7 +69,68 @@ public class AddController {
      * Add the article to the feed
      */
     public void OnButtonPressed(ActionEvent actionEvent) {
-        /// link
+
+        String url = UrlBox.getText();
+
+        if (url.isEmpty()) {
+            Alert alert = new Alert(Alert.AlertType.CONFIRMATION, "Please enter a valid Url", ButtonType.OK);
+            alert.showAndWait();
+            return;
+        }
+
+        ArrayList<String[]> article = new ArrayList<>();
+
+        if(CategoryBox.getSelectionModel().isEmpty() || ArticleNumberBox.getSelectionModel().isEmpty()){
+            try {
+
+                article = Article(url);
+
+
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+        }
+
+        try {
+
+            ArrayList<String> urlsList =  Homepage("https://www.bbc.com/",
+                    CategoryBox.getSelectionModel().getSelectedItem().toString(),
+                    (int) ArticleNumberBox.getSelectionModel().getSelectedItem());
+
+            for (String s : urlsList) {
+
+                url = s;
+
+                // fetch the correponding article content from the url
+
+                try {
+                    article = Article(url);
+                } catch (Exception e) {
+                    e.printStackTrace();
+                }
+
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+
+        Alert alert = new Alert(Alert.AlertType.INFORMATION,
+                article.get(0)[0],
+                ButtonType.OK, ButtonType.CANCEL);
+
+        alert.setTitle("Article Importation ");
+        alert.setHeaderText("Voulez importer l'article");
+
+        Optional<ButtonType> result = alert.showAndWait();
+
+        if (result.get() == ButtonType.OK){
+            // ... user chose OK
+            ArticleData.Instance().addArticle(article.get(0));
+
+        } else if(result.get() ==ButtonType.CANCEL){
+            // ... user chose CANCEL or closed the dialog
+        }
+
     }
 
 
@@ -72,6 +139,23 @@ public class AddController {
      * Open the Menu View
      */
     public void OpenMenuView(ActionEvent actionEvent) {
-
+        Router.Instance().changeView(Router.Views.Menu);
     }
+
+    /**
+     * Shows the error alert with custom message
+     * @param alertType type of alert
+     * @param owner parent window
+     * @param title title of the alert
+     * @param message message of the alert
+     */
+    private void showAlert(Alert.AlertType alertType, Window owner, String title, String message) {
+        Alert alert = new Alert(alertType);
+        alert.setTitle(title);
+        alert.setHeaderText(null);
+        alert.setContentText(message);
+        alert.initOwner(owner);
+        alert.show();
+    }
+
 }
