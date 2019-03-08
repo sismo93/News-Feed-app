@@ -37,7 +37,7 @@ public class RegisterController {
         if (!usersDAO.loginExist(user) && !usersDAO.mailExist(user)){
 
             usersDAO.add(user); // Add in database
-           // RegisterReglement();
+            Router.Instance().changeView(Router.Views.Menu); // Go to menu
 
 
 

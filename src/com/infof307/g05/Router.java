@@ -57,18 +57,22 @@ public class Router {
         getRoot().getChildren().remove(currentView);
 
         if(view == Views.Menu){
+
             currentView = Router.Instance().loadFxml("MenuView.fxml");
         }
         else if(view == Views.Add){
             currentView = Router.Instance().loadFxml("AddView.fxml");
 
         }
+        else if(view == Views.Login) {
+            currentView = Router.Instance().loadFxml("LoginFxml.fxml");
+        }
         else if(view == Views.Feed){
             currentView = Router.Instance().loadFxml("FeedView.fxml");
 
         }
         else if(view == Views.Register){
-            currentView = Router.Instance().loadFxml("Register.fxml");
+            currentView = Router.Instance().loadFxml("RegisterFxml.fxml");
 
         }
         getRoot().getChildren().add(currentView);
@@ -84,6 +88,7 @@ public class Router {
         Menu,
         Add,
         Feed,
-        Register
+        Register,
+        Login
     }
 }

@@ -33,7 +33,9 @@ public class LoginController {
         user.setPassword(passwordField.getText());
 
         if (usersDAO.checkLoginAndPassword(user)){
-            // Lancer Scene ADD / FEED
+
+            Router.Instance().changeView(Router.Views.Menu);
+
 
         }
         else{
@@ -63,8 +65,8 @@ public class LoginController {
 
         Optional<ButtonType> result = alert.showAndWait();
         if (result.get() == ButtonType.OK){
-            // GO TO REGISTER FXML
-            Router.Instance().changeView(Router.Views.Menu);
+
+            Router.Instance().changeView(Router.Views.Register);
         }
     }
 }
