@@ -16,6 +16,7 @@ public class MenuController {
      * Switch to feed view
      */
     public void OpenFeedView(ActionEvent actionEvent) {
+        Router.Instance().changeView(Router.Views.Feed);
 
     }
 
@@ -25,6 +26,6 @@ public class MenuController {
      * Switch to add view
      */
     public void OpenAddView(ActionEvent actionEvent) {
-
+        Router.Instance().changeView(Router.Views.Add);
     }
 }

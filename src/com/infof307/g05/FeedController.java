@@ -5,6 +5,15 @@ import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.ListView;
+import javafx.scene.layout.VBox;
+import javafx.scene.text.Text;
+import javafx.scene.text.TextFlow;
+
+import java.util.ArrayList;
+import java.util.Arrays;
+
+import static com.infof307.g05.URLReader.Article;
+import static com.infof307.g05.URLReader.Homepage;
 
 /**
  * Controller of the Feed View
@@ -17,7 +26,7 @@ public class FeedController {
     /**
      * ArticleViewField displays the content on the page
      */
-    public ListView ArticleViewField;
+    public VBox articleContainer;
 
     /**
      * Called after scene loading
@@ -29,17 +38,51 @@ public class FeedController {
     @FXML
     public void initialize(){
 
-        // TODO: 3/5/19 get the news thru the parser module
-        /// Dummy list
-        ObservableList<String> articleList =
-                FXCollections.observableArrayList(
-                        "Article 1, Dz ioaj dizajoi djazoi djozai jdi za",
-                        "Article 2, Doza jiodjza djazio jdoza jodza joida jz ",
-                        "Article 3, Tizj iijdjzaij dzai jdazij doa zdo zajod jzaoijd"
-                );
 
-        ArticleViewField.setItems(articleList);
+        // fetching data
+        ArrayList<String> urlsList = null;
 
+        try {
+            urlsList =  Homepage("https://www.bbc.com/", "news", 4);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+
+        // retrieving content
+
+        String[] article = new String[2];
+        String url;
+
+        for (String s : urlsList) {
+
+            url = s;
+
+            // fetch the correponding article content from the url
+
+            try {
+                article = Article(url).get(0);
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+
+
+            // Build scene component
+            TextFlow flow = new TextFlow();
+
+            Text text1=new Text(article[0] + " ");
+            Text text2=new Text(article[1]);
+
+
+            // text format with custom style
+            text1.setStyle("-fx-font-weight: bold");
+
+
+            // fill scene with new component
+            flow.getChildren().addAll(text1, text2);
+
+            articleContainer.getChildren().add(flow);
+
+        }
     }
 
 
@@ -48,6 +91,7 @@ public class FeedController {
      * Back to menu
      */
     public void OpenMenuView(ActionEvent actionEvent) {
-
+        Router.Instance().changeView(Router.Views.Menu);
     }
+
 }

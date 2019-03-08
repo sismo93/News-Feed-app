@@ -64,7 +64,7 @@ public class LoginController {
         Optional<ButtonType> result = alert.showAndWait();
         if (result.get() == ButtonType.OK){
             // GO TO REGISTER FXML
-
+            Router.Instance().changeView(Router.Views.Menu);
         }
     }
 }
