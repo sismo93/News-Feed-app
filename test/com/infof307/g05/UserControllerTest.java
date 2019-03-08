@@ -6,7 +6,7 @@ import static org.junit.jupiter.api.Assertions.*;
 
 class UserControllerTest {
 
-    User user = new User("test", "password", "test@test.com");
+    Users user = new Users("test", "password", "test@test.com");
     UserView userView = new UserView();
     UserController userController = new UserController(user, userView);
 

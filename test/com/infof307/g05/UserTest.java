@@ -6,17 +6,17 @@ import static org.junit.jupiter.api.Assertions.*;
 
 class UserTest {
 
-    User user = new User("test", "password", "test@test.com");
+    Users user = new Users("test", "password", "test@test.com");
 
     @Test
     void getUsernameTest() {
-        assertEquals("test", user.getUsername());
+        assertEquals("test", user.getLogin());
     }
 
     @Test
     void setUsernameTest() {
-        user.setUsername("newTest");
-        assertEquals("newTest", user.getUsername());
+        user.setLogin("newTest");
+        assertEquals("newTest", user.getLogin());
     }
 
     @Test
@@ -32,12 +32,12 @@ class UserTest {
 
     @Test
     void getEmailTest() {
-        assertEquals("test@test.com", user.getEmail());
+        assertEquals("test@test.com", user.getMail());
     }
 
     @Test
     void setEmailTest() {
-        user.setEmail("newTest@test.com");
-        assertEquals("newTest@test.com", user.getEmail());
+        user.setMail("newTest@test.com");
+        assertEquals("newTest@test.com", user.getMail());
     }
 }
