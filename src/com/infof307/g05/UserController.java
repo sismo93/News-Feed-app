@@ -6,7 +6,7 @@ package com.infof307.g05;
  * @codereview @Tanvirul.Hoque
  */
 public class UserController {
-    private User model;
+    private Users model;
     private UserView view;
 
     /**
@@ -14,7 +14,7 @@ public class UserController {
      * @param model
      * @param view
      */
-    public UserController(User model, UserView view) {
+    public UserController(Users model, UserView view) {
         this.model = model;
         this.view = view;
     }
@@ -24,7 +24,7 @@ public class UserController {
      * @param username
      */
     public void setUsername(String username) {
-        model.setUsername(username);
+        model.setLogin(username);
     }
 
     /**
@@ -32,7 +32,7 @@ public class UserController {
      * @return username
      */
     public String getUsername() {
-        return model.getUsername();
+        return model.getLogin();
     }
 
     /**
@@ -56,7 +56,7 @@ public class UserController {
      * @param email
      */
     public void setEmail(String email) {
-        model.setEmail(email);
+        model.setMail(email);
     }
 
     /**
@@ -64,14 +64,14 @@ public class UserController {
      * @return user's email
      */
     public String getEmail() {
-        return model.getEmail();
+        return model.getMail();
     }
 
     /**
      * updates the view of the User model
      */
     public void updateView() {
-        view.printUserDetails(model.getUsername(), model.getEmail());
+        view.printUserDetails(model.getLogin(), model.getMail());
     }
 
 }

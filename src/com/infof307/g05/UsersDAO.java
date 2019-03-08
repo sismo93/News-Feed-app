@@ -5,17 +5,17 @@ import java.sql.ResultSet;
  *@author @mouscb
  * @codereview @tvincent
  */
-public class UsersDAO extends DAO<User> {
+public class UsersDAO extends DAO<Users> {
 
-    public void add(User obj) {
+    public void add(Users obj) {
         try {
 
             PreparedStatement prepare2 = this.connect.prepareStatement(
                     "INSERT INTO users (email,password,login)"+
                             "VALUES (?,md5(?),?)");
-            prepare2.setString(1,obj.getEmail());
+            prepare2.setString(1,obj.getMail());
             prepare2.setString(2,obj.getPassword());
-            prepare2.setString(3,obj.getUsername());
+            prepare2.setString(3,obj.getLogin());
 
             prepare2.executeUpdate();
 
@@ -29,12 +29,12 @@ public class UsersDAO extends DAO<User> {
     }
 
     @Override
-    public boolean loginExist(User obj) {
+    public boolean loginExist(Users obj) {
         try {
 
             PreparedStatement stmt = this.connect.prepareStatement(
                     "select * from users where login = ? ");
-            stmt.setString(1, obj.getUsername());
+            stmt.setString(1, obj.getLogin());
             ResultSet rs=stmt.executeQuery();
 
 
@@ -57,12 +57,12 @@ public class UsersDAO extends DAO<User> {
     }
 
     @Override
-    public boolean mailExist(User obj) {
+    public boolean mailExist(Users obj) {
         try {
 
             PreparedStatement stmt = this.connect.prepareStatement(
                     "select * from users where email = ? ");
-            stmt.setString(1, obj.getEmail());
+            stmt.setString(1, obj.getMail());
             ResultSet rs=stmt.executeQuery();
 
 
@@ -83,12 +83,12 @@ public class UsersDAO extends DAO<User> {
         }
     }
 
-    public boolean checkLoginAndPassword(User obj) {
+    public boolean checkLoginAndPassword(Users obj) {
         try {
 
             PreparedStatement stmt = this.connect.prepareStatement(
                     "select * from users where login = ? and password = md5(?)");
-            stmt.setString(1, obj.getUsername());
+            stmt.setString(1, obj.getLogin());
             stmt.setString(2, obj.getPassword());
             ResultSet rs=stmt.executeQuery();
 

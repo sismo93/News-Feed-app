@@ -1,16 +1,21 @@
 package com.infof307.g05;
 
-public class Main {
+import javafx.application.Application;
+import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
+import javafx.stage.Stage;
+
+public class Main extends Application {
+    public void start(Stage primaryStage) throws Exception {
+        Parent root = FXMLLoader.load(getClass().getResource("LoginFxml.fxml"));
+
+        primaryStage.setScene(new Scene(root));
+        primaryStage.show();
+    }
+
     public static void main(String[] args) {
-        User user;
-        user = new User("djdjjddd@","mouddu","fhfhfh");
-        DAO<User> UsersDAO = new UsersDAO();
-        //boolean bol = UsersDAO.findLogin(user);
-        UsersDAO.checkLoginAndPassword(user);
-        System.out.println(UsersDAO.checkLoginAndPassword(user));
-
-
-
-
+        launch(args);
     }
 }
