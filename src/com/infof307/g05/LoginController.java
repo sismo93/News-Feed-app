@@ -9,8 +9,6 @@ import java.util.Optional;
 
 
 public class LoginController {
-
-
     public PasswordField passwordField;
     public TextField userNameField;
     private Users user;
@@ -18,25 +16,26 @@ public class LoginController {
 
     private Alert alert;
 
-
-
+    /**
+     * Constructor
+     */
     public LoginController(){
         user = new Users();
         usersDAO = new UsersDAO();
-
-
     }
 
+    /**
+     * Defines the login button
+     * Checks whether the login information matches the database
+     * Otherwise, throw an alert error
+     */
     @FXML
     private void LoginButton(){
         user.setLogin(userNameField.getText());
         user.setPassword(passwordField.getText());
 
         if (usersDAO.checkLoginAndPassword(user)){
-
             Router.Instance().changeView(Router.Views.Menu);
-
-
         }
         else{
             alert = new Alert(Alert.AlertType.ERROR);
@@ -45,18 +44,19 @@ public class LoginController {
             alert.showAndWait();
 
         }
-
     }
 
+    /**
+     * Displays the "Terms & Conditions" pop up
+     */
     @FXML
     private void RegisterButton(){
         RegisterReglement();
-
-
     }
 
-
-
+    /**
+     * Defines the "Terms & Conditions" pop up
+     */
     public void RegisterReglement(){
         Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
         alert.setTitle("Reglement");
@@ -65,7 +65,6 @@ public class LoginController {
 
         Optional<ButtonType> result = alert.showAndWait();
         if (result.get() == ButtonType.OK){
-
             Router.Instance().changeView(Router.Views.Register);
         }
     }
