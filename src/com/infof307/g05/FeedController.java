@@ -1,16 +1,12 @@
 package com.infof307.g05;
 
-import javafx.collections.FXCollections;
-import javafx.collections.ObservableList;
+
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
-import javafx.scene.control.ListView;
 import javafx.scene.layout.VBox;
 import javafx.scene.text.Text;
 import javafx.scene.text.TextFlow;
-
 import java.util.ArrayList;
-import java.util.Arrays;
 
 import static com.infof307.g05.URLReader.Article;
 import static com.infof307.g05.URLReader.Homepage;

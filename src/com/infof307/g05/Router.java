@@ -8,38 +8,46 @@ import java.io.IOException;
 import java.util.HashMap;
 
 public class Router {
-
     private AnchorPane rootView;
     private Node currentView;
     private static Router instance;
     private HashMap<String, Node> routes;
 
+    /**
+     * Constructor
+     */
     public Router() {
         this.routes = new HashMap<>();
-
     }
 
+    /**
+     * Constructor
+     * @return instance of the Router
+     */
     public static Router Instance(){
-
         if(instance == null){
-
             instance = new Router();
-
             instance.setRoot((AnchorPane) instance.loadFxml("RootView.fxml"));
-
         }
-
         return instance;
     }
 
+    /**
+     * Sets up the AnchorPane
+     * @param root AnchorPane
+     */
     public void setRoot(AnchorPane root) {
         rootView = root;
     }
 
+    /**
+     * Loads XML windows
+     * @param fxml XML node
+     * @return XML view
+     */
     private Node loadFxml(String fxml) {
         Node view = null;
         if(routes.containsKey(fxml)) return routes.get(fxml);
-
 
         FXMLLoader loader = new FXMLLoader(Router.this.getClass().getResource(fxml));
         try {
@@ -52,12 +60,14 @@ public class Router {
     }
 
 
+    /**
+     * Changes XML view
+     * @param view window view
+     */
     public void changeView(Views view) {
-
         getRoot().getChildren().remove(currentView);
 
         if(view == Views.Menu){
-
             currentView = Router.Instance().loadFxml("MenuView.fxml");
         }
         else if(view == Views.Add){
@@ -80,10 +90,17 @@ public class Router {
 
     }
 
+    /**
+     * Gets the root window
+     * @return the root window
+     */
     public AnchorPane getRoot() {
         return  rootView;
     }
 
+    /**
+     * Enum of different views
+     */
     public enum  Views{
         Menu,
         Add,
