@@ -9,8 +9,6 @@ public abstract class DAO<T> {
 
     public Connection connect = ConnectionPostgreSQL.getInstance();
 
-
-
     /**
      * Create an entry in the database
      * relative to an object
