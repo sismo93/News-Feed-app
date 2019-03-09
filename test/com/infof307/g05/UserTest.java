@@ -6,7 +6,7 @@ import static org.junit.jupiter.api.Assertions.*;
 
 class UserTest {
 
-    Users user = new Users("test", "password", "test@test.com");
+    Users user = new Users("test@test.com", "test", "password");
 
     @Test
     void getUsernameTest() {
