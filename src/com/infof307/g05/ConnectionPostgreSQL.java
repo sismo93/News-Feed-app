@@ -35,7 +35,7 @@ public class ConnectionPostgreSQL{
         if(connect == null){
             try {
                 System.out.print("first statement. ");
-                Class.forName("org.postgresql.Driver");
+                //Class.forName("org.postgresql.Driver");
 
                 connect = DriverManager.getConnection(url, user, passwd);
                 System.out.print("2 statement. ");

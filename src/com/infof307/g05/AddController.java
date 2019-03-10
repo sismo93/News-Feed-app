@@ -44,9 +44,9 @@ public class AddController {
     public void initialize() {
         ObservableList<String> categoryList =
                 FXCollections.observableArrayList(
-                        "News",
-                        "Sport",
-                        "Culture"
+                        "news",
+                        "sport",
+                        "culture"
                 );
 
 
