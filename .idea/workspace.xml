@@ -2,63 +2,18 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="8ed6c9e0-c52e-41ad-983e-fab3cc7f2867" name="Default" comment="fix category name for article importation">
-      <change beforePath="$PROJECT_DIR$/.idea/compiler.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/compiler.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/groupe05.iml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/groupe05.iml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/groupe05.db" beforeDir="false" afterPath="$PROJECT_DIR$/groupe05.db" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/pom.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/com/infof307/g05/AddController.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/com/infof307/g05/AddView.fxml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/com/infof307/g05/ArticleData.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/com/infof307/g05/ConnexionSQLite.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/com/infof307/g05/DAO.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/com/infof307/g05/FeedController.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/com/infof307/g05/FeedView.fxml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/com/infof307/g05/HashMD5.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/com/infof307/g05/LoginController.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/com/infof307/g05/LoginFxml.fxml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/com/infof307/g05/Main.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/com/infof307/g05/MenuController.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/com/infof307/g05/MenuView.fxml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/com/infof307/g05/RegisterController.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/com/infof307/g05/RegisterFxml.fxml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/com/infof307/g05/RootView.fxml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/com/infof307/g05/Router.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/com/infof307/g05/URLReader.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/com/infof307/g05/UserController.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/com/infof307/g05/Users.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/com/infof307/g05/UsersDAO.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/infof307/g05/AddController.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/infof307/g05/AddView.fxml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/infof307/g05/ArticleData.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/infof307/g05/ConnexionSQLite.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/infof307/g05/DAO.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/infof307/g05/FeedController.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/infof307/g05/FeedView.fxml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/infof307/g05/HashMD5.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/infof307/g05/LoginController.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/infof307/g05/LoginFxml.fxml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/infof307/g05/Main.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/infof307/g05/MenuController.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/infof307/g05/MenuView.fxml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/infof307/g05/RegisterController.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/infof307/g05/RegisterFxml.fxml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/infof307/g05/RootView.fxml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/infof307/g05/Router$Views.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/infof307/g05/Router.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/infof307/g05/URLReader.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/infof307/g05/UserController.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/infof307/g05/Users.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/infof307/g05/UsersDAO.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/test-classes/com/infof307/g05/UserControllerTest.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/test-classes/com/infof307/g05/UserTest.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/test/com/infof307/g05/UserControllerTest.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/test/com/infof307/g05/UserTest.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/be/ac/ulb/infof307/g05/ArticleData.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/be/ac/ulb/infof307/g05/ArticleData.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/be/ac/ulb/infof307/g05/FeedController.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/be/ac/ulb/infof307/g05/FeedController.class" afterDir="false" />
     </list>
     <ignored path="$PROJECT_DIR$/out/" />
     <ignored path="lib/postgresql-9.2-1002.jdbc4.jar" />
     <ignored path="$PROJECT_DIR$/target/" />
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
+    <option name="TRACKING_ENABLED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -79,51 +34,8 @@
     <select />
   </component>
   <component name="FileEditorManager">
-    <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/be/ac/ulb/infof307/g05/AddView.fxml">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="255">
-              <caret line="15" column="60" lean-forward="true" selection-start-line="15" selection-start-column="60" selection-end-line="15" selection-end-column="60" />
-            </state>
-          </provider>
-          <provider editor-type-id="JavaFX-Scene-Builder" />
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/src/be/ac/ulb/infof307/g05/ArticleData.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="34">
-              <caret line="2" lean-forward="true" selection-start-line="2" selection-end-line="2" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/test/be/ac/ulb/infof307/g05/HashMD5Test.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="88">
-              <caret line="9" selection-start-line="9" selection-end-line="9" />
-              <folding>
-                <element signature="imports" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/be/ac/ulb/infof307/g05/AddController.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="255">
-              <caret line="24" column="13" selection-start-line="24" selection-start-column="13" selection-end-line="24" selection-end-column="13" />
-              <folding>
-                <element signature="imports" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
+    <leaf>
+      <file leaf-file-name="Main.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/be/ac/ulb/infof307/g05/Main.java">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="221">
@@ -135,11 +47,66 @@
           </provider>
         </entry>
       </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/be/ac/ulb/infof307/g05/FeedController.java">
+      <file leaf-file-name="HashMD5Test.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/test/be/ac/ulb/infof307/g05/HashMD5Test.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="204">
-              <caret line="12" selection-start-line="12" selection-end-line="12" />
+            <state relative-caret-position="51">
+              <caret line="3" column="28" selection-start-line="3" selection-start-column="28" selection-end-line="3" selection-end-column="28" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="RootView.fxml" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/be/ac/ulb/infof307/g05/RootView.fxml">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="136">
+              <caret line="8" column="14" lean-forward="true" selection-start-line="8" selection-start-column="14" selection-end-line="8" selection-end-column="14" />
+            </state>
+          </provider>
+          <provider editor-type-id="JavaFX-Scene-Builder" />
+        </entry>
+      </file>
+      <file leaf-file-name="Router.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/be/ac/ulb/infof307/g05/Router.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="68">
+              <caret line="9" column="13" selection-start-line="9" selection-start-column="13" selection-end-line="9" selection-end-column="13" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="LoginControllerTest.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/test/be/ac/ulb/infof307/g05/LoginControllerTest.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="136">
+              <caret line="20" column="13" selection-start-line="20" selection-start-column="13" selection-end-line="20" selection-end-column="13" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="HashMD5.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/be/ac/ulb/infof307/g05/HashMD5.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="43">
+              <caret line="10" column="13" selection-start-line="10" selection-start-column="13" selection-end-line="10" selection-end-column="13" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="pom.xml" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/pom.xml">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="241">
+              <caret line="50" column="21" lean-forward="true" selection-start-line="50" selection-start-column="21" selection-end-line="50" selection-end-column="21" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="UserControllerTest.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/test/be/ac/ulb/infof307/g05/UserControllerTest.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="102">
+              <caret line="6" column="6" selection-start-line="6" selection-start-column="6" selection-end-line="6" selection-end-column="6" />
               <folding>
                 <element signature="imports" expanded="true" />
               </folding>
@@ -147,38 +114,11 @@
           </provider>
         </entry>
       </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/test/be/ac/ulb/infof307/g05/RegisterControllerTest.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="17">
-              <caret line="1" selection-start-line="1" selection-end-line="1" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/test/be/ac/ulb/infof307/g05/UserControllerTest.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="17">
-              <caret line="1" selection-start-line="1" selection-end-line="1" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
+      <file leaf-file-name="UsersDAOTest.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/test/be/ac/ulb/infof307/g05/UsersDAOTest.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="17">
-              <caret line="1" selection-start-line="1" selection-end-line="1" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/test/be/ac/ulb/infof307/g05/UserTest.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="17">
-              <caret line="1" selection-start-line="1" selection-end-line="1" />
+            <state relative-caret-position="136">
+              <caret line="8" column="13" selection-start-line="8" selection-start-column="13" selection-end-line="8" selection-end-column="13" />
             </state>
           </provider>
         </entry>
@@ -226,7 +166,6 @@
         <option value="$PROJECT_DIR$/src/com/infof307/g05/DAO.java" />
         <option value="$PROJECT_DIR$/test/com/infof307/g05/UserControllerTest.java" />
         <option value="$PROJECT_DIR$/test/com/infof307/g05/UserTest.java" />
-        <option value="$PROJECT_DIR$/pom.xml" />
         <option value="$PROJECT_DIR$/src/com/infof307/g05/LoginFxml.fxml" />
         <option value="$PROJECT_DIR$/src/com/infof307/g05/LoginController.java" />
         <option value="$PROJECT_DIR$/src/com/infof307/g05/Router.java" />
@@ -261,8 +200,15 @@
         <option value="$PROJECT_DIR$/test/be/ac/ulb/infof307/g05/HashMD5Test.java" />
         <option value="$PROJECT_DIR$/src/be/ac/ulb/infof307/g05/FeedController.java" />
         <option value="$PROJECT_DIR$/src/be/ac/ulb/infof307/g05/ArticleData.java" />
+        <option value="$PROJECT_DIR$/pom.xml" />
       </list>
     </option>
+  </component>
+  <component name="JsBuildToolGruntFileManager" detection-done="true" sorting="DEFINITION_ORDER" />
+  <component name="JsBuildToolPackageJson" detection-done="true" sorting="DEFINITION_ORDER" />
+  <component name="JsGulpfileManager">
+    <detection-done>true</detection-done>
+    <sorting>DEFINITION_ORDER</sorting>
   </component>
   <component name="MavenProjectNavigator">
     <treeState>
@@ -271,9 +217,17 @@
           <item name="" type="16c1761:MavenProjectsStructure$RootNode" />
           <item name="groupe05" type="9519ce18:MavenProjectsStructure$ProjectNode" />
         </path>
+        <path>
+          <item name="" type="16c1761:MavenProjectsStructure$RootNode" />
+          <item name="groupe05" type="9519ce18:MavenProjectsStructure$ProjectNode" />
+          <item name="Lifecycle" type="58874e2:MavenProjectsStructure$LifecycleNode" />
+        </path>
       </expand>
       <select />
     </treeState>
+  </component>
+  <component name="NodePackageJsonFileManager">
+    <packageJsonPaths />
   </component>
   <component name="ProjectFrameBounds" extendedState="6">
     <option name="x" value="-8" />
@@ -291,37 +245,28 @@
         <subPane>
           <expand>
             <path>
-              <item name="ProjetGénie" type="b2602c69:ProjectViewProjectNode" />
-              <item name="groupe05" type="47feb1d3:ProjectViewModuleNode" />
+              <item name="groupe05" type="b2602c69:ProjectViewProjectNode" />
+              <item name="groupe05" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
-              <item name="ProjetGénie" type="b2602c69:ProjectViewProjectNode" />
-              <item name="groupe05" type="47feb1d3:ProjectViewModuleNode" />
-              <item name="ProjetGénie" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="ProjetGénie" type="b2602c69:ProjectViewProjectNode" />
-              <item name="groupe05" type="47feb1d3:ProjectViewModuleNode" />
-              <item name="ProjetGénie" type="462c0819:PsiDirectoryNode" />
+              <item name="groupe05" type="b2602c69:ProjectViewProjectNode" />
+              <item name="groupe05" type="462c0819:PsiDirectoryNode" />
               <item name="src" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
-              <item name="ProjetGénie" type="b2602c69:ProjectViewProjectNode" />
-              <item name="groupe05" type="47feb1d3:ProjectViewModuleNode" />
-              <item name="ProjetGénie" type="462c0819:PsiDirectoryNode" />
+              <item name="groupe05" type="b2602c69:ProjectViewProjectNode" />
+              <item name="groupe05" type="462c0819:PsiDirectoryNode" />
               <item name="src" type="462c0819:PsiDirectoryNode" />
               <item name="g05" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
-              <item name="ProjetGénie" type="b2602c69:ProjectViewProjectNode" />
-              <item name="groupe05" type="47feb1d3:ProjectViewModuleNode" />
-              <item name="ProjetGénie" type="462c0819:PsiDirectoryNode" />
+              <item name="groupe05" type="b2602c69:ProjectViewProjectNode" />
+              <item name="groupe05" type="462c0819:PsiDirectoryNode" />
               <item name="test" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
-              <item name="ProjetGénie" type="b2602c69:ProjectViewProjectNode" />
-              <item name="groupe05" type="47feb1d3:ProjectViewModuleNode" />
-              <item name="ProjetGénie" type="462c0819:PsiDirectoryNode" />
+              <item name="groupe05" type="b2602c69:ProjectViewProjectNode" />
+              <item name="groupe05" type="462c0819:PsiDirectoryNode" />
               <item name="test" type="462c0819:PsiDirectoryNode" />
               <item name="g05" type="462c0819:PsiDirectoryNode" />
             </path>
@@ -366,6 +311,7 @@
           <select />
         </subPane>
       </pane>
+      <pane id="AndroidView" />
       <pane id="PackagesPane" />
     </panes>
   </component>
@@ -418,18 +364,15 @@
     </option>
   </component>
   <component name="RunManager" selected="JUnit.HashMD5Test">
-    <configuration default="true" type="Applet">
+    <configuration default="true" type="Applet" factoryName="Applet">
       <option name="POLICY_FILE" value="$APPLICATION_HOME_DIR$/bin/appletviewer.policy" />
-      <method v="2">
+      <method>
         <option name="Make" enabled="true" />
       </method>
     </configuration>
     <configuration name="ArticleData" type="Application" factoryName="Application" nameIsGenerated="true">
       <option name="MAIN_CLASS_NAME" value="com.infof307.g05.ArticleData" />
       <module name="groupe05" />
-      <method v="2">
-        <option name="Make" enabled="true" />
-      </method>
     </configuration>
     <configuration name="Main" type="Application" factoryName="Application" nameIsGenerated="true">
       <option name="MAIN_CLASS_NAME" value="com.infof307.g05.Main" />
@@ -441,18 +384,17 @@
           <option name="ENABLED" value="true" />
         </pattern>
       </extension>
-      <method v="2">
-        <option name="Make" enabled="true" />
-      </method>
     </configuration>
     <configuration default="true" type="Application" factoryName="Application">
       <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$" />
-      <method v="2">
+      <method>
         <option name="Make" enabled="true" />
       </method>
     </configuration>
     <configuration name="All in groupe05" type="JUnit" factoryName="JUnit" nameIsGenerated="true">
       <module name="groupe05" />
+      <option name="ALTERNATIVE_JRE_PATH_ENABLED" value="false" />
+      <option name="ALTERNATIVE_JRE_PATH" />
       <option name="PACKAGE_NAME" value="" />
       <option name="MAIN_CLASS_NAME" value="" />
       <option name="METHOD_NAME" value="" />
@@ -460,9 +402,11 @@
       <option name="VM_PARAMETERS" value="" />
       <option name="PARAMETERS" value="" />
       <option name="WORKING_DIRECTORY" value="file://%MODULE_WORKING_DIR%" />
-      <method v="2">
-        <option name="Make" enabled="true" />
-      </method>
+      <option name="PASS_PARENT_ENVS" value="true" />
+      <option name="TEST_SEARCH_SCOPE">
+        <value defaultName="singleModule" />
+      </option>
+      <patterns />
     </configuration>
     <configuration name="HashMD5Test" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
       <module name="groupe05" />
@@ -472,14 +416,20 @@
           <option name="ENABLED" value="true" />
         </pattern>
       </extension>
+      <option name="ALTERNATIVE_JRE_PATH_ENABLED" value="false" />
+      <option name="ALTERNATIVE_JRE_PATH" />
       <option name="PACKAGE_NAME" value="be.ac.ulb.infof307.g05" />
       <option name="MAIN_CLASS_NAME" value="be.ac.ulb.infof307.g05.HashMD5Test" />
+      <option name="METHOD_NAME" />
       <option name="TEST_OBJECT" value="class" />
       <option name="VM_PARAMETERS" />
+      <option name="PARAMETERS" />
       <option name="WORKING_DIRECTORY" value="%MODULE_WORKING_DIR%" />
-      <method v="2">
-        <option name="Make" enabled="true" />
-      </method>
+      <option name="PASS_PARENT_ENVS" value="true" />
+      <option name="TEST_SEARCH_SCOPE">
+        <value defaultName="singleModule" />
+      </option>
+      <patterns />
     </configuration>
     <configuration name="RegisterControllerTest (1)" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
       <module name="groupe05" />
@@ -489,14 +439,20 @@
           <option name="ENABLED" value="true" />
         </pattern>
       </extension>
+      <option name="ALTERNATIVE_JRE_PATH_ENABLED" value="false" />
+      <option name="ALTERNATIVE_JRE_PATH" />
       <option name="PACKAGE_NAME" value="be.ac.ulb.infof307.g05" />
       <option name="MAIN_CLASS_NAME" value="be.ac.ulb.infof307.g05.RegisterControllerTest" />
+      <option name="METHOD_NAME" />
       <option name="TEST_OBJECT" value="class" />
       <option name="VM_PARAMETERS" />
+      <option name="PARAMETERS" />
       <option name="WORKING_DIRECTORY" value="%MODULE_WORKING_DIR%" />
-      <method v="2">
-        <option name="Make" enabled="true" />
-      </method>
+      <option name="PASS_PARENT_ENVS" value="true" />
+      <option name="TEST_SEARCH_SCOPE">
+        <value defaultName="singleModule" />
+      </option>
+      <patterns />
     </configuration>
     <configuration name="UserControllerTest" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
       <module name="groupe05" />
@@ -506,14 +462,20 @@
           <option name="ENABLED" value="true" />
         </pattern>
       </extension>
+      <option name="ALTERNATIVE_JRE_PATH_ENABLED" value="false" />
+      <option name="ALTERNATIVE_JRE_PATH" />
       <option name="PACKAGE_NAME" value="be.ac.ulb.infof307.g05" />
       <option name="MAIN_CLASS_NAME" value="be.ac.ulb.infof307.g05.UserControllerTest" />
+      <option name="METHOD_NAME" />
       <option name="TEST_OBJECT" value="class" />
       <option name="VM_PARAMETERS" />
+      <option name="PARAMETERS" />
       <option name="WORKING_DIRECTORY" value="%MODULE_WORKING_DIR%" />
-      <method v="2">
-        <option name="Make" enabled="true" />
-      </method>
+      <option name="PASS_PARENT_ENVS" value="true" />
+      <option name="TEST_SEARCH_SCOPE">
+        <value defaultName="singleModule" />
+      </option>
+      <patterns />
     </configuration>
     <configuration name="UserTest" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
       <module name="groupe05" />
@@ -523,14 +485,20 @@
           <option name="ENABLED" value="true" />
         </pattern>
       </extension>
+      <option name="ALTERNATIVE_JRE_PATH_ENABLED" value="false" />
+      <option name="ALTERNATIVE_JRE_PATH" />
       <option name="PACKAGE_NAME" value="be.ac.ulb.infof307.g05" />
       <option name="MAIN_CLASS_NAME" value="be.ac.ulb.infof307.g05.UserTest" />
+      <option name="METHOD_NAME" />
       <option name="TEST_OBJECT" value="class" />
       <option name="VM_PARAMETERS" />
+      <option name="PARAMETERS" />
       <option name="WORKING_DIRECTORY" value="%MODULE_WORKING_DIR%" />
-      <method v="2">
-        <option name="Make" enabled="true" />
-      </method>
+      <option name="PASS_PARENT_ENVS" value="true" />
+      <option name="TEST_SEARCH_SCOPE">
+        <value defaultName="singleModule" />
+      </option>
+      <patterns />
     </configuration>
     <configuration name="UsersDAOTest" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
       <module name="groupe05" />
@@ -540,39 +508,71 @@
           <option name="ENABLED" value="true" />
         </pattern>
       </extension>
+      <option name="ALTERNATIVE_JRE_PATH_ENABLED" value="false" />
+      <option name="ALTERNATIVE_JRE_PATH" />
       <option name="PACKAGE_NAME" value="be.ac.ulb.infof307.g05" />
       <option name="MAIN_CLASS_NAME" value="be.ac.ulb.infof307.g05.UsersDAOTest" />
+      <option name="METHOD_NAME" />
       <option name="TEST_OBJECT" value="class" />
       <option name="VM_PARAMETERS" />
+      <option name="PARAMETERS" />
       <option name="WORKING_DIRECTORY" value="%MODULE_WORKING_DIR%" />
-      <method v="2">
-        <option name="Make" enabled="true" />
-      </method>
+      <option name="PASS_PARENT_ENVS" value="true" />
+      <option name="TEST_SEARCH_SCOPE">
+        <value defaultName="singleModule" />
+      </option>
+      <patterns />
     </configuration>
     <configuration default="true" type="JUnit" factoryName="JUnit">
+      <option name="ALTERNATIVE_JRE_PATH_ENABLED" value="false" />
+      <option name="ALTERNATIVE_JRE_PATH" />
+      <option name="PACKAGE_NAME" />
+      <option name="MAIN_CLASS_NAME" />
+      <option name="METHOD_NAME" />
       <option name="TEST_OBJECT" value="class" />
       <option name="VM_PARAMETERS" />
+      <option name="PARAMETERS" />
       <option name="WORKING_DIRECTORY" value="%MODULE_WORKING_DIR%" />
-      <method v="2">
+      <option name="PASS_PARENT_ENVS" value="true" />
+      <option name="TEST_SEARCH_SCOPE">
+        <value defaultName="singleModule" />
+      </option>
+      <patterns />
+      <method>
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration default="true" type="TestNG">
+    <configuration default="true" type="TestNG" factoryName="TestNG">
+      <option name="ALTERNATIVE_JRE_PATH_ENABLED" value="false" />
+      <option name="ALTERNATIVE_JRE_PATH" />
+      <option name="SUITE_NAME" />
+      <option name="PACKAGE_NAME" />
+      <option name="MAIN_CLASS_NAME" />
+      <option name="METHOD_NAME" />
+      <option name="GROUP_NAME" />
       <option name="TEST_OBJECT" value="CLASS" />
       <option name="VM_PARAMETERS" />
+      <option name="PARAMETERS" />
       <option name="WORKING_DIRECTORY" value="%MODULE_WORKING_DIR%" />
+      <option name="OUTPUT_DIRECTORY" />
+      <option name="PASS_PARENT_ENVS" value="true" />
+      <option name="TEST_SEARCH_SCOPE">
+        <value defaultName="singleModule" />
+      </option>
+      <option name="USE_DEFAULT_REPORTERS" value="false" />
+      <option name="PROPERTIES_FILE" />
       <properties />
       <listeners />
-      <method v="2">
+      <method>
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration default="true" type="#org.jetbrains.idea.devkit.run.PluginConfigurationType">
+    <configuration default="true" type="#org.jetbrains.idea.devkit.run.PluginConfigurationType" factoryName="Plugin">
       <module name="" />
       <option name="VM_PARAMETERS" value="-Xmx512m -Xms256m -XX:MaxPermSize=250m -ea" />
       <option name="PROGRAM_PARAMETERS" />
-      <predefined_log_file enabled="true" id="idea.log" />
-      <method v="2">
+      <predefined_log_file id="idea.log" enabled="true" />
+      <method>
         <option name="Make" enabled="true" />
       </method>
     </configuration>
@@ -664,7 +664,7 @@
     </history-entry>
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="43442000" />
+    <option name="totallyTimeSpent" value="44965000" />
   </component>
   <component name="TodoView" selected-index="3">
     <todo-panel id="selected-file">
@@ -676,42 +676,63 @@
     </todo-panel>
   </component>
   <component name="ToolWindowManager">
-    <frame x="-8" y="-8" width="1936" height="1056" extended-state="6" />
+    <frame x="-7" y="-7" width="1295" height="695" extended-state="6" />
     <editor active="true" />
     <layout>
-      <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.2553305" />
-      <window_info id="Structure" order="1" weight="0.25" />
-      <window_info id="Favorites" order="2" side_tool="true" />
-      <window_info id="Image Layers" order="3" />
-      <window_info id="Designer" order="4" />
-      <window_info id="UI Designer" order="5" />
-      <window_info id="Capture Tool" order="6" />
-      <window_info id="DB Browser" order="7" />
-      <window_info anchor="bottom" id="Database Console" order="0" weight="0.3265306" />
-      <window_info anchor="bottom" id="Message" order="1" />
-      <window_info anchor="bottom" id="Find" order="2" weight="0.3291592" />
-      <window_info anchor="bottom" id="Run" order="3" sideWeight="0.71055436" visible="true" weight="0.3575298" />
-      <window_info anchor="bottom" id="Debug" order="4" weight="0.4" />
-      <window_info anchor="bottom" id="Cvs" order="5" weight="0.25" />
-      <window_info anchor="bottom" id="Inspection" order="6" weight="0.4" />
-      <window_info anchor="bottom" id="TODO" order="7" weight="0.3296875" />
-      <window_info anchor="bottom" id="DB Execution Console" order="8" />
-      <window_info anchor="bottom" id="Terminal" order="9" sideWeight="0.5948827" weight="0.2751896" />
-      <window_info anchor="bottom" id="Event Log" order="10" sideWeight="0.28944564" side_tool="true" weight="0.44420367" />
-      <window_info anchor="bottom" id="Version Control" order="11" sideWeight="0.7493557" weight="0.36740333" />
-      <window_info anchor="bottom" id="Docker" order="12" show_stripe_button="false" />
-      <window_info anchor="bottom" id="Database Changes" order="13" show_stripe_button="false" weight="0.32944608" />
-      <window_info anchor="bottom" id="Messages" order="14" sideWeight="0.4989339" weight="0.32719395" />
-      <window_info anchor="right" id="Commander" order="0" weight="0.4" />
+      <window_info anchor="right" id="Palette" />
+      <window_info anchor="bottom" id="TODO" order="6" />
+      <window_info anchor="bottom" id="Messages" order="14" sideWeight="0.4989339" weight="0.3255814" />
+      <window_info anchor="right" id="Palette&#9;" />
+      <window_info id="Image Layers" />
+      <window_info anchor="right" id="Capture Analysis" />
+      <window_info anchor="bottom" id="Event Log" side_tool="true" />
+      <window_info anchor="right" id="Maven Projects" visible="true" weight="0.32955465" />
+      <window_info anchor="bottom" id="Database Changes" show_stripe_button="false" />
+      <window_info anchor="bottom" id="Run" order="2" visible="true" weight="0.36135957" />
+      <window_info anchor="bottom" id="Version Control" />
+      <window_info anchor="bottom" id="Terminal" weight="0.3291592" />
+      <window_info id="Capture Tool" />
+      <window_info id="Designer" />
+      <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.24939272" />
+      <window_info anchor="right" id="Database" />
+      <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
       <window_info anchor="right" id="Ant Build" order="1" weight="0.25" />
-      <window_info anchor="right" content_ui="combo" id="Hierarchy" order="2" weight="0.25" />
-      <window_info anchor="right" id="Palette" order="3" />
-      <window_info anchor="right" id="Capture Analysis" order="4" />
-      <window_info anchor="right" id="Theme Preview" order="5" />
-      <window_info anchor="right" id="Palette&#9;" order="6" />
-      <window_info anchor="right" id="Maven Projects" order="7" />
-      <window_info anchor="right" id="Database" order="8" weight="0.20172684" />
+      <window_info id="UI Designer" />
+      <window_info anchor="right" id="Theme Preview" />
+      <window_info anchor="bottom" id="Debug" order="3" weight="0.4" />
+      <window_info id="Favorites" side_tool="true" />
       <window_info anchor="right" id="Maven" order="9" weight="0.19189766" />
+      <window_info anchor="bottom" id="DB Execution Console" order="8" />
+      <window_info id="Designer" order="4" />
+      <window_info anchor="bottom" id="Database Console" order="0" weight="0.3265306" />
+      <window_info anchor="right" id="Palette" order="3" />
+      <window_info anchor="bottom" id="Run" order="3" sideWeight="0.71055436" visible="true" weight="0.3575298" />
+      <window_info id="Image Layers" order="3" />
+      <window_info anchor="right" id="Commander" order="0" weight="0.4" />
+      <window_info anchor="bottom" id="Cvs" order="5" weight="0.25" />
+      <window_info anchor="right" id="Ant Build" order="1" weight="0.25" />
+      <window_info id="DB Browser" order="7" />
+      <window_info id="Capture Tool" order="6" />
+      <window_info id="UI Designer" order="5" />
+      <window_info id="Favorites" order="2" side_tool="true" />
+      <window_info anchor="bottom" id="Terminal" order="9" sideWeight="0.5948827" weight="0.2751896" />
+      <window_info anchor="bottom" id="Docker" order="12" show_stripe_button="false" />
+      <window_info anchor="right" id="Capture Analysis" order="4" />
+      <window_info anchor="bottom" id="Event Log" order="10" sideWeight="0.28944564" side_tool="true" weight="0.44420367" />
+      <window_info anchor="right" content_ui="combo" id="Hierarchy" order="2" weight="0.25" />
+      <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.2553305" />
+      <window_info anchor="right" id="Database" order="8" weight="0.20172684" />
+      <window_info anchor="bottom" id="Database Changes" order="13" show_stripe_button="false" weight="0.32944608" />
+      <window_info anchor="bottom" id="Version Control" order="11" sideWeight="0.7493557" weight="0.36740333" />
+      <window_info anchor="right" id="Maven Projects" order="7" />
+      <window_info anchor="bottom" id="Inspection" order="6" weight="0.4" />
+      <window_info anchor="bottom" id="Message" order="1" />
+      <window_info anchor="bottom" id="TODO" order="7" weight="0.3296875" />
+      <window_info anchor="right" id="Palette&#9;" order="6" />
+      <window_info anchor="right" id="Theme Preview" order="5" />
+      <window_info id="Structure" order="1" weight="0.25" />
+      <window_info anchor="bottom" id="Find" order="2" weight="0.3291592" />
+      <window_info anchor="bottom" id="Debug" order="4" weight="0.4" />
     </layout>
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -742,20 +763,9 @@
         </entry>
       </map>
     </option>
-    <option name="RECENT_FILTERS">
-      <map>
-        <entry key="Branch">
-          <value>
-            <list />
-          </value>
-        </entry>
-        <entry key="User">
-          <value>
-            <list />
-          </value>
-        </entry>
-      </map>
-    </option>
+  </component>
+  <component name="VcsContentAnnotationSettings">
+    <option name="myLimit" value="2678400000" />
   </component>
   <component name="VcsManagerConfiguration">
     <MESSAGE value="Initialize IDEA Project" />
@@ -763,29 +773,7 @@
     <option name="LAST_COMMIT_MESSAGE" value="fix category name for article importation" />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/test/com/infof307/g05/UserControllerTest.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state>
-          <caret column="14" selection-start-column="14" selection-end-column="14" />
-          <folding>
-            <element signature="imports" expanded="true" />
-            <element signature="e#463#464#0" expanded="true" />
-            <element signature="e#529#530#0" expanded="true" />
-            <element signature="e#733#734#0" expanded="true" />
-            <element signature="e#803#804#0" expanded="true" />
-            <element signature="e#1005#1006#0" expanded="true" />
-            <element signature="e#1077#1078#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/pom.xml">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="467">
-          <caret line="28" column="20" lean-forward="true" selection-start-line="28" selection-start-column="20" selection-end-line="28" selection-end-column="20" />
-        </state>
-      </provider>
-    </entry>
+    <entry file="file://$PROJECT_DIR$/test/com/infof307/g05/UserControllerTest.java" />
     <entry file="file://$PROJECT_DIR$/src/com/infof307/g05/LoginFxml.fxml" />
     <entry file="file://$PROJECT_DIR$/src/com/infof307/g05/Main.java" />
     <entry file="file://$PROJECT_DIR$/src/com/infof307/g05/AddController.java" />
@@ -793,66 +781,22 @@
     <entry file="file://$PROJECT_DIR$/src/com/infof307/g05/ConnexionSQLite.java" />
     <entry file="file://$PROJECT_DIR$/src/com/infof307/g05/DAO.java" />
     <entry file="file://$PROJECT_DIR$/src/com/infof307/g05/FeedController.java" />
-    <entry file="jar://C:/Program Files/Java/jdk1.8.0_201/src.zip!/java/lang/String.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="225">
-          <caret line="2131" column="19" selection-start-line="2131" selection-start-column="19" selection-end-line="2131" selection-end-column="19" />
-          <folding>
-            <element signature="e#82971#82972#0" expanded="true" />
-            <element signature="e#83020#83021#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
+    <entry file="jar://C:/Program Files/Java/jdk1.8.0_201/src.zip!/java/lang/String.java" />
     <entry file="file://$PROJECT_DIR$/src/com/infof307/g05/RegisterFxml.fxml" />
     <entry file="file://$PROJECT_DIR$/src/com/infof307/g05/LoginController.java" />
     <entry file="file://$PROJECT_DIR$/src/com/infof307/g05/MenuController.java" />
     <entry file="file://$PROJECT_DIR$/src/com/infof307/g05/HashMD5.java" />
-    <entry file="file://$PROJECT_DIR$/test/com/infof307/g05/HashMD5Test.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="102">
-          <caret line="12" column="10" selection-start-line="12" selection-start-column="10" selection-end-line="12" selection-end-column="10" />
-          <folding>
-            <element signature="method#testContainsLetter#0;class#HashMD5Test#0" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/test/com/infof307/g05/LoginControllerTest.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="17">
-          <caret line="1" column="7" selection-start-line="1" selection-start-column="7" selection-end-line="1" selection-end-column="7" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/test/com/infof307/g05/RegisterControllerTest.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1190">
-          <caret line="80" column="33" lean-forward="true" selection-start-line="80" selection-start-column="33" selection-end-line="80" selection-end-column="33" />
-        </state>
-      </provider>
-    </entry>
+    <entry file="file://$PROJECT_DIR$/test/com/infof307/g05/HashMD5Test.java" />
+    <entry file="file://$PROJECT_DIR$/test/com/infof307/g05/LoginControllerTest.java" />
+    <entry file="file://$PROJECT_DIR$/test/com/infof307/g05/RegisterControllerTest.java" />
     <entry file="file://$PROJECT_DIR$/src/com/infof307/g05/RegisterController.java" />
-    <entry file="file://$PROJECT_DIR$/test/com/infof307/g05/UsersDAOTest.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="102">
-          <caret line="6" column="10" selection-start-line="6" selection-start-column="10" selection-end-line="6" selection-end-column="10" />
-        </state>
-      </provider>
-    </entry>
+    <entry file="file://$PROJECT_DIR$/test/com/infof307/g05/UsersDAOTest.java" />
     <entry file="file://$PROJECT_DIR$/src/com/infof307/g05/URLReader.java" />
     <entry file="file://$PROJECT_DIR$/src/com/infof307/g05/UserController.java" />
     <entry file="file://$PROJECT_DIR$/src/com/infof307/g05/Users.java" />
     <entry file="file://$PROJECT_DIR$/src/com/infof307/g05/UsersDAO.java" />
     <entry file="file://$PROJECT_DIR$/src/com/infof307/g05/Router.java" />
     <entry file="file://$PROJECT_DIR$/src/be/ac/ulb/infof307/g05/DAO.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="17">
-          <caret line="1" selection-start-line="1" selection-end-line="1" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/be/ac/ulb/infof307/g05/HashMD5.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="17">
           <caret line="1" selection-start-line="1" selection-end-line="1" />
@@ -874,13 +818,6 @@
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/be/ac/ulb/infof307/g05/RegisterController.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="17">
-          <caret line="1" selection-start-line="1" selection-end-line="1" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/be/ac/ulb/infof307/g05/Router.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="17">
           <caret line="1" selection-start-line="1" selection-end-line="1" />
@@ -940,14 +877,6 @@
       </provider>
       <provider editor-type-id="JavaFX-Scene-Builder" />
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/be/ac/ulb/infof307/g05/RootView.fxml">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="136">
-          <caret line="8" column="14" lean-forward="true" selection-start-line="8" selection-start-column="14" selection-end-line="8" selection-end-column="14" />
-        </state>
-      </provider>
-      <provider editor-type-id="JavaFX-Scene-Builder" />
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/be/ac/ulb/infof307/g05/ConnexionSQLite.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="17">
@@ -965,28 +894,7 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/test/be/ac/ulb/infof307/g05/LoginControllerTest.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state>
-          <caret column="28" selection-end-line="1" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/test/be/ac/ulb/infof307/g05/RegisterControllerTest.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="17">
-          <caret line="1" selection-start-line="1" selection-end-line="1" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/test/be/ac/ulb/infof307/g05/UserControllerTest.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="17">
-          <caret line="1" selection-start-line="1" selection-end-line="1" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/test/be/ac/ulb/infof307/g05/UsersDAOTest.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="17">
           <caret line="1" selection-start-line="1" selection-end-line="1" />
@@ -997,26 +905,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="17">
           <caret line="1" selection-start-line="1" selection-end-line="1" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/test/be/ac/ulb/infof307/g05/HashMD5Test.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="88">
-          <caret line="9" selection-start-line="9" selection-end-line="9" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/be/ac/ulb/infof307/g05/Main.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="221">
-          <caret line="13" column="13" selection-start-line="13" selection-start-column="13" selection-end-line="13" selection-end-column="13" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -1052,6 +940,76 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="34">
           <caret line="2" lean-forward="true" selection-start-line="2" selection-end-line="2" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/be/ac/ulb/infof307/g05/Main.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="221">
+          <caret line="13" column="13" selection-start-line="13" selection-start-column="13" selection-end-line="13" selection-end-column="13" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/be/ac/ulb/infof307/g05/HashMD5.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="43">
+          <caret line="10" column="13" selection-start-line="10" selection-start-column="13" selection-end-line="10" selection-end-column="13" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/test/be/ac/ulb/infof307/g05/UsersDAOTest.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="136">
+          <caret line="8" column="13" selection-start-line="8" selection-start-column="13" selection-end-line="8" selection-end-column="13" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/test/be/ac/ulb/infof307/g05/UserControllerTest.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="102">
+          <caret line="6" column="6" selection-start-line="6" selection-start-column="6" selection-end-line="6" selection-end-column="6" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/test/be/ac/ulb/infof307/g05/HashMD5Test.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="51">
+          <caret line="3" column="28" selection-start-line="3" selection-start-column="28" selection-end-line="3" selection-end-column="28" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/be/ac/ulb/infof307/g05/RootView.fxml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="136">
+          <caret line="8" column="14" lean-forward="true" selection-start-line="8" selection-start-column="14" selection-end-line="8" selection-end-column="14" />
+        </state>
+      </provider>
+      <provider editor-type-id="JavaFX-Scene-Builder" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/be/ac/ulb/infof307/g05/Router.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="68">
+          <caret line="9" column="13" selection-start-line="9" selection-start-column="13" selection-end-line="9" selection-end-column="13" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/test/be/ac/ulb/infof307/g05/LoginControllerTest.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="136">
+          <caret line="20" column="13" selection-start-line="20" selection-start-column="13" selection-end-line="20" selection-end-column="13" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/pom.xml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="241">
+          <caret line="50" column="21" lean-forward="true" selection-start-line="50" selection-start-column="21" selection-end-line="50" selection-end-column="21" />
         </state>
       </provider>
     </entry>
