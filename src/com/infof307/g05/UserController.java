@@ -7,16 +7,13 @@ package com.infof307.g05;
  */
 public class UserController {
     private Users model;
-    private UserView view;
 
     /**
      * Constructor
      * @param model
-     * @param view
      */
-    public UserController(Users model, UserView view) {
+    public UserController(Users model) {
         this.model = model;
-        this.view = view;
     }
 
     /**
@@ -65,13 +62,6 @@ public class UserController {
      */
     public String getEmail() {
         return model.getMail();
-    }
-
-    /**
-     * updates the view of the User model
-     */
-    public void updateView() {
-        view.printUserDetails(model.getLogin(), model.getMail());
     }
 
 }

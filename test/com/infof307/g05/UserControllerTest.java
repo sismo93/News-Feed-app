@@ -8,8 +8,7 @@ import static org.junit.jupiter.api.Assertions.*;
 class UserControllerTest {
 
     Users user = new Users("test@test.com", "test", "password");
-    UserView userView = new UserView();
-    UserController userController = new UserController(user, userView);
+    UserController userController = new UserController(user);
 
     @Test
     void setUsernameTest() {
@@ -43,7 +42,4 @@ class UserControllerTest {
     void getEmailTest() {
         assertEquals("test@test.com", userController.getEmail());
     }
-
-    //TODO
-    // Test for UpdateView
 }
