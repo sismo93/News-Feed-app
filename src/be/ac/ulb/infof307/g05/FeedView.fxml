@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.ScrollPane?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.layout.VBox?>
+
+<AnchorPane prefHeight="459.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/8.0.172-ea" xmlns:fx="http://javafx.com/fxml/1" fx:controller="be.ac.ulb.infof307.g05.FeedController">
+   <children>
+      <BorderPane layoutX="17.0" layoutY="13.0" prefHeight="434.0" prefWidth="564.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+         <top>
+            <AnchorPane prefHeight="56.0" prefWidth="600.0" BorderPane.alignment="CENTER">
+               <children>
+                  <Button layoutX="532.0" layoutY="15.0" mnemonicParsing="false" onAction="#OpenMenuView" text="Menu" />
+               </children>
+            </AnchorPane>
+         </top>
+         <center>
+            <ScrollPane hbarPolicy="ALWAYS" prefHeight="200.0" prefWidth="200.0" vbarPolicy="ALWAYS" BorderPane.alignment="CENTER">
+              <content>
+                <AnchorPane prefHeight="470.0" prefWidth="600.0">
+                     <children>
+                        <VBox fx:id="articleContainer" prefHeight="200.0" prefWidth="100.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0" />
+                     </children>
+                  </AnchorPane>
+              </content>
+            </ScrollPane>
+         </center>
+      </BorderPane>
+   </children>
+</AnchorPane>
