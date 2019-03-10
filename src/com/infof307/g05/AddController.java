@@ -104,31 +104,43 @@ public class AddController {
                 // fetch the correponding article content from the url
 
                 try {
-                    article = Article(url);
+                    article.add(Article(url).get(0));
                 } catch (Exception e) {
                     e.printStackTrace();
                 }
-
             }
         } catch (Exception e) {
             e.printStackTrace();
         }
 
-        Alert alert = new Alert(Alert.AlertType.INFORMATION,
-                article.get(0)[0],
-                ButtonType.OK, ButtonType.CANCEL);
+        if(article.isEmpty()){
+            Alert alert = new Alert(Alert.AlertType.CONFIRMATION, "Importation failed", ButtonType.OK);
+            alert.showAndWait();
+            return;
+        }
 
-        alert.setTitle("Article Importation ");
-        alert.setHeaderText("Voulez importer l'article");
+        for (int i = 0; i < article.size(); i++) {
+            //Popup dialog window
+            Alert alert = new Alert(Alert.AlertType.INFORMATION,
+                    article.get(i)[1].substring(0, 241) + " ... ",
+                    ButtonType.OK, ButtonType.CANCEL);
+            //Setup dialog window controls
+            ButtonType importButton = new ButtonType("Import");
+            ButtonType cancelButton = new ButtonType("Cancel", ButtonBar.ButtonData.CANCEL_CLOSE);
 
-        Optional<ButtonType> result = alert.showAndWait();
+            alert.getButtonTypes().setAll(importButton, cancelButton);
+            alert.setTitle("Article Preview ");
+            alert.setHeaderText(article.get(i)[0]);
 
-        if (result.get() == ButtonType.OK){
-            // ... user chose OK
-            ArticleData.Instance().addArticle(article.get(0));
+            Optional<ButtonType> result = alert.showAndWait();
 
-        } else if(result.get() ==ButtonType.CANCEL){
-            // ... user chose CANCEL or closed the dialog
+            if (result.get() == importButton){
+                // ... user chose OK
+                ArticleData.Instance().addArticle(article.get(i));
+
+            } else if(result.get() == cancelButton){
+                // ... user chose CANCEL or closed the dialog
+            }
         }
 
     }
@@ -140,22 +152,6 @@ public class AddController {
      */
     public void OpenMenuView(ActionEvent actionEvent) {
         Router.Instance().changeView(Router.Views.Menu);
-    }
-
-    /**
-     * Shows the error alert with custom message
-     * @param alertType type of alert
-     * @param owner parent window
-     * @param title title of the alert
-     * @param message message of the alert
-     */
-    private void showAlert(Alert.AlertType alertType, Window owner, String title, String message) {
-        Alert alert = new Alert(alertType);
-        alert.setTitle(title);
-        alert.setHeaderText(null);
-        alert.setContentText(message);
-        alert.initOwner(owner);
-        alert.show();
     }
 
 }

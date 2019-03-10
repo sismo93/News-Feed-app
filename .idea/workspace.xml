@@ -1,12 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="8ed6c9e0-c52e-41ad-983e-fab3cc7f2867" name="Default" comment="Added Importation Dialog confirmation window +">
-      <change beforePath="$PROJECT_DIR$/.idea/groupe05.iml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/groupe05.iml" afterDir="false" />
+    <list default="true" id="8ed6c9e0-c52e-41ad-983e-fab3cc7f2867" name="Default" comment="fix category name for article importation">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/com/infof307/g05/AddController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/infof307/g05/AddController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/com/infof307/g05/ConnectionPostgreSQL.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/infof307/g05/ConnectionPostgreSQL.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/test/com/infof307/g05/FeedControllerTest.java" beforeDir="false" />
     </list>
     <ignored path="$PROJECT_DIR$/out/" />
     <ignored path="lib/postgresql-9.2-1002.jdbc4.jar" />
@@ -35,10 +32,12 @@
       <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/com/infof307/g05/AddController.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="255">
-              <caret line="48" column="26" selection-start-line="48" selection-start-column="26" selection-end-line="48" selection-end-column="26" />
+            <state relative-caret-position="240">
+              <caret line="96" selection-start-line="96" selection-end-line="96" />
               <folding>
                 <element signature="imports" expanded="true" />
+                <element signature="e#4094#4095#0" expanded="true" />
+                <element signature="e#4157#4158#0" expanded="true" />
               </folding>
             </state>
           </provider>
@@ -221,7 +220,7 @@
     <property name="Repository.Attach.Sources" value="false" />
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="aspect.path.notification.shown" value="true" />
-    <property name="com.android.tools.idea.instantapp.provision.ProvisionBeforeRunTaskProvider.myTimeStamp" value="1552215928565" />
+    <property name="com.android.tools.idea.instantapp.provision.ProvisionBeforeRunTaskProvider.myTimeStamp" value="1552216029155" />
     <property name="create.test.in.the.same.root" value="true" />
     <property name="database.console.LAST_STATE" value="false" />
     <property name="last_opened_file_path" value="$PROJECT_DIR$/lib/postgresql-9.2-1002.jdbc4.jar!/" />
@@ -451,7 +450,14 @@
       <option name="project" value="LOCAL" />
       <updated>1551364053212</updated>
     </task>
-    <option name="localTasksCounter" value="2" />
+    <task id="LOCAL-00002" summary="fix category name for article importation">
+      <created>1552216002513</created>
+      <option name="number" value="00002" />
+      <option name="presentableId" value="LOCAL-00002" />
+      <option name="project" value="LOCAL" />
+      <updated>1552216002513</updated>
+    </task>
+    <option name="localTasksCounter" value="3" />
     <servers />
   </component>
   <component name="TestHistory">
@@ -487,7 +493,7 @@
     </history-entry>
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="28810000" />
+    <option name="totallyTimeSpent" value="28911000" />
   </component>
   <component name="TodoView" selected-index="3">
     <todo-panel id="selected-file">
@@ -582,7 +588,8 @@
   </component>
   <component name="VcsManagerConfiguration">
     <MESSAGE value="Initialize IDEA Project" />
-    <option name="LAST_COMMIT_MESSAGE" value="Initialize IDEA Project" />
+    <MESSAGE value="fix category name for article importation" />
+    <option name="LAST_COMMIT_MESSAGE" value="fix category name for article importation" />
   </component>
   <component name="editorHistoryManager">
     <entry file="file://$PROJECT_DIR$/src/UsersDAO.java" />
@@ -910,10 +917,12 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/com/infof307/g05/AddController.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="255">
-          <caret line="48" column="26" selection-start-line="48" selection-start-column="26" selection-end-line="48" selection-end-column="26" />
+        <state relative-caret-position="240">
+          <caret line="96" selection-start-line="96" selection-end-line="96" />
           <folding>
             <element signature="imports" expanded="true" />
+            <element signature="e#4094#4095#0" expanded="true" />
+            <element signature="e#4157#4158#0" expanded="true" />
           </folding>
         </state>
       </provider>
