@@ -1,4 +1,4 @@
-package com.infof307.g05;
+/***package com.infof307.g05;
 
 import org.junit.jupiter.api.Test;
 
@@ -40,4 +40,4 @@ class UserTest {
         user.setMail("newTest@test.com");
         assertEquals("newTest@test.com", user.getMail());
     }
-}
+}***/

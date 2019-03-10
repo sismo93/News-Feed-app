@@ -7,7 +7,7 @@ import java.sql.Connection;
  */
 public abstract class DAO<T> {
 
-    public Connection connect = ConnectionPostgreSQL.getInstance();
+    protected Connection connect = ConnexionSQLite.getInstance();
 
     /**
      * Create an entry in the database
