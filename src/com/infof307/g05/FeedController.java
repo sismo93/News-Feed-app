@@ -1,18 +1,25 @@
 package com.infof307.g05;
 
-
+import javafx.collections.FXCollections;
+import javafx.collections.ListChangeListener;
+import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.scene.control.ListView;
 import javafx.scene.layout.VBox;
 import javafx.scene.text.Text;
 import javafx.scene.text.TextFlow;
+
 import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.function.Consumer;
 
 import static com.infof307.g05.URLReader.Article;
 import static com.infof307.g05.URLReader.Homepage;
 
 /**
  * Controller of the Feed View
+ *
  * @author @MnrBn
  * @codereview @borsalinoK
  */
@@ -26,68 +33,80 @@ public class FeedController {
 
     /**
      * Called after scene loading
-     *
+     * <p>
      * Init GUI
      * - fetch the content
      * - display the content
      */
     @FXML
-    public void initialize(){
+    public void initialize() {
 
+        ArticleData.Instance().getArticleData().forEach(strings -> {
 
-        // fetching data
-        ArrayList<String> urlsList = null;
-
-        try {
-            urlsList =  Homepage("https://www.bbc.com/", "news", 4);
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
-
-        // retrieving content
-
-        String[] article = new String[2];
-        String url;
-
-        for (String s : urlsList) {
-
-            url = s;
-
-            // fetch the correponding article content from the url
-
-            try {
-                article = Article(url).get(0);
-            } catch (Exception e) {
-                e.printStackTrace();
-            }
-
-
-            // Build scene component
             TextFlow flow = new TextFlow();
 
-            Text text1=new Text(article[0] + " ");
-            Text text2=new Text(article[1]);
+            Text text1 = new Text(strings[0] + " ");
+            Text text2 = new Text(strings[1]);
 
 
             // text format with custom style
+
             text1.setStyle("-fx-font-weight: bold");
 
 
             // fill scene with new component
+
             flow.getChildren().addAll(text1, text2);
 
             articleContainer.getChildren().add(flow);
+        });
 
-        }
+
+        // fetching data
+
+        ArticleData.Instance()
+                .getArticleData()
+                    .addListener((ListChangeListener<String[]>)
+                        change -> {
+                            if (change.next()) {
+
+                                // remove articles from scene
+                                articleContainer.getChildren().clear();
+                                // add article back including updated articles
+                                ObservableList<? extends String[]> updatedList = change.getList();
+
+                                for (String[] updatedArticle : updatedList) {
+                                    // Build scene component
+
+                                    TextFlow flow = new TextFlow();
+
+                                    Text text1 = new Text(updatedArticle[0] + " ");
+                                    Text text2 = new Text(updatedArticle[1]);
+
+
+                                    // text format with custom style
+
+                                    text1.setStyle("-fx-font-weight: bold");
+
+
+                                    // fill scene with new component
+
+                                    flow.getChildren().addAll(text1, text2);
+
+                                    articleContainer.getChildren().add(flow);
+
+
+                                }
+                            }
+
+
+                        });
     }
 
-
     /**
-     * @param actionEvent
-     * Back to menu
+     * @param actionEvent Back to menu
      */
     public void OpenMenuView(ActionEvent actionEvent) {
         Router.Instance().changeView(Router.Views.Menu);
     }
-
 }

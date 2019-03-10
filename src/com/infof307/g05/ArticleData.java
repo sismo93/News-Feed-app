@@ -1,5 +1,7 @@
 package com.infof307.g05;
 
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 import javafx.scene.layout.AnchorPane;
 
 import java.util.ArrayList;
@@ -12,7 +14,7 @@ import java.util.ArrayList;
 public class ArticleData {
 
 
-    public ArrayList<String[]> articleData;
+    public ObservableList<String[]> articleData;
 
     /**
      * Singleton pattern
@@ -23,7 +25,7 @@ public class ArticleData {
      * Constructor
      */
     public ArticleData() {
-        articleData = new ArrayList<>();
+        articleData = FXCollections.observableList( new ArrayList<>());
     }
 
     public static ArticleData Instance(){
@@ -44,7 +46,7 @@ public class ArticleData {
     /**
      * @return article from the container
      */
-    public ArrayList<String[]> getArticleData() {
+    public ObservableList<String[]> getArticleData() {
         return articleData;
     }
 }

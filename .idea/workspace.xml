@@ -2,8 +2,8 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="8ed6c9e0-c52e-41ad-983e-fab3cc7f2867" name="Default" comment="fix category name for article importation">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/com/infof307/g05/AddController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/infof307/g05/AddController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/com/infof307/g05/ArticleData.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/infof307/g05/ArticleData.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/com/infof307/g05/FeedController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/infof307/g05/FeedController.java" afterDir="false" />
     </list>
     <ignored path="$PROJECT_DIR$/out/" />
     <ignored path="lib/postgresql-9.2-1002.jdbc4.jar" />
@@ -29,15 +29,25 @@
   </component>
   <component name="FileEditorManager">
     <leaf>
-      <file pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/src/com/infof307/g05/AddController.java">
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/com/infof307/g05/Router.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="240">
-              <caret line="96" selection-start-line="96" selection-end-line="96" />
+            <state relative-caret-position="156">
+              <caret line="67" column="52" selection-start-line="67" selection-start-column="52" selection-end-line="67" selection-end-column="52" />
               <folding>
                 <element signature="imports" expanded="true" />
-                <element signature="e#4094#4095#0" expanded="true" />
-                <element signature="e#4157#4158#0" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/com/infof307/g05/AddController.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="177">
+              <caret line="122" selection-start-line="122" selection-end-line="122" />
+              <folding>
+                <element signature="imports" expanded="true" />
               </folding>
             </state>
           </provider>
@@ -46,23 +56,30 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/com/infof307/g05/FeedController.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="1156">
-              <caret line="76" column="21" lean-forward="true" selection-start-line="76" selection-start-column="21" selection-end-line="76" selection-end-column="21" />
+            <state relative-caret-position="137">
+              <caret line="68" column="20" selection-start-line="68" selection-start-column="20" selection-end-line="68" selection-end-column="20" />
               <folding>
-                <element signature="e#1882#1883#0" expanded="true" />
-                <element signature="e#1945#1946#0" expanded="true" />
+                <element signature="imports" expanded="true" />
+                <element signature="e#2942#2943#0" expanded="true" />
+                <element signature="e#3005#3006#0" expanded="true" />
               </folding>
             </state>
           </provider>
         </entry>
       </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/com/infof307/g05/ConnectionPostgreSQL.java">
+      <file pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/src/com/infof307/g05/ArticleData.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="221">
-              <caret line="14" column="33" selection-start-line="14" selection-start-column="33" selection-end-line="14" selection-end-column="74" />
+            <state relative-caret-position="180">
+              <caret line="48" column="25" selection-start-line="48" selection-start-column="25" selection-end-line="48" selection-end-column="25" />
               <folding>
                 <element signature="imports" expanded="true" />
+                <element signature="e#485#486#0" expanded="true" />
+                <element signature="e#562#563#0" expanded="true" />
+                <element signature="e#738#739#0" expanded="true" />
+                <element signature="e#779#780#0" expanded="true" />
+                <element signature="e#888#889#0" expanded="true" />
+                <element signature="e#922#923#0" expanded="true" />
               </folding>
             </state>
           </provider>
@@ -104,7 +121,6 @@
         <option value="$PROJECT_DIR$/src/com/infof307/g05/RootView.fxml" />
         <option value="$PROJECT_DIR$/src/com/infof307/g05/FeedView.fxml" />
         <option value="$PROJECT_DIR$/src/com/infof307/g05/URLReader.java" />
-        <option value="$PROJECT_DIR$/src/com/infof307/g05/ArticleData.java" />
         <option value="$PROJECT_DIR$/src/com/infof307/g05/MenuController.java" />
         <option value="$PROJECT_DIR$/src/com/infof307/g05/Main.java" />
         <option value="$PROJECT_DIR$/src/com/infof307/g05/Router.java" />
@@ -114,8 +130,9 @@
         <option value="$PROJECT_DIR$/test/com/infof307/g05/UserTest.java" />
         <option value="$PROJECT_DIR$/src/com/infof307/g05/ConnectionPostgreSQL.java" />
         <option value="$PROJECT_DIR$/test/com/infof307/g05/FeedControllerTest.java" />
-        <option value="$PROJECT_DIR$/src/com/infof307/g05/FeedController.java" />
         <option value="$PROJECT_DIR$/src/com/infof307/g05/AddController.java" />
+        <option value="$PROJECT_DIR$/src/com/infof307/g05/FeedController.java" />
+        <option value="$PROJECT_DIR$/src/com/infof307/g05/ArticleData.java" />
       </list>
     </option>
   </component>
@@ -137,6 +154,7 @@
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
+      <pane id="PackagesPane" />
       <pane id="ProjectPane">
         <subPane>
           <expand>
@@ -162,17 +180,10 @@
               <item name="src" type="462c0819:PsiDirectoryNode" />
               <item name="g05" type="462c0819:PsiDirectoryNode" />
             </path>
-            <path>
-              <item name="groupe05" type="b2602c69:ProjectViewProjectNode" />
-              <item name="groupe05" type="47feb1d3:ProjectViewModuleNode" />
-              <item name="groupe05" type="462c0819:PsiDirectoryNode" />
-              <item name="test" type="462c0819:PsiDirectoryNode" />
-            </path>
           </expand>
           <select />
         </subPane>
       </pane>
-      <pane id="PackagesPane" />
       <pane id="Scope">
         <subPane subId="Scope 'Project Files'; set:Project Files; class com.intellij.psi.search.scope.ProjectFilesScope">
           <expand>
@@ -493,7 +504,7 @@
     </history-entry>
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="28911000" />
+    <option name="totallyTimeSpent" value="28998000" />
   </component>
   <component name="TodoView" selected-index="3">
     <todo-panel id="selected-file">
@@ -505,10 +516,10 @@
     </todo-panel>
   </component>
   <component name="ToolWindowManager">
-    <frame x="319" y="87" width="1334" height="857" extended-state="0" />
+    <frame x="0" y="27" width="1600" height="873" extended-state="6" />
     <editor active="true" />
     <layout>
-      <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.19152276" />
+      <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.25" />
       <window_info id="Structure" order="1" weight="0.25" />
       <window_info id="Favorites" order="2" side_tool="true" />
       <window_info id="Image Layers" order="3" />
@@ -527,7 +538,7 @@
       <window_info anchor="bottom" id="DB Execution Console" order="8" />
       <window_info anchor="bottom" id="Terminal" order="9" sideWeight="0.5953608" weight="0.4378453" />
       <window_info anchor="bottom" id="Event Log" order="10" sideWeight="0.40463918" side_tool="true" weight="0.2773224" />
-      <window_info active="true" anchor="bottom" id="Version Control" order="11" sideWeight="0.7493557" visible="true" weight="0.36740333" />
+      <window_info anchor="bottom" id="Version Control" order="11" sideWeight="0.7493557" visible="true" weight="0.4726776" />
       <window_info anchor="bottom" id="Docker" order="12" show_stripe_button="false" />
       <window_info anchor="bottom" id="Database Changes" order="13" show_stripe_button="false" weight="0.32944608" />
       <window_info anchor="bottom" id="Messages" order="14" weight="0.32837838" />
@@ -542,6 +553,40 @@
       <window_info anchor="right" id="Database" order="8" weight="0.20172684" />
       <window_info anchor="right" id="Maven" order="9" weight="0.3298969" />
     </layout>
+    <layout-to-restore>
+      <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.25" />
+      <window_info id="Structure" order="1" weight="0.25" />
+      <window_info id="Favorites" order="2" side_tool="true" />
+      <window_info id="Image Layers" order="3" />
+      <window_info id="Designer" order="4" />
+      <window_info id="UI Designer" order="5" />
+      <window_info id="Capture Tool" order="6" />
+      <window_info id="DB Browser" order="7" />
+      <window_info anchor="bottom" id="Message" order="0" />
+      <window_info anchor="bottom" id="Find" order="1" weight="0.329235" />
+      <window_info active="true" anchor="bottom" id="Run" order="2" sideWeight="0.5521907" visible="true" weight="0.38387978" />
+      <window_info anchor="bottom" id="Debug" order="3" weight="0.4" />
+      <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
+      <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
+      <window_info anchor="bottom" id="TODO" order="6" weight="0.3296875" />
+      <window_info anchor="bottom" id="DB Execution Console" order="7" />
+      <window_info active="true" anchor="bottom" id="Terminal" order="8" sideWeight="0.5953608" visible="true" weight="0.17896175" />
+      <window_info anchor="bottom" id="Event Log" order="9" sideWeight="0.40463918" side_tool="true" weight="0.2773224" />
+      <window_info anchor="bottom" id="Version Control" order="10" sideWeight="0.7493557" weight="0.21311475" />
+      <window_info anchor="bottom" id="Docker" order="11" show_stripe_button="false" />
+      <window_info anchor="bottom" id="Database Changes" order="12" />
+      <window_info anchor="bottom" id="Messages" order="13" weight="0.329235" />
+      <window_info anchor="right" id="Commander" order="0" weight="0.4" />
+      <window_info anchor="right" id="Ant Build" order="1" weight="0.25" />
+      <window_info anchor="right" content_ui="combo" id="Hierarchy" order="2" weight="0.25" />
+      <window_info anchor="right" id="Palette" order="3" />
+      <window_info anchor="right" id="Capture Analysis" order="4" />
+      <window_info anchor="right" id="Theme Preview" order="5" />
+      <window_info anchor="right" id="Palette&#9;" order="6" />
+      <window_info anchor="right" id="Maven Projects" order="7" />
+      <window_info anchor="right" id="Database" order="8" weight="0.32925257" />
+      <window_info anchor="right" id="Maven" order="9" weight="0.3298969" />
+    </layout-to-restore>
   </component>
   <component name="TypeScriptGeneratedFilesManager">
     <option name="version" value="1" />
@@ -614,12 +659,12 @@
     </entry>
     <entry file="das://72ba1440-f246-42f5-b48b-1ac1ae59771c/database/postgres/schema/public/table/users" />
     <entry file="file://$PROJECT_DIR$/src/com/infof307/g05/RegisterFxml.fxml">
-      <provider editor-type-id="JavaFX-Scene-Builder" />
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="272">
           <caret line="16" column="37" selection-start-line="16" selection-start-column="37" selection-end-line="16" selection-end-column="37" />
         </state>
       </provider>
+      <provider editor-type-id="JavaFX-Scene-Builder" />
     </entry>
     <entry file="file://$PROJECT_DIR$/src/com/infof307/g05/User.java" />
     <entry file="file://$PROJECT_DIR$/dist/TOFILL.md">
@@ -664,52 +709,38 @@
     <entry file="file://$USER_HOME$/Downloads/RootControllerView.java" />
     <entry file="jar:///usr/lib/jvm/java-1.8.0-openjdk-amd64/jre/lib/ext/jfxrt.jar!/javafx/scene/Scene.class" />
     <entry file="file://$PROJECT_DIR$/src/com/infof307/g05/RootView.fxml">
-      <provider editor-type-id="JavaFX-Scene-Builder" />
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="212">
           <caret line="10" column="25" selection-start-line="10" selection-start-column="25" selection-end-line="10" selection-end-column="25" />
         </state>
       </provider>
+      <provider editor-type-id="JavaFX-Scene-Builder" />
     </entry>
     <entry file="file://$PROJECT_DIR$/src/com/infof307/g05/AddView.fxml">
-      <provider selected="true" editor-type-id="JavaFX-Scene-Builder" />
       <provider editor-type-id="text-editor">
         <state relative-caret-position="462">
           <caret line="27" column="38" lean-forward="true" selection-start-line="27" selection-start-column="38" selection-end-line="27" selection-end-column="38" />
         </state>
       </provider>
+      <provider selected="true" editor-type-id="JavaFX-Scene-Builder" />
     </entry>
     <entry file="file://$PROJECT_DIR$/src/ArticleController.java" />
     <entry file="file://$PROJECT_DIR$/src/ArticleView.java" />
-    <entry file="file://$PROJECT_DIR$/src/com/infof307/g05/ArticleData.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="256">
-          <caret line="21" column="4" selection-start-line="21" selection-start-column="4" selection-end-line="21" selection-end-column="4" />
-          <folding>
-            <element signature="imports" expanded="true" />
-            <element signature="docComment;method#ArticleData#0;class#ArticleData#0" />
-            <element signature="method#Instance#0;class#ArticleData#0" />
-            <element signature="e#628#629#0" expanded="true" />
-            <element signature="e#669#670#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/com/infof307/g05/LoginFxml.fxml">
-      <provider editor-type-id="JavaFX-Scene-Builder" />
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="222">
           <caret line="18" column="20" selection-start-line="18" selection-start-column="20" selection-end-line="18" selection-end-column="20" />
         </state>
       </provider>
+      <provider editor-type-id="JavaFX-Scene-Builder" />
     </entry>
     <entry file="file://$PROJECT_DIR$/src/com/infof307/g05/MenuView.fxml">
-      <provider editor-type-id="JavaFX-Scene-Builder" />
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="187">
           <caret line="11" column="31" selection-start-line="11" selection-start-column="31" selection-end-line="11" selection-end-column="31" />
         </state>
       </provider>
+      <provider editor-type-id="JavaFX-Scene-Builder" />
     </entry>
     <entry file="file://$PROJECT_DIR$/src/com/infof307/g05/MenuController.java">
       <provider selected="true" editor-type-id="text-editor">
@@ -725,14 +756,10 @@
     <entry file="jar://C:/Program Files/Java/jdk1.8.0_171/src.zip!/java/util/List.java" />
     <entry file="file://$PROJECT_DIR$/src/com/infof307/g05/Router.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-234">
-          <caret line="67" column="63" selection-start-line="67" selection-start-column="63" selection-end-line="67" selection-end-column="63" />
+        <state relative-caret-position="156">
+          <caret line="67" column="52" selection-start-line="67" selection-start-column="52" selection-end-line="67" selection-end-column="52" />
           <folding>
             <element signature="imports" expanded="true" />
-            <element signature="e#684#685#0" expanded="true" />
-            <element signature="e#715#716#0" expanded="true" />
-            <element signature="e#1902#1903#0" expanded="true" />
-            <element signature="e#1934#1935#0" expanded="true" />
           </folding>
         </state>
       </provider>
@@ -747,9 +774,7 @@
         </state>
       </provider>
     </entry>
-    <entry file="das://9da3c2e4-4e56-40ab-bd9f-682dc87bc0b0/role/postgres">
-      <provider selected="true" editor-type-id="text-editor" />
-    </entry>
+    <entry file="das://9da3c2e4-4e56-40ab-bd9f-682dc87bc0b0/role/postgres" />
     <entry file="file://$PROJECT_DIR$/test/com/infof307/g05/UserTest.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="-1">
@@ -776,16 +801,7 @@
         </state>
       </provider>
     </entry>
-    <entry file="das://9da3c2e4-4e56-40ab-bd9f-682dc87bc0b0/database/postgres/schema/public/table/user">
-      <provider selected="true" editor-type-id="com.intellij.database.editor.DatabaseTableFileEditorProvider">
-        <state>
-          <filtering enabled="true" />
-          <column-attributes>
-            <column name="ctid" enabled="false" />
-          </column-attributes>
-        </state>
-      </provider>
-    </entry>
+    <entry file="das://9da3c2e4-4e56-40ab-bd9f-682dc87bc0b0/database/postgres/schema/public/table/user" />
     <entry file="file://$PROJECT_DIR$/src/com/infof307/g05/DAO.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="255">
@@ -793,16 +809,7 @@
         </state>
       </provider>
     </entry>
-    <entry file="das://9da3c2e4-4e56-40ab-bd9f-682dc87bc0b0/database/postgres/schema/public/table/users">
-      <provider selected="true" editor-type-id="com.intellij.database.editor.DatabaseTableFileEditorProvider">
-        <state>
-          <filtering enabled="true" />
-          <column-attributes>
-            <column name="ctid" enabled="false" />
-          </column-attributes>
-        </state>
-      </provider>
-    </entry>
+    <entry file="das://9da3c2e4-4e56-40ab-bd9f-682dc87bc0b0/database/postgres/schema/public/table/users" />
     <entry file="file://$PROJECT_DIR$/src/com/infof307/g05/UsersDAO.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="357">
@@ -834,18 +841,7 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/test/com/infof307/g05/FeedControllerTest.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="207">
-          <caret line="21" column="26" lean-forward="true" selection-start-line="21" selection-start-column="26" selection-end-line="21" selection-end-column="26" />
-          <folding>
-            <element signature="imports" expanded="true" />
-            <element signature="e#784#785#0" expanded="true" />
-            <element signature="e#847#848#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
+    <entry file="file://$PROJECT_DIR$/test/com/infof307/g05/FeedControllerTest.java" />
     <entry file="file://$PROJECT_DIR$/.gitignore">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="-677">
@@ -887,12 +883,12 @@
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/com/infof307/g05/FeedView.fxml">
-      <provider editor-type-id="JavaFX-Scene-Builder" />
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="308">
           <caret line="23" column="53" selection-start-line="23" selection-start-column="53" selection-end-line="23" selection-end-column="53" />
         </state>
       </provider>
+      <provider editor-type-id="JavaFX-Scene-Builder" />
     </entry>
     <entry file="file://$PROJECT_DIR$/src/com/infof307/g05/ConnectionPostgreSQL.java">
       <provider selected="true" editor-type-id="text-editor">
@@ -904,25 +900,40 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/com/infof307/g05/FeedController.java">
+    <entry file="file://$PROJECT_DIR$/src/com/infof307/g05/AddController.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1156">
-          <caret line="76" column="21" lean-forward="true" selection-start-line="76" selection-start-column="21" selection-end-line="76" selection-end-column="21" />
+        <state relative-caret-position="177">
+          <caret line="122" selection-start-line="122" selection-end-line="122" />
           <folding>
-            <element signature="e#1882#1883#0" expanded="true" />
-            <element signature="e#1945#1946#0" expanded="true" />
+            <element signature="imports" expanded="true" />
           </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/com/infof307/g05/AddController.java">
+    <entry file="file://$PROJECT_DIR$/src/com/infof307/g05/FeedController.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="240">
-          <caret line="96" selection-start-line="96" selection-end-line="96" />
+        <state relative-caret-position="137">
+          <caret line="68" column="20" selection-start-line="68" selection-start-column="20" selection-end-line="68" selection-end-column="20" />
           <folding>
             <element signature="imports" expanded="true" />
-            <element signature="e#4094#4095#0" expanded="true" />
-            <element signature="e#4157#4158#0" expanded="true" />
+            <element signature="e#2942#2943#0" expanded="true" />
+            <element signature="e#3005#3006#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/com/infof307/g05/ArticleData.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="180">
+          <caret line="48" column="25" selection-start-line="48" selection-start-column="25" selection-end-line="48" selection-end-column="25" />
+          <folding>
+            <element signature="imports" expanded="true" />
+            <element signature="e#485#486#0" expanded="true" />
+            <element signature="e#562#563#0" expanded="true" />
+            <element signature="e#738#739#0" expanded="true" />
+            <element signature="e#779#780#0" expanded="true" />
+            <element signature="e#888#889#0" expanded="true" />
+            <element signature="e#922#923#0" expanded="true" />
           </folding>
         </state>
       </provider>
