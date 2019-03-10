@@ -2,12 +2,12 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="8ed6c9e0-c52e-41ad-983e-fab3cc7f2867" name="Default" comment="fix category name for article importation">
-      <change beforePath="$PROJECT_DIR$/test/com/infof307/g05/UserControllerTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/test/com/infof307/g05/UserControllerTest.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/test/com/infof307/g05/UserTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/test/com/infof307/g05/UserTest.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/com/infof307/g05/ArticleData.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/infof307/g05/ArticleData.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/com/infof307/g05/FeedController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/infof307/g05/FeedController.java" afterDir="false" />
     </list>
     <ignored path="$PROJECT_DIR$/out/" />
     <ignored path="lib/postgresql-9.2-1002.jdbc4.jar" />
-    <ignored path="$PROJECT_DIR$/target/" />
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -31,50 +31,50 @@
   <component name="FileEditorManager">
     <leaf>
       <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/com/infof307/g05/Main.java">
+        <entry file="file://$PROJECT_DIR$/src/com/infof307/g05/Router.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="170">
-              <caret line="10" column="39" selection-start-line="10" selection-start-column="39" selection-end-line="10" selection-end-column="39" />
+            <state relative-caret-position="406">
+              <caret line="99" selection-start-line="99" selection-end-line="99" />
               <folding>
                 <element signature="imports" expanded="true" />
-                <element signature="e#558#559#0" expanded="true" />
-                <element signature="e#586#587#0" expanded="true" />
               </folding>
             </state>
           </provider>
         </entry>
       </file>
       <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/test/com/infof307/g05/UserTest.java">
+        <entry file="file://$PROJECT_DIR$/src/com/infof307/g05/AddController.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="204">
-              <caret line="12" column="46" lean-forward="true" selection-start-line="12" selection-start-column="46" selection-end-line="12" selection-end-column="46" />
+            <state relative-caret-position="1212">
+              <caret line="122" selection-start-line="122" selection-end-line="122" />
               <folding>
                 <element signature="imports" expanded="true" />
-                <element signature="e#235#236#0" expanded="true" />
-                <element signature="e#288#289#0" expanded="true" />
-                <element signature="e#458#459#0" expanded="true" />
-                <element signature="e#518#519#0" expanded="true" />
-                <element signature="e#699#700#0" expanded="true" />
-                <element signature="e#760#761#0" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/com/infof307/g05/FeedController.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="-687">
+              <caret line="14" column="32" selection-start-line="14" selection-start-column="32" selection-end-line="14" selection-end-column="32" />
+              <folding>
+                <element signature="e#2946#2947#0" expanded="true" />
+                <element signature="e#3009#3010#0" expanded="true" />
               </folding>
             </state>
           </provider>
         </entry>
       </file>
       <file pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/test/com/infof307/g05/UserControllerTest.java">
+        <entry file="file://$PROJECT_DIR$/src/com/infof307/g05/ArticleData.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state>
-              <caret column="14" selection-start-column="14" selection-end-column="14" />
+            <state relative-caret-position="600">
+              <caret line="48" column="25" selection-start-line="48" selection-start-column="25" selection-end-line="48" selection-end-column="25" />
               <folding>
-                <element signature="imports" expanded="true" />
-                <element signature="e#463#464#0" expanded="true" />
-                <element signature="e#529#530#0" expanded="true" />
-                <element signature="e#733#734#0" expanded="true" />
-                <element signature="e#803#804#0" expanded="true" />
-                <element signature="e#1005#1006#0" expanded="true" />
-                <element signature="e#1077#1078#0" expanded="true" />
+                <element signature="e#888#889#0" expanded="true" />
+                <element signature="e#922#923#0" expanded="true" />
               </folding>
             </state>
           </provider>
@@ -85,8 +85,8 @@
   <component name="FileTemplateManagerImpl">
     <option name="RECENT_TEMPLATES">
       <list>
-        <option value="FxmlFile" />
         <option value="Class" />
+        <option value="FxmlFile" />
       </list>
     </option>
   </component>
@@ -116,22 +116,18 @@
         <option value="$PROJECT_DIR$/src/com/infof307/g05/RootView.fxml" />
         <option value="$PROJECT_DIR$/src/com/infof307/g05/FeedView.fxml" />
         <option value="$PROJECT_DIR$/src/com/infof307/g05/URLReader.java" />
-        <option value="$PROJECT_DIR$/src/com/infof307/g05/ArticleData.java" />
         <option value="$PROJECT_DIR$/src/com/infof307/g05/MenuController.java" />
         <option value="$PROJECT_DIR$/src/com/infof307/g05/Main.java" />
         <option value="$PROJECT_DIR$/src/com/infof307/g05/Router.java" />
         <option value="$PROJECT_DIR$/src/com/infof307/g05/LoginController.java" />
         <option value="$PROJECT_DIR$/src/com/infof307/g05/RegisterController.java" />
-        <option value="$PROJECT_DIR$/test/com/infof307/g05/FeedControllerTest.java" />
-        <option value="$PROJECT_DIR$/src/com/infof307/g05/FeedController.java" />
-        <option value="$PROJECT_DIR$/src/com/infof307/g05/AddController.java" />
-        <option value="$PROJECT_DIR$/src/com/infof307/g05/HashMD5.java" />
-        <option value="$PROJECT_DIR$/src/com/infof307/g05/ConnectionPostgreSQL.java" />
-        <option value="$PROJECT_DIR$/src/com/infof307/g05/UsersDAO.java" />
-        <option value="$PROJECT_DIR$/src/com/infof307/g05/DAO.java" />
-        <option value="$PROJECT_DIR$/pom.xml" />
         <option value="$PROJECT_DIR$/test/com/infof307/g05/UserControllerTest.java" />
         <option value="$PROJECT_DIR$/test/com/infof307/g05/UserTest.java" />
+        <option value="$PROJECT_DIR$/src/com/infof307/g05/ConnectionPostgreSQL.java" />
+        <option value="$PROJECT_DIR$/test/com/infof307/g05/FeedControllerTest.java" />
+        <option value="$PROJECT_DIR$/src/com/infof307/g05/AddController.java" />
+        <option value="$PROJECT_DIR$/src/com/infof307/g05/FeedController.java" />
+        <option value="$PROJECT_DIR$/src/com/infof307/g05/ArticleData.java" />
       </list>
     </option>
   </component>
@@ -141,11 +137,11 @@
       <select />
     </treeState>
   </component>
-  <component name="ProjectFrameBounds" extendedState="6">
-    <option name="x" value="270" />
-    <option name="y" value="261" />
-    <option name="width" value="1614" />
-    <option name="height" value="876" />
+  <component name="ProjectFrameBounds">
+    <option name="x" value="319" />
+    <option name="y" value="87" />
+    <option name="width" value="1334" />
+    <option name="height" value="857" />
   </component>
   <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
   <component name="ProjectView">
@@ -153,29 +149,30 @@
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
+      <pane id="PackagesPane" />
       <pane id="ProjectPane">
         <subPane>
           <expand>
             <path>
-              <item name="ProjetGénie" type="b2602c69:ProjectViewProjectNode" />
+              <item name="groupe05" type="b2602c69:ProjectViewProjectNode" />
               <item name="groupe05" type="47feb1d3:ProjectViewModuleNode" />
             </path>
             <path>
-              <item name="ProjetGénie" type="b2602c69:ProjectViewProjectNode" />
+              <item name="groupe05" type="b2602c69:ProjectViewProjectNode" />
               <item name="groupe05" type="47feb1d3:ProjectViewModuleNode" />
-              <item name="ProjetGénie" type="462c0819:PsiDirectoryNode" />
+              <item name="groupe05" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
-              <item name="ProjetGénie" type="b2602c69:ProjectViewProjectNode" />
+              <item name="groupe05" type="b2602c69:ProjectViewProjectNode" />
               <item name="groupe05" type="47feb1d3:ProjectViewModuleNode" />
-              <item name="ProjetGénie" type="462c0819:PsiDirectoryNode" />
-              <item name="test" type="462c0819:PsiDirectoryNode" />
+              <item name="groupe05" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
-              <item name="ProjetGénie" type="b2602c69:ProjectViewProjectNode" />
+              <item name="groupe05" type="b2602c69:ProjectViewProjectNode" />
               <item name="groupe05" type="47feb1d3:ProjectViewModuleNode" />
-              <item name="ProjetGénie" type="462c0819:PsiDirectoryNode" />
-              <item name="test" type="462c0819:PsiDirectoryNode" />
+              <item name="groupe05" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
               <item name="g05" type="462c0819:PsiDirectoryNode" />
             </path>
           </expand>
@@ -219,7 +216,6 @@
           <select />
         </subPane>
       </pane>
-      <pane id="PackagesPane" />
       <pane id="AndroidView" />
     </panes>
   </component>
@@ -230,7 +226,7 @@
     <property name="Repository.Attach.Sources" value="false" />
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="aspect.path.notification.shown" value="true" />
-    <property name="com.android.tools.idea.instantapp.provision.ProvisionBeforeRunTaskProvider.myTimeStamp" value="1552226231118" />
+    <property name="com.android.tools.idea.instantapp.provision.ProvisionBeforeRunTaskProvider.myTimeStamp" value="1552216029155" />
     <property name="create.test.in.the.same.root" value="true" />
     <property name="database.console.LAST_STATE" value="false" />
     <property name="last_opened_file_path" value="$PROJECT_DIR$/lib/postgresql-9.2-1002.jdbc4.jar!/" />
@@ -240,10 +236,6 @@
     <property name="settings.editor.selected.configurable" value="editor.preferences.fonts.default" />
   </component>
   <component name="RecentsManager">
-    <key name="MoveFile.RECENT_KEYS">
-      <recent name="C:\Users\chmus\IdeaProjects\groupe05" />
-      <recent name="C:\Users\chmus\IdeaProjects\groupe05\src\com\infof307\g05" />
-    </key>
     <key name="MoveClassesOrPackagesDialog.RECENTS_KEY">
       <recent name="com.infof307.g05" />
     </key>
@@ -279,6 +271,20 @@
     </configuration>
     <configuration name="Main" type="Application" factoryName="Application" nameIsGenerated="true">
       <option name="MAIN_CLASS_NAME" value="com.infof307.g05.Main" />
+      <module name="groupe05" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="com.infof307.g05.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="URLReader" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="com.infof307.g05.URLReader" />
       <module name="groupe05" />
       <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$" />
       <extension name="coverage">
@@ -380,23 +386,6 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration name="UserTest" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
-      <module name="groupe05" />
-      <extension name="coverage">
-        <pattern>
-          <option name="PATTERN" value="com.infof307.g05.*" />
-          <option name="ENABLED" value="true" />
-        </pattern>
-      </extension>
-      <option name="PACKAGE_NAME" value="com.infof307.g05" />
-      <option name="MAIN_CLASS_NAME" value="com.infof307.g05.UserTest" />
-      <option name="TEST_OBJECT" value="class" />
-      <option name="VM_PARAMETERS" />
-      <option name="WORKING_DIRECTORY" value="%MODULE_WORKING_DIR%" />
-      <method v="2">
-        <option name="Make" enabled="true" />
-      </method>
-    </configuration>
     <configuration default="true" type="JUnit" factoryName="JUnit">
       <option name="TEST_OBJECT" value="class" />
       <option name="VM_PARAMETERS" />
@@ -427,20 +416,20 @@
     <list>
       <item itemvalue="Application.ArticleData" />
       <item itemvalue="Application.Main" />
+      <item itemvalue="Application.URLReader" />
       <item itemvalue="JUnit.All in groupe05" />
       <item itemvalue="JUnit.FeedControllerTest" />
       <item itemvalue="JUnit.FeedControllerTest.initialize" />
       <item itemvalue="JUnit.FeedControllerTest.getEmailTest" />
       <item itemvalue="JUnit.UserControllerTest" />
-      <item itemvalue="JUnit.UserTest" />
     </list>
     <recent_temporary>
       <list>
-        <item itemvalue="JUnit.UserTest" />
         <item itemvalue="JUnit.UserControllerTest" />
         <item itemvalue="JUnit.FeedControllerTest" />
         <item itemvalue="JUnit.FeedControllerTest.getEmailTest" />
         <item itemvalue="JUnit.FeedControllerTest.initialize" />
+        <item itemvalue="Application.URLReader" />
       </list>
     </recent_temporary>
   </component>
@@ -478,6 +467,15 @@
     <servers />
   </component>
   <component name="TestHistory">
+    <history-entry file="FeedControllerTest_initialize - 2019.03.09 at 22h 05m 09s.xml">
+      <configuration name="FeedControllerTest.initialize" configurationId="JUnit" />
+    </history-entry>
+    <history-entry file="FeedControllerTest_initialize - 2019.03.09 at 22h 09m 10s.xml">
+      <configuration name="FeedControllerTest.initialize" configurationId="JUnit" />
+    </history-entry>
+    <history-entry file="FeedControllerTest_getEmailTest - 2019.03.09 at 22h 09m 40s.xml">
+      <configuration name="FeedControllerTest.getEmailTest" configurationId="JUnit" />
+    </history-entry>
     <history-entry file="FeedControllerTest - 2019.03.09 at 22h 14m 50s.xml">
       <configuration name="FeedControllerTest" configurationId="JUnit" />
     </history-entry>
@@ -499,18 +497,9 @@
     <history-entry file="UserControllerTest - 2019.03.09 at 22h 29m 16s.xml">
       <configuration name="UserControllerTest" configurationId="JUnit" />
     </history-entry>
-    <history-entry file="UserControllerTest - 2019.03.10 at 14h 49m 52s.xml">
-      <configuration name="UserControllerTest" configurationId="JUnit" />
-    </history-entry>
-    <history-entry file="UserControllerTest_setPasswordTest - 2019.03.10 at 14h 50m 00s.xml">
-      <configuration name="UserControllerTest.setPasswordTest" configurationId="JUnit" />
-    </history-entry>
-    <history-entry file="UserControllerTest - 2019.03.10 at 14h 50m 23s.xml">
-      <configuration name="UserControllerTest" configurationId="JUnit" />
-    </history-entry>
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="29910000" />
+    <option name="totallyTimeSpent" value="29073000" />
   </component>
   <component name="TodoView" selected-index="3">
     <todo-panel id="selected-file">
@@ -522,10 +511,10 @@
     </todo-panel>
   </component>
   <component name="ToolWindowManager">
-    <frame x="-8" y="-8" width="1936" height="1056" extended-state="0" />
+    <frame x="0" y="27" width="1600" height="873" extended-state="6" />
     <editor active="true" />
     <layout>
-      <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.25" />
+      <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.25" />
       <window_info id="Structure" order="1" weight="0.25" />
       <window_info id="Favorites" order="2" side_tool="true" />
       <window_info id="Image Layers" order="3" />
@@ -535,7 +524,7 @@
       <window_info id="DB Browser" order="7" />
       <window_info anchor="bottom" id="Database Console" order="0" weight="0.3265306" />
       <window_info anchor="bottom" id="Message" order="1" />
-      <window_info anchor="bottom" id="Find" order="2" weight="0.3291592" />
+      <window_info anchor="bottom" id="Find" order="2" weight="0.329235" />
       <window_info anchor="bottom" id="Run" order="3" sideWeight="0.5521907" weight="0.20165746" />
       <window_info anchor="bottom" id="Debug" order="4" weight="0.4" />
       <window_info anchor="bottom" id="Cvs" order="5" weight="0.25" />
@@ -544,10 +533,10 @@
       <window_info anchor="bottom" id="DB Execution Console" order="8" />
       <window_info anchor="bottom" id="Terminal" order="9" sideWeight="0.5953608" weight="0.4378453" />
       <window_info anchor="bottom" id="Event Log" order="10" sideWeight="0.40463918" side_tool="true" weight="0.2773224" />
-      <window_info anchor="bottom" id="Version Control" order="11" sideWeight="0.7493557" visible="true" weight="0.36740333" />
+      <window_info active="true" anchor="bottom" id="Version Control" order="11" sideWeight="0.7493557" visible="true" weight="0.25956285" />
       <window_info anchor="bottom" id="Docker" order="12" show_stripe_button="false" />
       <window_info anchor="bottom" id="Database Changes" order="13" show_stripe_button="false" weight="0.32944608" />
-      <window_info anchor="bottom" id="Messages" order="14" weight="0.32737032" />
+      <window_info anchor="bottom" id="Messages" order="14" weight="0.32837838" />
       <window_info anchor="right" id="Commander" order="0" weight="0.4" />
       <window_info anchor="right" id="Ant Build" order="1" weight="0.25" />
       <window_info anchor="right" content_ui="combo" id="Hierarchy" order="2" weight="0.25" />
@@ -559,6 +548,40 @@
       <window_info anchor="right" id="Database" order="8" weight="0.20172684" />
       <window_info anchor="right" id="Maven" order="9" weight="0.3298969" />
     </layout>
+    <layout-to-restore>
+      <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.25" />
+      <window_info id="Structure" order="1" weight="0.25" />
+      <window_info id="Favorites" order="2" side_tool="true" />
+      <window_info id="Image Layers" order="3" />
+      <window_info id="Designer" order="4" />
+      <window_info id="UI Designer" order="5" />
+      <window_info id="Capture Tool" order="6" />
+      <window_info id="DB Browser" order="7" />
+      <window_info anchor="bottom" id="Message" order="0" />
+      <window_info anchor="bottom" id="Find" order="1" weight="0.329235" />
+      <window_info active="true" anchor="bottom" id="Run" order="2" sideWeight="0.5521907" visible="true" weight="0.38387978" />
+      <window_info anchor="bottom" id="Debug" order="3" weight="0.4" />
+      <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
+      <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
+      <window_info anchor="bottom" id="TODO" order="6" weight="0.3296875" />
+      <window_info anchor="bottom" id="DB Execution Console" order="7" />
+      <window_info active="true" anchor="bottom" id="Terminal" order="8" sideWeight="0.5953608" visible="true" weight="0.17896175" />
+      <window_info anchor="bottom" id="Event Log" order="9" sideWeight="0.40463918" side_tool="true" weight="0.2773224" />
+      <window_info anchor="bottom" id="Version Control" order="10" sideWeight="0.7493557" weight="0.21311475" />
+      <window_info anchor="bottom" id="Docker" order="11" show_stripe_button="false" />
+      <window_info anchor="bottom" id="Database Changes" order="12" />
+      <window_info anchor="bottom" id="Messages" order="13" weight="0.329235" />
+      <window_info anchor="right" id="Commander" order="0" weight="0.4" />
+      <window_info anchor="right" id="Ant Build" order="1" weight="0.25" />
+      <window_info anchor="right" content_ui="combo" id="Hierarchy" order="2" weight="0.25" />
+      <window_info anchor="right" id="Palette" order="3" />
+      <window_info anchor="right" id="Capture Analysis" order="4" />
+      <window_info anchor="right" id="Theme Preview" order="5" />
+      <window_info anchor="right" id="Palette&#9;" order="6" />
+      <window_info anchor="right" id="Maven Projects" order="7" />
+      <window_info anchor="right" id="Database" order="8" weight="0.32925257" />
+      <window_info anchor="right" id="Maven" order="9" weight="0.3298969" />
+    </layout-to-restore>
   </component>
   <component name="TypeScriptGeneratedFilesManager">
     <option name="version" value="1" />
@@ -609,6 +632,7 @@
     <option name="LAST_COMMIT_MESSAGE" value="fix category name for article importation" />
   </component>
   <component name="editorHistoryManager">
+    <entry file="file://$PROJECT_DIR$/src/UsersDAO.java" />
     <entry file="file://$APPLICATION_CONFIG_DIR$/consoles/db/7eabf77e-c14f-4fcb-be56-61bc3539e67f/console.sql" />
     <entry file="jar://C:/Program Files/Java/jdk1.8.0_171/javafx-src.zip!/javafx/application/Application.java" />
     <entry file="file://$APPLICATION_CONFIG_DIR$/consoles/db/72ba1440-f246-42f5-b48b-1ac1ae59771c/console.sql" />
@@ -630,12 +654,12 @@
     </entry>
     <entry file="das://72ba1440-f246-42f5-b48b-1ac1ae59771c/database/postgres/schema/public/table/users" />
     <entry file="file://$PROJECT_DIR$/src/com/infof307/g05/RegisterFxml.fxml">
-      <provider editor-type-id="JavaFX-Scene-Builder" />
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="272">
           <caret line="16" column="37" selection-start-line="16" selection-start-column="37" selection-end-line="16" selection-end-column="37" />
         </state>
       </provider>
+      <provider editor-type-id="JavaFX-Scene-Builder" />
     </entry>
     <entry file="file://$PROJECT_DIR$/src/com/infof307/g05/User.java" />
     <entry file="file://$PROJECT_DIR$/dist/TOFILL.md">
@@ -680,38 +704,38 @@
     <entry file="file://$USER_HOME$/Downloads/RootControllerView.java" />
     <entry file="jar:///usr/lib/jvm/java-1.8.0-openjdk-amd64/jre/lib/ext/jfxrt.jar!/javafx/scene/Scene.class" />
     <entry file="file://$PROJECT_DIR$/src/com/infof307/g05/RootView.fxml">
-      <provider editor-type-id="JavaFX-Scene-Builder" />
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="212">
           <caret line="10" column="25" selection-start-line="10" selection-start-column="25" selection-end-line="10" selection-end-column="25" />
         </state>
       </provider>
+      <provider editor-type-id="JavaFX-Scene-Builder" />
     </entry>
     <entry file="file://$PROJECT_DIR$/src/com/infof307/g05/AddView.fxml">
-      <provider selected="true" editor-type-id="JavaFX-Scene-Builder" />
       <provider editor-type-id="text-editor">
         <state relative-caret-position="462">
           <caret line="27" column="38" lean-forward="true" selection-start-line="27" selection-start-column="38" selection-end-line="27" selection-end-column="38" />
         </state>
       </provider>
+      <provider selected="true" editor-type-id="JavaFX-Scene-Builder" />
     </entry>
     <entry file="file://$PROJECT_DIR$/src/ArticleController.java" />
     <entry file="file://$PROJECT_DIR$/src/ArticleView.java" />
     <entry file="file://$PROJECT_DIR$/src/com/infof307/g05/LoginFxml.fxml">
-      <provider editor-type-id="JavaFX-Scene-Builder" />
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="222">
           <caret line="18" column="20" selection-start-line="18" selection-start-column="20" selection-end-line="18" selection-end-column="20" />
         </state>
       </provider>
+      <provider editor-type-id="JavaFX-Scene-Builder" />
     </entry>
     <entry file="file://$PROJECT_DIR$/src/com/infof307/g05/MenuView.fxml">
-      <provider editor-type-id="JavaFX-Scene-Builder" />
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="187">
           <caret line="11" column="31" selection-start-line="11" selection-start-column="31" selection-end-line="11" selection-end-column="31" />
         </state>
       </provider>
+      <provider editor-type-id="JavaFX-Scene-Builder" />
     </entry>
     <entry file="file://$PROJECT_DIR$/src/com/infof307/g05/MenuController.java">
       <provider selected="true" editor-type-id="text-editor">
@@ -727,14 +751,10 @@
     <entry file="jar://C:/Program Files/Java/jdk1.8.0_171/src.zip!/java/util/List.java" />
     <entry file="file://$PROJECT_DIR$/src/com/infof307/g05/Router.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-234">
-          <caret line="67" column="63" selection-start-line="67" selection-start-column="63" selection-end-line="67" selection-end-column="63" />
+        <state relative-caret-position="406">
+          <caret line="99" selection-start-line="99" selection-end-line="99" />
           <folding>
             <element signature="imports" expanded="true" />
-            <element signature="e#684#685#0" expanded="true" />
-            <element signature="e#715#716#0" expanded="true" />
-            <element signature="e#1902#1903#0" expanded="true" />
-            <element signature="e#1934#1935#0" expanded="true" />
           </folding>
         </state>
       </provider>
@@ -750,8 +770,51 @@
       </provider>
     </entry>
     <entry file="das://9da3c2e4-4e56-40ab-bd9f-682dc87bc0b0/role/postgres" />
+    <entry file="file://$PROJECT_DIR$/test/com/infof307/g05/UserTest.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-1">
+          <caret line="10" column="9" selection-start-line="10" selection-start-column="9" selection-end-line="10" selection-end-column="9" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/test/com/infof307/g05/UserControllerTest.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="121">
+          <caret line="11" column="49" selection-start-line="11" selection-start-column="49" selection-end-line="11" selection-end-column="49" />
+          <folding>
+            <element signature="imports" expanded="true" />
+            <element signature="e#514#515#0" expanded="true" />
+            <element signature="e#580#581#0" expanded="true" />
+            <element signature="e#784#785#0" expanded="true" />
+            <element signature="e#854#855#0" expanded="true" />
+            <element signature="e#1056#1057#0" expanded="true" />
+            <element signature="e#1128#1129#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
     <entry file="das://9da3c2e4-4e56-40ab-bd9f-682dc87bc0b0/database/postgres/schema/public/table/user" />
+    <entry file="file://$PROJECT_DIR$/src/com/infof307/g05/DAO.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="255">
+          <caret line="15" column="7" lean-forward="true" selection-start-line="15" selection-start-column="7" selection-end-line="15" selection-end-column="7" />
+        </state>
+      </provider>
+    </entry>
     <entry file="das://9da3c2e4-4e56-40ab-bd9f-682dc87bc0b0/database/postgres/schema/public/table/users" />
+    <entry file="file://$PROJECT_DIR$/src/com/infof307/g05/UsersDAO.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="357">
+          <caret line="21" column="31" selection-start-line="21" selection-start-column="31" selection-end-line="21" selection-end-column="31" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/src/com/infof307/g05/LoginController.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="510">
@@ -791,8 +854,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/com/infof307/g05/Main.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="170">
-          <caret line="10" column="39" selection-start-line="10" selection-start-column="39" selection-end-line="10" selection-end-column="39" />
+        <state relative-caret-position="180">
+          <caret line="13" column="22" selection-start-line="13" selection-start-column="22" selection-end-line="13" selection-end-column="22" />
           <folding>
             <element signature="imports" expanded="true" />
             <element signature="e#558#559#0" expanded="true" />
@@ -809,66 +872,18 @@
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/com/infof307/g05/FeedView.fxml">
-      <provider editor-type-id="JavaFX-Scene-Builder" />
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="308">
           <caret line="23" column="53" selection-start-line="23" selection-start-column="53" selection-end-line="23" selection-end-column="53" />
         </state>
       </provider>
+      <provider editor-type-id="JavaFX-Scene-Builder" />
     </entry>
     <entry file="file://$PROJECT_DIR$/src/com/infof307/g05/ConnectionPostgreSQL.java" />
-    <entry file="file://$PROJECT_DIR$/src/com/infof307/g05/ConnexionSQLite.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="51">
-          <caret line="7" column="13" selection-start-line="7" selection-start-column="13" selection-end-line="7" selection-end-column="13" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/com/infof307/g05/UsersDAO.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1819">
-          <caret line="107" selection-start-line="107" selection-end-line="107" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/com/infof307/g05/DAO.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="170">
-          <caret line="10" selection-start-line="10" selection-end-line="10" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/com/infof307/g05/ArticleData.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="126">
-          <caret line="25" column="12" selection-start-line="25" selection-start-column="12" selection-end-line="25" selection-end-column="12" />
-          <folding>
-            <element signature="imports" expanded="true" />
-            <element signature="docComment;method#ArticleData#0;class#ArticleData#0" />
-            <element signature="e#397#398#0" expanded="true" />
-            <element signature="e#444#445#0" expanded="true" />
-            <element signature="method#Instance#0;class#ArticleData#0" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/com/infof307/g05/HashMD5.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="578">
-          <caret line="34" column="1" selection-start-line="34" selection-start-column="1" selection-end-line="34" selection-end-column="1" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/com/infof307/g05/AddController.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="109">
-          <caret line="80" column="52" selection-start-line="80" selection-start-column="52" selection-end-line="80" selection-end-column="52" />
+        <state relative-caret-position="1212">
+          <caret line="122" selection-start-line="122" selection-end-line="122" />
           <folding>
             <element signature="imports" expanded="true" />
           </folding>
@@ -877,50 +892,22 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/com/infof307/g05/FeedController.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-40">
-          <caret line="76" column="21" lean-forward="true" selection-start-line="76" selection-start-column="21" selection-end-line="76" selection-end-column="21" />
+        <state relative-caret-position="-687">
+          <caret line="14" column="32" selection-start-line="14" selection-start-column="32" selection-end-line="14" selection-end-column="32" />
           <folding>
-            <element signature="e#1882#1883#0" expanded="true" />
-            <element signature="e#1945#1946#0" expanded="true" />
+            <element signature="e#2946#2947#0" expanded="true" />
+            <element signature="e#3009#3010#0" expanded="true" />
           </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/pom.xml">
+    <entry file="file://$PROJECT_DIR$/src/com/infof307/g05/ArticleData.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="276">
-          <caret line="34" column="21" selection-start-line="34" selection-start-column="21" selection-end-line="34" selection-end-column="21" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/test/com/infof307/g05/UserTest.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="204">
-          <caret line="12" column="46" lean-forward="true" selection-start-line="12" selection-start-column="46" selection-end-line="12" selection-end-column="46" />
+        <state relative-caret-position="600">
+          <caret line="48" column="25" selection-start-line="48" selection-start-column="25" selection-end-line="48" selection-end-column="25" />
           <folding>
-            <element signature="imports" expanded="true" />
-            <element signature="e#235#236#0" expanded="true" />
-            <element signature="e#288#289#0" expanded="true" />
-            <element signature="e#458#459#0" expanded="true" />
-            <element signature="e#518#519#0" expanded="true" />
-            <element signature="e#699#700#0" expanded="true" />
-            <element signature="e#760#761#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/test/com/infof307/g05/UserControllerTest.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state>
-          <caret column="14" selection-start-column="14" selection-end-column="14" />
-          <folding>
-            <element signature="imports" expanded="true" />
-            <element signature="e#463#464#0" expanded="true" />
-            <element signature="e#529#530#0" expanded="true" />
-            <element signature="e#733#734#0" expanded="true" />
-            <element signature="e#803#804#0" expanded="true" />
-            <element signature="e#1005#1006#0" expanded="true" />
-            <element signature="e#1077#1078#0" expanded="true" />
+            <element signature="e#888#889#0" expanded="true" />
+            <element signature="e#922#923#0" expanded="true" />
           </folding>
         </state>
       </provider>
