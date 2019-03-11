@@ -1,23 +1,25 @@
 package be.ac.ulb.infof307.g05;
 import java.sql.Connection;
 import java.sql.DriverManager;
-import java.sql.ResultSet;
 import java.sql.SQLException;
-import java.sql.Statement;
-
+/**
+ * Connexion SQLite
+ * @author @vtombou
+ * @codereview @mouscb
+ */
 public class ConnexionSQLite{
 
     private static Connection connect = null;
 
     public ConnexionSQLite() {
-        //Chargement du driver
+        //Driver loading
         loadDriver();
     }
 
-    //Cette fonction permet de charger le driver de connexion entre SQLite et le JDBC
+    //This function is used to load the connection driver between SQLite and JDBC
     private static void loadDriver(){
         try{
-            //chargement du driver
+            //Driver loading
             Class.forName("org.sqlite.JDBC");
         }catch (ClassNotFoundException e){
 
@@ -26,9 +28,9 @@ public class ConnexionSQLite{
     }
 
 
-    //Méthode qui va nous retourner notre instance de Connection ou créer une si elle n'existe pas
+    //Method that will return us our Connection instance or create one if it does not exist
     public static Connection getInstance() {
-        //chargement du driver
+
         loadDriver();
 
         try

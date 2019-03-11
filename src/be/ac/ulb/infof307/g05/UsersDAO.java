@@ -4,7 +4,7 @@ import java.sql.ResultSet;
 
 /**
  * @author @mouscb
- * @codereview @tvincent
+ * @codereview @vtombou
  */
 public class UsersDAO extends DAO<Users> {
 

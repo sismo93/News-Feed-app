@@ -3,7 +3,7 @@ package be.ac.ulb.infof307.g05;
 /**
  * User model
  *@author @iyamani, @mouscb
- * @codereview @tvincent
+ * @codereview @vtombou
  */
 public class Users {
     private String mail;
