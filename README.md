@@ -61,7 +61,7 @@ Tous les tests seront éxecutés.
 
 ## Développement
 Projet développé par:
-YAMANI Imad Eddine, [VOS NOMS]
+YAMANI Imad Eddine, Bounamar Mounir, Mustapha Cherrabi,Tanvir Lipu , Wassim Kezai, Orestis Tranganidas, Wassil Choujaa, Vincent Auberic Tombu
 
 ## Screenshot
 
