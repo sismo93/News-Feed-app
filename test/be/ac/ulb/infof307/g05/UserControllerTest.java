@@ -4,19 +4,19 @@ import org.junit.jupiter.api.Test;
 
 import static org.junit.jupiter.api.Assertions.*;
 
-class UserControllerTest {
+public class UserControllerTest {
 
     Users user = new Users("test@test.com", "test", "password");
     UserController userController = new UserController(user);
 
     @Test
-    void setUsernameTest() {
+    public  void setUsernameTest() {
         userController.setUsername("newTest");
         assertEquals("newTest", userController.getUsername());
     }
 
     @Test
-    void getUsernameTest() {
+    public void getUsernameTest() {
         assertEquals("test", userController.getUsername());
     }
 
