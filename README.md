@@ -1,6 +1,7 @@
 # FeedBuzz : Projet de génie logiciel et gestion de projet (INFO-F-307)
 
-TO DO: Description du projet
+
+Ce logiciel a pour  but de regrouper des articles selon les préférences d'un utilisateur.
 
 # Utilisation
 
