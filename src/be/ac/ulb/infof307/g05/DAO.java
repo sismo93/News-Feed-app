@@ -1,6 +1,7 @@
 package be.ac.ulb.infof307.g05;
 
 import java.sql.Connection;
+
 /**
  *@author @mouscb
  * @codereview @vtombou

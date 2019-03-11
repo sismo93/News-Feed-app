@@ -1,22 +1,12 @@
 package be.ac.ulb.infof307.g05;
 
-import javafx.collections.FXCollections;
 import javafx.collections.ListChangeListener;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
-import javafx.scene.control.ListView;
 import javafx.scene.layout.VBox;
 import javafx.scene.text.Text;
 import javafx.scene.text.TextFlow;
-
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.function.Consumer;
-
-import static be.ac.ulb.infof307.g05.URLReader.Article;
-import static be.ac.ulb.infof307.g05.URLReader.Homepage;
-
 
 /**
  * Controller of the Feed View

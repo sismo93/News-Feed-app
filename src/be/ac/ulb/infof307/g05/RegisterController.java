@@ -78,12 +78,8 @@ public class RegisterController {
     private boolean isEmpty(){
 
 
-        if (userName.getText().trim().isEmpty() ||
+        return userName.getText().trim().isEmpty() ||
                 password.getText().trim().isEmpty() ||
-                email.getText().trim().isEmpty()){
-
-            return true;
-        }
-        return false;
+                email.getText().trim().isEmpty();
     }
 }

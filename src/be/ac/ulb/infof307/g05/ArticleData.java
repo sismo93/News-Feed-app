@@ -2,8 +2,6 @@ package be.ac.ulb.infof307.g05;
 
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
-import javafx.scene.layout.AnchorPane;
-
 import java.util.ArrayList;
 
 /**
