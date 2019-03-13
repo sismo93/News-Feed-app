@@ -1,9 +1,12 @@
-package be.ac.ulb.infof307.g05;
+package com.be.ac.ulb.g05;
 
+import com.be.ac.ulb.g05.Controller.*;
 import javafx.application.Application;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
-import static be.ac.ulb.infof307.g05.Controller.Router.*;
+
+import static com.be.ac.ulb.g05.Controller.Router.Instance;
+
 
 public class Main extends Application {
 
@@ -14,7 +17,7 @@ public class Main extends Application {
         primaryStage.setScene(scene);
         primaryStage.show();
         // route to menu
-        Instance().changeView(Views.Login);
+        Instance().changeView(Router.Views.Login);
     }
 
     public static void main(String[] args) {

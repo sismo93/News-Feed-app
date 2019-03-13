@@ -1,5 +1,6 @@
-package be.ac.ulb.infof307.g05.Model;
-import be.ac.ulb.infof307.g05.HashMD5;
+package com.be.ac.ulb.g05.Model;
+
+import com.be.ac.ulb.g05.*;
 
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;

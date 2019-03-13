@@ -1,7 +1,6 @@
-package be.ac.ulb.infof307.g05.Model;
+package com.be.ac.ulb.g05.Model;
 
-import be.ac.ulb.infof307.g05.ConnexionSQLite;
-
+import com.be.ac.ulb.g05.*;
 import java.sql.Connection;
 
 /**

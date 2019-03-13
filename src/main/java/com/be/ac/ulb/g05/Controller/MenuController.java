@@ -1,4 +1,5 @@
-package be.ac.ulb.infof307.g05.Controller;
+package com.be.ac.ulb.g05.Controller;
+
 
 import javafx.event.ActionEvent;
 

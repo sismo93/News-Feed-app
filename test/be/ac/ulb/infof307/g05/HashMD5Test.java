@@ -6,7 +6,8 @@ import org.junit.jupiter.api.Test;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
-import static be.ac.ulb.infof307.g05.HashMD5.hashFunct;
+import static com.be.ac.ulb.g05.HashMD5.hashFunct;
+
 
 /**
  * @borsalinoK

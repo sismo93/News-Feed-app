@@ -1,7 +1,8 @@
 package be.ac.ulb.infof307.g05;
 
-import be.ac.ulb.infof307.g05.Model.Users;
-import be.ac.ulb.infof307.g05.Model.UsersDAO;
+import be.ac.ulb.infof307.g05.*;
+import com.be.ac.ulb.g05.Model.Users;
+import com.be.ac.ulb.g05.Model.UsersDAO;
 import junit.framework.TestCase;
 
 /**
@@ -9,6 +10,7 @@ import junit.framework.TestCase;
  * @mouscb
  */
 public class UsersDAOTest extends TestCase {
+
     private Users user;
     private UsersDAO userDao;
 

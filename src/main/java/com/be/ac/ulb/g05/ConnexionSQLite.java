@@ -1,4 +1,4 @@
-package be.ac.ulb.infof307.g05;
+package com.be.ac.ulb.g05;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.SQLException;

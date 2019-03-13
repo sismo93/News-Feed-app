@@ -1,5 +1,7 @@
 package be.ac.ulb.infof307.g05;
-import be.ac.ulb.infof307.g05.Controller.LoginController;
+import com.be.ac.ulb.g05.Model.*;
+import com.be.ac.ulb.g05.Controller.*;
+
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;

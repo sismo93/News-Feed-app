@@ -1,4 +1,4 @@
-package be.ac.ulb.infof307.g05.Model;
+package com.be.ac.ulb.g05.Model;
 
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;

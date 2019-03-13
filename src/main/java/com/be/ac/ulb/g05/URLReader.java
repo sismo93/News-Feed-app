@@ -1,4 +1,4 @@
-package be.ac.ulb.infof307.g05;
+package com.be.ac.ulb.g05;
 
 import java.net.*;
 import java.io.*;

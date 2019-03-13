@@ -1,4 +1,4 @@
-package be.ac.ulb.infof307.g05.Controller;
+package com.be.ac.ulb.g05.Controller;
 
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Node;
@@ -12,25 +12,6 @@ public class Router {
     private Node currentView;
     private static Router instance;
     private HashMap<String, Node> routes;
-    private String currentViewName;
-
-
-    /**
-     * @return getter for the currentView
-     */
-    public String getCurrentViewName() {
-        return currentViewName;
-    }
-
-    /**
-     * @param currentViewName
-     * setter for the currentView
-     */
-    public void setCurrentViewName(String currentViewName) {
-        this.currentViewName = currentViewName;
-    }
-
-
 
     /**
      * Constructor
@@ -68,7 +49,8 @@ public class Router {
         Node view = null;
         if(routes.containsKey(fxml)) return routes.get(fxml);
 
-        FXMLLoader loader = new FXMLLoader(Router.this.getClass().getResource(fxml));
+        FXMLLoader loader = new FXMLLoader(this.getClass().getClassLoader().getResource(fxml));
+        System.out.println(loader.getLocation() );
         try {
             view = loader.load();
         } catch (IOException e) {
@@ -88,25 +70,20 @@ public class Router {
 
         if(view == Views.Menu){
             currentView = Router.Instance().loadFxml("MenuView.fxml");
-            currentViewName = "MenuView.fxml";
         }
         else if(view == Views.Add){
             currentView = Router.Instance().loadFxml("AddView.fxml");
-            currentViewName = "AddView.fxml";
 
         }
         else if(view == Views.Login) {
             currentView = Router.Instance().loadFxml("LoginFxml.fxml");
-            currentViewName = "LoginFxml.fxml";
         }
         else if(view == Views.Feed){
             currentView = Router.Instance().loadFxml("FeedView.fxml");
-            currentViewName = "FeedView.fxml";
 
         }
         else if(view == Views.Register){
             currentView = Router.Instance().loadFxml("RegisterFxml.fxml");
-            currentViewName = "RegisterFxml.fxml";
 
         }
         getRoot().getChildren().add(currentView);

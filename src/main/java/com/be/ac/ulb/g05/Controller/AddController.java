@@ -1,7 +1,8 @@
-package be.ac.ulb.infof307.g05.Controller;
+package com.be.ac.ulb.g05.Controller;
 
 
-import be.ac.ulb.infof307.g05.Model.ArticleData;
+import com.be.ac.ulb.g05.Model.*;
+import com.be.ac.ulb.g05.Model.ArticleData;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
@@ -10,8 +11,8 @@ import javafx.scene.control.*;
 import java.util.ArrayList;
 import java.util.Optional;
 
-import static be.ac.ulb.infof307.g05.URLReader.Article;
-import static be.ac.ulb.infof307.g05.URLReader.Homepage;
+import static com.be.ac.ulb.g05.URLReader.Article;
+import static com.be.ac.ulb.g05.URLReader.Homepage;
 
 
 /**

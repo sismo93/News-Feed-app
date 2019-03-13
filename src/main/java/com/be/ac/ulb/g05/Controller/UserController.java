@@ -1,6 +1,6 @@
-package be.ac.ulb.infof307.g05.Controller;
+package com.be.ac.ulb.g05.Controller;
 
-import be.ac.ulb.infof307.g05.Model.Users;
+import com.be.ac.ulb.g05.Model.*;
 
 /**
  * User controller
