@@ -14,7 +14,7 @@ public class Main extends Application {
         primaryStage.setScene(scene);
         primaryStage.show();
         // route to menu
-        Instance().changeView(Views.Login);
+        Instance().changeView(Views.Add);
     }
 
     public static void main(String[] args) {

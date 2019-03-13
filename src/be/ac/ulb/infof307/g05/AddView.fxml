@@ -4,7 +4,6 @@
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.ChoiceBox?>
 <?import javafx.scene.control.Label?>
-<?import javafx.scene.control.TextField?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.Pane?>
 <?import javafx.scene.layout.VBox?>
@@ -20,12 +19,12 @@
             <Pane prefHeight="242.0" prefWidth="600.0">
                <children>
                   <Label layoutX="148.0" layoutY="108.0" text="Article number" textFill="#bfbfbf" />
-                  <Label layoutX="148.0" layoutY="64.0" prefHeight="16.0" prefWidth="85.0" text="URL" textFill="#b2b2b2" />
+                  <Label layoutX="148.0" layoutY="64.0" prefHeight="16.0" prefWidth="85.0" text="Source" textFill="#b2b2b2" />
                   <Label layoutX="148.0" layoutY="148.0" text="Category" textFill="#b9b9b9" />
                   <Button fx:id="AddButton" layoutX="148.0" layoutY="198.0" mnemonicParsing="false" onAction="#OnButtonPressed" prefHeight="26.0" prefWidth="329.0" text="Add" textFill="#a0a0a0" />
                   <ChoiceBox fx:id="ArticleNumberBox" layoutX="300.0" layoutY="103.0" prefHeight="26.0" prefWidth="170.0" />
                   <ChoiceBox fx:id="CategoryBox" layoutX="300.0" layoutY="143.0" prefHeight="26.0" prefWidth="170.0" />
-                  <TextField fx:id="UrlBox" layoutX="300.0" layoutY="59.0" prefHeight="25.0" prefWidth="170.0" />
+                  <ChoiceBox fx:id="SourceArticleBox" layoutX="300.0" layoutY="60.0" prefHeight="26.0" prefWidth="170.0" />
                </children>
                <padding>
                   <Insets bottom="10.0" />

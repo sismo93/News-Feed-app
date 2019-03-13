@@ -24,14 +24,17 @@ public class AddController {
     /**
      * Controls elements displayed on screen
      */
-    @FXML
-    public TextField UrlBox;
+
     @FXML
     public ChoiceBox ArticleNumberBox;
     @FXML
     public ChoiceBox CategoryBox;
     @FXML
     public Button AddButton;
+    @FXML
+    public ChoiceBox SourceArticleBox;
+
+    private WebSite webSite;
 
 
     /**
@@ -41,11 +44,26 @@ public class AddController {
      */
     @FXML
     public void initialize() {
+        ObservableList<String> sourceArticle =
+                FXCollections.observableArrayList(
+                        "7sur7.be",
+                        "Lepoint.fr",
+                        "LeFigaro.fr",
+                        "RTLinfo.be",
+                        "LeMonde.fr"
+                );
         ObservableList<String> categoryList =
                 FXCollections.observableArrayList(
-                        "news",
-                        "sport",
-                        "culture"
+                        "Actualite",
+                        "Politique",
+                        "Environnement",
+                        "Belgique",
+                        "International",
+                        "Culture",
+                        "Sante",
+                        "Economie",
+                        "Sport",
+                        "Technologies"
                 );
 
 
@@ -60,7 +78,29 @@ public class AddController {
 
         CategoryBox.setItems(categoryList);
 
+
+        SourceArticleBox.setItems(sourceArticle);
+
     }
+
+    public WebSite createObjectSource(String source){
+        if (source == "7sur7.be"){
+            return webSite = new SeptSurSept();
+        }
+        else if (source == "Lepoint.fr"){
+            return webSite = new LePoint();
+        }
+        else if (source == "RTLinfo.be"){
+            return webSite = new RTL();
+        }
+        else if (source == "LeMonde.fr"){
+            return webSite = new LeMonde();
+        }
+        else{
+            return webSite = new LeFigaro();
+        }
+    }
+
 
 
     /**
@@ -69,27 +109,43 @@ public class AddController {
      */
     public void OnButtonPressed(ActionEvent actionEvent) {
 
-        String url = UrlBox.getText();
+        String url = "Mok";//UrlBox.getText();
 
-        if (url.isEmpty()) {
-            Alert alert = new Alert(Alert.AlertType.CONFIRMATION, "Please enter a valid Url", ButtonType.OK);
+
+        //ArrayList<String[]> article = new ArrayList<>();
+
+
+        if(CategoryBox.getSelectionModel().isEmpty() ||
+                ArticleNumberBox.getSelectionModel().isEmpty()
+                || SourceArticleBox.getSelectionModel().isEmpty()) {
+            Alert alert = new Alert(Alert.AlertType.INFORMATION, "You have to choose", ButtonType.OK);
             alert.showAndWait();
             return;
         }
 
-        ArrayList<String[]> article = new ArrayList<>();
+        createObjectSource((String) SourceArticleBox.getSelectionModel().getSelectedItem());
 
-        if(CategoryBox.getSelectionModel().isEmpty() || ArticleNumberBox.getSelectionModel().isEmpty()){
-            try {
-
-                article = Article(url);
-
-
-            } catch (Exception e) {
-                e.printStackTrace();
-            }
+        if (!webSite.isCategoryExist(CategoryBox.getSelectionModel().getSelectedItem().toString())){
+            Alert alert = new Alert(Alert.AlertType.INFORMATION, "This caterogy doesnt exist on this website", ButtonType.OK);
+            alert.showAndWait();
+            return;
         }
 
+
+        RSSFeedParser parser = new RSSFeedParser(webSite.getLink(CategoryBox.getSelectionModel().getSelectedItem().toString()));
+        Feed feed = parser.readFeed();
+        int i = 0;
+
+        System.out.println(feed);
+
+        for (FeedMessage message : feed.getMessages()) {
+            System.out.println(message);
+            System.out.println("AUTHOOOR ;" + message.author);
+            System.out.println("DESCRIPTION : " + message.description);
+            break;
+        }
+
+/*
         try {
 
             ArrayList<String> urlsList =  Homepage("https://www.bbc.com/",
@@ -140,7 +196,7 @@ public class AddController {
             } else if(result.get() == cancelButton){
                 // ... user chose CANCEL or closed the dialog
             }
-        }
+        }*/
 
     }
 
