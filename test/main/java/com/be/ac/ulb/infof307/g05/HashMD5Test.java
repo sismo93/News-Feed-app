@@ -1,4 +1,4 @@
-package be.ac.ulb.infof307.g05;
+package com.be.ac.ulb.infof307.g05;
 
 import junit.framework.TestCase;
 import org.junit.jupiter.api.Test;
