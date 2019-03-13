@@ -9,7 +9,6 @@ import javafx.scene.control.*;
 import java.util.ArrayList;
 import java.util.Optional;
 
-import static be.ac.ulb.infof307.g05.URLReader.Article;
 import static be.ac.ulb.infof307.g05.URLReader.Homepage;
 
 
@@ -36,6 +35,8 @@ public class AddController {
 
     private WebSite webSite;
 
+    private ArrayList<FeedMessage> ArticleList;
+
 
     /**
      * Called after scene loading
@@ -44,6 +45,8 @@ public class AddController {
      */
     @FXML
     public void initialize() {
+        ArticleList = new ArrayList<>();
+
         ObservableList<String> sourceArticle =
                 FXCollections.observableArrayList(
                         "7sur7.be",
@@ -101,13 +104,25 @@ public class AddController {
         }
     }
 
+    /**
+     * Add Article to the list
+     * Take the same number of article that the user want
+     */
+    public void addArticleList(){
+        RSSFeedParser parser = new RSSFeedParser(webSite.getLink(CategoryBox.getSelectionModel().getSelectedItem().toString()));
+        Feed feed = parser.readFeed();
 
+        for (int i=0;i<(int)ArticleNumberBox.getSelectionModel().getSelectedItem();i++){ // add Article to the list
+            ArticleList.add(feed.getMessages().get(i));
+
+        }
+    }
 
     /**
      * @param actionEvent
      * Add the article to the feed
      */
-    public void OnButtonPressed(ActionEvent actionEvent) {
+    public void OnButtonPressed(ActionEvent actionEvent) throws Exception {
 
         String url = "Mok";//UrlBox.getText();
 
@@ -126,58 +141,27 @@ public class AddController {
         createObjectSource((String) SourceArticleBox.getSelectionModel().getSelectedItem());
 
         if (!webSite.isCategoryExist(CategoryBox.getSelectionModel().getSelectedItem().toString())){
-            Alert alert = new Alert(Alert.AlertType.INFORMATION, "This caterogy doesnt exist on this website", ButtonType.OK);
+            Alert alert = new Alert(Alert.AlertType.INFORMATION, "This category doesnt exist on this website", ButtonType.OK);
             alert.showAndWait();
             return;
         }
 
 
-        RSSFeedParser parser = new RSSFeedParser(webSite.getLink(CategoryBox.getSelectionModel().getSelectedItem().toString()));
-        Feed feed = parser.readFeed();
-        int i = 0;
+        addArticleList(); // Add Article to the list
 
-        System.out.println(feed);
 
-        for (FeedMessage message : feed.getMessages()) {
-            System.out.println(message);
-            System.out.println("AUTHOOOR ;" + message.author);
-            System.out.println("DESCRIPTION : " + message.description);
-            break;
-        }
 
-/*
-        try {
 
-            ArrayList<String> urlsList =  Homepage("https://www.bbc.com/",
-                    CategoryBox.getSelectionModel().getSelectedItem().toString(),
-                    (int) ArticleNumberBox.getSelectionModel().getSelectedItem());
-
-            for (String s : urlsList) {
-
-                url = s;
-
-                // fetch the correponding article content from the url
-
-                try {
-                    article.add(Article(url).get(0));
-                } catch (Exception e) {
-                    e.printStackTrace();
-                }
-            }
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
-
-        if(article.isEmpty()){
-            Alert alert = new Alert(Alert.AlertType.CONFIRMATION, "Importation failed", ButtonType.OK);
+        if(ArticleList.size() != (int) ArticleNumberBox.getSelectionModel().getSelectedItem()){ // when there is missing article
+            Alert alert = new Alert(Alert.AlertType.CONFIRMATION, "We didnt find all the article", ButtonType.OK);
             alert.showAndWait();
             return;
         }
 
-        for (int i = 0; i < article.size(); i++) {
+        for (int i = 0; i < ArticleList.size(); i++) {
             //Popup dialog window
             Alert alert = new Alert(Alert.AlertType.INFORMATION,
-                    article.get(i)[1].substring(0, 241) + " ... ",
+                    ArticleList.get(i).getDescription(), //.substring(0, 241) + " ... "
                     ButtonType.OK, ButtonType.CANCEL);
             //Setup dialog window controls
             ButtonType importButton = new ButtonType("Import");
@@ -185,18 +169,19 @@ public class AddController {
 
             alert.getButtonTypes().setAll(importButton, cancelButton);
             alert.setTitle("Article Preview ");
-            alert.setHeaderText(article.get(i)[0]);
+            alert.setHeaderText(ArticleList.get(i).getTitle());
 
             Optional<ButtonType> result = alert.showAndWait();
 
             if (result.get() == importButton){
                 // ... user chose OK
-                ArticleData.Instance().addArticle(article.get(i));
+                //ArticleData.Instance().addArticle(ArticleList.get(i).getLink()); TODO : Whatis that ?
+
 
             } else if(result.get() == cancelButton){
                 // ... user chose CANCEL or closed the dialog
             }
-        }*/
+        }
 
     }
 
