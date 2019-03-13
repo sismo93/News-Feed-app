@@ -1,5 +1,8 @@
-package be.ac.ulb.infof307.g05;
+package be.ac.ulb.infof307.g05.Controller;
 
+import be.ac.ulb.infof307.g05.Model.DAO;
+import be.ac.ulb.infof307.g05.Model.Users;
+import be.ac.ulb.infof307.g05.Model.UsersDAO;
 import javafx.fxml.FXML;
 import javafx.scene.control.Alert;
 import javafx.scene.control.ButtonType;

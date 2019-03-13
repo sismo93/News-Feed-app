@@ -1,5 +1,7 @@
 package be.ac.ulb.infof307.g05;
 
+import be.ac.ulb.infof307.g05.Controller.UserController;
+import be.ac.ulb.infof307.g05.Model.Users;
 import org.junit.jupiter.api.Test;
 
 import static org.junit.jupiter.api.Assertions.*;

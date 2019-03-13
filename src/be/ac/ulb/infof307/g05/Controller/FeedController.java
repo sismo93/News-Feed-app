@@ -1,5 +1,6 @@
-package be.ac.ulb.infof307.g05;
+package be.ac.ulb.infof307.g05.Controller;
 
+import be.ac.ulb.infof307.g05.Model.ArticleData;
 import javafx.collections.ListChangeListener;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;

@@ -1,5 +1,7 @@
 package be.ac.ulb.infof307.g05;
 
+import be.ac.ulb.infof307.g05.Model.Users;
+import be.ac.ulb.infof307.g05.Model.UsersDAO;
 import junit.framework.TestCase;
 
 /**

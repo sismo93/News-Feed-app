@@ -1,4 +1,6 @@
-package be.ac.ulb.infof307.g05;
+package be.ac.ulb.infof307.g05.Model;
+import be.ac.ulb.infof307.g05.HashMD5;
+
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 
@@ -18,7 +20,7 @@ public class UsersDAO extends DAO<Users> {
                     "INSERT INTO users (email, password, login)" +
                             "VALUES (?,?,?)");
             prepare2.setString(1,obj.getMail());
-            prepare2.setString(2,HashMD5.hashFunct(obj.getPassword()));
+            prepare2.setString(2, HashMD5.hashFunct(obj.getPassword()));
             prepare2.setString(3,obj.getLogin());
             prepare2.executeUpdate();
         }

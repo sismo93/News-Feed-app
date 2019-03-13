@@ -3,7 +3,7 @@ package be.ac.ulb.infof307.g05;
 import javafx.application.Application;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
-import static be.ac.ulb.infof307.g05.Router.*;
+import static be.ac.ulb.infof307.g05.Controller.Router.*;
 
 public class Main extends Application {
 
