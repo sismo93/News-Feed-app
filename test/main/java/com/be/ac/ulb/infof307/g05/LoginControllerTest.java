@@ -1,7 +1,7 @@
-package be.ac.ulb.infof307.g05;
-
-
+package com.be.ac.ulb.infof307.g05;
+import com.be.ac.ulb.g05.Model.*;
 import com.be.ac.ulb.g05.Controller.*;
+
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
@@ -12,34 +12,39 @@ import org.junit.Test;
 import org.testfx.api.FxToolkit;
 import org.testfx.framework.junit.ApplicationTest;
 
+
+
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
 /**
  * @mnrbn
- * @mouscb
- * Class that test the register
+ * @borsalinoK
+ * Test login class
  */
-public class RegisterControllerTest extends ApplicationTest {
+public class LoginControllerTest extends ApplicationTest {
 
-    private RegisterController controller;
+
+    private  Stage stage;
+    private LoginController controller;
 
     /**
      * @param stage
      * @throws Exception
-     * start the scene
+     * load the right scene
      */
     @Override
     public void start (Stage stage) throws Exception {
 
+        this.stage = stage;
 
-        FXMLLoader loader = new FXMLLoader(RegisterControllerTest.this.getClass().getResource("RegisterFxml.fxml"));
+        FXMLLoader loader = new FXMLLoader(LoginControllerTest.this.getClass().getResource("LoginFxml.fxml"));
         Parent mainNode = loader.load();
         controller = loader.getController();
         stage.setScene(new Scene(mainNode));
         stage.show();
 
-    }
 
+    }
 
     @Before
     public void setUp () throws Exception {
@@ -54,33 +59,41 @@ public class RegisterControllerTest extends ApplicationTest {
 
 
     /**
-     * check if the username is empty
+     * check if the field username match what we write
      */
     @Test
     public void isUsernameEmpty () {
-        clickOn("#userName");
+        clickOn("#userNameField");
         write("username");
-        assertEquals(controller.userName.getText(),"username");
+        assertEquals(controller.userNameField.getText(),"username");
     }
 
     /**
-     * check if the password is empty
+     * check if the field password match what we write
      */
     @Test
     public void isPasswordEmpty(){
-        clickOn("#password");
+        clickOn("#passwordField");
         write("password");
-        assertEquals(controller.password.getText(),"password");
+        assertEquals(controller.passwordField.getText(),"password");
     }
 
-    /**
-     * check if the email is empty
-     */
     @Test
-    public void isEmailEmpty(){
-        clickOn("#email");
-        write("email@email.com");
-        assertEquals(controller.email.getText(),"email@email.com");
+    public void isLoginClicked(){
+        clickOn("#userNameField");
+        write("admin");
+        clickOn("#passwordField");
+        write("admin");
+        clickOn("#LoginButton");
+
+
+
     }
+
+    @Test
+    public void isRegisterClicked(){
+        clickOn("#RegisterButton");
+    }
+
 
 }
