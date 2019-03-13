@@ -61,7 +61,7 @@ Tous les tests seront éxecutés.
 
 ## Développement
 Projet développé par:
-YAMANI Imad Eddine, Bounamar Mounir, Mustapha Cherrabi,Tanvir Lipu , Wassim Kezai, Orestis Tranganidas, Wassil Choujaa, Vincent Auberic Tombou
+YAMANI Imad Eddine, Bounamar Mounir, Mustapha Cherrabi,Tanvirul hoque, Wassim Kezai, Orestis Tranganidas, Wassil Choujaa, Vincent Auberic Tombou
 
 ## Screenshot
 
