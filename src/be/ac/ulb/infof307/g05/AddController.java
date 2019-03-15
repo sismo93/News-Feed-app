@@ -7,8 +7,10 @@ import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.*;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Optional;
 
+import static be.ac.ulb.infof307.g05.URLReader.Article;
 import static be.ac.ulb.infof307.g05.URLReader.Homepage;
 
 
@@ -36,6 +38,8 @@ public class AddController {
     private WebSite webSite;
 
     private ArrayList<FeedMessage> ArticleList;
+    private ArrayList<FeedMessage> CurrentArticleList;
+    private ParserWebSite parserWebsite;
 
 
     /**
@@ -46,10 +50,12 @@ public class AddController {
     @FXML
     public void initialize() {
         ArticleList = new ArrayList<>();
+        CurrentArticleList = new ArrayList<>();
+        parserWebsite = new ParserWebSite();
 
         ObservableList<String> sourceArticle =
                 FXCollections.observableArrayList(
-                        "7sur7.be",
+                        "TheGuardian.co",
                         "Lepoint.fr",
                         "LeFigaro.fr",
                         "RTLinfo.be",
@@ -87,8 +93,8 @@ public class AddController {
     }
 
     public WebSite createObjectSource(String source){
-        if (source == "7sur7.be"){
-            return webSite = new SeptSurSept();
+        if (source == "TheGuardian.co"){
+            return webSite = new TheGuardian();
         }
         else if (source == "Lepoint.fr"){
             return webSite = new LePoint();
@@ -108,12 +114,12 @@ public class AddController {
      * Add Article to the list
      * Take the same number of article that the user want
      */
-    public void addArticleList(){
+    public void addCurrentArticleList(){
         RSSFeedParser parser = new RSSFeedParser(webSite.getLink(CategoryBox.getSelectionModel().getSelectedItem().toString()));
         Feed feed = parser.readFeed();
 
         for (int i=0;i<(int)ArticleNumberBox.getSelectionModel().getSelectedItem();i++){ // add Article to the list
-            ArticleList.add(feed.getMessages().get(i));
+            CurrentArticleList.add(feed.getMessages().get(i));
 
         }
     }
@@ -123,13 +129,7 @@ public class AddController {
      * Add the article to the feed
      */
     public void OnButtonPressed(ActionEvent actionEvent) throws Exception {
-
-        String url = "Mok";//UrlBox.getText();
-
-
-        //ArrayList<String[]> article = new ArrayList<>();
-
-
+        int ArticleCount = ArticleList.size();
         if(CategoryBox.getSelectionModel().isEmpty() ||
                 ArticleNumberBox.getSelectionModel().isEmpty()
                 || SourceArticleBox.getSelectionModel().isEmpty()) {
@@ -147,21 +147,13 @@ public class AddController {
         }
 
 
-        addArticleList(); // Add Article to the list
+        addCurrentArticleList(); // Add Article to the list
 
 
-
-
-        if(ArticleList.size() != (int) ArticleNumberBox.getSelectionModel().getSelectedItem()){ // when there is missing article
-            Alert alert = new Alert(Alert.AlertType.CONFIRMATION, "We didnt find all the article", ButtonType.OK);
-            alert.showAndWait();
-            return;
-        }
-
-        for (int i = 0; i < ArticleList.size(); i++) {
+        for (int i = 0; i < CurrentArticleList.size(); i++) {
             //Popup dialog window
             Alert alert = new Alert(Alert.AlertType.INFORMATION,
-                    ArticleList.get(i).getDescription(), //.substring(0, 241) + " ... "
+                    CurrentArticleList.get(i).getDescription(), //.substring(0, 241) + " ... "
                     ButtonType.OK, ButtonType.CANCEL);
             //Setup dialog window controls
             ButtonType importButton = new ButtonType("Import");
@@ -169,19 +161,26 @@ public class AddController {
 
             alert.getButtonTypes().setAll(importButton, cancelButton);
             alert.setTitle("Article Preview ");
-            alert.setHeaderText(ArticleList.get(i).getTitle());
+            alert.setHeaderText(CurrentArticleList.get(i).getTitle());
 
             Optional<ButtonType> result = alert.showAndWait();
 
             if (result.get() == importButton){
                 // ... user chose OK
-                //ArticleData.Instance().addArticle(ArticleList.get(i).getLink()); TODO : Whatis that ?
+                // we set the right article to the object FeedMessage
+                ArticleList.add(CurrentArticleList.get(i));
+                ArticleList.get(ArticleList.size()-1).setArticle(parserWebsite.ParserArticle(ArticleList.get(ArticleList.size()-1).getLink()));
+
+               System.out.println(ArticleList.get(ArticleList.size()-1).getArticle());
+
+               System.out.println("-----------------------");
 
 
             } else if(result.get() == cancelButton){
                 // ... user chose CANCEL or closed the dialog
             }
         }
+        CurrentArticleList.clear();
 
     }
 

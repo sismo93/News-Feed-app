@@ -7,8 +7,11 @@ public class FeedMessage {
     String link;
     String author;
     String guid;
+    String article;
+
 
     public String getTitle() {
+
         return title;
     }
 
@@ -17,6 +20,7 @@ public class FeedMessage {
     }
 
     public String getDescription() {
+
         return description;
     }
 
@@ -25,10 +29,12 @@ public class FeedMessage {
     }
 
     public String getLink() {
+
         return link;
     }
 
     public void setLink(String link) {
+
         this.link = link;
     }
 
@@ -41,6 +47,7 @@ public class FeedMessage {
     }
 
     public String getGuid() {
+
         return guid;
     }
 
@@ -54,5 +61,10 @@ public class FeedMessage {
                 + ", link=" + link + ", author=" + author + ", guid=" + guid
                 + "]";
     }
-
+    public String getArticle(){
+        return article;
+    }
+    public void setArticle(String article){
+        this.article = article;
+    }
 }

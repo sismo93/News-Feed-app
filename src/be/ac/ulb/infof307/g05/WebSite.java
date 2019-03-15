@@ -11,7 +11,7 @@ public class WebSite {
 
 
     public boolean isCategoryExist(String category){
-        return categoryDict.containsKey(category);
+        return categoryList.contains(category);
     }
 
     public void initDico(){
