@@ -6,6 +6,9 @@ import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.*;
+
+import javax.swing.plaf.ColorUIResource;
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Optional;
@@ -92,7 +95,7 @@ public class AddController {
 
     }
 
-    public WebSite createObjectSource(String source){
+    public WebSite CreateObjectSource(String source){
         if (source == "TheGuardian.co"){
             return webSite = new TheGuardian();
         }
@@ -114,7 +117,7 @@ public class AddController {
      * Add Article to the list
      * Take the same number of article that the user want
      */
-    public void addCurrentArticleList(){
+    public void AddCurrentArticleList(){
         RSSFeedParser parser = new RSSFeedParser(webSite.getLink(CategoryBox.getSelectionModel().getSelectedItem().toString()));
         Feed feed = parser.readFeed();
 
@@ -124,12 +127,12 @@ public class AddController {
         }
     }
 
+
     /**
      * @param actionEvent
      * Add the article to the feed
      */
-    public void OnButtonPressed(ActionEvent actionEvent) throws Exception {
-        int ArticleCount = ArticleList.size();
+    public void OnButtonPressed(ActionEvent actionEvent) throws IOException {
         if(CategoryBox.getSelectionModel().isEmpty() ||
                 ArticleNumberBox.getSelectionModel().isEmpty()
                 || SourceArticleBox.getSelectionModel().isEmpty()) {
@@ -138,7 +141,7 @@ public class AddController {
             return;
         }
 
-        createObjectSource((String) SourceArticleBox.getSelectionModel().getSelectedItem());
+        CreateObjectSource((String) SourceArticleBox.getSelectionModel().getSelectedItem());
 
         if (!webSite.isCategoryExist(CategoryBox.getSelectionModel().getSelectedItem().toString())){
             Alert alert = new Alert(Alert.AlertType.INFORMATION, "This category doesnt exist on this website", ButtonType.OK);
@@ -147,13 +150,40 @@ public class AddController {
         }
 
 
-        addCurrentArticleList(); // Add Article to the list
+        AddCurrentArticleList(); // Add Article to the list
+        ShowArticleFound();
+
+    }
+
+    /**
+     * @param article
+     * @param articleObject
+     * change the description if its TheGuardian or RTLINFO
+     * because these 2 websites doesnt handle the description for an article
+     */
+    public void FixDescriptionError(String article,FeedMessage articleObject){
+        String source =(String) SourceArticleBox.getSelectionModel().getSelectedItem();
+        if ((source == "TheGuardian.co") || (source =="RTLinfo.be")) {
+            articleObject.setDescription(article.substring(0,100));
+        }
+    }
 
 
+    /**
+     * @throws IOException
+     * Shows the articles found + title + description
+     * The user can accept them or denied them
+     */
+    public void ShowArticleFound() throws IOException {
         for (int i = 0; i < CurrentArticleList.size(); i++) {
+            FeedMessage currentArticle = CurrentArticleList.get(i);
+            currentArticle.setArticle(parserWebsite.ParserArticle(currentArticle.getLink())); // Call the parser
+
+            FixDescriptionError(currentArticle.getArticle(),currentArticle); // Change the description
+
             //Popup dialog window
             Alert alert = new Alert(Alert.AlertType.INFORMATION,
-                    CurrentArticleList.get(i).getDescription(), //.substring(0, 241) + " ... "
+                    currentArticle.getDescription()+ " ...",
                     ButtonType.OK, ButtonType.CANCEL);
             //Setup dialog window controls
             ButtonType importButton = new ButtonType("Import");
@@ -161,19 +191,16 @@ public class AddController {
 
             alert.getButtonTypes().setAll(importButton, cancelButton);
             alert.setTitle("Article Preview ");
-            alert.setHeaderText(CurrentArticleList.get(i).getTitle());
+            alert.setHeaderText(currentArticle.getTitle());
 
             Optional<ButtonType> result = alert.showAndWait();
 
             if (result.get() == importButton){
-                // ... user chose OK
-                // we set the right article to the object FeedMessage
-                ArticleList.add(CurrentArticleList.get(i));
-                ArticleList.get(ArticleList.size()-1).setArticle(parserWebsite.ParserArticle(ArticleList.get(ArticleList.size()-1).getLink()));
+                // ... user chose OK so we add the articleObject to the List
+                ArticleList.add(currentArticle);
+                System.out.println(ArticleList.get(ArticleList.size()-1).getArticle());
 
-               System.out.println(ArticleList.get(ArticleList.size()-1).getArticle());
-
-               System.out.println("-----------------------");
+                System.out.println("-----------------------");
 
 
             } else if(result.get() == cancelButton){
@@ -183,7 +210,6 @@ public class AddController {
         CurrentArticleList.clear();
 
     }
-
 
     /**
      * @param actionEvent

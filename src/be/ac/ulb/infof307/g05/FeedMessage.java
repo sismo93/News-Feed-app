@@ -28,6 +28,7 @@ public class FeedMessage {
         this.description = description;
     }
 
+
     public String getLink() {
 
         return link;
