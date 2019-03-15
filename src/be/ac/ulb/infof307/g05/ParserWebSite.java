@@ -18,9 +18,15 @@ public class ParserWebSite {
         Elements body = doc.select("article");
 
         body = body.select("p");
+        boolean access = true;
         for (Element test : body) {
-            article+=test.text();
-            article+="\n";
+            if (test.text().equals("Les plus lus") || !access ){
+                access = false;
+            }
+            else {
+                article += test.text();
+                article += "\n";
+            }
         }
 
         return article;
