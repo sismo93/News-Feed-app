@@ -7,20 +7,17 @@ import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.*;
 
-import javax.swing.plaf.ColorUIResource;
 import java.io.IOException;
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.Optional;
 
-import static be.ac.ulb.infof307.g05.URLReader.Article;
-import static be.ac.ulb.infof307.g05.URLReader.Homepage;
+
 
 
 /**
  * Controller of the Add View
  * @author @MnrBn
- * @codereview @borsalinoK
+ * @codereview @Mouscb
  */
 
 public class AddController {
@@ -124,6 +121,7 @@ public class AddController {
         for (int i=0;i<(int)ArticleNumberBox.getSelectionModel().getSelectedItem();i++){ // add Article to the list
             CurrentArticleList.add(feed.getMessages().get(i));
 
+
         }
     }
 
@@ -203,8 +201,6 @@ public class AddController {
                 System.out.println("-----------------------");
 
 
-            } else if(result.get() == cancelButton){
-                // ... user chose CANCEL or closed the dialog
             }
         }
         CurrentArticleList.clear();
