@@ -32,4 +32,29 @@ public class ParserWebSite {
         return article;
 
     }
+    public String ParserImage(String url) throws IOException {
+        Document doc = Jsoup.connect(url).get();
+        Elements images = doc.select("img[src~=(?i)\\.(png|jpe?g|gif|jpg)]");
+        String pic= "";
+        boolean accees = true;
+        for (Element image : images) {
+            if ((url.contains("lefigaro") || url.contains("rtl") || url.contains("theguardian")) && accees) {
+                pic = image.attr("src");
+                accees = false;
+            } else if (url.contains("lemonde")) {
+                pic = image.attr("src");
+
+            } else {
+                String imageLePoint = image.attr("src").substring(0, 8);
+                ;
+                if (imageLePoint.contains("/images/")) {
+                    pic = "https://www.lepoint.fr";
+                    pic += image.attr("src");
+                }
+
+            }
+        }
+        return pic;
+    }
+
 }
