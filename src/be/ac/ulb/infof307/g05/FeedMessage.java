@@ -47,10 +47,6 @@ public class FeedMessage {
         this.author = author;
     }
 
-    public String getGuid() {
-
-        return guid;
-    }
 
     public void setGuid(String guid) {
         this.guid = guid;
