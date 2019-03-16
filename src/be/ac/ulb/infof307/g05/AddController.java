@@ -42,6 +42,10 @@ public class AddController {
     private ParserWebSite parserWebsite;
 
 
+    public ArrayList<FeedMessage> getArticleList() {
+        return ArticleList;
+    }
+
     /**
      * Called after scene loading
      *
@@ -195,9 +199,10 @@ public class AddController {
 
             if (result.get() == importButton){
                 // ... user chose OK so we add the articleObject to the List
+                currentArticle.setImage(parserWebsite.ParserImage(currentArticle.getLink())); //Add Picture
                 ArticleList.add(currentArticle);
-                System.out.println(ArticleList.get(ArticleList.size()-1).getArticle());
-
+                //System.out.println(ArticleList.get(ArticleList.size()-1).getArticle());
+                System.out.println(parserWebsite.ParserImage(currentArticle.getLink()));
                 System.out.println("-----------------------");
 
 

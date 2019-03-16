@@ -8,12 +8,32 @@ public class FeedMessage {
     String author;
     String guid;
     String article;
+    String image;
+    String video;
+
+
+    public String getImage(){
+        return image;
+    }
+
+    public void setImage(String image){
+        this.image=image;
+    }
+
+    public String getVideo(){
+        return video;
+    }
+    public void setVideo(String video){
+        this.video = video;
+    }
 
 
     public String getTitle() {
 
         return title;
     }
+
+
 
     public void setTitle(String title) {
         this.title = title;
