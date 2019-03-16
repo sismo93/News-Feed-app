@@ -38,7 +38,7 @@ public class ParserWebSite {
         String pic= "";
         boolean accees = true;
         for (Element image : images) {
-            if ((url.contains("lefigaro") || url.contains("rtl") || url.contains("theguardian")) && accees) {
+            if ((url.contains("lefigaro") || url.contains("rtl") ||url.contains("Rtl") ||url.contains("RTL") || url.contains("theguardian")) && accees) {
                 pic = image.attr("src");
                 accees = false;
             } else if (url.contains("lemonde")) {
