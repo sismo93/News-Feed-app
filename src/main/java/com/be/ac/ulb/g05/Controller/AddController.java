@@ -155,7 +155,7 @@ public class AddController extends Controller {
     }
 
     @Override
-    public void setFeed(Feed feed) {
+    public void setFeed(ArticleService feed) {
         super.setFeed(feed);
     }
 

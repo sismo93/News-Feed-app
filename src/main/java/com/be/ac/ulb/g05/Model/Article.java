@@ -1,6 +1,6 @@
 package com.be.ac.ulb.g05.Model;
 
-public class FeedMessage {
+public class Article {
 
     private String title;
     private String description;
@@ -74,7 +74,7 @@ public class FeedMessage {
 
     @Override
     public String toString() {
-        return "FeedMessage [title=" + title + ", description=" + description
+        return "Article [title=" + title + ", description=" + description
                 + ", link=" + link + ", author=" + author + ", guid=" + guid
                 + "]";
     }

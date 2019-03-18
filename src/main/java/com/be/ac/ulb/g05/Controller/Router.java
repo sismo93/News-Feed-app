@@ -1,6 +1,6 @@
 package com.be.ac.ulb.g05.Controller;
 
-import com.be.ac.ulb.g05.Model.Feed;
+import com.be.ac.ulb.g05.Model.ArticleService;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Node;
 import javafx.scene.layout.AnchorPane;
@@ -13,7 +13,7 @@ public class Router {
     private Node currentView;
     private static Router instance;
     private HashMap<String, Node> routes;
-    private Feed feed;
+    private ArticleService feed;
     /**
      * Constructor
      */
@@ -69,7 +69,7 @@ public class Router {
         return view;
     }
 
-    public void setFeed(Feed feed) {
+    public void setFeed(ArticleService feed) {
         this.feed = feed;
     }
 

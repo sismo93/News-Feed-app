@@ -5,29 +5,29 @@ import java.util.HashMap;
 import java.util.Observable;
 
 
-public class Feed extends Observable {
+public class ArticleService extends Observable {
 
-    private HashMap<String, FeedMessage> feedMessages;
+    private HashMap<String, Article> feedMessages;
 
-    public Feed() {
+    public ArticleService() {
         feedMessages = new HashMap<>();
     }
 
-    public void addFeedMessage(FeedMessage feedmessage){
+    public void addFeedMessage(Article feedmessage){
         feedMessages.put(feedmessage.getTitle(), feedmessage);
         notifyObservers();
     }
 
-    public void deleteFeedMessage(FeedMessage feedMessage){
+    public void deleteFeedMessage(Article feedMessage){
         feedMessages.remove(feedMessage.getTitle());
         notifyObservers();
     }
 
-    public FeedMessage getFeedMessage(String title){
+    public Article getFeedMessage(String title){
         return feedMessages.get(title);
     }
 
-    public ArrayList<FeedMessage> getFeedMessages(){
-        return  new ArrayList<FeedMessage>(feedMessages.values());
+    public ArrayList<Article> getFeedMessages(){
+        return  new ArrayList<Article>(feedMessages.values());
     }
 }

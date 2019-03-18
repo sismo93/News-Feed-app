@@ -1,7 +1,7 @@
 package com.be.ac.ulb.g05;
 
 import com.be.ac.ulb.g05.Controller.*;
-import com.be.ac.ulb.g05.Model.Feed;
+import com.be.ac.ulb.g05.Model.ArticleService;
 import javafx.application.Application;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
@@ -18,8 +18,8 @@ public class Main extends Application {
         primaryStage.setScene(scene);
         primaryStage.show();
 
-        // Initialize Feed Service
-        Feed feed = new Feed();
+        // Initialize ArticleService Service
+        ArticleService feed = new ArticleService();
 
         // Inject Dependency
         Instance().setFeed(feed);

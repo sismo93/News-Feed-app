@@ -1,16 +1,12 @@
 package com.be.ac.ulb.g05.Controller;
 
 import com.be.ac.ulb.g05.Model.*;
-import javafx.collections.ListChangeListener;
-import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.layout.VBox;
-import javafx.scene.text.Text;
-import javafx.scene.text.TextFlow;
 
 /**
- * Controller of the Feed View
+ * Controller of the ArticleService View
  *
  * @author @MnrBn
  * @codereview @borsalinoK
@@ -106,7 +102,7 @@ public class FeedController extends Controller {
     }
 
     @Override
-    public void setFeed(Feed feed) {
+    public void setFeed(ArticleService feed) {
         super.setFeed(feed);
     }
 }

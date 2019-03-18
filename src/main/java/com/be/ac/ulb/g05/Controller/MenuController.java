@@ -1,7 +1,7 @@
 package com.be.ac.ulb.g05.Controller;
 
 
-import com.be.ac.ulb.g05.Model.Feed;
+import com.be.ac.ulb.g05.Model.ArticleService;
 import javafx.event.ActionEvent;
 
 /**
@@ -31,7 +31,7 @@ public class MenuController extends Controller{
     }
 
     @Override
-    public void setFeed(Feed feed) {
+    public void setFeed(ArticleService feed) {
         super.setFeed(feed);
     }
 }
