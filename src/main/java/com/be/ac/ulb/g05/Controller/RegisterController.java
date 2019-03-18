@@ -85,7 +85,6 @@ public class RegisterController extends Controller {
     }
 
     @Override
-    public void setFeed(ArticleService feed) {
-        super.setFeed(feed);
-    }
-}
+    public void setArticleService(ArticleService articleService) {
+        super.setArticleService(articleService);
+    }}

@@ -67,9 +67,11 @@ public class UserController extends Controller{
         return model.getMail();
     }
 
+
     @Override
-    public void setFeed(ArticleService feed) {
-        super.setFeed(feed);
+    public void setArticleService(ArticleService articleService) {
+        super.setArticleService(articleService);
     }
+
 
 }
