@@ -4,10 +4,10 @@ import com.be.ac.ulb.g05.Model.ArticleService;
 
 public abstract class Controller  {
 
-    protected ArticleService feed;
+    protected ArticleService articleService;
 
-    public void setFeed(ArticleService feed){
-        this.feed = feed;
+    public void setArticleService(ArticleService articleService){
+        this.articleService = articleService;
     }
 
 
