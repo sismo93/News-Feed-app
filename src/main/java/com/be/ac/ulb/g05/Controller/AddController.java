@@ -2,7 +2,6 @@ package com.be.ac.ulb.g05.Controller;
 
 
 import com.be.ac.ulb.g05.Model.*;
-import com.be.ac.ulb.g05.Model.ArticleData;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
@@ -21,7 +20,7 @@ import static com.be.ac.ulb.g05.URLReader.Homepage;
  * @codereview @borsalinoK
  */
 
-public class AddController {
+public class AddController extends Controller {
 
     /**
      * Controls elements displayed on screen
@@ -137,7 +136,7 @@ public class AddController {
 
             if (result.get() == importButton){
                 // ... user chose OK
-                ArticleData.Instance().addArticle(article.get(i));
+                //ArticleData.Instance().addArticle(article.get(i));
 
             } else if(result.get() == cancelButton){
                 // ... user chose CANCEL or closed the dialog
@@ -153,6 +152,11 @@ public class AddController {
      */
     public void OpenMenuView(ActionEvent actionEvent) {
         Router.Instance().changeView(Router.Views.Menu);
+    }
+
+    @Override
+    public void setFeed(Feed feed) {
+        super.setFeed(feed);
     }
 
 }

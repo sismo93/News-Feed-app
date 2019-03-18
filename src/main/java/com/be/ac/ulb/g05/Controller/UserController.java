@@ -7,8 +7,9 @@ import com.be.ac.ulb.g05.Model.*;
  * @author @iyamani
  * @codereview @Tanvirul.Hoque
  */
-public class UserController {
+public class UserController extends Controller{
     private Users model;
+
 
     /**
      * Constructor
@@ -64,6 +65,11 @@ public class UserController {
      */
     public String getEmail() {
         return model.getMail();
+    }
+
+    @Override
+    public void setFeed(Feed feed) {
+        super.setFeed(feed);
     }
 
 }

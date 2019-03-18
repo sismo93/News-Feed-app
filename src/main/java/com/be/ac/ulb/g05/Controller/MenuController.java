@@ -1,6 +1,7 @@
 package com.be.ac.ulb.g05.Controller;
 
 
+import com.be.ac.ulb.g05.Model.Feed;
 import javafx.event.ActionEvent;
 
 /**
@@ -9,7 +10,7 @@ import javafx.event.ActionEvent;
  * @codereview @borsalinoK
  */
 
-public class MenuController {
+public class MenuController extends Controller{
 
 
     /**
@@ -18,7 +19,6 @@ public class MenuController {
      */
     public void OpenFeedView(ActionEvent actionEvent) {
         Router.Instance().changeView(Router.Views.Feed);
-
     }
 
     /**
@@ -28,5 +28,10 @@ public class MenuController {
      */
     public void OpenAddView(ActionEvent actionEvent) {
         Router.Instance().changeView(Router.Views.Add);
+    }
+
+    @Override
+    public void setFeed(Feed feed) {
+        super.setFeed(feed);
     }
 }

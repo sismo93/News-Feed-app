@@ -7,7 +7,7 @@ import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
 
 
-public class RegisterController {
+public class RegisterController extends Controller {
     public TextField userName;
     public PasswordField password;
     public TextField email;
@@ -82,5 +82,10 @@ public class RegisterController {
         return userName.getText().trim().isEmpty() ||
                 password.getText().trim().isEmpty() ||
                 email.getText().trim().isEmpty();
+    }
+
+    @Override
+    public void setFeed(Feed feed) {
+        super.setFeed(feed);
     }
 }

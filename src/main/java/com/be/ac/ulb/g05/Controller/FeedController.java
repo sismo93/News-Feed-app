@@ -16,7 +16,7 @@ import javafx.scene.text.TextFlow;
  * @codereview @borsalinoK
  */
 
-public class FeedController {
+public class FeedController extends Controller {
 
     /**
      * ArticleViewField displays the content on the page
@@ -33,6 +33,7 @@ public class FeedController {
     @FXML
     public void initialize() {
 
+        /*
         ArticleData.Instance().getArticleData().forEach(strings -> {
 
             TextFlow flow = new TextFlow();
@@ -93,6 +94,8 @@ public class FeedController {
 
 
                         });
+
+                        */
     }
 
     /**
@@ -100,5 +103,10 @@ public class FeedController {
      */
     public void OpenMenuView(ActionEvent actionEvent) {
         Router.Instance().changeView(Router.Views.Menu);
+    }
+
+    @Override
+    public void setFeed(Feed feed) {
+        super.setFeed(feed);
     }
 }
