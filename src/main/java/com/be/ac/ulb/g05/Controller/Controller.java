@@ -10,5 +10,5 @@ public abstract class Controller  {
         this.articleService = articleService;
     }
 
-
+    public void setupView(){ }
 }

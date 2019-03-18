@@ -34,4 +34,5 @@ public class MenuController extends Controller{
     public void setArticleService(ArticleService articleService) {
         super.setArticleService(articleService);
     }
+
 }

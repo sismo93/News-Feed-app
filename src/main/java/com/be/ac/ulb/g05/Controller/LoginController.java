@@ -75,5 +75,4 @@ public class LoginController extends Controller {
         super.setArticleService(articleService);
     }
 
-
 }

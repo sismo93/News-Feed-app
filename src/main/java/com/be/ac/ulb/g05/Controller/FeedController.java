@@ -5,7 +5,6 @@ import javafx.beans.value.ChangeListener;
 import javafx.beans.value.ObservableValue;
 import javafx.collections.ListChangeListener;
 import javafx.collections.ObservableList;
-
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Alert;
@@ -13,11 +12,9 @@ import javafx.scene.control.ButtonType;
 import javafx.scene.layout.VBox;
 import javafx.collections.FXCollections;
 import javafx.scene.control.ListView;
-
 import java.util.ArrayList;
 import java.util.Observable;
 import java.util.Observer;
-
 
 /**
  * Controller of the ArticleService View
@@ -25,7 +22,6 @@ import java.util.Observer;
  * @author @MnrBn
  * @codereview @borsalinoK
  */
-
 public class FeedController extends Controller implements Observer {
 
     /**
@@ -33,23 +29,7 @@ public class FeedController extends Controller implements Observer {
      */
     public VBox articleContainer;
 
-    /**
-     * Called after scene loading
-     * <p>
-     * Init GUI
-     * -
-     * - fetch the content
-     * - display the title of each article
-     * -
-     */
 
-    @FXML
-    public void initialize() {
-
-        ArrayList<Article> articles = articleService.getArticles();
-        pushToArticleView(articles);
-
-    }
 
 
     private void pushToArticleView(ArrayList<Article> articles){
@@ -85,6 +65,21 @@ public class FeedController extends Controller implements Observer {
     @Override
     public void setArticleService(ArticleService articleService) {
         super.setArticleService(articleService);
+    }
+
+    /**
+     * Called after scene loading
+     * <p>
+     * Init GUI
+     * -
+     * - fetch the content
+     * - display the title of each article
+     * -
+     */
+    @Override
+    public void setupView() {
+        ArrayList<Article> articles = articleService.getArticles();
+        pushToArticleView(articles);
     }
 
     @Override

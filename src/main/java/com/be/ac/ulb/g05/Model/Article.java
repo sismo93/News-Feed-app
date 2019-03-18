@@ -11,6 +11,16 @@ public class Article {
     private String image;
     private String video;
 
+    public Article(String title, String description, String link, String author, String guid, String article, String image, String video) {
+        this.title = title;
+        this.description = description;
+        this.link = link;
+        this.author = author;
+        this.guid = guid;
+        this.article = article;
+        this.image = image;
+        this.video = video;
+    }
 
     public String getImage(){
         return image;
