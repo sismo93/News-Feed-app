@@ -1,26 +1,32 @@
 package com.be.ac.ulb.g05.Controller;
 
 import com.be.ac.ulb.g05.Model.*;
+<<<<<<< HEAD
 import javafx.beans.value.ChangeListener;
 import javafx.beans.value.ObservableValue;
 import javafx.collections.ListChangeListener;
 import javafx.collections.ObservableList;
+=======
+>>>>>>> h1-t1
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Alert;
 import javafx.scene.control.ButtonType;
 import javafx.scene.layout.VBox;
+<<<<<<< HEAD
 import javafx.collections.FXCollections;
 import javafx.scene.control.ListView;
+=======
+>>>>>>> h1-t1
 
 /**
- * Controller of the Feed View
+ * Controller of the ArticleService View
  *
  * @author @MnrBn
  * @codereview @borsalinoK
  */
 
-public class FeedController {
+public class FeedController extends Controller {
 
     /**
      * ArticleViewField displays the content on the page
@@ -36,6 +42,12 @@ public class FeedController {
      * - display the title of each article
      * -
      */
+
+    @FXML
+    public void initialize() {
+
+
+        ArticleData.Instance().getArticleData().forEach(strings -> {
 
 
 
@@ -87,66 +99,6 @@ public class FeedController {
 
                         });
 
-//        ArticleData.Instance().getArticleData().forEach(strings -> {
-
-//            TextFlow flow = new TextFlow();
-
-//            Text text1 = new Text(strings[0] + " ");
-//            Text text2 = new Text(strings[1]);
-
-
-            // text format with custom style
-
-//            text1.setStyle("-fx-font-weight: bold");
-
-
-            // fill scene with new component
-
-//            flow.getChildren().addAll(text1, text2);
-
-//            articleContainer.getChildren().add(flow);
-//        });
-
-
-        // fetching data
-
-//        ArticleData.Instance()
-//                .getArticleData()
-//                    .addListener((ListChangeListener<String[]>)
-//                        change -> {
-//                            if (change.next()) {
-//
-//                                // remove articles from scene
-//                                articleContainer.getChildren().clear();
-//                                // add article back including updated articles
-//                                ObservableList<? extends String[]> updatedList = change.getList();
-//
-//                                for (String[] updatedArticle : updatedList) {
-//                                    // Build scene component
-//
-//                                    TextFlow flow = new TextFlow();
-//
-//                                    Text text1 = new Text(updatedArticle[0] + " ");
-//                                    Text text2 = new Text(updatedArticle[1]);
-//
-//
-//                                    // text format with custom style
-//
-//                                    text1.setStyle("-fx-font-weight: bold");
-//
-//
-//                                    // fill scene with new component
-//
-//                                    flow.getChildren().addAll(text1, text2);
-//
-//                                    articleContainer.getChildren().add(flow);
-//
-//
-//                                }
-//                            }
-//
-//
-//                        });
     }
 
     /**
@@ -154,5 +106,10 @@ public class FeedController {
      */
     public void OpenMenuView(ActionEvent actionEvent) {
         Router.Instance().changeView(Router.Views.Menu);
+    }
+
+    @Override
+    public void setArticleService(ArticleService articleService) {
+        super.setArticleService(articleService);
     }
 }

@@ -1,6 +1,7 @@
 package com.be.ac.ulb.g05;
 
 import com.be.ac.ulb.g05.Controller.*;
+import com.be.ac.ulb.g05.Model.ArticleService;
 import javafx.application.Application;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
@@ -16,8 +17,17 @@ public class Main extends Application {
         final Scene scene = new Scene( Instance().getRoot());
         primaryStage.setScene(scene);
         primaryStage.show();
+
+        // Initialize ArticleService Service
+        ArticleService feed = new ArticleService();
+
+        // Inject Dependency
+        Instance().setFeed(feed);
+
         // route to menu
         Instance().changeView(Router.Views.Login);
+
+
     }
 
     public static void main(String[] args) {

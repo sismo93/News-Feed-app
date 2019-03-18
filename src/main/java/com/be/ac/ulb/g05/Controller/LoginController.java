@@ -9,7 +9,7 @@ import javafx.scene.control.TextField;
 import java.util.Optional;
 
 
-public class LoginController {
+public class LoginController extends Controller {
     public PasswordField passwordField;
     public TextField userNameField;
     private Users user;
@@ -70,6 +70,10 @@ public class LoginController {
         }
     }
 
+    @Override
+    public void setArticleService(ArticleService articleService) {
+        super.setArticleService(articleService);
+    }
 
 
 }
