@@ -2,9 +2,10 @@ package com.be.ac.ulb.g05.Model;
 
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.Observable;
 
 
-public class Feed {
+public class Feed extends Observable {
 
     public HashMap<String, FeedMessage> feedMessages;
 
@@ -14,10 +15,12 @@ public class Feed {
 
     public void addFeedMessage(FeedMessage feedmessage){
         feedMessages.put(feedmessage.getTitle(), feedmessage);
+        notifyObservers();
     }
 
     public void deleteFeedMessage(FeedMessage feedMessage){
         feedMessages.remove(feedMessage.getTitle());
+        notifyObservers();
     }
 
     public FeedMessage getFeedMessage(String title){
