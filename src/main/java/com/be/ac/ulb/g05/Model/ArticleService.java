@@ -7,27 +7,27 @@ import java.util.Observable;
 
 public class ArticleService extends Observable {
 
-    private HashMap<String, Article> feedMessages;
+    private HashMap<String, Article> articles;
 
     public ArticleService() {
-        feedMessages = new HashMap<>();
+        articles = new HashMap<>();
     }
 
-    public void addFeedMessage(Article feedmessage){
-        feedMessages.put(feedmessage.getTitle(), feedmessage);
+    public void addArticle(Article article){
+        articles.put(article.getTitle(), article);
         notifyObservers();
     }
 
-    public void deleteFeedMessage(Article feedMessage){
-        feedMessages.remove(feedMessage.getTitle());
+    public void deleteArticle(Article article){
+        articles.remove(article.getTitle());
         notifyObservers();
     }
 
-    public Article getFeedMessage(String title){
-        return feedMessages.get(title);
+    public Article getArticle(String title){
+        return articles.get(title);
     }
 
-    public ArrayList<Article> getFeedMessages(){
-        return  new ArrayList<Article>(feedMessages.values());
+    public ArrayList<Article> getArticles(){
+        return  new ArrayList<Article>(articles.values());
     }
 }
