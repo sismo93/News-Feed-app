@@ -7,7 +7,7 @@ import java.util.Observable;
 
 public class Feed extends Observable {
 
-    public HashMap<String, FeedMessage> feedMessages;
+    private HashMap<String, FeedMessage> feedMessages;
 
     public Feed() {
         feedMessages = new HashMap<>();
