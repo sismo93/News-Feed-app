@@ -1,23 +1,23 @@
 package com.be.ac.ulb.g05.Controller;
 
 import com.be.ac.ulb.g05.Model.*;
-<<<<<<< HEAD
 import javafx.beans.value.ChangeListener;
 import javafx.beans.value.ObservableValue;
 import javafx.collections.ListChangeListener;
 import javafx.collections.ObservableList;
-=======
->>>>>>> h1-t1
+
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Alert;
 import javafx.scene.control.ButtonType;
 import javafx.scene.layout.VBox;
-<<<<<<< HEAD
 import javafx.collections.FXCollections;
 import javafx.scene.control.ListView;
-=======
->>>>>>> h1-t1
+
+import java.util.ArrayList;
+import java.util.Observable;
+import java.util.Observer;
+
 
 /**
  * Controller of the ArticleService View
@@ -26,7 +26,7 @@ import javafx.scene.control.ListView;
  * @codereview @borsalinoK
  */
 
-public class FeedController extends Controller {
+public class FeedController extends Controller implements Observer {
 
     /**
      * ArticleViewField displays the content on the page
@@ -46,16 +46,19 @@ public class FeedController extends Controller {
     @FXML
     public void initialize() {
 
+        ArrayList<Article> articles = articleService.getArticles();
+        pushToArticleView(articles);
 
-        ArticleData.Instance().getArticleData().forEach(strings -> {
+    }
 
 
+    private void pushToArticleView(ArrayList<Article> articles){
 
-    @FXML
-    public void initialize() {
+        articleContainer.getChildren().clear();
+
         ObservableList<String> names = FXCollections.observableArrayList();
-        ArticleData.Instance().getArticleData().forEach(strings -> {
-            names.add(strings[0]+"\n\n"+strings[1].substring(0,60));
+        articles.forEach(article -> {
+            names.add(article.getTitle() + "\n\n" + article.getAuthor());
         });
         ListView<String> listView = new ListView<String>(names);
         listView.setFixedCellSize(100);
@@ -65,41 +68,12 @@ public class FeedController extends Controller {
             public void changed(ObservableValue<? extends String> ov, final String oldvalue, final String newvalue) {
                 //Action pour ouvrir la selection
                 int temp = listView.getSelectionModel().getSelectedIndex();
-                Alert alert = new Alert(Alert.AlertType.CONFIRMATION, temp+newvalue, ButtonType.OK);
+                Alert alert = new Alert(Alert.AlertType.CONFIRMATION, temp + newvalue, ButtonType.OK);
                 alert.showAndWait();
-            }});
-
-        ArticleData.Instance()
-                .getArticleData()
-                    .addListener((ListChangeListener<String[]>)
-                        change -> {
-                            if (change.next()) {
-
-                                // remove articles from scene
-                                articleContainer.getChildren().clear();
-                                // add article back including updated articles
-                                ObservableList<? extends String[]> updatedList = change.getList();
-                                ObservableList<String> updatednames = FXCollections.observableArrayList();
-                                for (String[] updatedArticle : updatedList) {
-                                    //Action pour ouvrir la selection
-                                    updatednames.add(updatedArticle[0]+"\n\n"+updatedArticle[1].substring(0,60));
-                                }
-                                ListView<String> updatedlistView = new ListView<String>(updatednames);
-                                updatedlistView.setFixedCellSize(100);
-                                articleContainer.getChildren().add(updatedlistView);
-                                updatedlistView.getSelectionModel().selectedItemProperty().addListener(new ChangeListener<String>() {
-                                    public void changed(ObservableValue<? extends String> ov, final String oldvalue, final String newvalue) {
-                                        //Action pour ouvrir la selection
-                                        int temp = listView.getSelectionModel().getSelectedIndex();
-                                        Alert alert = new Alert(Alert.AlertType.CONFIRMATION, temp+newvalue, ButtonType.OK);
-                                        alert.showAndWait();
-                                    }});
-                            }
-
-
-                        });
-
+            }
+        });
     }
+
 
     /**
      * @param actionEvent Back to menu
@@ -111,5 +85,11 @@ public class FeedController extends Controller {
     @Override
     public void setArticleService(ArticleService articleService) {
         super.setArticleService(articleService);
+    }
+
+    @Override
+    public void update(Observable observable, Object o) {
+        ArrayList<Article> articles = articleService.getArticles();
+        pushToArticleView(articles);
     }
 }

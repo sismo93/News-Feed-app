@@ -61,7 +61,7 @@ public class Router {
         if(view != null){
             Controller controller = (Controller) loader.getController();
 
-            controller.setFeed(feed);
+            controller.setArticleService(feed);
 
         }
 
