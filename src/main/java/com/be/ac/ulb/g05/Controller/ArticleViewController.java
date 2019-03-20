@@ -7,13 +7,17 @@ import javafx.scene.control.TextArea;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.HBox;
-import java.io.*;
+
+import java.io.FileOutputStream;
+import java.io.IOException;
+import java.io.InputStream;
+import java.io.OutputStream;
+import java.net.MalformedURLException;
 import java.net.URL;
 
 public class ArticleViewController extends Controller {
 
     private Article article = null;
-    private Image image = null;
 
     @FXML
     public HBox titleContainer;
@@ -46,11 +50,11 @@ public class ArticleViewController extends Controller {
             this.articleAuthor.setText(this.article.getAuthor());
 
             try {
-                saveImage(this.article.getImage(), this.articleImage);
+                System.out.println(this.article.getImage());
+                saveImage(this.article.getImage(), "file:temp-feedbuzz.jpg", this.articleImage);
             } catch (IOException e) {
                 e.printStackTrace();
             }
-
         });
     }
 
@@ -58,21 +62,22 @@ public class ArticleViewController extends Controller {
         this.article = article;
     }
 
-    public static void saveImage(String imageUrl, ImageView imageView) throws IOException {
+    public static void saveImage(String imageUrl, String destinationFile, ImageView imageView) throws IOException {
         URL url = new URL(imageUrl);
         InputStream is = url.openStream();
-        ByteArrayOutputStream out = new ByteArrayOutputStream();
+        OutputStream os = new FileOutputStream(destinationFile);
 
         byte[] b = new byte[2048];
         int length;
 
         while ((length = is.read(b)) != -1) {
-            out.write(b, 0, length);
+            os.write(b, 0, length);
         }
 
         is.close();
-        out.close();
+        os.close();
 
-        byte[] response = out.toByteArray();
+        Image image = new Image(destinationFile);
+        imageView.setImage(image);
     }
 }
