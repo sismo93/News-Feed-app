@@ -1,5 +1,7 @@
 package com.be.ac.ulb.g05.Model;
 
+import java.util.ArrayList;
+
 public class Article {
 
     private String title;
@@ -8,10 +10,10 @@ public class Article {
     private String author;
     private String guid;
     private String article;
-    private String image;
+    private ArrayList<String> image;
     private String video;
 
-    public Article(String title, String description, String link, String author, String guid, String article, String image, String video) {
+    public Article(String title, String description, String link, String author, String guid, String article, ArrayList<String>  image, String video) {
         this.title = title;
         this.description = description;
         this.link = link;
@@ -22,11 +24,11 @@ public class Article {
         this.video = video;
     }
 
-    public String getImage(){
+    public ArrayList<String>  getImage(){
         return image;
     }
 
-    public void setImage(String image){
+    public void setImage(ArrayList<String>  image){
         this.image=image;
     }
 

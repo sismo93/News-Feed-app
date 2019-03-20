@@ -7,6 +7,7 @@ import org.jsoup.nodes.Element;
 import org.jsoup.select.Elements;
 
 import java.io.IOException;
+import java.util.ArrayList;
 
 public class ParserWebSite {
 
@@ -32,29 +33,51 @@ public class ParserWebSite {
         return article;
 
     }
-    public String ParserImage(String url) throws IOException {
+    public ArrayList<String> ParserImage(String url) throws IOException {
         Document doc = Jsoup.connect(url).get();
-        Elements images = doc.select("img[src~=(?i)\\.(png|jpe?g|gif|jpg)]");
+
+
+        ArrayList<String> listImages;
+        listImages = new ArrayList<String>();
+
+        Elements images = doc.select("article");
+        if ( url.contains("rtl") ||url.contains("Rtl") ||url.contains("RTL")){
+            images = images.select("div [class=w-content-details-article-img]");
+        }
+        if (url.contains("lefigaro")){
+            images = images.select("img[srcset~=(?i)\\.(png|jpeg|gif|jpg)]");
+        }
+        else {
+            images = images.select("img[src~=(?i)\\.(png|jpeg|gif|jpg)]");
+        }
+
+
         String pic= "";
-        boolean accees = true;
         for (Element image : images) {
-            if ((url.contains("lefigaro") || url.contains("rtl") ||url.contains("Rtl") ||url.contains("RTL") || url.contains("theguardian")) && accees) {
+            if (url.contains("rtl") ||url.contains("Rtl") ||url.contains("RTL") || url.contains("lemonde")||url.contains("theguardian")){
                 pic = image.attr("src");
-                accees = false;
-            } else if (url.contains("lemonde")) {
-                pic = image.attr("src");
+                if (!listImages.contains(pic)){
+                    listImages.add(pic);
+                }
 
-            } else {
-                String imageLePoint = image.attr("src").substring(0, 8);
 
-                if (imageLePoint.contains("/images/")) {
+            }
+            else if (url.contains("lefigaro")){
+                pic = image.attr("srcset");
+                listImages.add(pic);
+            }
+            else{
+                String imageLePoint = image.attr("src").substring(0,8);;
+                if (imageLePoint.contains("/images/")){
                     pic = "https://www.lepoint.fr";
-                    pic += image.attr("src");
+                    pic+=image.attr("src");
+                    listImages.add(pic);
                 }
 
             }
+
         }
-        return pic;
+        return listImages;
     }
 
 }
