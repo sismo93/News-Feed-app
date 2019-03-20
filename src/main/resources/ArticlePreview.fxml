@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<AnchorPane prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.be.ac.ulb.g05.Controller.ArticlePreviewController">
+    <children>
+        <HBox fx:id="articleTitleContainer" layoutX="25.0" layoutY="20.0" prefHeight="76.0" prefWidth="550.0">
+            <padding>
+                <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
+            </padding>
+         <children>
+            <TextArea fx:id="articleTitleArea" prefHeight="38.0" prefWidth="530.0" />
+         </children>
+        </HBox>
+        <HBox fx:id="articlePreviewContentContainer" layoutX="25.0" layoutY="97.0" prefHeight="245.0" prefWidth="550.0">
+            <padding>
+                <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
+            </padding>
+         <children>
+            <TextArea fx:id="articlePreviewContentArea" prefHeight="225.0" prefWidth="556.0" />
+         </children>
+        </HBox>
+      <HBox fx:id="readArticleContainer" layoutX="35.0" layoutY="342.0" prefHeight="41.0" prefWidth="71.0">
+         <children>
+            <Button fx:id="readArticle" mnemonicParsing="false" prefHeight="31.0" prefWidth="77.0" text="Read" />
+         </children>
+      </HBox>
+      <HBox fx:id="openLinkContainer" layoutX="116.0" layoutY="342.0" prefHeight="41.0" prefWidth="87.0">
+         <children>
+            <Button fx:id="openLink" mnemonicParsing="false" prefHeight="31.0" prefWidth="87.0" text="Open link" />
+         </children>
+      </HBox>
+      <HBox fx:id="copyLinkContainer" layoutX="210.0" layoutY="342.0" prefHeight="41.0" prefWidth="87.0">
+         <children>
+            <Button id="copyLink" fx:id="copyLink" mnemonicParsing="false" prefHeight="31.0" prefWidth="95.0" text="Copy link" />
+         </children>
+      </HBox>
+      <HBox fx:id="deleteFromFeedContainer" layoutX="417.0" layoutY="342.0" prefHeight="41.0" prefWidth="147.0">
+         <children>
+            <Button id="deleteFromFeed" fx:id="deleteFromFeed" mnemonicParsing="false" prefHeight="31.0" prefWidth="147.0" text="Delete from feed" />
+         </children>
+      </HBox>
+    </children>
+</AnchorPane>
