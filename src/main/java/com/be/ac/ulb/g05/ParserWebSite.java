@@ -73,7 +73,6 @@ public class ParserWebSite {
                     pic+=image.attr("src");
                     listImages.add(pic);
                 }
-
             }
 
         }
