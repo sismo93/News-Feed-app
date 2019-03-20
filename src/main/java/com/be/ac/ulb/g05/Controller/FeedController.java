@@ -7,11 +7,17 @@ import javafx.collections.ListChangeListener;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
 import javafx.scene.control.Alert;
 import javafx.scene.control.ButtonType;
 import javafx.scene.layout.VBox;
 import javafx.collections.FXCollections;
 import javafx.scene.control.ListView;
+import javafx.stage.Stage;
+
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Observable;
 import java.util.Observer;
@@ -29,9 +35,6 @@ public class FeedController extends Controller implements Observer {
      */
     public VBox articleContainer;
 
-
-
-
     private void pushToArticleView(ArrayList<Article> articles){
 
         articleContainer.getChildren().clear();
@@ -46,10 +49,14 @@ public class FeedController extends Controller implements Observer {
 
         listView.getSelectionModel().selectedItemProperty().addListener(new ChangeListener<String>() {
             public void changed(ObservableValue<? extends String> ov, final String oldvalue, final String newvalue) {
-                //Action pour ouvrir la selection
-                int temp = listView.getSelectionModel().getSelectedIndex();
-                Alert alert = new Alert(Alert.AlertType.CONFIRMATION, temp + newvalue, ButtonType.OK);
-                alert.showAndWait();
+                int selectedArticleIndex = listView.getSelectionModel().getSelectedIndex();
+                Article article = articles.get(selectedArticleIndex);
+
+                try {
+                    displayArticlePreview(article);
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
             }
         });
     }
@@ -86,5 +93,20 @@ public class FeedController extends Controller implements Observer {
     public void update(Observable observable, Object o) {
         ArrayList<Article> articles = articleService.getArticles();
         pushToArticleView(articles);
+    }
+
+    public void displayArticlePreview(Article article) throws IOException {
+        FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/ArticlePreview.fxml"));
+        Parent root = fxmlLoader.load();
+
+        Scene scene = new Scene(root, 600, 400);
+        Stage stage = new Stage();
+
+        ArticlePreviewController controller = fxmlLoader.<ArticlePreviewController>getController();
+        controller.setArticle(article);
+
+        stage.setTitle("Article preview");
+        stage.setScene(scene);
+        stage.show();
     }
 }
