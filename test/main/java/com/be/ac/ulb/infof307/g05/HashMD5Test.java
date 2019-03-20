@@ -57,6 +57,15 @@ public class HashMD5Test extends TestCase {
 
     }
 
+    @Test
+    public void testValidHash() {
+        String test = "test";
+
+        String generatedHash = "098F6BCD4621D373CADE4E832627B4F6";
+
+        assertEquals(generatedHash, hashFunct(test).toUpperCase());
+    }
+
     /**
      * @param s
      * @return true if the hashed password contains Letter
