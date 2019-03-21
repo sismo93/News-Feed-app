@@ -1,10 +1,10 @@
 package com.be.ac.ulb.g05.Controller;
 
+import com.be.ac.ulb.g05.Model.Article;
 import com.be.ac.ulb.g05.Model.ArticleService;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Node;
 import javafx.scene.layout.AnchorPane;
-import javafx.util.Callback;
 
 import java.io.IOException;
 import java.util.HashMap;
@@ -29,7 +29,7 @@ public class Router {
     public static Router Instance(){
         if(instance == null){
             instance = new Router();
-            Router.instance.setRoot((AnchorPane) instance.loadFxml("RootView.fxml"));
+            Router.instance.setRoot((AnchorPane) instance.loadFxml("RootView.fxml", null));
 
         }
         return instance;
@@ -48,7 +48,7 @@ public class Router {
      * @param fxml XML node
      * @return XML view
      */
-    private Node loadFxml(String fxml) {
+    private Node loadFxml(String fxml, Article article) {
         Node view = null;
         if(routes.containsKey(fxml)) return routes.get(fxml);
 
@@ -81,26 +81,29 @@ public class Router {
     /**
      * Changes XML view
      * @param view window view
+     * @param article
      */
-    public void changeView(Views view) {
+    public void changeView(Views view, Article article) {
 
         getRoot().getChildren().remove(currentView);
 
         if(view == Views.Menu){
-            currentView = Router.Instance().loadFxml("MenuView.fxml");
+            currentView = Router.Instance().loadFxml("MenuView.fxml", null);
         }
         else if(view == Views.Add){
-            currentView = Router.Instance().loadFxml("AddView.fxml");
+            currentView = Router.Instance().loadFxml("AddView.fxml", null);
         }
         else if(view == Views.Login) {
-            currentView = Router.Instance().loadFxml("LoginFxml.fxml");
+            currentView = Router.Instance().loadFxml("LoginFxml.fxml", null);
         }
         else if(view == Views.Feed){
-            currentView = Router.Instance().loadFxml("FeedView.fxml");
+            currentView = Router.Instance().loadFxml("FeedView.fxml", null);
         }
         else if(view == Views.Register){
-            currentView = Router.Instance().loadFxml("RegisterFxml.fxml");
-
+            currentView = Router.Instance().loadFxml("RegisterFxml.fxml", null);
+        }
+        else if(view == Views.Preview) {
+            currentView = Router.Instance().loadFxml("ArticlePreview.fxml", null);
         }
 
         getRoot().getChildren().add(currentView);
@@ -124,6 +127,8 @@ public class Router {
         Add,
         Feed,
         Register,
-        Root, Login
+        Root,
+        Login,
+        Preview,
     }
 }

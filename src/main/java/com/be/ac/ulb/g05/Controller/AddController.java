@@ -159,7 +159,7 @@ public class AddController extends Controller {
      * Open the Menu View
      */
     public void OpenMenuView(ActionEvent actionEvent) {
-        Router.Instance().changeView(Router.Views.Menu);
+        Router.Instance().changeView(Router.Views.Menu, null);
     }
 
     @Override

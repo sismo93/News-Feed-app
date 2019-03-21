@@ -1,7 +1,6 @@
 package com.be.ac.ulb.g05;
 
 import com.be.ac.ulb.g05.Controller.*;
-import com.be.ac.ulb.g05.Model.Article;
 import com.be.ac.ulb.g05.Model.ArticleService;
 import javafx.application.Application;
 import javafx.scene.Scene;
@@ -25,7 +24,7 @@ public class Main extends Application {
         primaryStage.setScene(scene);
         primaryStage.show();
 
-        Instance().changeView(Router.Views.Menu);
+        Instance().changeView(Router.Views.Menu, null);
     }
 
     public static void main(String[] args) {

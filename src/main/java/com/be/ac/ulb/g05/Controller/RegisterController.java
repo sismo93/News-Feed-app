@@ -43,7 +43,7 @@ public class RegisterController extends Controller {
         else{
             if (!usersDAO.loginExist(user) && !usersDAO.mailExist(user)){
                 usersDAO.add(user); // Add in database
-                Router.Instance().changeView(Router.Views.Menu); // Go to menu
+                Router.Instance().changeView(Router.Views.Menu, null); // Go to menu
             }
             else {
                 notificationMessage("notInDb");

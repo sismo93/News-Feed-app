@@ -8,6 +8,7 @@ import java.util.Observable;
 public class ArticleService extends Observable {
 
     private HashMap<String, Article> articles;
+    private Article article;
 
     public ArticleService() {
         articles = new HashMap<>();
@@ -29,5 +30,13 @@ public class ArticleService extends Observable {
 
     public ArrayList<Article> getArticles(){
         return  new ArrayList<Article>(articles.values());
+    }
+
+    public Article getArticle() {
+        return article;
+    }
+
+    public void setArticle(Article article) {
+        this.article = article;
     }
 }

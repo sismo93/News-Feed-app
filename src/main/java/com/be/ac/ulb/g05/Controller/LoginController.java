@@ -36,7 +36,7 @@ public class LoginController extends Controller {
         user.setPassword(passwordField.getText());
 
         if (usersDAO.checkLoginAndPassword(user)){
-            Router.Instance().changeView(Router.Views.Menu);
+            Router.Instance().changeView(Router.Views.Menu, null);
         }
         else{
             alert = new Alert(Alert.AlertType.ERROR);
@@ -66,7 +66,7 @@ public class LoginController extends Controller {
 
         Optional<ButtonType> result = alert.showAndWait();
         if (result.get() == ButtonType.OK){
-            Router.Instance().changeView(Router.Views.Register);
+            Router.Instance().changeView(Router.Views.Register, null);
         }
     }
 

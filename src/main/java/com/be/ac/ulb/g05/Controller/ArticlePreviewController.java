@@ -62,8 +62,8 @@ public class ArticlePreviewController extends Controller {
         Platform.runLater(() -> {
             this.articleTitleArea.setEditable(false);
             this.articlePreviewContentArea.setEditable(false);
-            this.articleTitleArea.setText(this.article.getTitle());
-            this.articlePreviewContentArea.setText(this.article.getArticle());
+            this.articleTitleArea.setText(this.articleService.getArticle().getTitle());
+            this.articlePreviewContentArea.setText(this.articleService.getArticle().getArticle());
 
             this.readArticle.setOnAction(new EventHandler<ActionEvent>() {
                 @Override
@@ -110,8 +110,9 @@ public class ArticlePreviewController extends Controller {
             this.deleteFromFeed.setOnAction(new EventHandler<ActionEvent>() {
                 @Override
                 public void handle(ActionEvent event) {
-                    articleService.deleteArticle(article);
-
+                    System.out.println(articleService);
+                    articleService.deleteArticle(articleService.getArticle());
+                    Router.Instance().changeView(Router.Views.Feed, null);
                 }
             });
         });

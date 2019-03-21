@@ -3,15 +3,11 @@ package com.be.ac.ulb.g05.Controller;
 import com.be.ac.ulb.g05.Model.*;
 import javafx.beans.value.ChangeListener;
 import javafx.beans.value.ObservableValue;
-import javafx.collections.ListChangeListener;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
-import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
-import javafx.scene.control.Alert;
-import javafx.scene.control.ButtonType;
 import javafx.scene.layout.VBox;
 import javafx.collections.FXCollections;
 import javafx.scene.control.ListView;
@@ -66,7 +62,8 @@ public class FeedController extends Controller implements Observer {
      * @param actionEvent Back to menu
      */
     public void OpenMenuView(ActionEvent actionEvent) {
-        Router.Instance().changeView(Router.Views.Menu);
+        Router.Instance().changeView(Router.Views.Menu, null);
+
     }
 
     @Override
@@ -96,17 +93,7 @@ public class FeedController extends Controller implements Observer {
     }
 
     public void displayArticlePreview(Article article) throws IOException {
-        FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/ArticlePreview.fxml"));
-        Parent root = fxmlLoader.load();
-
-        Scene scene = new Scene(root, 600, 400);
-        Stage stage = new Stage();
-
-        ArticlePreviewController controller = fxmlLoader.<ArticlePreviewController>getController();
-        controller.setArticle(article);
-
-        stage.setTitle("Article preview");
-        stage.setScene(scene);
-        stage.show();
+        articleService.setArticle(article);
+        Router.Instance().changeView(Router.Views.Preview, article);
     }
 }
