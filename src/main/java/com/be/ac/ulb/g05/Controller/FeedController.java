@@ -33,6 +33,7 @@ public class FeedController extends Controller implements Observer {
 
     private void pushToArticleView(ArrayList<Article> articles){
 
+        System.out.println(articles.size());
         articleContainer.getChildren().clear();
 
         ObservableList<String> names = FXCollections.observableArrayList();
