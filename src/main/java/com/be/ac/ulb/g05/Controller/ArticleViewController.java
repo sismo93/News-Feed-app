@@ -50,10 +50,10 @@ public class ArticleViewController extends Controller {
             this.articleAuthor.setText(this.article.getAuthor());
 
             try {
-                for(int i=0; i < this.article.getImage().size()-1;++i) {
-                    System.out.println(this.article.getImage().get(i));
-                    saveImage(this.article.getImage().get(i), "file:temp-feedbuzz.jpg", this.articleImage);
-                }
+
+                System.out.println(this.article.getImage());
+                saveImage(this.article.getImage(), "file:temp-feedbuzz.jpg", this.articleImage);
+
             } catch (IOException e) {
                 e.printStackTrace();
             }

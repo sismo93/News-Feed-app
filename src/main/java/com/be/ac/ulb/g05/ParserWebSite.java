@@ -8,8 +8,10 @@ import org.jsoup.select.Elements;
 
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.HashMap;
 
 public class ParserWebSite {
+
 
     public String ParserArticle(String url) throws IOException {
         String article="";
@@ -33,7 +35,7 @@ public class ParserWebSite {
         return article;
 
     }
-    public ArrayList<String> ParserImage(String url) throws IOException {
+    public String ParserImage(String url) throws IOException {
         Document doc = Jsoup.connect(url).get();
 
 
@@ -53,30 +55,31 @@ public class ParserWebSite {
 
 
         String pic= "";
-        for (Element image : images) {
-            if (url.contains("rtl") ||url.contains("Rtl") ||url.contains("RTL") || url.contains("lemonde")||url.contains("theguardian")){
+
+        if (images.size()>0) {
+            Element image = images.get(0);
+
+            if (url.contains("rtl") || url.contains("Rtl") || url.contains("RTL") || url.contains("lemonde") || url.contains("theguardian")) {
                 pic = image.attr("src");
-                if (!listImages.contains(pic)){
-                    listImages.add(pic);
-                }
 
 
-            }
-            else if (url.contains("lefigaro")){
+            } else if (url.contains("lefigaro")) {
                 pic = image.attr("srcset");
-                listImages.add(pic);
-            }
-            else{
-                String imageLePoint = image.attr("src").substring(0,8);;
-                if (imageLePoint.contains("/images/")){
+
+            } else {
+                String imageLePoint = image.attr("src").substring(0, 8);
+                ;
+                if (imageLePoint.contains("/images/")) {
                     pic = "https://www.lepoint.fr";
-                    pic+=image.attr("src");
-                    listImages.add(pic);
+                    pic += image.attr("src");
+
                 }
             }
-
         }
-        return listImages;
+
+
+        return pic;
     }
+
 
 }

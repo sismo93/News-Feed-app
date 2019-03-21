@@ -15,6 +15,7 @@ public class LePoint extends WebSite{
                 "https://www.lepoint.fr/high-tech-internet/planete-appli/rss.xml");
         super.categoryList = Arrays.asList("Actualite","Culture","Politique","International",
                 "Sport","Economie","Technologies");
+        super.defaultThumbnail = "https://pbs.twimg.com/profile_images/783607856574631936/oqc6S_6P_400x400.jpg";
         super.initDico();
     }
 

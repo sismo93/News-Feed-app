@@ -19,6 +19,7 @@ public class TheGuardian extends WebSite{
 
         super.categoryList = Arrays.asList("Economie","Culture","Environnement","Technolgies","Sport",
                 "Politique","Sante","International","Actualite");
+        super.defaultThumbnail = "https://assets.guim.co.uk/images/eada8aa27c12fe2d5afa3a89d3fbae0d/fallback-logo.png";
         super.initDico();
     }
 }
