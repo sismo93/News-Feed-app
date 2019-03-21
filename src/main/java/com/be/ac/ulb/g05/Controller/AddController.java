@@ -147,6 +147,8 @@ public class AddController extends Controller {
             if (result.get() == importButton){
                 // ... user chose OK so we add the articleObject to the List
                 currentArticle.setImage(parserWebsite.ParserImage(currentArticle.getLink())); //Add Picture
+                currentArticle.setDefaultThumbnail(webSite.getDefaultThumbnail()); // add thumb
+
                 articleService.addArticle(currentArticle);
             }
         }

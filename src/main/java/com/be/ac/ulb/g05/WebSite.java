@@ -8,6 +8,7 @@ public class WebSite {
     private Map<String, String> categoryDict =new HashMap<>();
     protected List<String> urlList;
     protected List<String> categoryList;
+    protected String defaultThumbnail;
 
 
     public boolean isCategoryExist(String category){
@@ -28,6 +29,11 @@ public class WebSite {
         return categoryDict.get(category);
 
     }
+
+    public String getDefaultThumbnail(){
+        return defaultThumbnail;
+    }
+
 
 
 }

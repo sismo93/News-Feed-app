@@ -14,6 +14,7 @@ public class RTL extends WebSite {
 
         super.categoryList = Arrays.asList("Belgique","Economie","International","Actualite",
                 "Sport");
+        super.defaultThumbnail = "https://www.rtl.be/info/GED/00030000/37100/37148.jpg";
         super.initDico();
     }
 

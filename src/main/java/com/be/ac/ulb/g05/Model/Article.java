@@ -10,10 +10,10 @@ public class Article {
     private String author;
     private String guid;
     private String article;
-    private ArrayList<String> image;
-    private String video;
+    private String image;
+    private String defautlThumbnail;
 
-    public Article(String title, String description, String link, String author, String guid, String article, ArrayList<String>  image, String video) {
+    public Article(String title, String description, String link, String author, String guid, String article, String  image, String thumbnail) {
         this.title = title;
         this.description = description;
         this.link = link;
@@ -21,35 +21,30 @@ public class Article {
         this.guid = guid;
         this.article = article;
         this.image = image;
-        this.video = video;
+        this.defautlThumbnail = thumbnail;
     }
 
-    public ArrayList<String>  getImage(){
+
+    public String  getImage(){
         return image;
     }
 
-    public void setImage(ArrayList<String>  image){
+    public void setImage(String  image){
         this.image=image;
     }
 
-    public String getVideo(){
-        return video;
+    public void setDefaultThumbnail(String image){
+        this.defautlThumbnail = image;
     }
-    public void setVideo(String video){
-        this.video = video;
+    public String getDefautlThumbnail(){
+        return defautlThumbnail;
     }
-
 
     public String getTitle() {
 
         return title;
     }
 
-
-
-    public void setTitle(String title) {
-        this.title = title;
-    }
 
     public String getDescription() {
 
@@ -66,10 +61,6 @@ public class Article {
         return link;
     }
 
-    public void setLink(String link) {
-
-        this.link = link;
-    }
 
     public String getAuthor() {
         return author;
@@ -80,9 +71,6 @@ public class Article {
     }
 
 
-    public void setGuid(String guid) {
-        this.guid = guid;
-    }
 
     @Override
     public String toString() {
