@@ -54,8 +54,8 @@ public class Router {
 
         FXMLLoader loader = new FXMLLoader(this.getClass().getClassLoader().getResource(fxml));
 
-
         System.out.println(loader.getLocation());
+
         try {
             view = loader.load();
         } catch (IOException e) {
@@ -105,6 +105,9 @@ public class Router {
         else if(view == Views.Preview) {
             currentView = Router.Instance().loadFxml("ArticlePreview.fxml", null);
         }
+        else if(view == Views.Article) {
+            currentView = Router.Instance().loadFxml("ArticleView.fxml", null);
+        }
 
         getRoot().getChildren().add(currentView);
 
@@ -129,6 +132,6 @@ public class Router {
         Register,
         Root,
         Login,
-        Preview,
+        Preview, Article,
     }
 }

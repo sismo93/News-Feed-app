@@ -83,12 +83,15 @@ public class FeedController extends Controller implements Observer {
      */
     @Override
     public void setupView() {
+        System.out.println("add");
+        articleService.addObserver(this);
         ArrayList<Article> articles = articleService.getArticles();
         pushToArticleView(articles);
     }
 
     @Override
     public void update(Observable observable, Object o) {
+        System.out.println("update");
         ArrayList<Article> articles = articleService.getArticles();
         pushToArticleView(articles);
     }

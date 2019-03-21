@@ -15,11 +15,13 @@ public class ArticleService extends Observable {
     }
 
     public void addArticle(Article article){
+        setChanged();
         articles.put(article.getTitle(), article);
         notifyObservers();
     }
 
     public void deleteArticle(Article article){
+        setChanged();
         articles.remove(article.getTitle());
         notifyObservers();
     }

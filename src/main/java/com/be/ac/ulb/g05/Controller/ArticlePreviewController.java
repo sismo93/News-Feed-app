@@ -58,63 +58,62 @@ public class ArticlePreviewController extends Controller {
     @FXML
     public Button deleteFromFeed;
 
-    @FXML private void initialize() {
-        Platform.runLater(() -> {
-            this.articleTitleArea.setEditable(false);
-            this.articlePreviewContentArea.setEditable(false);
-            this.articleTitleArea.setText(this.articleService.getArticle().getTitle());
-            this.articlePreviewContentArea.setText(this.articleService.getArticle().getArticle());
+    @Override
+    public void setupView() {
+        this.articleTitleArea.setEditable(false);
+        this.articlePreviewContentArea.setEditable(false);
+        this.articleTitleArea.setText(this.articleService.getArticle().getTitle());
+        this.articlePreviewContentArea.setText(this.articleService.getArticle().getArticle());
 
-            this.readArticle.setOnAction(new EventHandler<ActionEvent>() {
-                @Override
-                public void handle(ActionEvent event) {
-                    try {
-                        displayArticle(article);
-                    } catch (IOException e) {
-                        e.printStackTrace();
-                    }
+        this.readArticle.setOnAction(new EventHandler<ActionEvent>() {
+            @Override
+            public void handle(ActionEvent event) {
+                try {
+                    displayArticle(articleService.getArticle());
+                } catch (IOException e) {
+                    e.printStackTrace();
                 }
-            });
+            }
+        });
 
-            this.openLink.setOnAction(new EventHandler<ActionEvent>() {
-                @Override
-                public void handle(ActionEvent event) {
-                    try {
-                        Desktop.getDesktop().browse(new URL(article.getLink()).toURI());
-                    } catch (IOException | URISyntaxException e) {
-                        e.printStackTrace();
-                    }
+        this.openLink.setOnAction(new EventHandler<ActionEvent>() {
+            @Override
+            public void handle(ActionEvent event) {
+                try {
+                    Desktop.getDesktop().browse(new URL(article.getLink()).toURI());
+                } catch (IOException | URISyntaxException e) {
+                    e.printStackTrace();
                 }
-            });
+            }
+        });
 
-            this.copyLink.setOnAction(new EventHandler<ActionEvent>() {
-                @Override
-                public void handle(ActionEvent event) {
-                    Toolkit toolkit = Toolkit.getDefaultToolkit();
-                    Clipboard clipboard = toolkit.getSystemClipboard();
-                    StringSelection strSel = new StringSelection(article.getLink());
-                    clipboard.setContents(strSel, null);
+        this.copyLink.setOnAction(new EventHandler<ActionEvent>() {
+            @Override
+            public void handle(ActionEvent event) {
+                Toolkit toolkit = Toolkit.getDefaultToolkit();
+                Clipboard clipboard = toolkit.getSystemClipboard();
+                StringSelection strSel = new StringSelection(article.getLink());
+                clipboard.setContents(strSel, null);
 
-                    Alert alert = new Alert(Alert.AlertType.INFORMATION);
-                    alert.setTitle("Confirmation");
-                    alert.setHeaderText(null);
-                    alert.setContentText("Link copied");
-                    alert.show();
+                Alert alert = new Alert(Alert.AlertType.INFORMATION);
+                alert.setTitle("Confirmation");
+                alert.setHeaderText(null);
+                alert.setContentText("Link copied");
+                alert.show();
 
-                    PauseTransition delay = new PauseTransition(Duration.seconds(2));
-                    delay.setOnFinished(alertEvent -> alert.close());
-                    delay.play();
-                }
-            });
+                PauseTransition delay = new PauseTransition(Duration.seconds(2));
+                delay.setOnFinished(alertEvent -> alert.close());
+                delay.play();
+            }
+        });
 
-            this.deleteFromFeed.setOnAction(new EventHandler<ActionEvent>() {
-                @Override
-                public void handle(ActionEvent event) {
-                    System.out.println(articleService);
-                    articleService.deleteArticle(articleService.getArticle());
-                    Router.Instance().changeView(Router.Views.Feed, null);
-                }
-            });
+        this.deleteFromFeed.setOnAction(new EventHandler<ActionEvent>() {
+            @Override
+            public void handle(ActionEvent event) {
+                System.out.println(articleService);
+                articleService.deleteArticle(articleService.getArticle());
+                Router.Instance().changeView(Router.Views.Feed, null);
+            }
         });
     }
 
@@ -123,18 +122,9 @@ public class ArticlePreviewController extends Controller {
     }
 
     private void displayArticle(Article article) throws IOException {
-        FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/ArticleView.fxml"));
-        Parent root = fxmlLoader.load();
-
-        Scene scene = new Scene(root, 1280, 720);
-        Stage stage = new Stage();
-
-        ArticleViewController controller = fxmlLoader.<ArticleViewController>getController();
-        controller.setArticle(article);
-
-        stage.setTitle("Article view");
-        stage.setScene(scene);
-        stage.show();
+        System.out.println("display" + article);
+        articleService.setArticle(article);
+        Router.Instance().changeView(Router.Views.Article, null);
     }
 
     @Override

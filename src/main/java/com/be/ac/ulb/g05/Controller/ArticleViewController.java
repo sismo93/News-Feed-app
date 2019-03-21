@@ -39,20 +39,24 @@ public class ArticleViewController extends Controller {
     @FXML
     public TextArea articleAuthor;
 
-    @FXML private void initialize() {
+    @Override
+    public void setupView() {
+        System.out.println(articleService);
+
         Platform.runLater(() -> {
+
             this.articleTitle.setEditable(false);
             this.articleContent.setEditable(false);
             this.articleAuthor.setEditable(false);
 
-            this.articleTitle.setText(this.article.getTitle());
-            this.articleContent.setText(this.article.getArticle());
-            this.articleAuthor.setText(this.article.getAuthor());
+            this.articleTitle.setText(this.articleService.getArticle().getTitle());
+            this.articleContent.setText(this.articleService.getArticle().getArticle());
+            this.articleAuthor.setText(this.articleService.getArticle().getAuthor());
 
             try {
 
-                System.out.println(this.article.getImage());
-                saveImage(this.article.getImage(), "file:temp-feedbuzz.jpg", this.articleImage);
+                System.out.println(articleService.getArticle().getImage());
+                saveImage(articleService.getArticle().getImage(), "file:temp-feedbuzz.jpg", this.articleImage);
 
             } catch (IOException e) {
                 e.printStackTrace();
