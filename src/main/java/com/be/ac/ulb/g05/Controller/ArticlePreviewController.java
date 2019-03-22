@@ -56,57 +56,46 @@ public class ArticlePreviewController extends Controller {
     public void setupView() {
         this.articleTitleArea.setEditable(false);
         this.articlePreviewContentArea.setEditable(false);
+        setArticle(articleService.getArticle());
         this.articleTitleArea.setText(this.articleService.getArticle().getTitle());
         this.articlePreviewContentArea.setText(this.articleService.getArticle().getArticle());
 
-        this.readArticle.setOnAction(new EventHandler<ActionEvent>() {
-            @Override
-            public void handle(ActionEvent event) {
-                try {
-                    displayArticle(articleService.getArticle());
-                } catch (IOException e) {
-                    e.printStackTrace();
-                }
+        this.readArticle.setOnAction(event -> {
+            try {
+                displayArticle(articleService.getArticle());
+            } catch (IOException e) {
+                e.printStackTrace();
             }
         });
 
-        this.openLink.setOnAction(new EventHandler<ActionEvent>() {
-            @Override
-            public void handle(ActionEvent event) {
-                try {
-                    Desktop.getDesktop().browse(new URL(article.getLink()).toURI());
-                } catch (IOException | URISyntaxException e) {
-                    e.printStackTrace();
-                }
+        this.openLink.setOnAction(event -> {
+            try {
+                Desktop.getDesktop().browse(new URL(article.getLink()).toURI());
+            } catch (IOException | URISyntaxException e) {
+                e.printStackTrace();
             }
         });
 
-        this.copyLink.setOnAction(new EventHandler<ActionEvent>() {
-            @Override
-            public void handle(ActionEvent event) {
-                Toolkit toolkit = Toolkit.getDefaultToolkit();
-                Clipboard clipboard = toolkit.getSystemClipboard();
-                StringSelection strSel = new StringSelection(article.getLink());
-                clipboard.setContents(strSel, null);
+        this.copyLink.setOnAction(event -> {
+            Toolkit toolkit = Toolkit.getDefaultToolkit();
+            Clipboard clipboard = toolkit.getSystemClipboard();
+            StringSelection strSel = new StringSelection(article.getLink());
+            clipboard.setContents(strSel, null);
 
-                Alert alert = new Alert(Alert.AlertType.INFORMATION);
-                alert.setTitle("Confirmation");
-                alert.setHeaderText(null);
-                alert.setContentText("Link copied");
-                alert.show();
+            Alert alert = new Alert(Alert.AlertType.INFORMATION);
+            alert.setTitle("Confirmation");
+            alert.setHeaderText(null);
+            alert.setContentText("Link copied");
+            alert.show();
 
-                PauseTransition delay = new PauseTransition(Duration.seconds(2));
-                delay.setOnFinished(alertEvent -> alert.close());
-                delay.play();
-            }
+            PauseTransition delay = new PauseTransition(Duration.seconds(2));
+            delay.setOnFinished(alertEvent -> alert.close());
+            delay.play();
         });
 
-        this.deleteFromFeed.setOnAction(new EventHandler<ActionEvent>() {
-            @Override
-            public void handle(ActionEvent event) {
-                articleService.deleteArticle(articleService.getArticle());
-                RootController.Instance().changeView(RootController.Views.Feed);
-            }
+        this.deleteFromFeed.setOnAction(event -> {
+            articleService.deleteArticle(articleService.getArticle());
+            RootController.Instance().changeView(RootController.Views.Feed);
         });
     }
 
