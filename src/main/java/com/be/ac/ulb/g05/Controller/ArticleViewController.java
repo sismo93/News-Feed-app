@@ -1,6 +1,5 @@
 package com.be.ac.ulb.g05.Controller;
 
-import com.be.ac.ulb.g05.Model.Article;
 import javafx.application.Platform;
 import javafx.fxml.FXML;
 import javafx.scene.control.TextArea;
@@ -14,9 +13,16 @@ import java.io.InputStream;
 import java.io.OutputStream;
 import java.net.URL;
 
+/**
+ * Article View controller
+ * @author @iyamani
+ * @codereview @vtombou
+ */
 public class ArticleViewController extends Controller {
 
-
+    /**
+     * FXML control buttons & containers
+     */
     @FXML
     public HBox titleContainer;
     @FXML
@@ -37,24 +43,26 @@ public class ArticleViewController extends Controller {
     @FXML
     public TextArea articleAuthor;
 
+    /**
+     * Sets up the view
+     */
     @Override
     public void setupView() {
-        System.out.println(articleService);
-
         Platform.runLater(() -> {
 
+            // Setting up the areas to non-editable
             this.articleTitle.setEditable(false);
             this.articleContent.setEditable(false);
             this.articleAuthor.setEditable(false);
 
+            // Setting the containers with their appropriate texts
             this.articleTitle.setText(this.articleService.getArticle().getTitle());
             this.articleContent.setText(this.articleService.getArticle().getArticle());
             this.articleAuthor.setText(this.articleService.getArticle().getSource());
 
+            // Puts image into the view
             try {
-
                 saveImage(articleService.getArticle().getImage(), "file:temp-feedbuzz.jpg", this.articleImage);
-
             } catch (IOException e) {
                 e.printStackTrace();
             }
@@ -63,12 +71,12 @@ public class ArticleViewController extends Controller {
 
 
     /**
-     * @param imageUrl
-     * @param destinationFile
-     * @param imageView
-     * @throws IOException
+     * @param imageUrl the URL of the image
+     * @param destinationFile the destination file
+     * @param imageView the image container in the window
+     * @throws IOException thrown when problems displaying the image
      *
-     * Save the image found on the article. If there is no images, nothing will happen
+     * Saves the image found on the article. If there is no images, nothing will happen
      */
     public static void saveImage(String imageUrl, String destinationFile, ImageView imageView) throws IOException {
         if (!imageUrl.isEmpty()) {

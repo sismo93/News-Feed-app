@@ -91,7 +91,6 @@ public class ParserWebSite {
 
             } else {
                 String imageLePoint = image.attr("src").substring(0, 8);
-                ;
                 if (imageLePoint.contains("/images/")) {
                     pic = "https://www.lepoint.fr";
                     pic += image.attr("src");

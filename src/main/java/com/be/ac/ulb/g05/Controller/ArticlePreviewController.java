@@ -19,9 +19,20 @@ import java.io.IOException;
 import java.net.URISyntaxException;
 import java.net.URL;
 
+/**
+ * Article Preview controller
+ * @author @iyamani
+ * @codereview @vtombou
+ */
 public class ArticlePreviewController extends Controller {
+    /**
+     * Article object
+     */
     private Article article;
 
+    /**
+     * FXML control buttons & containers
+     */
     @FXML
     public HBox articleTitleContainer;
     @FXML
@@ -52,6 +63,10 @@ public class ArticlePreviewController extends Controller {
     @FXML
     public Button deleteFromFeed;
 
+    /**
+     * Sets up the preview
+     * Initialises the containers for title, content and buttons
+     */
     @Override
     public void setupView() {
         this.articleTitleArea.setEditable(false);
@@ -60,6 +75,7 @@ public class ArticlePreviewController extends Controller {
         this.articleTitleArea.setText(this.articleService.getArticle().getTitle());
         this.articlePreviewContentArea.setText(this.articleService.getArticle().getArticle());
 
+        // Displays full article
         this.readArticle.setOnAction(event -> {
             try {
                 displayArticle(articleService.getArticle());
@@ -68,6 +84,7 @@ public class ArticlePreviewController extends Controller {
             }
         });
 
+        // Opens the link in a new browser
         this.openLink.setOnAction(event -> {
             try {
                 Desktop.getDesktop().browse(new URL(article.getLink()).toURI());
@@ -76,6 +93,7 @@ public class ArticlePreviewController extends Controller {
             }
         });
 
+        // Copies the link to the clipboard
         this.copyLink.setOnAction(event -> {
             Toolkit toolkit = Toolkit.getDefaultToolkit();
             Clipboard clipboard = toolkit.getSystemClipboard();
@@ -93,21 +111,35 @@ public class ArticlePreviewController extends Controller {
             delay.play();
         });
 
+        // Deletes the article from the feed
         this.deleteFromFeed.setOnAction(event -> {
             articleService.deleteArticle(articleService.getArticle());
             RootController.Instance().changeView(RootController.Views.Feed);
         });
     }
 
+    /**
+     * Initialises the article
+     * @param article the article
+     */
     public void setArticle(Article article) {
         this.article = article;
     }
 
+    /**
+     * Displays the article
+     * @param article the article
+     * @throws IOException thrown when article can't be opened
+     */
     private void displayArticle(Article article) throws IOException {
         articleService.setArticle(article);
         RootController.Instance().changeView(RootController.Views.Article);
     }
 
+    /**
+     * Sets up the articleService
+     * @param articleService article service
+     */
     @Override
     public void setArticleService(ArticleService articleService) {
         super.setArticleService(articleService);

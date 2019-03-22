@@ -24,7 +24,6 @@ public class AddController extends Controller {
     /**
      * Controls elements displayed on screen
      */
-
     @FXML
     public ChoiceBox ArticleNumberBox;
     @FXML
@@ -34,9 +33,19 @@ public class AddController extends Controller {
     @FXML
     public ChoiceBox SourceArticleBox;
 
+    /**
+     * Website object
+     */
     private WebSite webSite;
 
+    /**
+     * Holds a list of current articles
+     */
     private ArrayList<Article> CurrentArticleList;
+
+    /**
+     * Website parser
+     */
     private ParserWebSite parserWebsite;
 
 
@@ -46,20 +55,17 @@ public class AddController extends Controller {
      * Create the right Object for the right website
      */
     public WebSite CreateObjectSource(String source){
-        if (source == "TheGuardian.co"){
-            return webSite = new TheGuardian();
-        }
-        else if (source == "Lepoint.fr"){
-            return webSite = new LePoint();
-        }
-        else if (source == "RTLinfo.be"){
-            return webSite = new RTL();
-        }
-        else if (source == "LeMonde.fr"){
-            return webSite = new LeMonde();
-        }
-        else{
-            return webSite = new LeFigaro();
+        switch (source) {
+            case "TheGuardian.co":
+                return webSite = new TheGuardian();
+            case "Lepoint.fr":
+                return webSite = new LePoint();
+            case "RTLinfo.be":
+                return webSite = new RTL();
+            case "LeMonde.fr":
+                return webSite = new LeMonde();
+            default:
+                return webSite = new LeFigaro();
         }
     }
 
@@ -68,7 +74,6 @@ public class AddController extends Controller {
      * Take the same number of article that the user want
      */
     public void AddCurrentArticleList(){
-
         RSSFeedParser parser = new RSSFeedParser(webSite.getLink(CategoryBox.getSelectionModel().getSelectedItem().toString()));
 
         ArrayList<Article> articles = parser.readRSS();
@@ -107,14 +112,14 @@ public class AddController extends Controller {
     }
 
     /**
-     * @param article
-     * @param articleObject
+     * @param article the article source
+     * @param articleObject the article object
      * change the description if its TheGuardian or RTLINFO
      * because these 2 websites doesnt handle the description for an article
      */
     public void FixDescriptionError(String article,Article articleObject){
         String source =(String) SourceArticleBox.getSelectionModel().getSelectedItem();
-        if ((source == "TheGuardian.co") || (source =="RTLinfo.be")) {
+        if ((source.equals("TheGuardian.co")) || (source.equals("RTLinfo.be"))) {
             articleObject.setDescription(article.substring(0,100));
         }
     }
@@ -126,16 +131,14 @@ public class AddController extends Controller {
      * The user can accept them or denied them
      */
     public void ShowArticleFound() throws IOException {
-        for (int i = 0; i < CurrentArticleList.size(); i++) {
-            Article currentArticle = CurrentArticleList.get(i);
+        for (Article currentArticle : CurrentArticleList) {
             currentArticle.setArticle(parserWebsite.ParserArticle(currentArticle.getLink())); // Call the parser
 
-
-            FixDescriptionError(currentArticle.getArticle(),currentArticle); // Change the description
+            FixDescriptionError(currentArticle.getArticle(), currentArticle); // Change the description
 
             //Popup dialog window
             Alert alert = new Alert(Alert.AlertType.INFORMATION,
-                    currentArticle.getDescription()+ " ...",
+                    currentArticle.getDescription() + " ...",
                     ButtonType.OK, ButtonType.CANCEL);
             //Setup dialog window controls
             ButtonType importButton = new ButtonType("Import");
@@ -147,7 +150,7 @@ public class AddController extends Controller {
 
             Optional<ButtonType> result = alert.showAndWait();
 
-            if (result.get() == importButton){
+            if (result.get() == importButton) {
                 // ... user chose OK so we add the articleObject to the List
                 currentArticle.setImage(parserWebsite.ParserImage(currentArticle.getLink())); //Add Picture
                 currentArticle.setDefaultThumbnail(webSite.getDefaultThumbnail()); // add thumbnail
