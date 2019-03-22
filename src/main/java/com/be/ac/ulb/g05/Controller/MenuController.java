@@ -18,7 +18,7 @@ public class MenuController extends Controller{
      * Switch to feed view
      */
     public void OpenFeedView(ActionEvent actionEvent) {
-        Router.Instance().changeView(Router.Views.Feed);
+        RootController.Instance().changeView(RootController.Views.Feed);
     }
 
     /**
@@ -27,7 +27,7 @@ public class MenuController extends Controller{
      * Switch to add view
      */
     public void OpenAddView(ActionEvent actionEvent) {
-        Router.Instance().changeView(Router.Views.Add);
+        RootController.Instance().changeView(RootController.Views.Add);
     }
 
     @Override

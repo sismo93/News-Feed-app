@@ -8,6 +8,7 @@ import javafx.scene.control.TextField;
 
 
 public class RegisterController extends Controller {
+
     public TextField userName;
     public PasswordField password;
     public TextField email;
@@ -43,7 +44,7 @@ public class RegisterController extends Controller {
         else{
             if (!usersDAO.loginExist(user) && !usersDAO.mailExist(user)){
                 usersDAO.add(user); // Add in database
-                Router.Instance().changeView(Router.Views.Menu); // Go to menu
+                RootController.Instance().changeView(RootController.Views.Menu); // Go to menu
             }
             else {
                 notificationMessage("notInDb");
