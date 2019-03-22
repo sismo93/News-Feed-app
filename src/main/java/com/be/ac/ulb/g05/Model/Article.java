@@ -1,36 +1,49 @@
 package com.be.ac.ulb.g05.Model;
 
-import java.util.ArrayList;
-
 public class Article {
 
     private String title;
     private String description;
     private String link;
-    private String author;
-    private String guid;
     private String article;
     private String image;
     private String defautlThumbnail;
+    private String source;
+    private String geolocation;
+    private String pubdate;
 
-    public Article(String title, String description, String link, String author, String guid, String article, String  image, String thumbnail) {
+    public Article(String title, String description, String link,String pubdate,String image , String thumbnail,String source,String geolocation) {
         this.title = title;
         this.description = description;
         this.link = link;
-        this.author = author;
-        this.guid = guid;
-        this.article = article;
         this.image = image;
         this.defautlThumbnail = thumbnail;
+        this.source = source;
+        this.geolocation = geolocation;
+        this.pubdate = pubdate;
     }
 
 
     public String  getImage(){
-        return image;
+        return this.image;
     }
 
     public void setImage(String  image){
+
         this.image=image;
+    }
+    public String  getSource(){
+
+        return this.source;
+    }
+
+    public void setSource(String  source){
+
+        this.source=source;
+    }
+
+    public String getPubdate(){
+        return pubdate;
     }
 
     public void setDefaultThumbnail(String image){
@@ -62,21 +75,10 @@ public class Article {
     }
 
 
-    public String getAuthor() {
-        return author;
-    }
-
-    public void setAuthor(String author) {
-        this.author = author;
-    }
-
-
-
     @Override
     public String toString() {
         return "Article [title=" + title + ", description=" + description
-                + ", link=" + link + ", author=" + author + ", guid=" + guid
-                + "]";
+                + ", link=" + link + " ]";
     }
 
     public String getArticle(){
@@ -84,5 +86,13 @@ public class Article {
     }
     public void setArticle(String article){
         this.article = article;
+    }
+
+    public String getGeolocation() {
+        return geolocation;
+    }
+
+    public void setGeolocation(String geolocation) {
+        this.geolocation = geolocation;
     }
 }

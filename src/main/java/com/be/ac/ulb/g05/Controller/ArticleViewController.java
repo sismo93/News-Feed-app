@@ -12,7 +12,6 @@ import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.OutputStream;
-import java.net.MalformedURLException;
 import java.net.URL;
 
 public class ArticleViewController extends Controller {
@@ -51,11 +50,10 @@ public class ArticleViewController extends Controller {
 
             this.articleTitle.setText(this.articleService.getArticle().getTitle());
             this.articleContent.setText(this.articleService.getArticle().getArticle());
-            this.articleAuthor.setText(this.articleService.getArticle().getAuthor());
+            this.articleAuthor.setText(this.articleService.getArticle().getSource());
 
             try {
 
-                System.out.println(articleService.getArticle().getImage());
                 saveImage(articleService.getArticle().getImage(), "file:temp-feedbuzz.jpg", this.articleImage);
 
             } catch (IOException e) {
@@ -64,26 +62,33 @@ public class ArticleViewController extends Controller {
         });
     }
 
-    public void setArticle(Article article) {
-        this.article = article;
-    }
 
+    /**
+     * @param imageUrl
+     * @param destinationFile
+     * @param imageView
+     * @throws IOException
+     *
+     * Save the image found on the article. If there is no images, nothing will happen
+     */
     public static void saveImage(String imageUrl, String destinationFile, ImageView imageView) throws IOException {
-        URL url = new URL(imageUrl);
-        InputStream is = url.openStream();
-        OutputStream os = new FileOutputStream(destinationFile);
+        if (!imageUrl.isEmpty()) {
+            URL url = new URL(imageUrl);
+            InputStream is = url.openStream();
+            OutputStream os = new FileOutputStream(destinationFile);
 
-        byte[] b = new byte[2048];
-        int length;
+            byte[] b = new byte[2048];
+            int length;
 
-        while ((length = is.read(b)) != -1) {
-            os.write(b, 0, length);
+            while ((length = is.read(b)) != -1) {
+                os.write(b, 0, length);
+            }
+
+            is.close();
+            os.close();
+
+            Image image = new Image(destinationFile);
+            imageView.setImage(image);
         }
-
-        is.close();
-        os.close();
-
-        Image image = new Image(destinationFile);
-        imageView.setImage(image);
     }
 }

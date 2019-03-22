@@ -2,18 +2,16 @@ package com.be.ac.ulb.g05;
 
 import com.be.ac.ulb.g05.Model.Article;
 
+import javax.xml.stream.XMLEventReader;
+import javax.xml.stream.XMLInputFactory;
+import javax.xml.stream.XMLStreamException;
+import javax.xml.stream.events.Characters;
+import javax.xml.stream.events.XMLEvent;
 import java.io.IOException;
 import java.io.InputStream;
 import java.net.MalformedURLException;
 import java.net.URL;
 import java.util.ArrayList;
-
-import javax.xml.stream.XMLEventReader;
-import javax.xml.stream.XMLInputFactory;
-import javax.xml.stream.XMLStreamException;
-import javax.xml.stream.events.Characters;
-
-import javax.xml.stream.events.XMLEvent;
 
 public class RSSFeedParser {
     static final String TITLE = "title";
@@ -90,7 +88,7 @@ public class RSSFeedParser {
                     }
                 } else if (event.isEndElement()) {
                     if (event.asEndElement().getName().getLocalPart() == (ITEM)) {
-                        article = new Article(title, description, link, author, guid, null, null, null);
+                        article = new Article(title, description, link, pubdate,null, null, null,null);
                         articles.add(article);
                         event = eventReader.nextEvent();
                         continue;

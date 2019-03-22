@@ -9,6 +9,8 @@ public class WebSite {
     protected List<String> urlList;
     protected List<String> categoryList;
     protected String defaultThumbnail;
+    protected String sourceArticle;
+    protected String geolocation;
 
 
     public boolean isCategoryExist(String category){
@@ -32,6 +34,14 @@ public class WebSite {
 
     public String getDefaultThumbnail(){
         return defaultThumbnail;
+    }
+
+    public String getSourceArticle(){
+        return sourceArticle;
+    }
+
+    public String getGeolocation(){
+        return geolocation;
     }
 
 

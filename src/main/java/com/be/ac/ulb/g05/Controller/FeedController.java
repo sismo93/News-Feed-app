@@ -1,23 +1,23 @@
 package com.be.ac.ulb.g05.Controller;
 
-import com.be.ac.ulb.g05.Model.*;
-import javafx.beans.value.ChangeListener;
-import javafx.beans.value.ObservableValue;
-import javafx.collections.ListChangeListener;
+import com.be.ac.ulb.g05.Model.Article;
+import com.be.ac.ulb.g05.Model.ArticleService;
+import com.be.ac.ulb.g05.PreviewThumbnailCell;
+import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
-import javafx.fxml.FXMLLoader;
-import javafx.scene.Parent;
-import javafx.scene.Scene;
-import javafx.scene.layout.VBox;
-import javafx.collections.FXCollections;
+import javafx.scene.control.ListCell;
 import javafx.scene.control.ListView;
-import javafx.stage.Stage;
+import javafx.scene.image.ImageView;
+import javafx.scene.layout.VBox;
+import javafx.util.Callback;
 
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Observable;
 import java.util.Observer;
+
+import static com.be.ac.ulb.g05.Controller.ArticleViewController.saveImage;
 
 /**
  * Controller of the ArticleService View
@@ -33,30 +33,66 @@ public class FeedController extends Controller implements Observer {
     public VBox articleContainer;
 
 
-
-
-    private void pushToArticleView(ArrayList<Article> articles){
+    /**
+     * @param articles
+     * Function that allow us to display the picture + the information about the article
+     */
+    private void pushToArticleView(ArrayList<Article> articles) {
 
         articleContainer.getChildren().clear();
 
-        ObservableList<String> names = FXCollections.observableArrayList();
+
+        ObservableList<PreviewThumbnailCell> names = FXCollections.observableArrayList();
+
+
         articles.forEach(article -> {
-            names.add(article.getTitle() + "\n\n" + article.getAuthor());
+
+
+            ImageView iv2 = new ImageView();
+            try {
+                saveImage(article.getDefautlThumbnail(), "file:temp-feedbuzz-v.jpg", iv2);
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+
+            PreviewThumbnailCell previewThumbnail = new PreviewThumbnailCell(iv2,article.getTitle(),article.getPubdate(),
+                    article.getGeolocation(),article.getSource());
+
+            names.add(previewThumbnail);
         });
-        ListView<String> listView = new ListView<String>(names);
-        listView.setFixedCellSize(100);
+        ListView<PreviewThumbnailCell> listView = new ListView<>(names);
+        listView.setFixedCellSize(150);
+
+        listView.setCellFactory(new Callback<ListView<PreviewThumbnailCell>, ListCell<PreviewThumbnailCell>>() {
+            @Override
+            public ListCell<PreviewThumbnailCell> call(ListView<PreviewThumbnailCell> param) {
+                ListCell<PreviewThumbnailCell> cell = new ListCell<PreviewThumbnailCell>(){
+                    @Override
+                    protected void updateItem(PreviewThumbnailCell pr , boolean empty){
+                        super.updateItem(pr,empty);
+                        if(pr != null){
+                            setGraphic(pr.getImage());
+                            setText(pr.getTitle() + "\n\n" +"Date : " +pr.getDate() +
+                            "\n" + "Source : " + pr.getSource() + "\n" + "Localisation : " +
+                            pr.getLocalisation());
+                        }
+
+                    }
+                };
+                return cell;
+            }
+        });
         articleContainer.getChildren().add(listView);
 
-        listView.getSelectionModel().selectedItemProperty().addListener(new ChangeListener<String>() {
-            public void changed(ObservableValue<? extends String> ov, final String oldvalue, final String newvalue) {
-                int selectedArticleIndex = listView.getSelectionModel().getSelectedIndex();
-                Article article = articles.get(selectedArticleIndex);
 
-                try {
-                    displayArticlePreview(article);
-                } catch (IOException e) {
-                    e.printStackTrace();
-                }
+        listView.getSelectionModel().selectedItemProperty().addListener((ov, oldvalue, newvalue) -> {
+            int selectedArticleIndex = listView.getSelectionModel().getSelectedIndex();
+            Article article = articles.get(selectedArticleIndex);
+
+            try {
+                displayArticlePreview(article);
+            } catch (IOException e) {
+                e.printStackTrace();
             }
         });
     }
@@ -85,7 +121,7 @@ public class FeedController extends Controller implements Observer {
      */
     @Override
     public void setupView() {
-        System.out.println("add");
+
         articleService.addObserver(this);
         ArrayList<Article> articles = articleService.getArticles();
         pushToArticleView(articles);

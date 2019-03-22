@@ -62,7 +62,15 @@ public class LoginController extends Controller {
         Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
         alert.setTitle("Reglement");
         alert.setHeaderText("Do you accept terms and conditions");
-        alert.setContentText("Regulation to be established with the client");
+        alert.setContentText(" Les présentes « conditions générales d'utilisation » ont pour objet" +
+                " l'encadrement juridique des modalités de mise à disposition des services du site FeedBuzz" +
+                " et leur utilisation par « l'Utilisateur ».\n" +
+                "Les conditions générales d'utilisation doivent être acceptées par" +
+                " tout Utilisateur souhaitant accéder au site. Elles constituent " +
+                "le contrat entre le site et l'Utilisateur. L’accès au site par " +
+                "l’Utilisateur signifie " +
+                "son acceptation des présentes " +
+                "conditions générales d’utilisation.");
 
         Optional<ButtonType> result = alert.showAndWait();
         if (result.get() == ButtonType.OK){

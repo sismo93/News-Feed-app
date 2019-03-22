@@ -20,6 +20,8 @@ public class LeFigaro extends WebSite {
         super.categoryList = Arrays.asList("Sport", "Culture", "Actualite","International",
                 "Sante","Politique","Economie","Technologies","Environnement");
         super.defaultThumbnail = "http://www.agassac.com/files/cache/article/files/files/0/1/4/8/0.jpg";
+        super.sourceArticle = "@LeFigaro.fr (LeFigaro Media)";
+        super.geolocation = "France";
         super.initDico();
     }
 }

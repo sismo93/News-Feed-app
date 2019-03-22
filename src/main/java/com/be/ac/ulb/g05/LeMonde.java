@@ -22,6 +22,8 @@ public class LeMonde extends WebSite{
         super.categoryList = Arrays.asList("Actualite","Culture","Politique","Environnement","International",
                 "Sante","Sport","Economie","Technolgies");
         super.defaultThumbnail="http://www.acpm.fr/var/ojd/storage/files/logos/A/logo_5691.png";
+        super.sourceArticle = "@LeMonde.fr (LeMonde Media)";
+        super.geolocation = "France";
         super.initDico();
     }
 

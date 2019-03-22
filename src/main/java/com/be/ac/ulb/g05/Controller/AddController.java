@@ -128,6 +128,7 @@ public class AddController extends Controller {
             Article currentArticle = CurrentArticleList.get(i);
             currentArticle.setArticle(parserWebsite.ParserArticle(currentArticle.getLink())); // Call the parser
 
+
             FixDescriptionError(currentArticle.getArticle(),currentArticle); // Change the description
 
             //Popup dialog window
@@ -148,6 +149,9 @@ public class AddController extends Controller {
                 // ... user chose OK so we add the articleObject to the List
                 currentArticle.setImage(parserWebsite.ParserImage(currentArticle.getLink())); //Add Picture
                 currentArticle.setDefaultThumbnail(webSite.getDefaultThumbnail()); // add thumb
+                currentArticle.setSource(webSite.getSourceArticle()); // set the Source
+                currentArticle.setGeolocation(webSite.getGeolocation());
+
 
                 articleService.addArticle(currentArticle);
             }
