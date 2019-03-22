@@ -5,9 +5,9 @@ import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Node;
-import javafx.scene.Parent;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.BorderPane;
+
 import java.io.IOException;
 import java.util.HashMap;
 
@@ -65,7 +65,6 @@ public class RootController extends Controller {
         FXMLLoader loader = new FXMLLoader(this.getClass().getClassLoader().getResource(fxml));
 
 
-        System.out.println(loader.getLocation());
         try {
             view = loader.load();
         } catch (IOException e) {

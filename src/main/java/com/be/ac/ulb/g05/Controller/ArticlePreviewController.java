@@ -3,19 +3,13 @@ package com.be.ac.ulb.g05.Controller;
 import com.be.ac.ulb.g05.Model.Article;
 import com.be.ac.ulb.g05.Model.ArticleService;
 import javafx.animation.PauseTransition;
-import javafx.application.Platform;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.fxml.FXML;
-import javafx.fxml.FXMLLoader;
-import javafx.scene.Parent;
-import javafx.scene.Scene;
+import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
 import javafx.scene.control.TextArea;
 import javafx.scene.layout.HBox;
-
-import javafx.scene.control.*;
-import javafx.stage.Stage;
 import javafx.util.Duration;
 
 import java.awt.*;
@@ -110,7 +104,6 @@ public class ArticlePreviewController extends Controller {
         this.deleteFromFeed.setOnAction(new EventHandler<ActionEvent>() {
             @Override
             public void handle(ActionEvent event) {
-                System.out.println(articleService);
                 articleService.deleteArticle(articleService.getArticle());
                 RootController.Instance().changeView(RootController.Views.Feed);
             }
@@ -122,7 +115,6 @@ public class ArticlePreviewController extends Controller {
     }
 
     private void displayArticle(Article article) throws IOException {
-        System.out.println("display" + article);
         articleService.setArticle(article);
         RootController.Instance().changeView(RootController.Views.Article);
     }
