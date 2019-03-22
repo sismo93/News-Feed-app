@@ -48,6 +48,7 @@ public class ParserWebSite {
         }
         if (url.contains("lefigaro")){
             images = images.select("img[srcset~=(?i)\\.(png|jpeg|gif|jpg)]");
+
         }
         else {
             images = images.select("img[src~=(?i)\\.(png|jpeg|gif|jpg)]");
@@ -65,6 +66,11 @@ public class ParserWebSite {
 
             } else if (url.contains("lefigaro")) {
                 pic = image.attr("srcset");
+                int index = Integer.parseInt(String.valueOf(pic.indexOf(",")));
+                if (index != -1){
+                    pic = pic.substring(0,index-5);
+                }
+
 
             } else {
                 String imageLePoint = image.attr("src").substring(0, 8);
@@ -76,6 +82,7 @@ public class ParserWebSite {
                 }
             }
         }
+
 
 
         return pic;
