@@ -2,6 +2,8 @@ package com.be.ac.ulb.g05;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.SQLException;
+import javafx.scene.control.Alert;
+import javafx.scene.control.ButtonType;
 
 /**
  * Connexion SQLite
@@ -23,7 +25,9 @@ public class ConnexionSQLite{
             //Driver loading
             Class.forName("org.sqlite.JDBC");
         }catch (ClassNotFoundException e){
-
+            Alert alert = new Alert(Alert.AlertType.ERROR, "Database not functioning"+"\n"+e.getMessage(), ButtonType.OK);
+            alert.showAndWait();
+            System.err.println(e.getMessage());
         }
 
     }
@@ -42,6 +46,8 @@ public class ConnexionSQLite{
         }
         catch(SQLException e)
         {
+            Alert alert = new Alert(Alert.AlertType.ERROR, "Database not found"+"\n"+e.getMessage(), ButtonType.OK);
+            alert.showAndWait();
             System.err.println(e.getMessage());
         }
 
