@@ -6,13 +6,15 @@ import com.be.ac.ulb.g05.PreviewThumbnailCell;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
+
 import javafx.scene.control.ListCell;
-import javafx.scene.control.ListView;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.VBox;
+import javafx.scene.control.ListView;
 import javafx.util.Callback;
 
 import java.io.IOException;
+
 import java.util.ArrayList;
 import java.util.Observable;
 import java.util.Observer;
@@ -82,6 +84,7 @@ public class FeedController extends Controller implements Observer {
                 return cell;
             }
         });
+
         articleContainer.getChildren().add(listView);
 
 

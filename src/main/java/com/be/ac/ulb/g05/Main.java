@@ -23,7 +23,7 @@ public class Main extends Application {
         primaryStage.setScene(scene);
         primaryStage.show();
 
-        RootController.Instance().changeView(RootController.Views.Feed);
+        RootController.Instance().changeView(RootController.Views.Login);
     }
 
     public static void main(String[] args) {
