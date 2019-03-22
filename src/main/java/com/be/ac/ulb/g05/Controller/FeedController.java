@@ -59,7 +59,7 @@ public class FeedController extends Controller implements Observer {
      * @param actionEvent Back to menu
      */
     public void OpenMenuView(ActionEvent actionEvent) {
-        Router.Instance().changeView(Router.Views.Menu);
+        RootController.Instance().changeView(RootController.Views.Menu);
     }
 
     @Override

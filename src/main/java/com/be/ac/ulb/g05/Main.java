@@ -7,9 +7,6 @@ import javafx.application.Application;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
 
-import static com.be.ac.ulb.g05.Controller.Router.Instance;
-
-
 public class Main extends Application {
 
     @Override
@@ -18,14 +15,14 @@ public class Main extends Application {
         // Initialize ArticleService Service
         ArticleService feed = new ArticleService();
         // Inject Dependency
-        Instance().setFeed(feed);
+        RootController.Instance().setFeed(feed);
 
         // Scene assignment
-        final Scene scene = new Scene( Instance().getRoot());
+        final Scene scene = new Scene( RootController.Instance().getRoot());
         primaryStage.setScene(scene);
         primaryStage.show();
 
-        Instance().changeView(Router.Views.Menu);
+        RootController.Instance().changeView(RootController.Views.Login);
     }
 
     public static void main(String[] args) {
