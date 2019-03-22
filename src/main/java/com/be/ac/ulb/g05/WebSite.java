@@ -4,6 +4,13 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+/**
+ * @author @MnrBn
+ * @codereview  @Mouscb
+ *
+ * Class that represent a website.
+ * will be used for inheritance
+ */
 public class WebSite {
     private Map<String, String> categoryDict =new HashMap<>();
     protected List<String> urlList;
@@ -17,6 +24,10 @@ public class WebSite {
         return categoryList.contains(category);
     }
 
+    /**
+     * initialize the dictionnary
+     * Dict :{Category : URL }
+     */
     public void initDico(){
         for(int i=0;i<urlList.size();i++){
             categoryDict.put(categoryList.get(i),urlList.get(i));

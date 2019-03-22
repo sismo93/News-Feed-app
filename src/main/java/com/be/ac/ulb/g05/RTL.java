@@ -2,7 +2,12 @@ package com.be.ac.ulb.g05;
 
 import java.util.Arrays;
 
-
+/**
+ * @author @MnrBn
+ * @codereview @Mouscb
+ * inherited from Website, modified to match data from RTL site
+ *
+ */
 public class RTL extends WebSite {
 
     public RTL(){

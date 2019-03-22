@@ -5,6 +5,13 @@ import java.util.HashMap;
 import java.util.Observable;
 
 
+/**
+ * @author @borsalinoK
+ * @codereview @mouscb
+ * Class that allow us to store Article object
+ * we can add/delete article from the list.
+ * with this class we will have an article list accessible in all the views
+ */
 public class ArticleService extends Observable {
 
     private HashMap<String, Article> articles;
@@ -26,12 +33,9 @@ public class ArticleService extends Observable {
         notifyObservers();
     }
 
-    public Article getArticle(String title){
-        return articles.get(title);
-    }
 
     public ArrayList<Article> getArticles(){
-        return  new ArrayList<Article>(articles.values());
+        return new ArrayList<>(articles.values());
     }
 
     public Article getArticle() {

@@ -7,6 +7,11 @@ import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
 
 
+/**
+ * Controller of the Register
+ * @author Mouscb
+ * @codereview @@MnrBn
+ */
 public class RegisterController extends Controller {
 
     public TextField userName;

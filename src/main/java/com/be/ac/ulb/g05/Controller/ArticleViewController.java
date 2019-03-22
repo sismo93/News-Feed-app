@@ -16,7 +16,6 @@ import java.net.URL;
 
 public class ArticleViewController extends Controller {
 
-    private Article article = null;
 
     @FXML
     public HBox titleContainer;

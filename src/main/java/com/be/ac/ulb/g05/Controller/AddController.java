@@ -19,7 +19,6 @@ import java.util.Optional;
  * @author @MnrBn
  * @codereview @Mouscb
  */
-
 public class AddController extends Controller {
 
     /**
@@ -41,8 +40,11 @@ public class AddController extends Controller {
     private ParserWebSite parserWebsite;
 
 
-
-
+    /**
+     * @param source is the website that the user want article from
+     * @return an Website object
+     * Create the right Object for the right website
+     */
     public WebSite CreateObjectSource(String source){
         if (source == "TheGuardian.co"){
             return webSite = new TheGuardian();
@@ -148,7 +150,7 @@ public class AddController extends Controller {
             if (result.get() == importButton){
                 // ... user chose OK so we add the articleObject to the List
                 currentArticle.setImage(parserWebsite.ParserImage(currentArticle.getLink())); //Add Picture
-                currentArticle.setDefaultThumbnail(webSite.getDefaultThumbnail()); // add thumb
+                currentArticle.setDefaultThumbnail(webSite.getDefaultThumbnail()); // add thumbnail
                 currentArticle.setSource(webSite.getSourceArticle()); // set the Source
                 currentArticle.setGeolocation(webSite.getGeolocation());
 

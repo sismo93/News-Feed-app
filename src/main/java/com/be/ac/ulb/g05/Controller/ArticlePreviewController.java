@@ -20,7 +20,7 @@ import java.net.URISyntaxException;
 import java.net.URL;
 
 public class ArticlePreviewController extends Controller {
-    private Article article = null;
+    private Article article;
 
     @FXML
     public HBox articleTitleContainer;

@@ -13,6 +13,10 @@ import java.net.MalformedURLException;
 import java.net.URL;
 import java.util.ArrayList;
 
+/**
+ * Code that read a RSS feed.
+ * Source : https://www.vogella.com/tutorials/RSSFeed/article.html
+ */
 public class RSSFeedParser {
     static final String TITLE = "title";
     static final String DESCRIPTION = "description";

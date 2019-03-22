@@ -4,6 +4,12 @@ package com.be.ac.ulb.g05;
 import java.util.Arrays;
 
 
+/**
+ * @author @MnrBn
+ * @codereview @Mouscb
+ * inherited from Website, modified to match data from the "LeMonde" site
+ *
+ */
 public class LeMonde extends WebSite{
 
 

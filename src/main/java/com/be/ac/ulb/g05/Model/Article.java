@@ -1,5 +1,10 @@
 package com.be.ac.ulb.g05.Model;
 
+/**
+ * Article Object
+ * @author @Mouscb
+ * @codereview @MnrBn
+ */
 public class Article {
 
     private String title;
@@ -13,6 +18,7 @@ public class Article {
     private String pubdate;
 
     public Article(String title, String description, String link,String pubdate,String image , String thumbnail,String source,String geolocation) {
+        // Constructor
         this.title = title;
         this.description = description;
         this.link = link;
@@ -74,12 +80,6 @@ public class Article {
         return link;
     }
 
-
-    @Override
-    public String toString() {
-        return "Article [title=" + title + ", description=" + description
-                + ", link=" + link + " ]";
-    }
 
     public String getArticle(){
         return article;

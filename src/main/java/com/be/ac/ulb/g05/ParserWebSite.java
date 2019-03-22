@@ -9,9 +9,21 @@ import org.jsoup.select.Elements;
 import java.io.IOException;
 import java.util.ArrayList;
 
+/**
+ * @author @Mouscb
+ * @codereview @MnrBn
+ *
+ * Class that allow us to parse a website
+ */
 public class ParserWebSite {
 
 
+    /**
+     * @param url
+     * @return text corresponding to the article
+     * @throws IOException
+     * Parse the website
+     */
     public String ParserArticle(String url) throws IOException {
         String article="";
 
@@ -34,6 +46,12 @@ public class ParserWebSite {
         return article;
 
     }
+
+    /**
+     * @param url
+     * @return a string corresponding to the url of the image
+     * @throws IOException
+     */
     public String ParserImage(String url) throws IOException {
         Document doc = Jsoup.connect(url).get();
 
@@ -56,7 +74,7 @@ public class ParserWebSite {
 
         String pic= "";
 
-        if (images.size()>0) {
+        if (images.size()>0) { // check if there is any picture
             Element image = images.get(0);
 
             if (url.contains("rtl") || url.contains("Rtl") || url.contains("RTL") || url.contains("lemonde") || url.contains("theguardian")) {

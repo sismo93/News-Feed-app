@@ -11,6 +11,12 @@ import javafx.scene.layout.BorderPane;
 import java.io.IOException;
 import java.util.HashMap;
 
+
+/**
+ * root's controller
+ * @author @iyamani
+ * @codereview @Tanvirul.Hoque
+ */
 public class RootController extends Controller {
 
     @FXML

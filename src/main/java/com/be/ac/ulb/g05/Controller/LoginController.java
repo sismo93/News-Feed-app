@@ -9,6 +9,11 @@ import javafx.scene.control.TextField;
 import java.util.Optional;
 
 
+/**
+ * Controller of the Login
+ * @author @MnrBn
+ * @codereview @Mouscb
+ */
 public class LoginController extends Controller {
     public PasswordField passwordField;
     public TextField userNameField;
