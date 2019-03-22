@@ -12,10 +12,6 @@
    <children>
       <VBox layoutX="70.0" layoutY="19.0" prefHeight="402.0" prefWidth="683.0" style="-fx-background-color: #9C2827;" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
          <children>
-            <AnchorPane prefHeight="65.0" prefWidth="600.0">
-               <children>
-                  <Button layoutX="508.0" layoutY="20.0" mnemonicParsing="false" onAction="#OpenMenuView" prefHeight="25.0" prefWidth="63.0" text="Menu" textFill="#b2b2b2" />
-               </children></AnchorPane>
             <Pane prefHeight="242.0" prefWidth="600.0">
                <children>
                   <Label layoutX="148.0" layoutY="108.0" text="Article number" textFill="#bfbfbf" />

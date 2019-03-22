@@ -112,7 +112,7 @@ public class ArticlePreviewController extends Controller {
             public void handle(ActionEvent event) {
                 System.out.println(articleService);
                 articleService.deleteArticle(articleService.getArticle());
-                Router.Instance().changeView(Router.Views.Feed, null);
+                RootController.Instance().changeView(RootController.Views.Feed);
             }
         });
     }
@@ -124,7 +124,7 @@ public class ArticlePreviewController extends Controller {
     private void displayArticle(Article article) throws IOException {
         System.out.println("display" + article);
         articleService.setArticle(article);
-        Router.Instance().changeView(Router.Views.Article, null);
+        RootController.Instance().changeView(RootController.Views.Article);
     }
 
     @Override

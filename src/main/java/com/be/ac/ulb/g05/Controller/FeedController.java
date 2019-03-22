@@ -3,6 +3,7 @@ package com.be.ac.ulb.g05.Controller;
 import com.be.ac.ulb.g05.Model.*;
 import javafx.beans.value.ChangeListener;
 import javafx.beans.value.ObservableValue;
+import javafx.collections.ListChangeListener;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXMLLoader;
@@ -31,9 +32,11 @@ public class FeedController extends Controller implements Observer {
      */
     public VBox articleContainer;
 
+
+
+
     private void pushToArticleView(ArrayList<Article> articles){
 
-        System.out.println(articles.size());
         articleContainer.getChildren().clear();
 
         ObservableList<String> names = FXCollections.observableArrayList();
@@ -63,8 +66,7 @@ public class FeedController extends Controller implements Observer {
      * @param actionEvent Back to menu
      */
     public void OpenMenuView(ActionEvent actionEvent) {
-        Router.Instance().changeView(Router.Views.Menu, null);
-
+        RootController.Instance().changeView(RootController.Views.Menu);
     }
 
     @Override
@@ -91,13 +93,12 @@ public class FeedController extends Controller implements Observer {
 
     @Override
     public void update(Observable observable, Object o) {
-        System.out.println("update");
         ArrayList<Article> articles = articleService.getArticles();
         pushToArticleView(articles);
     }
 
     public void displayArticlePreview(Article article) throws IOException {
         articleService.setArticle(article);
-        Router.Instance().changeView(Router.Views.Preview, article);
+        RootController.Instance().changeView(RootController.Views.Preview);
     }
 }
