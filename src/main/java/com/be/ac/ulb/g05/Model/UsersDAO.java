@@ -22,7 +22,7 @@ public class UsersDAO extends DAO<Users> {
                             "VALUES (?,?,?)");
             prepare2.setString(1,obj.getMail());
             prepare2.setString(2, HashMD5.hashFunct(obj.getPassword()));
-            prepare2.setString(3,obj.getLogin());
+            prepare2.setString(3,obj.getName());
             prepare2.executeUpdate();
         }
         catch (Exception e) {
@@ -40,7 +40,7 @@ public class UsersDAO extends DAO<Users> {
         try {
             PreparedStatement stmt = this.connect.prepareStatement(
                     "select * from users where login = ? ");
-            stmt.setString(1, obj.getLogin());
+            stmt.setString(1, obj.getName());
             ResultSet rs=stmt.executeQuery();
 
             boolean recordAdded = false;
@@ -90,7 +90,7 @@ public class UsersDAO extends DAO<Users> {
         try {
             PreparedStatement stmt = this.connect.prepareStatement(
                     "select * from users where login = ? and password = ?");
-            stmt.setString(1, obj.getLogin());
+            stmt.setString(1, obj.getName());
             stmt.setString(2, HashMD5.hashFunct(obj.getPassword()));
             ResultSet rs=stmt.executeQuery();
 

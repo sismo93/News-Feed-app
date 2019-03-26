@@ -51,7 +51,7 @@ public class LoginController extends Controller {
      */
     @FXML
     private void OnLoginButtonPressed(){
-        user.setLogin(userNameField.getText());
+        user.setName(userNameField.getText());
         user.setPassword(passwordField.getText());
 
         if (usersDAO.checkLoginAndPassword(user)){

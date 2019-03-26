@@ -24,7 +24,7 @@ public class UserController extends Controller{
      * @param username user's name
      */
     public void setUsername(String username) {
-        model.setLogin(username);
+        model.setName(username);
     }
 
     /**
@@ -32,7 +32,7 @@ public class UserController extends Controller{
      * @return username
      */
     public String getUsername() {
-        return model.getLogin();
+        return model.getName();
     }
 
     /**

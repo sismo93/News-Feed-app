@@ -55,7 +55,7 @@ public class RegisterController extends Controller {
      */
     @FXML
     private void RegisterButton(){
-        user.setLogin(userName.getText());
+        user.setName(userName.getText());
         user.setPassword(password.getText());
         user.setMail(email.getText());
 

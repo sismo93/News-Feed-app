@@ -13,13 +13,13 @@ public class UserTest{
 
     @Test
     public void getUsernameTest() {
-        assertEquals("test", user.getLogin());
+        assertEquals("test", user.getName());
     }
 
     @Test
     public void setUsernameTest() {
-        user.setLogin("newTest");
-        assertEquals("newTest", user.getLogin());
+        user.setName("newTest");
+        assertEquals("newTest", user.getName());
     }
 
     @Test

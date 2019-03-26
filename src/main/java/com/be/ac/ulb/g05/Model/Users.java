@@ -6,22 +6,34 @@ package com.be.ac.ulb.g05.Model;
  * @codereview @vtombou
  */
 public class Users {
+
+    /**
+     * User email
+     */
     private String mail;
+
+    /**
+     * User password
+     */
     private String password;
-    private String login;
+
+    /**
+     * User name
+     */
+    private String name;
 
     public Users(){}
 
     /**
      * Constructor
      * @param mail the email of the user
-     * @param login the username of the user
+     * @param name the username of the user
      * @param password the password of the user
      */
-    public Users(String mail, String login, String password) {
+    public Users(String mail, String name, String password) {
         this.mail = mail;
         this.password = password;
-        this.login = login;
+        this.name = name;
 
     }
 
@@ -30,7 +42,7 @@ public class Users {
      * @return user email
      */
     public  String getMail() {
-        return mail;
+        return this.mail;
     }
 
     /**
@@ -38,20 +50,20 @@ public class Users {
      * @return user password
      */
     public String getPassword() {
-        return password;
+        return this.password;
     }
 
     /**
      * Getter for login
      * @return user login
      */
-    public String getLogin() {
-        return login;
+    public String getName() {
+        return this.name;
     }
 
     /**
      * Setter for user email
-     * @param mail
+     * @param mail user email
      */
     public  void setMail(String mail){
         this.mail = mail;
@@ -59,7 +71,7 @@ public class Users {
 
     /**
      * Setter for user password
-     * @param password
+     * @param password user password
      */
     public void setPassword(String password){
         this.password = password;
@@ -67,10 +79,10 @@ public class Users {
 
     /**
      * Setter for user login
-     * @param login
+     * @param name username
      */
-    public void setLogin(String login){
-        this.login = login;
+    public void setName(String name){
+        this.name = name;
     }
 }
 
