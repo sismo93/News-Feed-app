@@ -14,13 +14,30 @@ import javafx.scene.control.TextField;
  */
 public class RegisterController extends Controller {
 
+    /**
+     * Username field
+     */
     public TextField userName;
+
+    /**
+     * Password field
+     */
     public PasswordField password;
+
+    /**
+     * Email field
+     */
     public TextField email;
 
+    /**
+     * Users object
+     */
     private Users user;
+
+    /**
+     * Users DAO
+     */
     private DAO<Users> usersDAO;
-    private Alert alert;
 
 
     /**
@@ -66,9 +83,9 @@ public class RegisterController extends Controller {
      * Show a notification with the right error
      */
     private void notificationMessage(String error){
-        alert = new Alert(Alert.AlertType.ERROR);
+        Alert alert = new Alert(Alert.AlertType.ERROR);
         alert.setHeaderText("Error");
-        if (error =="empty"){
+        if (error.equals("empty")) {
             alert.setContentText("All boxes must be filled");
         }
         else{
@@ -83,8 +100,6 @@ public class RegisterController extends Controller {
      * @return true if the user forgot to fill a box
      */
     private boolean isEmpty(){
-
-
         return userName.getText().trim().isEmpty() ||
                 password.getText().trim().isEmpty() ||
                 email.getText().trim().isEmpty();
