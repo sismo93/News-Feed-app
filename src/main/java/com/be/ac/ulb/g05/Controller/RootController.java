@@ -14,7 +14,7 @@ import java.util.HashMap;
 
 /**
  * root's controller
- * @author @iyamani
+ * @author @BorsalinoK
  * @codereview @Tanvirul.Hoque
  */
 public class RootController extends Controller {
