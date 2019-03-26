@@ -71,7 +71,9 @@ public class ArticlePreviewController extends Controller {
     public void setupView() {
         this.articleTitleArea.setEditable(false);
         this.articlePreviewContentArea.setEditable(false);
+
         setArticle(articleService.getArticle());
+
         this.articleTitleArea.setText(this.articleService.getArticle().getTitle());
         this.articlePreviewContentArea.setText(this.articleService.getArticle().getArticle());
 
@@ -100,15 +102,7 @@ public class ArticlePreviewController extends Controller {
             StringSelection strSel = new StringSelection(article.getLink());
             clipboard.setContents(strSel, null);
 
-            Alert alert = new Alert(Alert.AlertType.INFORMATION);
-            alert.setTitle("Confirmation");
-            alert.setHeaderText(null);
-            alert.setContentText("Link copied");
-            alert.show();
-
-            PauseTransition delay = new PauseTransition(Duration.seconds(2));
-            delay.setOnFinished(alertEvent -> alert.close());
-            delay.play();
+            displayQuickAlert();
         });
 
         // Deletes the article from the feed
@@ -116,6 +110,21 @@ public class ArticlePreviewController extends Controller {
             articleService.deleteArticle(articleService.getArticle());
             RootController.Instance().changeView(RootController.Views.Feed);
         });
+    }
+
+    /**
+     * Displays an information that disappears within 2 seconds
+     */
+    private void displayQuickAlert() {
+        Alert alert = new Alert(Alert.AlertType.INFORMATION);
+        alert.setTitle("Confirmation");
+        alert.setHeaderText(null);
+        alert.setContentText("Link copied");
+        alert.show();
+
+        PauseTransition delay = new PauseTransition(Duration.seconds(2));
+        delay.setOnFinished(alertEvent -> alert.close());
+        delay.play();
     }
 
     /**
