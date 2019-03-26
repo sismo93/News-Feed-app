@@ -57,7 +57,7 @@ public class ArticleViewController extends Controller {
 
             // Setting the containers with their appropriate texts
             this.articleTitle.setText(this.articleService.getArticle().getTitle());
-            this.articleContent.setText(this.articleService.getArticle().getArticle());
+            this.articleContent.setText(this.articleService.getArticle().getContent());
             this.articleAuthor.setText(this.articleService.getArticle().getSource());
 
             // Puts image into the view

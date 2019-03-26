@@ -75,7 +75,7 @@ public class ArticlePreviewController extends Controller {
         setArticle(articleService.getArticle());
 
         this.articleTitleArea.setText(this.articleService.getArticle().getTitle());
-        this.articlePreviewContentArea.setText(this.articleService.getArticle().getArticle());
+        this.articlePreviewContentArea.setText(this.articleService.getArticle().getContent());
 
         // Displays full article
         this.readArticle.setOnAction(event -> {

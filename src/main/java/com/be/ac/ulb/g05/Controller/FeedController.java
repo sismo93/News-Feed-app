@@ -46,13 +46,13 @@ public class FeedController extends Controller implements Observer {
         articles.forEach(article -> {
             ImageView imageView = new ImageView();
             try {
-                saveImage(article.getDefautlThumbnail(), "file:temp-feedbuzz-v.jpg", imageView);
+                saveImage(article.getDefaultThumbnail(), "file:temp-feedbuzz-v.jpg", imageView);
             } catch (IOException e) {
                 e.printStackTrace();
             }
 
             PreviewThumbnailCell previewThumbnail = new PreviewThumbnailCell(imageView, article.getTitle(),
-                    article.getPubdate(), article.getGeolocation(),article.getSource());
+                    article.getPubDate(), article.getGeolocation(),article.getSource());
             thumbnailList.add(previewThumbnail);
         });
 

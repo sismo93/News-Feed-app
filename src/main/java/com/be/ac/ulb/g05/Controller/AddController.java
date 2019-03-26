@@ -132,9 +132,9 @@ public class AddController extends Controller {
      */
     public void ShowArticleFound() throws IOException {
         for (Article currentArticle : CurrentArticleList) {
-            currentArticle.setArticle(parserWebsite.ParserArticle(currentArticle.getLink())); // Call the parser
+            currentArticle.setContent(parserWebsite.ParserArticle(currentArticle.getLink())); // Call the parser
 
-            FixDescriptionError(currentArticle.getArticle(), currentArticle); // Change the description
+            FixDescriptionError(currentArticle.getContent(), currentArticle); // Change the description
 
             //Popup dialog window
             Alert alert = new Alert(Alert.AlertType.INFORMATION,
