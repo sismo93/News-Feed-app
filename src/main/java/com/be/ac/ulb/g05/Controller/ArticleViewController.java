@@ -78,7 +78,7 @@ public class ArticleViewController extends Controller {
      *
      * Saves the image found on the article. If there is no images, nothing will happen
      */
-    private static void saveImage(String imageUrl, String destinationFile, ImageView imageView) throws IOException {
+    public static void saveImage(String imageUrl, String destinationFile, ImageView imageView) throws IOException {
         if (!imageUrl.isEmpty()) {
             URL url = new URL(imageUrl);
             InputStream is = url.openStream();

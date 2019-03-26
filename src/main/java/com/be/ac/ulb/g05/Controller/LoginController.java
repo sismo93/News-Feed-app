@@ -15,12 +15,26 @@ import java.util.Optional;
  * @codereview @Mouscb
  */
 public class LoginController extends Controller {
-    public PasswordField passwordField;
-    public TextField userNameField;
-    private Users user;
-    private DAO<Users> usersDAO;
 
-    private Alert alert;
+    /**
+     * Password field
+     */
+    public PasswordField passwordField;
+
+    /**
+     * Username field
+     */
+    public TextField userNameField;
+
+    /**
+     * Users object
+     */
+    private Users user;
+
+    /**
+     * User DAO
+     */
+    private DAO<Users> usersDAO;
 
     /**
      * Constructor
@@ -44,7 +58,7 @@ public class LoginController extends Controller {
             RootController.Instance().changeView(RootController.Views.Menu);
         }
         else{
-            alert = new Alert(Alert.AlertType.ERROR);
+            Alert alert = new Alert(Alert.AlertType.ERROR);
             alert.setHeaderText("Error");
             alert.setContentText(" username or password not matching");
             alert.showAndWait();
