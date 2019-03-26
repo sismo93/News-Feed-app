@@ -34,61 +34,54 @@ public class FeedController extends Controller implements Observer {
      */
     public VBox articleContainer;
 
-
     /**
      * @param articles
      * Function that allow us to display the picture + the information about the article
      */
     private void pushToArticleView(ArrayList<Article> articles) {
-
         articleContainer.getChildren().clear();
 
-
-        ObservableList<PreviewThumbnailCell> names = FXCollections.observableArrayList();
-
+        ObservableList<PreviewThumbnailCell> thumbnailList = FXCollections.observableArrayList();
 
         articles.forEach(article -> {
-
-
-            ImageView iv2 = new ImageView();
+            ImageView imageView = new ImageView();
             try {
-                saveImage(article.getDefautlThumbnail(), "file:temp-feedbuzz-v.jpg", iv2);
+                saveImage(article.getDefautlThumbnail(), "file:temp-feedbuzz-v.jpg", imageView);
             } catch (IOException e) {
                 e.printStackTrace();
             }
 
-            PreviewThumbnailCell previewThumbnail = new PreviewThumbnailCell(iv2,article.getTitle(),article.getPubdate(),
-                    article.getGeolocation(),article.getSource());
-
-            names.add(previewThumbnail);
+            PreviewThumbnailCell previewThumbnail = new PreviewThumbnailCell(imageView, article.getTitle(),
+                    article.getPubdate(), article.getGeolocation(),article.getSource());
+            thumbnailList.add(previewThumbnail);
         });
-        ListView<PreviewThumbnailCell> listView = new ListView<>(names);
+
+        ListView<PreviewThumbnailCell> listView = new ListView<>(thumbnailList);
         listView.setFixedCellSize(150);
 
         listView.setCellFactory(new Callback<ListView<PreviewThumbnailCell>, ListCell<PreviewThumbnailCell>>() {
             @Override
             public ListCell<PreviewThumbnailCell> call(ListView<PreviewThumbnailCell> param) {
-                ListCell<PreviewThumbnailCell> cell = new ListCell<PreviewThumbnailCell>(){
+                return new ListCell<PreviewThumbnailCell>(){
+
                     @Override
-                    protected void updateItem(PreviewThumbnailCell pr , boolean empty){
-                        super.updateItem(pr,empty);
+                    protected void updateItem(PreviewThumbnailCell pr, boolean empty){
+                        super.updateItem(pr, empty);
+
                         if(pr != null){
                             setGraphic(pr.getImage());
                             setText(pr.getTitle() + "\n\n" +"Date : " +pr.getDate() +
                             "\n" + "Source : " + pr.getSource() + "\n" + "Localisation : " +
                             pr.getLocalisation());
                         }
-
                     }
                 };
-                return cell;
             }
         });
 
         articleContainer.getChildren().add(listView);
 
-
-        listView.getSelectionModel().selectedItemProperty().addListener((ov, oldvalue, newvalue) -> {
+        listView.getSelectionModel().selectedItemProperty().addListener((ov, oldValue, newValue) -> {
             int selectedArticleIndex = listView.getSelectionModel().getSelectedIndex();
             Article article = articles.get(selectedArticleIndex);
 
@@ -98,14 +91,6 @@ public class FeedController extends Controller implements Observer {
                 e.printStackTrace();
             }
         });
-    }
-
-
-    /**
-     * @param actionEvent Back to menu
-     */
-    public void OpenMenuView(ActionEvent actionEvent) {
-        RootController.Instance().changeView(RootController.Views.Menu);
     }
 
     @Override
@@ -124,7 +109,6 @@ public class FeedController extends Controller implements Observer {
      */
     @Override
     public void setupView() {
-
         articleService.addObserver(this);
         ArrayList<Article> articles = articleService.getArticles();
         pushToArticleView(articles);
