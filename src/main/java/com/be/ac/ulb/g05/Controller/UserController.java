@@ -13,7 +13,7 @@ public class UserController extends Controller{
 
     /**
      * Constructor
-     * @param model
+     * @param model User model
      */
     public UserController(Users model) {
         this.model = model;
@@ -21,7 +21,7 @@ public class UserController extends Controller{
 
     /**
      * Setter for username
-     * @param username
+     * @param username user's name
      */
     public void setUsername(String username) {
         model.setLogin(username);
@@ -37,7 +37,7 @@ public class UserController extends Controller{
 
     /**
      * Setter for user's password
-     * @param password
+     * @param password user's password
      */
     public void setPassword(String password) {
         model.setPassword(password);
@@ -53,7 +53,7 @@ public class UserController extends Controller{
 
     /**
      * Setter for user's email
-     * @param email
+     * @param email user email
      */
     public void setEmail(String email) {
         model.setMail(email);
