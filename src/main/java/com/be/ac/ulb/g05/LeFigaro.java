@@ -2,7 +2,7 @@ package com.be.ac.ulb.g05;
 
 import java.util.Arrays;
 
-public class LeFigaro extends WebSite {
+public class LeFigaro extends Website {
 
 
     public LeFigaro() {

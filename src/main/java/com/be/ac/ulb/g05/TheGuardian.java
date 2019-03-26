@@ -8,7 +8,7 @@ import java.util.Arrays;
  * inherited from Website, modified to match data from theGuardian site
  *
  */
-public class TheGuardian extends WebSite{
+public class TheGuardian extends Website {
 
 
     public TheGuardian(){

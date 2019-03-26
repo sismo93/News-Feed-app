@@ -7,7 +7,7 @@ import java.util.Arrays;
  * inherited from Website, modified to match data from the "LePoint" site
  *
  */
-public class LePoint extends WebSite{
+public class LePoint extends Website {
 
     public LePoint(){
 

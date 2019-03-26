@@ -36,7 +36,7 @@ public class AddController extends Controller {
     /**
      * Website object
      */
-    private WebSite webSite;
+    private Website website;
 
     /**
      * Holds a list of current articles
@@ -54,18 +54,18 @@ public class AddController extends Controller {
      * @return an Website object
      * Create the right Object for the right website
      */
-    public WebSite CreateObjectSource(String source){
+    public Website CreateObjectSource(String source){
         switch (source) {
             case "TheGuardian.co":
-                return webSite = new TheGuardian();
+                return website = new TheGuardian();
             case "Lepoint.fr":
-                return webSite = new LePoint();
+                return website = new LePoint();
             case "RTLinfo.be":
-                return webSite = new RTL();
+                return website = new RTL();
             case "LeMonde.fr":
-                return webSite = new LeMonde();
+                return website = new LeMonde();
             default:
-                return webSite = new LeFigaro();
+                return website = new LeFigaro();
         }
     }
 
@@ -74,7 +74,7 @@ public class AddController extends Controller {
      * Take the same number of article that the user want
      */
     public void AddCurrentArticleList(){
-        RSSFeedParser parser = new RSSFeedParser(webSite.getLink(CategoryBox.getSelectionModel().getSelectedItem().toString()));
+        RSSFeedParser parser = new RSSFeedParser(website.getLink(CategoryBox.getSelectionModel().getSelectedItem().toString()));
 
         ArrayList<Article> articles = parser.readRSS();
 
@@ -99,12 +99,11 @@ public class AddController extends Controller {
 
         CreateObjectSource((String) SourceArticleBox.getSelectionModel().getSelectedItem());
 
-        if (!webSite.isCategoryExist(CategoryBox.getSelectionModel().getSelectedItem().toString())){
-            Alert alert = new Alert(Alert.AlertType.INFORMATION, "This category doesnt exist on this website", ButtonType.OK);
+        if (!website.isCategoryExist(CategoryBox.getSelectionModel().getSelectedItem().toString())){
+            Alert alert = new Alert(Alert.AlertType.INFORMATION, "This category doesn't exist on this website", ButtonType.OK);
             alert.showAndWait();
             return;
         }
-
 
         AddCurrentArticleList(); // Add Article to the list
         ShowArticleFound();
@@ -117,8 +116,9 @@ public class AddController extends Controller {
      * change the description if its TheGuardian or RTLINFO
      * because these 2 websites doesnt handle the description for an article
      */
-    public void FixDescriptionError(String article,Article articleObject){
-        String source =(String) SourceArticleBox.getSelectionModel().getSelectedItem();
+    public void FixDescriptionError(String article, Article articleObject){
+        String source = (String) SourceArticleBox.getSelectionModel().getSelectedItem();
+
         if ((source.equals("TheGuardian.co")) || (source.equals("RTLinfo.be"))) {
             articleObject.setDescription(article.substring(0,100));
         }
@@ -153,24 +153,15 @@ public class AddController extends Controller {
             if (result.get() == importButton) {
                 // ... user chose OK so we add the articleObject to the List
                 currentArticle.setImage(parserWebsite.ParserImage(currentArticle.getLink())); //Add Picture
-                currentArticle.setDefaultThumbnail(webSite.getDefaultThumbnail()); // add thumbnail
-                currentArticle.setSource(webSite.getSourceArticle()); // set the Source
-                currentArticle.setGeolocation(webSite.getGeolocation());
-
+                currentArticle.setDefaultThumbnail(website.getDefaultThumbnail()); // add thumbnail
+                currentArticle.setSource(website.getSourceArticle()); // set the Source
+                currentArticle.setGeolocation(website.getGeolocation());
 
                 articleService.addArticle(currentArticle);
             }
         }
         CurrentArticleList.clear();
 
-    }
-
-    /**
-     * @param actionEvent
-     * Open the Menu View
-     */
-    public void OpenMenuView(ActionEvent actionEvent) {
-        RootController.Instance().changeView(RootController.Views.Menu);
     }
 
     @Override
@@ -222,7 +213,6 @@ public class AddController extends Controller {
         ArticleNumberBox.setItems(articleNumberList);
 
         CategoryBox.setItems(categoryList);
-
 
         SourceArticleBox.setItems(sourceArticle);
 

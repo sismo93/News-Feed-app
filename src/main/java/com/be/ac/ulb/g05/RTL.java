@@ -8,7 +8,7 @@ import java.util.Arrays;
  * inherited from Website, modified to match data from RTL site
  *
  */
-public class RTL extends WebSite {
+public class RTL extends Website {
 
     public RTL(){
         super.urlList= Arrays.asList("https://feeds.feedburner.com/rtlinfo/belgique",

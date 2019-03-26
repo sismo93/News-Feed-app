@@ -11,7 +11,7 @@ import java.util.Map;
  * Class that represent a website.
  * will be used for inheritance
  */
-public class WebSite {
+public class Website {
     private Map<String, String> categoryDict =new HashMap<>();
     protected List<String> urlList;
     protected List<String> categoryList;
