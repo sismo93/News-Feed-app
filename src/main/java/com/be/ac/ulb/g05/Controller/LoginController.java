@@ -1,11 +1,19 @@
 package com.be.ac.ulb.g05.Controller;
 
 import com.be.ac.ulb.g05.Model.*;
+import com.jfoenix.controls.JFXButton;
+import com.jfoenix.controls.JFXDialog;
+import com.jfoenix.controls.JFXDialogLayout;
+import javafx.event.ActionEvent;
+import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.scene.control.Alert;
 import javafx.scene.control.ButtonType;
 import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
+import javafx.scene.layout.StackPane;
+import javafx.scene.text.Text;
+
 import java.util.Optional;
 
 
@@ -19,12 +27,17 @@ public class LoginController extends Controller {
     /**
      * Password field
      */
+    @FXML
     public PasswordField passwordField;
 
     /**
      * Username field
      */
+    @FXML
     public TextField userNameField;
+
+    @FXML
+    public StackPane stackPane;
 
     /**
      * Users object
@@ -58,11 +71,22 @@ public class LoginController extends Controller {
             RootController.Instance().changeView(RootController.Views.Menu);
         }
         else{
-            Alert alert = new Alert(Alert.AlertType.ERROR);
-            alert.setHeaderText("Error");
-            alert.setContentText(" username or password not matching");
-            alert.showAndWait();
+            JFXDialogLayout content = new JFXDialogLayout();
+            content.setHeading(new Text("Error"));
+            content.setBody(new Text("Credentials do not match database entry"));
 
+            JFXDialog dialog = new JFXDialog(stackPane, content, JFXDialog.DialogTransition.CENTER);
+            JFXButton button = new JFXButton("Ok");
+
+            button.setOnAction(new EventHandler<ActionEvent>() {
+                @Override
+                public void handle(ActionEvent event) {
+                    dialog.close();
+                }
+            });
+
+            content.setActions(button);
+            dialog.show();
         }
     }
 
@@ -70,7 +94,7 @@ public class LoginController extends Controller {
      * Displays the "Terms & Conditions" pop up
      */
     @FXML
-    private void OnRegisterButtonPressed(){
+    private void OnRegisterButtonPressed() {
         RegisterReglement();
     }
 
@@ -78,23 +102,36 @@ public class LoginController extends Controller {
      * Defines the "Terms & Conditions" pop up
      */
     public void RegisterReglement(){
-        Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
-        alert.setTitle("Reglement");
-        alert.setHeaderText("Do you accept terms and conditions");
-        alert.setContentText(" Les présentes « conditions générales d'utilisation » ont pour objet" +
-                " l'encadrement juridique des modalités de mise à disposition des services du site FeedBuzz" +
+        JFXDialogLayout content = new JFXDialogLayout();
+        content.setHeading(new Text("Règlement"));
+        content.setBody(new Text("Les présentes « conditions générales\n d'utilisation » ont pour objet" +
+                " l'encadrement juridique\n des modalités de mise à disposition\n des services du site FeedBuzz" +
                 " et leur utilisation par « l'Utilisateur ».\n" +
-                "Les conditions générales d'utilisation doivent être acceptées par" +
-                " tout Utilisateur souhaitant accéder au site. Elles constituent " +
-                "le contrat entre le site et l'Utilisateur. L’accès au site par " +
-                "l’Utilisateur signifie " +
-                "son acceptation des présentes " +
-                "conditions générales d’utilisation.");
+                "Les conditions générales\n d'utilisation doivent être acceptées par" +
+                " tout Utilisateur souhaitant accéder\n au site. Elles constituent " +
+                "le contrat entre le site et l'Utilisateur.\n L’accès au site par " +
+                "l’Utilisateur signifie son acceptation\n des présentes " +
+                "conditions générales d’utilisation."));
 
-        Optional<ButtonType> result = alert.showAndWait();
-        if (result.get() == ButtonType.OK){
-            RootController.Instance().changeView(RootController.Views.Register);
-        }
+        JFXDialog dialog = new JFXDialog(stackPane, content, JFXDialog.DialogTransition.CENTER);
+        JFXButton acceptButton = new JFXButton("Accept");
+        JFXButton declineButton = new JFXButton("Decline");
+
+        acceptButton.setOnAction(new EventHandler<ActionEvent>() {
+            @Override
+            public void handle(ActionEvent event) {
+                RootController.Instance().changeView(RootController.Views.Register);
+            }
+        });
+
+        declineButton.setOnAction(new EventHandler<ActionEvent>() {
+            @Override
+            public void handle(ActionEvent event) {
+                dialog.close();
+            }
+        });
+        content.setActions(acceptButton, declineButton);
+        dialog.show();
     }
 
     @Override

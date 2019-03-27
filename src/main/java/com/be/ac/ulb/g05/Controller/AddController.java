@@ -3,11 +3,17 @@ package com.be.ac.ulb.g05.Controller;
 
 import com.be.ac.ulb.g05.*;
 import com.be.ac.ulb.g05.Model.*;
+import com.jfoenix.controls.JFXButton;
+import com.jfoenix.controls.JFXDialog;
+import com.jfoenix.controls.JFXDialogLayout;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
+import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.scene.control.*;
+import javafx.scene.layout.StackPane;
+import javafx.scene.text.Text;
 
 import java.io.IOException;
 import java.util.ArrayList;
@@ -32,6 +38,8 @@ public class AddController extends Controller {
     public Button AddButton;
     @FXML
     public ComboBox SourceArticleBox;
+    @FXML
+    public StackPane stackPane;
 
     /**
      * Website object
@@ -92,16 +100,14 @@ public class AddController extends Controller {
         if(CategoryBox.getSelectionModel().isEmpty() ||
                 ArticleNumberBox.getSelectionModel().isEmpty()
                 || SourceArticleBox.getSelectionModel().isEmpty()) {
-            Alert alert = new Alert(Alert.AlertType.INFORMATION, "You have to choose", ButtonType.OK);
-            alert.showAndWait();
+            showAlert("A selection is empty, please fill it", 0, null);
             return;
         }
 
         CreateObjectSource((String) SourceArticleBox.getSelectionModel().getSelectedItem());
 
         if (!website.isCategoryExist(CategoryBox.getSelectionModel().getSelectedItem().toString())){
-            Alert alert = new Alert(Alert.AlertType.INFORMATION, "This category doesn't exist on this website", ButtonType.OK);
-            alert.showAndWait();
+            showAlert("This category does not exist on this website. Please choose another.", 0, null);
             return;
         }
 
@@ -133,35 +139,10 @@ public class AddController extends Controller {
     public void ShowArticleFound() throws IOException {
         for (Article currentArticle : CurrentArticleList) {
             currentArticle.setContent(parserWebsite.ParserArticle(currentArticle.getLink())); // Call the parser
-
             FixDescriptionError(currentArticle.getContent(), currentArticle); // Change the description
-
-            //Popup dialog window
-            Alert alert = new Alert(Alert.AlertType.INFORMATION,
-                    currentArticle.getDescription() + " ...",
-                    ButtonType.OK, ButtonType.CANCEL);
-            //Setup dialog window controls
-            ButtonType importButton = new ButtonType("Import");
-            ButtonType cancelButton = new ButtonType("Cancel", ButtonBar.ButtonData.CANCEL_CLOSE);
-
-            alert.getButtonTypes().setAll(importButton, cancelButton);
-            alert.setTitle("Article Preview ");
-            alert.setHeaderText(currentArticle.getTitle());
-
-            Optional<ButtonType> result = alert.showAndWait();
-
-            if (result.get() == importButton) {
-                // ... user chose OK so we add the articleObject to the List
-                currentArticle.setImage(parserWebsite.ParserImage(currentArticle.getLink())); //Add Picture
-                currentArticle.setDefaultThumbnail(website.getDefaultThumbnail()); // add thumbnail
-                currentArticle.setSource(website.getSourceArticle()); // set the Source
-                currentArticle.setGeolocation(website.getGeolocation());
-
-                articleService.addArticle(currentArticle);
-            }
+            showAlert(currentArticle.getDescription(), 1, currentArticle);
         }
         CurrentArticleList.clear();
-
     }
 
     @Override
@@ -216,5 +197,59 @@ public class AddController extends Controller {
 
         SourceArticleBox.setItems(sourceArticle);
 
+    }
+
+    public void showAlert(String message, int flag, Article article) {
+
+        JFXDialogLayout content = new JFXDialogLayout();
+        content.setHeading(new Text("Information"));
+        content.setBody(new Text(message));
+        JFXDialog dialog = new JFXDialog(stackPane, content, JFXDialog.DialogTransition.CENTER);
+
+        if (flag == 0) {
+            JFXButton button = new JFXButton("Ok");
+            button.setOnAction(new EventHandler<ActionEvent>() {
+                @Override
+                public void handle(ActionEvent event) {
+                    dialog.close();
+                }
+            });
+
+            content.setActions(button);
+            dialog.show();
+        } else if (flag == 1) {
+            JFXButton importButton = new JFXButton("Import");
+            JFXButton cancelButton = new JFXButton("Cancel");
+
+            importButton.setOnAction(new EventHandler<ActionEvent>() {
+                @Override
+                public void handle(ActionEvent event) {
+                    try {
+                        importWebsite(article);
+                        dialog.close();
+                    } catch (IOException e) {
+                        e.printStackTrace();
+                    }
+                }
+            });
+
+            cancelButton.setOnAction(new EventHandler<ActionEvent>() {
+                @Override
+                public void handle(ActionEvent event) {
+                    dialog.close();
+                }
+            });
+            content.setActions(importButton, cancelButton);
+            dialog.show();
+        }
+    }
+
+    public void importWebsite(Article article) throws IOException {
+        article.setImage(parserWebsite.ParserImage(article.getLink())); //Add Picture
+        article.setDefaultThumbnail(website.getDefaultThumbnail()); // add thumbnail
+        article.setSource(website.getSourceArticle()); // set the Source
+        article.setGeolocation(website.getGeolocation());
+
+        articleService.addArticle(article);
     }
 }
