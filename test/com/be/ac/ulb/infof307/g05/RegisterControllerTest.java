@@ -60,7 +60,7 @@ public class RegisterControllerTest extends ApplicationTest {
     public void isUsernameEmpty () {
         clickOn("#userName");
         write("username");
-        assertEquals(controller.userName.getText(),"username");
+        assertEquals(controller.username.getText(),"username");
     }
 
     /**
