@@ -2,7 +2,6 @@
 
 <?import com.jfoenix.controls.*?>
 <?import javafx.scene.text.*?>
-<?import java.lang.*?>
 <?import javafx.geometry.*?>
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
