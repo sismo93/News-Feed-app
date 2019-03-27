@@ -25,13 +25,13 @@ public class AddController extends Controller {
      * Controls elements displayed on screen
      */
     @FXML
-    public ChoiceBox ArticleNumberBox;
+    public ComboBox ArticleNumberBox;
     @FXML
-    public ChoiceBox CategoryBox;
+    public ComboBox CategoryBox;
     @FXML
     public Button AddButton;
     @FXML
-    public ChoiceBox SourceArticleBox;
+    public ComboBox SourceArticleBox;
 
     /**
      * Website object

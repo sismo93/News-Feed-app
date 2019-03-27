@@ -2,6 +2,7 @@ package com.be.ac.ulb.g05.Controller;
 
 import javafx.application.Platform;
 import javafx.fxml.FXML;
+import javafx.scene.control.Label;
 import javafx.scene.control.TextArea;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
@@ -26,7 +27,7 @@ public class ArticleViewController extends Controller {
     @FXML
     public HBox titleContainer;
     @FXML
-    public TextArea articleTitle;
+    public Label articleTitle;
 
     @FXML
     public HBox imageContainer;
@@ -34,14 +35,12 @@ public class ArticleViewController extends Controller {
     public ImageView articleImage;
 
     @FXML
-    public HBox articleContentContainer;
-    @FXML
     public TextArea articleContent;
 
     @FXML
     public HBox authorContainer;
     @FXML
-    public TextArea articleAuthor;
+    public Label articleAuthor;
 
     /**
      * Sets up the view
@@ -49,12 +48,7 @@ public class ArticleViewController extends Controller {
     @Override
     public void setupView() {
         Platform.runLater(() -> {
-
-            // Setting up the areas to non-editable
-            this.articleTitle.setEditable(false);
             this.articleContent.setEditable(false);
-            this.articleAuthor.setEditable(false);
-
             // Setting the containers with their appropriate texts
             this.articleTitle.setText(this.articleService.getArticle().getTitle());
             this.articleContent.setText(this.articleService.getArticle().getContent());

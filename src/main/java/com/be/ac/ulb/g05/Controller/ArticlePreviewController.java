@@ -3,11 +3,12 @@ package com.be.ac.ulb.g05.Controller;
 import com.be.ac.ulb.g05.Model.Article;
 import com.be.ac.ulb.g05.Model.ArticleService;
 import javafx.animation.PauseTransition;
-import javafx.event.ActionEvent;
-import javafx.event.EventHandler;
+import javafx.application.Platform;
 import javafx.fxml.FXML;
+import javafx.fxml.Initializable;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
+import javafx.scene.control.Label;
 import javafx.scene.control.TextArea;
 import javafx.scene.layout.HBox;
 import javafx.util.Duration;
@@ -18,6 +19,7 @@ import java.awt.datatransfer.StringSelection;
 import java.io.IOException;
 import java.net.URISyntaxException;
 import java.net.URL;
+import java.util.ResourceBundle;
 
 /**
  * Article Preview controller
@@ -36,30 +38,25 @@ public class ArticlePreviewController extends Controller {
     @FXML
     public HBox articleTitleContainer;
     @FXML
-    public TextArea articleTitleArea;
+    public Label articleTitleArea;
 
     @FXML
     public HBox articlePreviewContentContainer;
     @FXML
-    public TextArea articlePreviewContentArea;
+    public Label articlePreviewContentArea;
 
     @FXML
-    public HBox readArticleContainer;
+    public HBox buttonsContainer;
+
     @FXML
     public Button readArticle;
 
     @FXML
-    public HBox openLinkContainer;
-    @FXML
     public Button openLink;
 
     @FXML
-    public HBox copyLinkContainer;
-    @FXML
     public Button copyLink;
 
-    @FXML
-    public HBox deleteFromFeedContainer;
     @FXML
     public Button deleteFromFeed;
 
@@ -69,46 +66,45 @@ public class ArticlePreviewController extends Controller {
      */
     @Override
     public void setupView() {
-        this.articleTitleArea.setEditable(false);
-        this.articlePreviewContentArea.setEditable(false);
+        Platform.runLater(() -> {
+            setArticle(articleService.getArticle());
+            this.articleTitleArea.setText(this.articleService.getArticle().getTitle());
+            this.articlePreviewContentArea.setText(this.articleService.getArticle().getContent());
 
-        setArticle(articleService.getArticle());
+            // Displays full article
+            this.readArticle.setOnAction(event -> {
+                try {
+                    displayArticle(articleService.getArticle());
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
+            });
 
-        this.articleTitleArea.setText(this.articleService.getArticle().getTitle());
-        this.articlePreviewContentArea.setText(this.articleService.getArticle().getContent());
+            // Opens the link in a new browser
+            this.openLink.setOnAction(event -> {
+                try {
+                    Desktop.getDesktop().browse(new URL(article.getLink()).toURI());
+                } catch (IOException | URISyntaxException e) {
+                    e.printStackTrace();
+                }
+            });
 
-        // Displays full article
-        this.readArticle.setOnAction(event -> {
-            try {
-                displayArticle(articleService.getArticle());
-            } catch (IOException e) {
-                e.printStackTrace();
-            }
-        });
+            // Copies the link to the clipboard
+            this.copyLink.setOnAction(event -> {
+                Toolkit toolkit = Toolkit.getDefaultToolkit();
+                Clipboard clipboard = toolkit.getSystemClipboard();
+                StringSelection strSel = new StringSelection(article.getLink());
+                clipboard.setContents(strSel, null);
 
-        // Opens the link in a new browser
-        this.openLink.setOnAction(event -> {
-            try {
-                Desktop.getDesktop().browse(new URL(article.getLink()).toURI());
-            } catch (IOException | URISyntaxException e) {
-                e.printStackTrace();
-            }
-        });
+                displayQuickAlert();
+            });
 
-        // Copies the link to the clipboard
-        this.copyLink.setOnAction(event -> {
-            Toolkit toolkit = Toolkit.getDefaultToolkit();
-            Clipboard clipboard = toolkit.getSystemClipboard();
-            StringSelection strSel = new StringSelection(article.getLink());
-            clipboard.setContents(strSel, null);
+            // Deletes the article from the feed
+            this.deleteFromFeed.setOnAction(event -> {
+                articleService.deleteArticle(articleService.getArticle());
+                RootController.Instance().changeView(RootController.Views.Feed);
+            });
 
-            displayQuickAlert();
-        });
-
-        // Deletes the article from the feed
-        this.deleteFromFeed.setOnAction(event -> {
-            articleService.deleteArticle(articleService.getArticle());
-            RootController.Instance().changeView(RootController.Views.Feed);
         });
     }
 
