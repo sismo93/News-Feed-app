@@ -1,6 +1,8 @@
 package com.be.ac.ulb.g05;
 
 
+import org.jsoup.Connection;
+import org.jsoup.HttpStatusException;
 import org.jsoup.Jsoup;
 import org.jsoup.nodes.Document;
 import org.jsoup.nodes.Element;

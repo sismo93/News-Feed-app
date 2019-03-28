@@ -35,7 +35,7 @@ public class FeedController extends Controller implements Observer {
     public VBox articleContainer;
 
     /**
-     * @param articles
+     * @param articles list of articles
      * Function that allow us to display the picture + the information about the article
      */
     private void pushToArticleView(ArrayList<Article> articles) {
@@ -93,6 +93,10 @@ public class FeedController extends Controller implements Observer {
         });
     }
 
+    /**
+     * Sets up the article service
+     * @param articleService article service
+     */
     @Override
     public void setArticleService(ArticleService articleService) {
         super.setArticleService(articleService);
@@ -114,12 +118,22 @@ public class FeedController extends Controller implements Observer {
         pushToArticleView(articles);
     }
 
+    /**
+     * Updates the view
+     * @param observable observable
+     * @param o object type
+     */
     @Override
     public void update(Observable observable, Object o) {
         ArrayList<Article> articles = articleService.getArticles();
         pushToArticleView(articles);
     }
 
+    /**
+     * Displays article preview
+     * @param article Article object
+     * @throws IOException if article cannot be read
+     */
     public void displayArticlePreview(Article article) throws IOException {
         articleService.setArticle(article);
         Router.Instance().changeView(Views.Preview);

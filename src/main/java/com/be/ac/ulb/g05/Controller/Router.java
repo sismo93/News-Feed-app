@@ -6,19 +6,39 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.Node;
 import javafx.scene.control.Alert;
 import javafx.scene.control.ButtonType;
-import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.BorderPane;
-
 import java.io.IOException;
 import java.util.HashMap;
 
+/**
+ * Router class
+ */
 public class Router {
 
+    /**
+     * FXML controls & containers
+     */
     @FXML
     private BorderPane root;
+
+    /**
+     * Current view node
+     */
     private Node currentView;
+
+    /**
+     * Router instance
+     */
     private static Router instance;
+
+    /**
+     * HashMap of Routes
+     */
     private HashMap<String, Node> routes;
+
+    /**
+     * Article service
+     */
     private ArticleService articleService;
 
     /**
@@ -32,7 +52,6 @@ public class Router {
         Menu,
         Preview,
         Register,
-        Root,
     }
 
 
@@ -44,6 +63,10 @@ public class Router {
     }
 
 
+    /**
+     * Router instance init
+     * @return router instance
+     */
     public static Router Instance() {
         if (instance == null) {
             instance = new Router();
@@ -93,10 +116,13 @@ public class Router {
         return view;
     }
 
+    /**
+     * Sets up the article feed
+     * @param feed Article service
+     */
     public void setFeed(ArticleService feed) {
         this.articleService = feed;
     }
-
 
     /**
      * Changes XML view
@@ -128,7 +154,6 @@ public class Router {
         }
 
         getRoot().setCenter(currentView);
-
     }
 
 

@@ -7,7 +7,6 @@ import javafx.scene.control.TextArea;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.HBox;
-
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.InputStream;

@@ -7,14 +7,10 @@ import com.jfoenix.controls.JFXDialogLayout;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.fxml.FXML;
-import javafx.scene.control.Alert;
-import javafx.scene.control.ButtonType;
 import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.StackPane;
 import javafx.scene.text.Text;
-
-import java.util.Optional;
 import com.be.ac.ulb.g05.Controller.Router.*;
 
 
@@ -79,12 +75,7 @@ public class LoginController extends Controller {
             JFXDialog dialog = new JFXDialog(stackPane, content, JFXDialog.DialogTransition.CENTER);
             JFXButton button = new JFXButton("Ok");
 
-            button.setOnAction(new EventHandler<ActionEvent>() {
-                @Override
-                public void handle(ActionEvent event) {
-                    dialog.close();
-                }
-            });
+            button.setOnAction(event -> dialog.close());
 
             content.setActions(button);
             dialog.show();
@@ -118,23 +109,17 @@ public class LoginController extends Controller {
         JFXButton acceptButton = new JFXButton("Accept");
         JFXButton declineButton = new JFXButton("Decline");
 
-        acceptButton.setOnAction(new EventHandler<ActionEvent>() {
-            @Override
-            public void handle(ActionEvent event) {
-                Router.Instance().changeView(RootController.Views.Register);
-            }
-        });
+        acceptButton.setOnAction(event -> Router.Instance().changeView(Views.Register));
 
-        declineButton.setOnAction(new EventHandler<ActionEvent>() {
-            @Override
-            public void handle(ActionEvent event) {
-                dialog.close();
-            }
-        });
+        declineButton.setOnAction(event -> dialog.close());
         content.setActions(acceptButton, declineButton);
         dialog.show();
     }
 
+    /**
+     * Sets up the article service
+     * @param articleService article service
+     */
     @Override
     public void setArticleService(ArticleService articleService) {
         super.setArticleService(articleService);

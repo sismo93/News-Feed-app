@@ -1,29 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import javafx.scene.text.*?>
-<?import com.jfoenix.controls.*?>
-<?import javafx.geometry.*?>
-<?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
 
 <BorderPane prefHeight="720.0" prefWidth="1280.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.be.ac.ulb.g05.Controller.RootController">
-    <top>
-        <AnchorPane fx:id="topPane" prefHeight="56.0" prefWidth="600.0" style="-fx-background-color: #eeeeee;" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0" BorderPane.alignment="CENTER">
-            <children>
-            <JFXButton buttonType="RAISED" layoutX="1167.0" layoutY="15.0" onAction="#OpenMenuView" prefHeight="31.0" prefWidth="100.0" ripplerFill="WHITE" style="-fx-background-color: #2196f3; -fx-background-radius: 20;" text="MENU" textAlignment="CENTER" textFill="WHITE">
-               <font>
-                  <Font name="System Bold" size="15.0" />
-               </font></JFXButton>
-            <JFXButton buttonType="RAISED" layoutX="1045.0" layoutY="15.0" onAction="#OnDisconnect" prefHeight="31.0" prefWidth="101.0" ripplerFill="WHITE" style="-fx-background-color: #b71c1c; -fx-background-radius: 20;" text="LOG OFF" textFill="WHITE" />
-            <Label layoutX="14.0" layoutY="9.0" prefHeight="15.0" prefWidth="297.0" text="Feedbuzz">
-               <font>
-                  <Font name="Arial Bold" size="26.0" />
-               </font>
-            </Label>
-            </children>
-            <BorderPane.margin>
-                <Insets />
-            </BorderPane.margin>
-        </AnchorPane>
-    </top>
 </BorderPane>

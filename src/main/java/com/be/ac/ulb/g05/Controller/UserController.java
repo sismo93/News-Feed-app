@@ -68,6 +68,10 @@ public class UserController extends Controller{
     }
 
 
+    /**
+     * Sets up the article service
+     * @param articleService Article service
+     */
     @Override
     public void setArticleService(ArticleService articleService) {
         super.setArticleService(articleService);

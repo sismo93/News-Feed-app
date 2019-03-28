@@ -1,24 +1,20 @@
 package com.be.ac.ulb.g05.Controller;
 
-import com.be.ac.ulb.g05.Model.*;
-import com.jfoenix.controls.JFXAlert;
+import com.be.ac.ulb.g05.Controller.Router.Views;
+import com.be.ac.ulb.g05.Model.ArticleService;
+import com.be.ac.ulb.g05.Model.DAO;
+import com.be.ac.ulb.g05.Model.Users;
+import com.be.ac.ulb.g05.Model.UsersDAO;
 import com.jfoenix.controls.JFXButton;
 import com.jfoenix.controls.JFXDialog;
 import com.jfoenix.controls.JFXDialogLayout;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.fxml.FXML;
-import javafx.scene.Scene;
-import javafx.scene.control.Alert;
-import javafx.scene.control.Label;
 import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
-import javafx.scene.layout.AnchorPane;
-import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.StackPane;
 import javafx.scene.text.Text;
-import javafx.stage.Stage;
-import com.be.ac.ulb.g05.Controller.Router.*;
 
 
 /**
@@ -124,12 +120,7 @@ public class RegisterController extends Controller {
 
         JFXDialog dialog = new JFXDialog(stackPane, content, JFXDialog.DialogTransition.CENTER);
         JFXButton button = new JFXButton("Ok");
-        button.setOnAction(new EventHandler<ActionEvent>() {
-            @Override
-            public void handle(ActionEvent event) {
-                dialog.close();
-            }
-        });
+        button.setOnAction(event -> dialog.close());
 
         content.setActions(button);
         dialog.show();
@@ -152,6 +143,10 @@ public class RegisterController extends Controller {
         return field1.equals(field2);
     }
 
+    /**
+     * Sets up the article service
+     * @param articleService article service
+     */
     @Override
     public void setArticleService(ArticleService articleService) {
         super.setArticleService(articleService);

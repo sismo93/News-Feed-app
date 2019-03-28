@@ -1,24 +1,22 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import java.lang.*?>
-<?import java.util.*?>
-<?import javafx.scene.*?>
+<?import javafx.scene.text.*?>
+<?import com.jfoenix.controls.*?>
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
 
-<AnchorPane xmlns="http://javafx.com/javafx"
-            xmlns:fx="http://javafx.com/fxml"
-            fx:controller="com.be.ac.ulb.g05.Controller.TopPaneViewController"
-            prefHeight="56.0" prefWidth="600.0">
-    <children>
-        <AnchorPane fx:id="topPane" prefHeight="56.0" prefWidth="600.0" style="-fx-background-color: #9C2827;"
-                    AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0"
-                    BorderPane.alignment="CENTER">
-            <children>
-                <Button layoutX="532.0" layoutY="15.0" mnemonicParsing="false" onAction="#OpenMenuView" text="Menu"/>
-                <Button layoutX="431.0" layoutY="15.0" mnemonicParsing="false" onAction="#OnDisconnect"
-                        text="Disconnect"/>
-            </children>
-        </AnchorPane>
-    </children>
+<AnchorPane prefHeight="60.0" prefWidth="1280.0" style="-fx-background-color: #e0e0e0;" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.be.ac.ulb.g05.Controller.TopPaneViewController">
+   <children>
+      <JFXButton buttonType="RAISED" layoutX="1173.0" layoutY="15.0" onAction="#OpenMenuView" prefHeight="30.0" prefWidth="100.0" ripplerFill="WHITE" style="-fx-background-color: #2196f3; -fx-background-radius: 20;" text="MENU" textFill="WHITE">
+         <font>
+            <Font name="System Bold" size="15.0" />
+         </font>
+      </JFXButton>
+      <JFXButton buttonType="RAISED" layoutX="999.0" layoutY="15.0" onAction="#OnDisconnect" prefHeight="30.0" prefWidth="150.0" ripplerFill="WHITE" style="-fx-background-color: #9C2827; -fx-background-radius: 20;" text="LOG OFF" textFill="WHITE" />
+      <Label layoutX="14.0" layoutY="10.0" prefHeight="33.0" prefWidth="168.0" text="Feed@buzz">
+         <font>
+            <Font name="Arial Bold" size="29.0" />
+         </font>
+      </Label>
+   </children>
 </AnchorPane>

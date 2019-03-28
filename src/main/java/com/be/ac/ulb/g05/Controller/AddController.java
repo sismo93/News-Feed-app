@@ -15,11 +15,9 @@ import javafx.fxml.FXML;
 import javafx.scene.control.*;
 import javafx.scene.layout.StackPane;
 import javafx.scene.text.Text;
-
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Arrays;
-import java.util.Optional;
 
 import static com.be.ac.ulb.g05.Controller.AddController.WebsiteCategory.*;
 import static com.be.ac.ulb.g05.Controller.AddController.WebsiteSource.*;
@@ -64,7 +62,7 @@ public class AddController extends Controller {
 
 
     /**
-     * Enum of different of wbesite urls
+     * Enum of different of website urls
      */
     public enum WebsiteSource {
 
@@ -369,12 +367,7 @@ public class AddController extends Controller {
 
         if (flag == 0) {
             JFXButton button = new JFXButton("Ok");
-            button.setOnAction(new EventHandler<ActionEvent>() {
-                @Override
-                public void handle(ActionEvent event) {
-                    dialog.close();
-                }
-            });
+            button.setOnAction(event -> dialog.close());
 
             content.setActions(button);
             dialog.show();
@@ -382,24 +375,16 @@ public class AddController extends Controller {
             JFXButton importButton = new JFXButton("Import");
             JFXButton cancelButton = new JFXButton("Cancel");
 
-            importButton.setOnAction(new EventHandler<ActionEvent>() {
-                @Override
-                public void handle(ActionEvent event) {
-                    try {
-                        importWebsite(article);
-                        dialog.close();
-                    } catch (IOException e) {
-                        e.printStackTrace();
-                    }
+            importButton.setOnAction(event -> {
+                try {
+                    importWebsite(article);
+                    dialog.close();
+                } catch (IOException e) {
+                    e.printStackTrace();
                 }
             });
 
-            cancelButton.setOnAction(new EventHandler<ActionEvent>() {
-                @Override
-                public void handle(ActionEvent event) {
-                    dialog.close();
-                }
-            });
+            cancelButton.setOnAction(event -> dialog.close());
             content.setActions(importButton, cancelButton);
             dialog.show();
         }
