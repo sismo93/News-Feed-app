@@ -24,6 +24,8 @@ public class Main extends Application {
         primaryStage.show();
 
         RootController.Instance().changeView(RootController.Views.Add);
+
+
     }
 
     public static void main(String[] args) {

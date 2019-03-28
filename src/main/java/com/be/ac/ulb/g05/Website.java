@@ -1,5 +1,6 @@
 package com.be.ac.ulb.g05;
 
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -20,6 +21,15 @@ public class Website {
     protected String geolocation;
 
 
+    public Website(List urls, List categories, String defaultThumbnail, String sourceArticle, String geolocation) {
+        this.categoryList = categories;
+        this.urlList = urls;
+        this.defaultThumbnail = defaultThumbnail;
+        this.sourceArticle = sourceArticle;
+        this.geolocation = geolocation;
+        this.initDico();
+    }
+
     public boolean isCategoryExist(String category){
         return categoryList.contains(category);
     }
@@ -28,7 +38,7 @@ public class Website {
      * initialize the dictionnary
      * Dict :{Category : URL }
      */
-    public void initDico(){
+    private void initDico(){
         for(int i=0;i<urlList.size();i++){
             categoryDict.put(categoryList.get(i),urlList.get(i));
         }
