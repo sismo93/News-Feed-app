@@ -1,11 +1,12 @@
 package com.be.ac.ulb.g05.Controller;
 
+
+import com.be.ac.ulb.g05.Controller.Router.*;
 import com.be.ac.ulb.g05.Model.Article;
 import com.be.ac.ulb.g05.Model.ArticleService;
 import com.be.ac.ulb.g05.PreviewThumbnailCell;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
-import javafx.event.ActionEvent;
 
 import javafx.scene.control.ListCell;
 import javafx.scene.image.ImageView;
@@ -14,7 +15,6 @@ import javafx.scene.control.ListView;
 import javafx.util.Callback;
 
 import java.io.IOException;
-
 import java.util.ArrayList;
 import java.util.Observable;
 import java.util.Observer;
@@ -122,6 +122,6 @@ public class FeedController extends Controller implements Observer {
 
     public void displayArticlePreview(Article article) throws IOException {
         articleService.setArticle(article);
-        RootController.Instance().changeView(RootController.Views.Preview);
+        Router.Instance().changeView(Views.Preview);
     }
 }

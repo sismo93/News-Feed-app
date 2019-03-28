@@ -18,6 +18,7 @@ import java.util.ArrayList;
  * Source : https://www.vogella.com/tutorials/RSSFeed/article.html
  */
 public class RSSFeedParser {
+
     static final String TITLE = "title";
     static final String DESCRIPTION = "description";
     static final String CHANNEL = "channel";

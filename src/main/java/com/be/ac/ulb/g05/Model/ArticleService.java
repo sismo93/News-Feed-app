@@ -75,4 +75,10 @@ public class ArticleService extends Observable {
     public void setArticle(Article article) {
         this.article = article;
     }
+
+    public void reset() {
+        setChanged();
+        articles.clear();
+        notifyObservers();
+    }
 }

@@ -1,8 +1,8 @@
 package com.be.ac.ulb.g05.Controller;
 
-
 import com.be.ac.ulb.g05.Model.ArticleService;
 import javafx.event.ActionEvent;
+import com.be.ac.ulb.g05.Controller.Router.*;
 
 /**
  * Controller of Menu View
@@ -18,7 +18,7 @@ public class MenuController extends Controller{
      * Switch to feed view
      */
     public void OpenFeedView(ActionEvent actionEvent) {
-        RootController.Instance().changeView(RootController.Views.Feed);
+        Router.Instance().changeView(Views.Feed);
     }
 
     /**
@@ -27,7 +27,7 @@ public class MenuController extends Controller{
      * Switch to add view
      */
     public void OpenAddView(ActionEvent actionEvent) {
-        RootController.Instance().changeView(RootController.Views.Add);
+        Router.Instance().changeView(Views.Add);
     }
 
     @Override

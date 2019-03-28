@@ -1,12 +1,11 @@
 package com.be.ac.ulb.g05;
 
-import com.be.ac.ulb.g05.Controller.RootController;
+import com.be.ac.ulb.g05.Controller.Router;
 import com.be.ac.ulb.g05.Model.ArticleService;
 import javafx.application.Application;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
-
-
+import com.be.ac.ulb.g05.Controller.Router.Views;
 
 public class Main extends Application {
 
@@ -16,14 +15,18 @@ public class Main extends Application {
         // Initialize ArticleService Service
         ArticleService feed = new ArticleService();
         // Inject Dependency
-        RootController.Instance().setFeed(feed);
+        Router.Instance().setFeed(feed);
+
+        Router.Instance().changeView(Views.Add);
 
         // Scene assignment
-        final Scene scene = new Scene( RootController.Instance().getRoot());
+        final Scene scene = new Scene( Router.Instance().getRoot());
         primaryStage.setScene(scene);
         primaryStage.show();
 
-        RootController.Instance().changeView(RootController.Views.Login);
+        Router.Instance().changeView(Views.Add);
+
+
     }
 
     public static void main(String[] args) {

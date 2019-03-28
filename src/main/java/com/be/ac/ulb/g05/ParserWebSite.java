@@ -27,7 +27,12 @@ public class ParserWebSite {
     public String ParserArticle(String url) throws IOException {
         String article="";
 
-        Document doc = Jsoup.connect(url).get();
+        Document doc;
+        if(ConnectionTest(url)) {
+            doc = Jsoup.connect(url).get();
+        } else {
+            return "";
+        }
 
         Elements body = doc.select("article");
 
@@ -53,7 +58,12 @@ public class ParserWebSite {
      * @throws IOException
      */
     public String ParserImage(String url) throws IOException {
-        Document doc = Jsoup.connect(url).get();
+        Document doc;
+        if(ConnectionTest(url)) {
+            doc = Jsoup.connect(url).get();
+        } else {
+            return "";
+        }
 
 
         ArrayList<String> listImages;
@@ -102,6 +112,15 @@ public class ParserWebSite {
 
         return pic;
     }
-
+    
+    private boolean ConnectionTest(String url) throws IOException {
+        try {
+            Connection.Response doc = Jsoup.connect(url).execute();
+        } catch (HttpStatusException e){
+            System.out.println("URL not found \n"+e);
+            return false;
+        }
+        return true;
+    }
 
 }

@@ -15,6 +15,7 @@ import javafx.scene.layout.StackPane;
 import javafx.scene.text.Text;
 
 import java.util.Optional;
+import com.be.ac.ulb.g05.Controller.Router.*;
 
 
 /**
@@ -68,7 +69,7 @@ public class LoginController extends Controller {
         user.setPassword(passwordField.getText());
 
         if (usersDAO.checkLoginAndPassword(user)){
-            RootController.Instance().changeView(RootController.Views.Menu);
+            Router.Instance().changeView(Views.Menu);
         }
         else{
             JFXDialogLayout content = new JFXDialogLayout();
@@ -120,7 +121,7 @@ public class LoginController extends Controller {
         acceptButton.setOnAction(new EventHandler<ActionEvent>() {
             @Override
             public void handle(ActionEvent event) {
-                RootController.Instance().changeView(RootController.Views.Register);
+                Router.Instance().changeView(RootController.Views.Register);
             }
         });
 

@@ -18,6 +18,7 @@ import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.StackPane;
 import javafx.scene.text.Text;
 import javafx.stage.Stage;
+import com.be.ac.ulb.g05.Controller.Router.*;
 
 
 /**
@@ -103,7 +104,7 @@ public class RegisterController extends Controller {
                 user.setMail(email.getText());
 
                 usersDAO.add(user); // Add in database
-                RootController.Instance().changeView(RootController.Views.Menu); // Go to menu
+                Router.Instance().changeView(Views.Menu); // Go to menu
             }
             else {
                 notificationMessage("notInDb");
