@@ -6,52 +6,45 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.Node;
 import javafx.scene.control.Alert;
 import javafx.scene.control.ButtonType;
+import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.BorderPane;
+
 import java.io.IOException;
 import java.util.HashMap;
 
-/**
- * Router class
- */
 public class Router {
 
-    /**
-     * FXML controls & containers
-     */
     @FXML
     private BorderPane root;
-
-    /**
-     * Current view node
-     */
     private Node currentView;
-
-    /**
-     * Router instance
-     */
     private static Router instance;
-
-    /**
-     * HashMap of Routes
-     */
     private HashMap<String, Node> routes;
-
-    /**
-     * Article service
-     */
     private ArticleService articleService;
 
     /**
      * Enum of different views
      */
-    public enum Views {
-        Add,
-        Article,
-        Feed,
-        Login,
-        Menu,
-        Preview,
-        Register,
+    public enum Views{
+        Add ("AddView.fxml"),
+        Article ("ArticleView.fxml"),
+        Feed ("FeedView.fxml"),
+        Login ("LoginFxml.fxml"),
+        Menu ("MenuView.fxml"),
+        Preview ("ArticlePreview.fxml"),
+        Register ("RegisterFxml.fxml"),
+        Root ("RootView.fxml"),
+        TopPane ("TopPaneView.fxml");
+
+        private String value;
+
+        Views(String s) {
+        }
+
+        @Override
+        public String toString() {
+            return value;
+        }
+
     }
 
 
@@ -63,10 +56,6 @@ public class Router {
     }
 
 
-    /**
-     * Router instance init
-     * @return router instance
-     */
     public static Router Instance() {
         if (instance == null) {
             instance = new Router();
@@ -118,13 +107,10 @@ public class Router {
         return view;
     }
 
-    /**
-     * Sets up the article feed
-     * @param feed Article service
-     */
     public void setFeed(ArticleService feed) {
         this.articleService = feed;
     }
+
 
     /**
      * Changes XML view
@@ -132,7 +118,7 @@ public class Router {
      * @param view window view
      */
     public void changeView(Views view) {
-
+/*
         if (view == Views.Menu) {
             currentView = loadFxml("MenuView.fxml");
         } else if (view == Views.Add) {
@@ -148,7 +134,8 @@ public class Router {
         } else if (view == Views.Preview) {
             currentView = loadFxml("ArticlePreview.fxml");
         }
-
+*/
+        currentView =loadFxml(view.toString());
         if (view == Views.Login) {
             getRoot().setTop(null);
         } else {
@@ -156,6 +143,7 @@ public class Router {
         }
 
         getRoot().setCenter(currentView);
+
     }
 
 
