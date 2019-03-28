@@ -3,8 +3,6 @@ package com.be.ac.ulb.g05.Controller;
 import com.be.ac.ulb.g05.Model.Article;
 import com.be.ac.ulb.g05.Model.ArticleService;
 import javafx.animation.PauseTransition;
-import javafx.event.ActionEvent;
-import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
@@ -18,6 +16,7 @@ import java.awt.datatransfer.StringSelection;
 import java.io.IOException;
 import java.net.URISyntaxException;
 import java.net.URL;
+import com.be.ac.ulb.g05.Controller.Router.*;
 
 /**
  * Article Preview controller
@@ -108,7 +107,7 @@ public class ArticlePreviewController extends Controller {
         // Deletes the article from the feed
         this.deleteFromFeed.setOnAction(event -> {
             articleService.deleteArticle(articleService.getArticle());
-            RootController.Instance().changeView(RootController.Views.Feed);
+            Router.Instance().changeView(Views.Feed);
         });
     }
 
@@ -142,7 +141,7 @@ public class ArticlePreviewController extends Controller {
      */
     private void displayArticle(Article article) throws IOException {
         articleService.setArticle(article);
-        RootController.Instance().changeView(RootController.Views.Article);
+        Router.Instance().changeView(Views.Article);
     }
 
     /**

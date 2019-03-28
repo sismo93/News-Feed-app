@@ -3,6 +3,7 @@ package com.be.ac.ulb.g05.Controller;
 
 import com.be.ac.ulb.g05.*;
 import com.be.ac.ulb.g05.Model.*;
+import com.be.ac.ulb.g05.Controller.Router.*;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
@@ -106,15 +107,16 @@ public class AddController extends Controller {
         if (source.equals(Guardian.source)) {
             website = new Website(
                     Arrays.asList(
-                            "https://www.lemonde.fr/m-actu/rss_full.xml",
-                            "https://www.lemonde.fr/culture/rss_full.xml",
-                            "https://www.lemonde.fr/politique/rss_full.xml",
-                            "https://www.lemonde.fr/planete/rss_full.xml",
-                            "https://www.lemonde.fr/international/rss_full.xml",
-                            "https://www.lemonde.fr/sante/rss_full.xml",
-                            "https://www.lemonde.fr/sport/rss_full.xml",
-                            "https://www.lemonde.fr/economie/rss_full.xml",
-                            "https://www.lemonde.fr/technologies/rss_full.xml"),
+                            "https://www.theguardian.com/uk/business/rss",
+                            "https://www.theguardian.com/uk/culture/rss",
+                            "https://www.theguardian.com/uk/environment/rss",
+                            "https://www.theguardian.com/uk/technology/rss",
+                            "https://www.theguardian.com/uk/sport/rss",
+                            "https://www.theguardian.com/profile/editorial/rss",
+                            "https://www.theguardian.com/lifeandstyle/health-and-wellbeing/rss",
+                            "https://www.theguardian.com/international/rss",
+                            "https://www.theguardian.com/world/rss"
+                    ),
                     Arrays.asList(
                             "Actualite",
                             "Culture",
@@ -273,7 +275,7 @@ public class AddController extends Controller {
     public void FixDescriptionError(String article, Article articleObject) {
         String source = (String) SourceArticleBox.getSelectionModel().getSelectedItem();
         if ((source.equals(Guardian.source)) || (source.equals(RTL.source))) {
-            articleObject.setDescription(article.substring(0, 100));
+            articleObject.setDescription(article.substring(0, article.length() / 10));
         }
     }
 
@@ -321,7 +323,7 @@ public class AddController extends Controller {
      * @param actionEvent Open the Menu View
      */
     public void OpenMenuView(ActionEvent actionEvent) {
-        RootController.Instance().changeView(RootController.Views.Menu);
+        Router.Instance().changeView(Views.Menu);
     }
 
     @Override

@@ -5,6 +5,7 @@ import javafx.fxml.FXML;
 import javafx.scene.control.Alert;
 import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
+import com.be.ac.ulb.g05.Controller.Router.*;
 
 
 /**
@@ -66,7 +67,7 @@ public class RegisterController extends Controller {
         else{
             if (!usersDAO.loginExist(user) && !usersDAO.mailExist(user)){
                 usersDAO.add(user); // Add in database
-                RootController.Instance().changeView(RootController.Views.Menu); // Go to menu
+                Router.Instance().changeView(Views.Menu); // Go to menu
             }
             else {
                 notificationMessage("notInDb");

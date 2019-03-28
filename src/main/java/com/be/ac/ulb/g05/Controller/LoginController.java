@@ -7,6 +7,7 @@ import javafx.scene.control.ButtonType;
 import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
 import java.util.Optional;
+import com.be.ac.ulb.g05.Controller.Router.*;
 
 
 /**
@@ -55,7 +56,7 @@ public class LoginController extends Controller {
         user.setPassword(passwordField.getText());
 
         if (usersDAO.checkLoginAndPassword(user)){
-            RootController.Instance().changeView(RootController.Views.Menu);
+            Router.Instance().changeView(Views.Menu);
         }
         else{
             Alert alert = new Alert(Alert.AlertType.ERROR);
@@ -93,7 +94,9 @@ public class LoginController extends Controller {
 
         Optional<ButtonType> result = alert.showAndWait();
         if (result.get() == ButtonType.OK){
-            RootController.Instance().changeView(RootController.Views.Register);
+            Router.Instance().changeView(Views.Register);
+
+
         }
     }
 
