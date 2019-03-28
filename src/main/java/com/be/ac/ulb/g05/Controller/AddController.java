@@ -251,14 +251,14 @@ public class AddController extends Controller {
         if (CategoryBox.getSelectionModel().isEmpty()
                 || ArticleNumberBox.getSelectionModel().isEmpty()
                 || SourceArticleBox.getSelectionModel().isEmpty()) {
-            showAlert("A selection is empty, please fill it", 0, null);
+            showAlert("A selection is empty, please fill it", "Information", 0, null);
             return;
         }
 
         CreateObjectSource((String) SourceArticleBox.getSelectionModel().getSelectedItem());
 
         if (!website.isCategoryExist(CategoryBox.getSelectionModel().getSelectedItem().toString())){
-            showAlert("This category does not exist on this website. Please choose another.", 0, null);
+            showAlert("This category does not exist on this website. Please choose another.", "Information", 0, null);
             return;
         }
 
@@ -291,7 +291,7 @@ public class AddController extends Controller {
         for (Article currentArticle : CurrentArticleList) {
             currentArticle.setContent(parserWebsite.ParserArticle(currentArticle.getLink())); // Call the parser
             FixDescriptionError(currentArticle.getContent(), currentArticle); // Change the description
-            showAlert(currentArticle.getDescription(), 1, currentArticle);
+            showAlert(currentArticle.getDescription(), currentArticle.getTitle(), 1, currentArticle);
         }
         CurrentArticleList.clear();
     }
@@ -358,10 +358,10 @@ public class AddController extends Controller {
 
     }
 
-    public void showAlert(String message, int flag, Article article) {
+    public void showAlert(String message, String title, int flag, Article article) {
 
         JFXDialogLayout content = new JFXDialogLayout();
-        content.setHeading(new Text("Information"));
+        content.setHeading(new Text(title));
         content.setBody(new Text(message));
         JFXDialog dialog = new JFXDialog(stackPane, content, JFXDialog.DialogTransition.CENTER);
 
