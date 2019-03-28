@@ -28,6 +28,19 @@ public class RootController extends Controller {
     private ArticleService feed;
 
     /**
+     * Enum of different views
+     */
+    public enum Views {
+        Add,
+        Article,
+        Feed,
+        Login,
+        Menu,
+        Preview,
+        Register,
+        Root,
+    }
+    /**
      * Constructor
      */
     public RootController() {
@@ -41,10 +54,8 @@ public class RootController extends Controller {
      */
     public static RootController Instance() {
         if (instance == null) {
-            //
             instance = new RootController();
-            //
-            instance.setRoot((BorderPane) instance.loadFxml("RootView.fxml"));
+            instance.changeView(Views.Root);
         }
         return instance;
     }
@@ -66,25 +77,27 @@ public class RootController extends Controller {
      */
     private Node loadFxml(String fxml) {
         Node view = null;
+
         if (routes.containsKey(fxml)) return routes.get(fxml);
 
         FXMLLoader loader = new FXMLLoader(this.getClass().getClassLoader().getResource(fxml));
 
+        System.out.println(loader.getLocation());
 
         try {
-            view = loader.load();
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
 
-        if (view != null && !fxml.equals("RootView.fxml")) {
+            view = loader.load();
 
             Controller controller = loader.getController();
             controller.setArticleService(feed);
             controller.setupView();
+
+            routes.put(fxml, view);
+
+        } catch (IOException e) {
+            e.printStackTrace();
         }
 
-        routes.put(fxml, view);
 
         return view;
     }
@@ -101,8 +114,6 @@ public class RootController extends Controller {
      */
     public void changeView(Views view) {
 
-        getRoot().setCenter(currentView);
-
         if (view == Views.Menu) {
             currentView = RootController.Instance().loadFxml("MenuView.fxml");
         } else if (view == Views.Add) {
@@ -115,8 +126,10 @@ public class RootController extends Controller {
             currentView = RootController.Instance().loadFxml("RegisterFxml.fxml");
         } else if(view == Views.Article){
             currentView = RootController.Instance().loadFxml("ArticleView.fxml");
-        }else if(view == Views.Preview){
+        } else if(view == Views.Preview){
             currentView = RootController.Instance().loadFxml("ArticlePreview.fxml");
+        } else if(view == Views.Root){
+            setRoot((BorderPane) loadFxml("RootView.fxml"));
         }
 
         if (view == Views.Login) {
@@ -138,17 +151,6 @@ public class RootController extends Controller {
         return root;
     }
 
-    /**
-     * Enum of different views
-     */
-    public enum Views {
-        Menu,
-        Add,
-        Feed,
-        Register,
-        Root,
-        Article, Preview, Login
-    }
 
     public void OpenMenuView(ActionEvent actionEvent) {
         RootController.Instance().changeView(Views.Menu);
