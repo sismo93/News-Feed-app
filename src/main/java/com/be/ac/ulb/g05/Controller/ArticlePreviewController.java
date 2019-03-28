@@ -7,10 +7,7 @@ import com.jfoenix.controls.JFXDialog;
 import com.jfoenix.controls.JFXDialogLayout;
 import javafx.animation.PauseTransition;
 import javafx.application.Platform;
-import javafx.event.ActionEvent;
-import javafx.event.EventHandler;
 import javafx.fxml.FXML;
-import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.layout.HBox;
@@ -23,6 +20,10 @@ import java.awt.datatransfer.StringSelection;
 import java.io.IOException;
 import java.net.URISyntaxException;
 import java.net.URL;
+import java.util.ArrayList;
+import java.util.Observable;
+import java.util.Observer;
+
 import com.be.ac.ulb.g05.Controller.Router.*;
 
 /**
@@ -30,7 +31,7 @@ import com.be.ac.ulb.g05.Controller.Router.*;
  * @author @iyamani
  * @codereview @vtombou
  */
-public class ArticlePreviewController extends Controller {
+public class ArticlePreviewController extends Controller implements Observer {
     /**
      * Article object
      */
@@ -61,20 +62,29 @@ public class ArticlePreviewController extends Controller {
     @FXML
     public StackPane stackPane;
 
+
+
+    @Override
+    public void setupView() {
+        articleService.addObserver(this);
+
+        pushArticleToView(articleService.getArticle());
+    }
+
     /**
      * Sets up the preview
      * Initialises the containers for title, content and buttons
      */
-    @Override
-    public void setupView() {
+
+    public void pushArticleToView(Article article) {
         Platform.runLater(() -> {
-            setArticle(articleService.getArticle());
-            this.articleTitleArea.setText(this.articleService.getArticle().getTitle());
-            this.articlePreviewContentArea.setText(this.articleService.getArticle().getContent());
+
+            this.articleTitleArea.setText(article.getTitle());
+            this.articlePreviewContentArea.setText(article.getContent());
 
             // Displays full article
             this.readArticle.setOnAction(event -> {
-                displayArticle(articleService.getArticle());
+                displayArticle(article);
             });
 
             // Opens the link in a new browser
@@ -98,7 +108,7 @@ public class ArticlePreviewController extends Controller {
 
             // Deletes the article from the feed
             this.deleteFromFeed.setOnAction(event -> {
-                articleService.deleteArticle(articleService.getArticle());
+                articleService.deleteArticle(article);
                 Router.Instance().changeView(Views.Feed);
             });
         });
@@ -138,7 +148,7 @@ public class ArticlePreviewController extends Controller {
      * @param article the article
      */
     private void displayArticle(Article article) {
-        articleService.setArticle(article);
+        articleService.selectArticle(article);
         Router.Instance().changeView(Views.Article);
     }
 
@@ -151,5 +161,10 @@ public class ArticlePreviewController extends Controller {
         super.setArticleService(articleService);
     }
 
+    @Override
+    public void update(Observable o, Object arg) {
+
+        pushArticleToView(articleService.getArticle());
+    }
 }
 

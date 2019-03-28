@@ -278,7 +278,7 @@ public class AddController extends Controller {
     public void FixDescriptionError(String article, Article articleObject) {
         String source = (String) SourceArticleBox.getSelectionModel().getSelectedItem();
         if ((source.equals(Guardian.source)) || (source.equals(RTL.source))) {
-            articleObject.setDescription(article.substring(0, article.length() / 10));
+            articleObject.setDescription(article.substring(0, (article.length()<100)? article.length() : 100));
         }
     }
 

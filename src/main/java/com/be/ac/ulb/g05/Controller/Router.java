@@ -92,10 +92,10 @@ public class Router {
      */
     private Node loadFxml(String fxml) {
         Node view = null;
-
         if (routes.containsKey(fxml)) return routes.get(fxml);
 
         FXMLLoader loader = new FXMLLoader(this.getClass().getClassLoader().getResource(fxml));
+
 
 
         try {
@@ -105,6 +105,8 @@ public class Router {
             Controller controller = loader.getController();
             controller.setArticleService(articleService);
             controller.setupView();
+
+
 
             routes.put(fxml, view);
 

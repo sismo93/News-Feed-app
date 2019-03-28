@@ -72,8 +72,10 @@ public class ArticleService extends Observable {
      * Article setter
      * @param article object
      */
-    public void setArticle(Article article) {
+    public void selectArticle(Article article) {
+        setChanged();
         this.article = article;
+        notifyObservers();
     }
 
     public void reset() {

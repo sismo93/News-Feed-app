@@ -135,7 +135,8 @@ public class FeedController extends Controller implements Observer {
      * @throws IOException if article cannot be read
      */
     public void displayArticlePreview(Article article) throws IOException {
-        articleService.setArticle(article);
+        articleService.selectArticle(article);
         Router.Instance().changeView(Views.Preview);
+
     }
 }
