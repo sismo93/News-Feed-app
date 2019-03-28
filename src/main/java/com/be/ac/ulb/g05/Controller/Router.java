@@ -105,7 +105,6 @@ public class Router {
      */
     public void changeView(Views view) {
 
-
         if (view == Views.Menu) {
             currentView = loadFxml("MenuView.fxml");
         } else if (view == Views.Add) {
@@ -122,13 +121,11 @@ public class Router {
             currentView = loadFxml("ArticlePreview.fxml");
         }
 
-
         if (view == Views.Login) {
             getRoot().setTop(null);
         } else {
             getRoot().setTop(loadFxml("TopPaneView.fxml"));
         }
-
 
         getRoot().setCenter(currentView);
 

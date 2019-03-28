@@ -17,6 +17,8 @@ public class Main extends Application {
         // Inject Dependency
         Router.Instance().setFeed(feed);
 
+        Router.Instance().changeView(Views.Add);
+
         // Scene assignment
         final Scene scene = new Scene( Router.Instance().getRoot());
         primaryStage.setScene(scene);
