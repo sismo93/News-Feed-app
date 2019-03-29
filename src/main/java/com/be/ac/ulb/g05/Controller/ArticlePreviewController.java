@@ -67,7 +67,6 @@ public class ArticlePreviewController extends Controller implements Observer {
     @Override
     public void setupView() {
         articleService.addObserver(this);
-
         pushArticleToView(articleService.getArticle());
     }
 
@@ -83,9 +82,7 @@ public class ArticlePreviewController extends Controller implements Observer {
             this.articlePreviewContentArea.setText(article.getContent());
 
             // Displays full article
-            this.readArticle.setOnAction(event -> {
-                displayArticle(article);
-            });
+            this.readArticle.setOnAction(event -> displayArticle(article));
 
             // Opens the link in a new browser
             this.openLink.setOnAction(event -> {

@@ -32,7 +32,7 @@ public class RegisterControllerTest extends ApplicationTest {
     public void start (Stage stage) throws Exception {
 
 
-        FXMLLoader loader = new FXMLLoader(RegisterControllerTest.this.getClass().getResource("RegisterFxml.fxml"));
+        FXMLLoader loader = new FXMLLoader(RegisterControllerTest.this.getClass().getResource("/RegisterFxml.fxml"));
         Parent mainNode = loader.load();
         controller = loader.getController();
         stage.setScene(new Scene(mainNode));
@@ -58,7 +58,7 @@ public class RegisterControllerTest extends ApplicationTest {
      */
     @Test
     public void isUsernameEmpty () {
-        clickOn("#userName");
+        clickOn("#username");
         write("username");
         assertEquals(controller.username.getText(),"username");
     }

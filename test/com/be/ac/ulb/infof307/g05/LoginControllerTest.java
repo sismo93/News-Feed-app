@@ -37,7 +37,7 @@ public class LoginControllerTest extends ApplicationTest {
 
         this.stage = stage;
 
-        FXMLLoader loader = new FXMLLoader(LoginControllerTest.this.getClass().getResource("LoginFxml.fxml"));
+        FXMLLoader loader = new FXMLLoader(LoginControllerTest.this.getClass().getResource("/LoginFxml.fxml"));
         Parent mainNode = loader.load();
         controller = loader.getController();
         stage.setScene(new Scene(mainNode));

@@ -1,5 +1,6 @@
-package com.be.ac.ulb.g05;
+package com.be.ac.ulb.infof307.g05;
 
+import com.be.ac.ulb.g05.ParserWebSite;
 import junit.framework.TestCase;
 import org.junit.Test;
 
