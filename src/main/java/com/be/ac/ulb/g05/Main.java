@@ -16,15 +16,14 @@ public class Main extends Application {
         ArticleService feed = new ArticleService();
         // Inject Dependency
         Router.Instance().setFeed(feed);
-
-        Router.Instance().changeView(Views.Add);
+        Router.Instance().changeView(Views.Login);
 
         // Scene assignment
         final Scene scene = new Scene( Router.Instance().getRoot());
         primaryStage.setScene(scene);
         primaryStage.show();
 
-        Router.Instance().changeView(Views.Add);
+        Router.Instance().changeView(Views.Login);
 
 
     }

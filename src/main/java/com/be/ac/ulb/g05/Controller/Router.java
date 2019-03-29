@@ -38,6 +38,7 @@ public class Router {
         private String value;
 
         Views(String s) {
+            value = s;
         }
 
         @Override
@@ -82,6 +83,7 @@ public class Router {
     private Node loadFxml(String fxml) {
         Node view = null;
         if (routes.containsKey(fxml)) return routes.get(fxml);
+
 
         FXMLLoader loader = new FXMLLoader(this.getClass().getClassLoader().getResource(fxml));
 
@@ -135,7 +137,8 @@ public class Router {
             currentView = loadFxml("ArticlePreview.fxml");
         }
 */
-        currentView =loadFxml(view.toString());
+        currentView = loadFxml(view.toString());
+
         if (view == Views.Login) {
             getRoot().setTop(null);
         } else {
