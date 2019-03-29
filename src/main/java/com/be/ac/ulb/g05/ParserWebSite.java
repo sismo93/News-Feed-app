@@ -69,7 +69,6 @@ public class ParserWebSite {
 
 
         ArrayList<String> listImages;
-        listImages = new ArrayList<String>();
 
         Elements images = doc.select("article");
         if ( url.contains("rtl") ||url.contains("Rtl") ||url.contains("RTL")){

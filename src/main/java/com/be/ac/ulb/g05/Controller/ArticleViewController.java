@@ -1,5 +1,7 @@
 package com.be.ac.ulb.g05.Controller;
 
+import com.be.ac.ulb.g05.Model.Article;
+import com.be.ac.ulb.g05.Model.ArticleService;
 import javafx.application.Platform;
 import javafx.fxml.FXML;
 import javafx.scene.control.Label;
@@ -7,18 +9,23 @@ import javafx.scene.control.TextArea;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.HBox;
+
+import javax.sound.midi.Soundbank;
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.OutputStream;
 import java.net.URL;
+import java.sql.SQLOutput;
+import java.util.Observable;
+import java.util.Observer;
 
 /**
  * Article View controller
  * @author @iyamani
  * @codereview @vtombou
  */
-public class ArticleViewController extends Controller {
+public class ArticleViewController extends Controller implements Observer {
 
     /**
      * FXML control buttons & containers
@@ -41,21 +48,30 @@ public class ArticleViewController extends Controller {
     @FXML
     public Label articleAuthor;
 
+    @Override
+    public void setupView() {
+        articleService.addObserver(this);
+
+        pushArticleToView();
+    }
+
+
     /**
      * Sets up the view
      */
-    @Override
-    public void setupView() {
+    public void pushArticleToView() {
         Platform.runLater(() -> {
+            Article article = articleService.getArticle();
             this.articleContent.setEditable(false);
             // Setting the containers with their appropriate texts
-            this.articleTitle.setText(this.articleService.getArticle().getTitle());
-            this.articleContent.setText(this.articleService.getArticle().getContent());
-            this.articleAuthor.setText(this.articleService.getArticle().getSource());
+            this.articleTitle.setText(article.getTitle());
+            this.articleContent.setText(article.getContent());
+            this.articleAuthor.setText(article.getSource());
 
             // Puts image into the view
             try {
-                saveImage(articleService.getArticle().getImage(), "file:temp-feedbuzz.jpg", this.articleImage);
+
+                saveImage(article.getImage(), "file:temp-feedbuzz.jpg", this.articleImage);
             } catch (IOException e) {
                 e.printStackTrace();
             }
@@ -72,6 +88,8 @@ public class ArticleViewController extends Controller {
      * Saves the image found on the article. If there is no images, nothing will happen
      */
     public static void saveImage(String imageUrl, String destinationFile, ImageView imageView) throws IOException {
+        System.out.println(imageUrl.isEmpty());
+        Image image = null; // usefull when there is no image to put on the article
         if (!imageUrl.isEmpty()) {
             URL url = new URL(imageUrl);
             InputStream is = url.openStream();
@@ -87,8 +105,18 @@ public class ArticleViewController extends Controller {
             is.close();
             os.close();
 
-            Image image = new Image(destinationFile);
-            imageView.setImage(image);
+            image = new Image(destinationFile);
         }
+        imageView.setImage(image);
+            
+        
+
+
+    }
+
+    @Override
+    public void update(Observable o, Object arg) {
+        pushArticleToView();
+
     }
 }
