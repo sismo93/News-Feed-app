@@ -126,9 +126,10 @@ public class ParserWebSite {
         Elements links = null;
         if (url.contains("lemonde")) {
             links = document.select("div[class=article__video-container-main]");
+            size = 7;
             if (links.size()==0){
                 links = document.select("div[class=article__video-container]");
-                size = 7;
+
             }
 
         }
