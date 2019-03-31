@@ -113,6 +113,39 @@ public class ParserWebSite {
 
         return pic;
     }
+
+    /**
+     * @param url
+     * @return a string corresponding to the url of the video
+     * @throws IOException
+     */
+    public String ParserVideo(String url) throws IOException {
+        String doc = Jsoup.connect(url).get().toString();
+        Document document = Jsoup.parse(doc);
+        int size = 0;
+        Elements links = null;
+        if (url.contains("lemonde")) {
+            links = document.select("div[class=article__video-container-main]");
+            if (links.size()==0){
+                links = document.select("div[class=article__video-container]");
+                size = 7;
+            }
+
+        }
+        else if (url.contains("theguardian")) {
+             links = document.select("div[data-media-atom-id]");
+             size = 8;
+
+        }
+        String ytLink = "";
+        Elements l = links.select("div[id~=(?)]");
+        if (l.size()!=0) {
+            ytLink = "https://www.youtube.com/watch?v=";
+            ytLink += l.attr("id").substring(size);
+        }
+        return ytLink;
+
+    }
     
     private boolean ConnectionTest(String url) throws IOException {
         try {
