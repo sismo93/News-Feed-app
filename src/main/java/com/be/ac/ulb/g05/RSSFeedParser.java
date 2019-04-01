@@ -20,16 +20,40 @@ import java.util.ArrayList;
  */
 public class RSSFeedParser {
 
+    /**
+     * Title
+     */
     static final String TITLE = "title";
+
+    /**
+     * Description
+     */
     static final String DESCRIPTION = "description";
 
+    /**
+     * Link
+     */
     static final String LINK = "link";
 
+    /**
+     * Item
+     */
     static final String ITEM = "item";
+
+    /**
+     * Publication date
+     */
     static final String PUB_DATE = "pubDate";
 
+    /**
+     * URL
+     */
     final URL url;
 
+    /**
+     * Constructor
+     * @param feedUrl feed URL
+     */
     public RSSFeedParser(String feedUrl) {
         try {
             this.url = new URL(feedUrl);
@@ -38,6 +62,10 @@ public class RSSFeedParser {
         }
     }
 
+    /**
+     * Reads the RSS feed
+     * @return an arrayList of article type
+     */
     public ArrayList<Article> readRSS() {
         Article article;
         ArrayList<Article> articles = new ArrayList<>();
@@ -51,7 +79,6 @@ public class RSSFeedParser {
         InputStream in;
 
         try {
-
             inputFactory = XMLInputFactory.newInstance();
             // Setup a new eventReader
             in = read();
@@ -95,6 +122,13 @@ public class RSSFeedParser {
         return articles;
     }
 
+    /**
+     * returns the character data
+     * @param event XML event
+     * @param eventReader Event reader
+     * @return the character data
+     * @throws XMLStreamException if exception occurs
+     */
     private String getCharacterData(XMLEvent event, XMLEventReader eventReader)
             throws XMLStreamException {
         String result = "";
@@ -105,6 +139,10 @@ public class RSSFeedParser {
         return result;
     }
 
+    /**
+     * Input stream
+     * @return url
+     */
     private InputStream read() {
         try {
             return url.openStream();

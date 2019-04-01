@@ -78,6 +78,9 @@ public class ArticleService extends Observable {
         notifyObservers();
     }
 
+    /**
+     * Clears all articles from feed
+     */
     public void reset() {
         setChanged();
         articles.clear();

@@ -6,9 +6,7 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.Node;
 import javafx.scene.control.Alert;
 import javafx.scene.control.ButtonType;
-import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.BorderPane;
-
 import java.io.IOException;
 import java.util.HashMap;
 
@@ -16,9 +14,25 @@ public class Router {
 
     @FXML
     private BorderPane root;
+
+    /**
+     * the current View
+     */
     private Node currentView;
+
+    /**
+     * Views router
+     */
     private static Router instance;
+
+    /**
+     * HashMap of nodes & their view
+     */
     private HashMap<String, Node> routes;
+
+    /**
+     * Article service
+     */
     private ArticleService articleService;
 
     /**
@@ -120,23 +134,6 @@ public class Router {
      * @param view window view
      */
     public void changeView(Views view) {
-/*
-        if (view == Views.Menu) {
-            currentView = loadFxml("MenuView.fxml");
-        } else if (view == Views.Add) {
-            currentView = loadFxml("AddView.fxml");
-        } else if (view == Views.Login) {
-            currentView = loadFxml("LoginFxml.fxml");
-        } else if (view == Views.Feed) {
-            currentView = loadFxml("FeedView.fxml");
-        } else if (view == Views.Register) {
-            currentView = loadFxml("RegisterFxml.fxml");
-        } else if (view == Views.Article) {
-            currentView = loadFxml("ArticleView.fxml");
-        } else if (view == Views.Preview) {
-            currentView = loadFxml("ArticlePreview.fxml");
-        }
-*/
         currentView = loadFxml(view.toString());
 
         if (view == Views.Login) {

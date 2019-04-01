@@ -20,10 +20,8 @@ import java.awt.datatransfer.StringSelection;
 import java.io.IOException;
 import java.net.URISyntaxException;
 import java.net.URL;
-import java.util.ArrayList;
 import java.util.Observable;
 import java.util.Observer;
-
 import com.be.ac.ulb.g05.Controller.Router.*;
 
 /**
@@ -63,7 +61,9 @@ public class ArticlePreviewController extends Controller implements Observer {
     public StackPane stackPane;
 
 
-
+    /**
+     * Sets up the view
+     */
     @Override
     public void setupView() {
         articleService.addObserver(this);
@@ -74,7 +74,6 @@ public class ArticlePreviewController extends Controller implements Observer {
      * Sets up the preview
      * Initialises the containers for title, content and buttons
      */
-
     public void pushArticleToView(Article article) {
         Platform.runLater(() -> {
 
@@ -158,9 +157,11 @@ public class ArticlePreviewController extends Controller implements Observer {
         super.setArticleService(articleService);
     }
 
+    /**
+     * Updates the feed
+     */
     @Override
     public void update(Observable o, Object arg) {
-
         pushArticleToView(articleService.getArticle());
     }
 }

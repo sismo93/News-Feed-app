@@ -147,7 +147,13 @@ public class ParserWebSite {
         return ytLink;
 
     }
-    
+
+    /**
+     * Tests connection
+     * @param url internet url
+     * @return true if connection is good, false otherwise
+     * @throws IOException if problem occurs
+     */
     private boolean ConnectionTest(String url) throws IOException {
         try {
             Connection.Response doc = Jsoup.connect(url).execute();

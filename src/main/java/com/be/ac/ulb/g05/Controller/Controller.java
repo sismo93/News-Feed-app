@@ -9,12 +9,22 @@ import com.be.ac.ulb.g05.Model.ArticleService;
  */
 public abstract class Controller  {
 
+    /**
+     * Article service
+     */
     protected ArticleService articleService;
 
+    /**
+     * Sets the article service
+     * @param articleService article service
+     */
     public void setArticleService(ArticleService articleService){
         this.articleService = articleService;
     }
 
+    /**
+     * Sets up the view
+     */
     public void setupView(){ }
 
 }

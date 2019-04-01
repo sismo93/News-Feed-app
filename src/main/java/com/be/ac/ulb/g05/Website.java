@@ -1,6 +1,5 @@
 package com.be.ac.ulb.g05;
 
-import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -13,14 +12,46 @@ import java.util.Map;
  * will be used for inheritance
  */
 public class Website {
+
+    /**
+     * Category dictionary
+     */
     private Map<String, String> categoryDict =new HashMap<>();
+
+    /**
+     * List of URLs
+     */
     protected List<String> urlList;
+
+    /**
+     * List of categories
+     */
     protected List<String> categoryList;
+
+    /**
+     * Default thumbnail URL
+     */
     protected String defaultThumbnail;
+
+    /**
+     * Source article URL
+     */
     protected String sourceArticle;
+
+    /**
+     * Geolocation
+     */
     protected String geolocation;
 
 
+    /**
+     * Constructor
+     * @param urls website URL
+     * @param categories category
+     * @param defaultThumbnail website thumbnail
+     * @param sourceArticle source article
+     * @param geolocation geolocation
+     */
     public Website(List urls, List categories, String defaultThumbnail, String sourceArticle, String geolocation) {
         this.categoryList = categories;
         this.urlList = urls;
@@ -30,12 +61,16 @@ public class Website {
         this.initDico();
     }
 
+    /**
+     * @param category website category
+     * @return true if category exist, otherwise false
+     */
     public boolean isCategoryExist(String category){
         return categoryList.contains(category);
     }
 
     /**
-     * initialize the dictionnary
+     * initialize the dictionary
      * Dict :{Category : URL }
      */
     private void initDico(){
@@ -45,7 +80,7 @@ public class Website {
     }
 
     /**
-     * @param category
+     * @param category website category
      * @return the right link for the category
      */
     public String getLink(String category){
@@ -53,18 +88,27 @@ public class Website {
 
     }
 
+    /**
+     * thumbnail getter
+     * @return thumbnail
+     */
     public String getDefaultThumbnail(){
         return defaultThumbnail;
     }
 
+    /**
+     * article source getter
+     * @return source article
+     */
     public String getSourceArticle(){
         return sourceArticle;
     }
 
+    /**
+     * geolocation getter
+     * @return geolocation
+     */
     public String getGeolocation(){
         return geolocation;
     }
-
-
-
 }
