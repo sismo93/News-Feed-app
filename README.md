@@ -34,7 +34,7 @@ Pre-requisite software (if on Windows):
  - Maven, available here: [https://maven.apache.org/download.cgi](https://maven.apache.org/download.cgi)
 
 N.B: Please follow [this article](https://www.mkyong.com/maven/how-to-install-maven-in-windows/) on how to add Maven into **Windows** command line.  
-N.B #2: Please follow [this article](https://www.javahelps.com/2017/10/install-apache-maven-on-linux.html) on how to add Maven into **Linux** command line.
+N.B #2: Please follow [this article](https://www.javahelps.com/2017/10/install-apache-maven-on-linux.html) on how to add Maven into **Linux** command line.  
 All standard Linux distributions come with Java & Git pre-installed (except "Light" ones).
 
 ## Instructions
