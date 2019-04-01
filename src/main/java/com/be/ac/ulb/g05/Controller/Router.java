@@ -84,7 +84,7 @@ public class Router {
      *
      * @param root AnchorPane
      */
-    public void setRoot(BorderPane root) {
+    private void setRoot(BorderPane root) {
         this.root = root;
     }
 

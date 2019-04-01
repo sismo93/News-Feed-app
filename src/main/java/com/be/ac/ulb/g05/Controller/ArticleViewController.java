@@ -68,7 +68,7 @@ public class ArticleViewController extends Controller implements Observer {
     /**
      * Sets up the view
      */
-    public void pushArticleToView() {
+    private void pushArticleToView() {
         Platform.runLater(() -> {
             Article article = articleService.getArticle();
             this.articleContent.setEditable(false);
@@ -114,7 +114,6 @@ public class ArticleViewController extends Controller implements Observer {
      *                     Saves the image found on the article. If there is no images, nothing will happen
      */
     public static void saveImage(String imageUrl, String destinationFile, ImageView imageView) throws IOException {
-        System.out.println(imageUrl.isEmpty());
         Image image = null; // usefull when there is no image to put on the article
         if (!imageUrl.isEmpty()) {
             URL url = new URL(imageUrl);

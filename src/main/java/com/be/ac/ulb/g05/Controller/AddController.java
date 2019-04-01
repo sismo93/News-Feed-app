@@ -105,7 +105,7 @@ public class AddController extends Controller {
      * Create the right Object for the right website
      */
 
-    public void CreateObjectSource(String source) {
+    private void CreateObjectSource(String source) {
 
         if (source.equals(Guardian.source)) {
             website = new Website(
@@ -225,7 +225,7 @@ public class AddController extends Controller {
      * Add Article to the list
      * Take the same number of article that the user wants
      */
-    public void AddCurrentArticleList() {
+    private void AddCurrentArticleList() {
         RSSFeedParser parser = new RSSFeedParser(website.getLink(CategoryBox.getSelectionModel().getSelectedItem().toString()));
 
         ArrayList<Article> articles = parser.readRSS();
@@ -264,7 +264,7 @@ public class AddController extends Controller {
      *                      change the description if its TheGuardian or RTLINFO
      *                      because these 2 websites doesnt handle the description for an article
      */
-    public void FixDescriptionError(String article, Article articleObject) {
+    private void FixDescriptionError(String article, Article articleObject) {
         String source = (String) SourceArticleBox.getSelectionModel().getSelectedItem();
         if ((source.equals(Guardian.source)) || (source.equals(RTL.source))) {
             articleObject.setDescription(article.substring(0, (article.length() < 100) ? article.length() : 100));
@@ -277,7 +277,7 @@ public class AddController extends Controller {
      * @throws IOException Shows the articles found + title + description
      *                     The user can accept them or denied them
      */
-    public void ShowArticleFound() throws IOException {
+    private void ShowArticleFound() throws IOException {
         for (Article currentArticle : CurrentArticleList) {
             currentArticle.setContent(parserWebsite.ParserArticle(currentArticle.getLink())); // Call the parser
             FixDescriptionError(currentArticle.getContent(), currentArticle); // Change the description
@@ -348,7 +348,7 @@ public class AddController extends Controller {
      * @param flag 0 --> Informational, 1 --> Adding article
      * @param article the article
      */
-    public void showAlert(String message, String title, int flag, Article article) {
+    private void showAlert(String message, String title, int flag, Article article) {
 
         JFXDialogLayout content = new JFXDialogLayout();
         content.setHeading(new Text(title));
@@ -383,7 +383,7 @@ public class AddController extends Controller {
     /**
      * Imports the website into the service
      */
-    public void importWebsite(Article article) throws IOException {
+    private void importWebsite(Article article) throws IOException {
         article.setImage(parserWebsite.ParserImage(article.getLink())); //Add Picture
         article.setDefaultThumbnail(website.getDefaultThumbnail()); // add thumbnail
         article.setSource(website.getSourceArticle()); // set the Source

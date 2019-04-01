@@ -74,7 +74,7 @@ public class ArticlePreviewController extends Controller implements Observer {
      * Sets up the preview
      * Initialises the containers for title, content and buttons
      */
-    public void pushArticleToView(Article article) {
+    private void pushArticleToView(Article article) {
         Platform.runLater(() -> {
 
             this.articleTitleArea.setText(article.getTitle());

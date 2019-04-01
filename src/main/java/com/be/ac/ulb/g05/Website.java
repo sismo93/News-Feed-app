@@ -21,27 +21,27 @@ public class Website {
     /**
      * List of URLs
      */
-    protected List<String> urlList;
+    private List<String> urlList;
 
     /**
      * List of categories
      */
-    protected List<String> categoryList;
+    private List<String> categoryList;
 
     /**
      * Default thumbnail URL
      */
-    protected String defaultThumbnail;
+    private String defaultThumbnail;
 
     /**
      * Source article URL
      */
-    protected String sourceArticle;
+    private String sourceArticle;
 
     /**
      * Geolocation
      */
-    protected String geolocation;
+    private String geolocation;
 
 
     /**
