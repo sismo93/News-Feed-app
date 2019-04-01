@@ -57,7 +57,7 @@ public class RegisterControllerTest extends ApplicationTest {
      * check if the username is empty
      */
     @Test
-    public void isUsernameEmpty () {
+    public void isUsernameEmptyTest() {
         clickOn("#username");
         write("username");
         assertEquals(controller.username.getText(),"username");
@@ -67,7 +67,7 @@ public class RegisterControllerTest extends ApplicationTest {
      * check if the password is empty
      */
     @Test
-    public void isPasswordEmpty(){
+    public void isPasswordEmptyTest(){
         clickOn("#password");
         write("password");
         assertEquals(controller.password.getText(),"password");
@@ -77,7 +77,7 @@ public class RegisterControllerTest extends ApplicationTest {
      * check if the email is empty
      */
     @Test
-    public void isEmailEmpty(){
+    public void isEmailEmptyTest(){
         clickOn("#email");
         write("email@email.com");
         assertEquals(controller.email.getText(),"email@email.com");

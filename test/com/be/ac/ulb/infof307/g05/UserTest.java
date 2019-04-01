@@ -1,13 +1,10 @@
 package com.be.ac.ulb.infof307.g05;
 
 import com.be.ac.ulb.g05.Model.*;
-import com.be.ac.ulb.g05.Controller.*;
-
 import org.junit.jupiter.api.Test;
-
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
-public class UserTest{
+public class UserTest {
 
     Users user = new Users("test@test.com", "test", "password");
 

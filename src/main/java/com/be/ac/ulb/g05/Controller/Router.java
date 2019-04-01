@@ -6,9 +6,7 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.Node;
 import javafx.scene.control.Alert;
 import javafx.scene.control.ButtonType;
-import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.BorderPane;
-
 import java.io.IOException;
 import java.util.HashMap;
 
@@ -16,9 +14,25 @@ public class Router {
 
     @FXML
     private BorderPane root;
+
+    /**
+     * the current View
+     */
     private Node currentView;
+
+    /**
+     * Views router
+     */
     private static Router instance;
+
+    /**
+     * HashMap of nodes & their view
+     */
     private HashMap<String, Node> routes;
+
+    /**
+     * Article service
+     */
     private ArticleService articleService;
 
     /**

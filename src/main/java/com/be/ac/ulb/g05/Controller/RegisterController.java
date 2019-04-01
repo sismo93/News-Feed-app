@@ -8,8 +8,6 @@ import com.be.ac.ulb.g05.Model.UsersDAO;
 import com.jfoenix.controls.JFXButton;
 import com.jfoenix.controls.JFXDialog;
 import com.jfoenix.controls.JFXDialogLayout;
-import javafx.event.ActionEvent;
-import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
@@ -110,7 +108,7 @@ public class RegisterController extends Controller {
 
     /**
      *
-     * @param error
+     * @param error the error message
      * Show a notification with the right error
      */
     private void notificationMessage(String error){

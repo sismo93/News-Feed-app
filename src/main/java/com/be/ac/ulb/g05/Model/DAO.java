@@ -21,6 +21,4 @@ public abstract class DAO<T> {
     public abstract boolean mailExist(T obj);
     public abstract boolean checkLoginAndPassword(T obj);
 
-
-
 }

@@ -62,7 +62,7 @@ public class LoginControllerTest extends ApplicationTest {
      * check if the field username match what we write
      */
     @Test
-    public void isUsernameEmpty () {
+    public void isUsernameEmptyTest () {
         clickOn("#userNameField");
         write("username");
         assertEquals(controller.userNameField.getText(),"username");
@@ -72,14 +72,14 @@ public class LoginControllerTest extends ApplicationTest {
      * check if the field password match what we write
      */
     @Test
-    public void isPasswordEmpty(){
+    public void isPasswordEmptyTest(){
         clickOn("#passwordField");
         write("password");
         assertEquals(controller.passwordField.getText(),"password");
     }
 
     @Test
-    public void isLoginClicked(){
+    public void isLoginClickedTest(){
         clickOn("#userNameField");
         write("admin");
         clickOn("#passwordField");
@@ -91,7 +91,7 @@ public class LoginControllerTest extends ApplicationTest {
     }
 
     @Test
-    public void isRegisterClicked(){
+    public void isRegisterClickedTest(){
         clickOn("#RegisterButton");
     }
 

@@ -1,6 +1,5 @@
 package com.be.ac.ulb.g05.Controller;
 
-
 import com.be.ac.ulb.g05.*;
 import com.be.ac.ulb.g05.Model.*;
 import com.jfoenix.controls.JFXButton;
@@ -10,7 +9,6 @@ import com.be.ac.ulb.g05.Controller.Router.*;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
-import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.scene.control.*;
 import javafx.scene.layout.StackPane;
@@ -22,7 +20,6 @@ import java.util.Arrays;
 
 import static com.be.ac.ulb.g05.Controller.AddController.WebsiteCategory.*;
 import static com.be.ac.ulb.g05.Controller.AddController.WebsiteSource.*;
-
 
 /**
  * Controller of the Add View
@@ -105,7 +102,6 @@ public class AddController extends Controller {
 
     /**
      * @param source is the website that the user want article from
-     * @return an Website object
      * Create the right Object for the right website
      */
 
@@ -227,9 +223,8 @@ public class AddController extends Controller {
 
     /**
      * Add Article to the list
-     * Take the same number of article that the user want
+     * Take the same number of article that the user wants
      */
-
     public void AddCurrentArticleList() {
         RSSFeedParser parser = new RSSFeedParser(website.getLink(CategoryBox.getSelectionModel().getSelectedItem().toString()));
 
@@ -242,9 +237,9 @@ public class AddController extends Controller {
 
 
     /**
-     * @param actionEvent Add the article to the feed
+     * Handler when Add button is pressed
      */
-    public void OnButtonPressed(ActionEvent actionEvent) throws IOException {
+    public void OnButtonPressed() throws IOException {
         if (CategoryBox.getSelectionModel().isEmpty()
                 || ArticleNumberBox.getSelectionModel().isEmpty()
                 || SourceArticleBox.getSelectionModel().isEmpty()) {
@@ -260,9 +255,7 @@ public class AddController extends Controller {
         }
 
         AddCurrentArticleList(); // Add Article to the list
-
         ShowArticleFound();
-
     }
 
     /**
@@ -271,7 +264,6 @@ public class AddController extends Controller {
      *                      change the description if its TheGuardian or RTLINFO
      *                      because these 2 websites doesnt handle the description for an article
      */
-
     public void FixDescriptionError(String article, Article articleObject) {
         String source = (String) SourceArticleBox.getSelectionModel().getSelectedItem();
         if ((source.equals(Guardian.source)) || (source.equals(RTL.source))) {
@@ -281,6 +273,7 @@ public class AddController extends Controller {
 
 
     /**
+     * Shows a description of the article found
      * @throws IOException Shows the articles found + title + description
      *                     The user can accept them or denied them
      */
@@ -288,18 +281,11 @@ public class AddController extends Controller {
         for (Article currentArticle : CurrentArticleList) {
             currentArticle.setContent(parserWebsite.ParserArticle(currentArticle.getLink())); // Call the parser
             FixDescriptionError(currentArticle.getContent(), currentArticle); // Change the description
-            showAlert(currentArticle.getDescription(), currentArticle.getTitle(), 1, currentArticle);
+            showAlert(currentArticle.getDescription().substring(0, 70) + "...", currentArticle.getTitle(), 1, currentArticle);
         }
         CurrentArticleList.clear();
     }
 
-
-    /**
-     * @param actionEvent Open the Menu View
-     */
-    public void OpenMenuView(ActionEvent actionEvent) {
-        Router.Instance().changeView(Views.Menu);
-    }
 
     @Override
     public void setArticleService(ArticleService articleService) {
@@ -355,6 +341,13 @@ public class AddController extends Controller {
 
     }
 
+    /**
+     * Shows an alert with a custom title & message
+     * @param message Body message
+     * @param title Header message
+     * @param flag 0 --> Informational, 1 --> Adding article
+     * @param article the article
+     */
     public void showAlert(String message, String title, int flag, Article article) {
 
         JFXDialogLayout content = new JFXDialogLayout();
@@ -387,6 +380,9 @@ public class AddController extends Controller {
         }
     }
 
+    /**
+     * Imports the website into the service
+     */
     public void importWebsite(Article article) throws IOException {
         article.setImage(parserWebsite.ParserImage(article.getLink())); //Add Picture
         article.setDefaultThumbnail(website.getDefaultThumbnail()); // add thumbnail

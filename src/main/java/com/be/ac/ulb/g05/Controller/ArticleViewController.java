@@ -14,14 +14,12 @@ import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.web.WebEngine;
 import javafx.scene.web.WebView;
-
 import javax.sound.midi.Soundbank;
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.OutputStream;
 import java.net.URL;
-import java.sql.SQLOutput;
 import java.util.Observable;
 import java.util.Observer;
 
@@ -57,10 +55,12 @@ public class ArticleViewController extends Controller implements Observer {
     public Label mediaLabel;
     public BorderPane mediaView;
 
+    /**
+     * Sets up the view
+     */
     @Override
     public void setupView() {
         articleService.addObserver(this);
-
         pushArticleToView();
     }
 
@@ -79,7 +79,6 @@ public class ArticleViewController extends Controller implements Observer {
 
             // Puts image into the view
             try {
-
 
                 if (!article.getVideo().isEmpty()) {
 
@@ -139,10 +138,14 @@ public class ArticleViewController extends Controller implements Observer {
 
     }
 
+    /**
+     * Updates the feed
+     * @param o Observable
+     * @param arg argument
+     */
     @Override
     public void update(Observable o, Object arg) {
         pushArticleToView();
-
     }
 
     public void openMediaView(MouseEvent mouseEvent) {

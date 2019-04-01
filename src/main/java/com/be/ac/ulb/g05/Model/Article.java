@@ -177,14 +177,26 @@ public class Article {
         this.geolocation = geolocation;
     }
 
+    /**
+     * Article title setter
+     * @param title article title
+     */
     public void setTitle(String title) {
         this.title= title;
     }
 
+    /**
+     * Artile link setter
+     * @param link article link
+     */
     public void setLink(String link) {
         this.link = link;
     }
 
+    /**
+     * Article publication date setter
+     * @param pubdate publication date
+     */
     public void setPubDate(String pubdate) {
         this.pubDate = pubdate;
     }
