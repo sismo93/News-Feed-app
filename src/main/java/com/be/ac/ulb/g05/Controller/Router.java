@@ -33,7 +33,8 @@ public class Router {
         Preview ("ArticlePreview.fxml"),
         Register ("RegisterFxml.fxml"),
         Root ("RootView.fxml"),
-        TopPane ("TopPaneView.fxml");
+        TopPane ("TopPaneView.fxml"),
+        Media("MediaView.fxml");
 
         private String value;
 
@@ -120,29 +121,13 @@ public class Router {
      * @param view window view
      */
     public void changeView(Views view) {
-/*
-        if (view == Views.Menu) {
-            currentView = loadFxml("MenuView.fxml");
-        } else if (view == Views.Add) {
-            currentView = loadFxml("AddView.fxml");
-        } else if (view == Views.Login) {
-            currentView = loadFxml("LoginFxml.fxml");
-        } else if (view == Views.Feed) {
-            currentView = loadFxml("FeedView.fxml");
-        } else if (view == Views.Register) {
-            currentView = loadFxml("RegisterFxml.fxml");
-        } else if (view == Views.Article) {
-            currentView = loadFxml("ArticleView.fxml");
-        } else if (view == Views.Preview) {
-            currentView = loadFxml("ArticlePreview.fxml");
-        }
-*/
-        currentView = loadFxml(view.toString());
+
+        currentView = loadFxml(view.value);
 
         if (view == Views.Login) {
             getRoot().setTop(null);
         } else {
-            getRoot().setTop(loadFxml("TopPaneView.fxml"));
+            getRoot().setTop(loadFxml(Views.TopPane.value));
         }
 
         getRoot().setCenter(currentView);
@@ -157,7 +142,7 @@ public class Router {
      */
     public BorderPane getRoot() {
         if (root == null) {
-            setRoot((BorderPane) loadFxml("RootView.fxml"));
+            setRoot((BorderPane) loadFxml(Views.Root.value));
         }
         return root;
     }

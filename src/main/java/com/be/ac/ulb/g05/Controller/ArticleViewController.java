@@ -2,13 +2,18 @@ package com.be.ac.ulb.g05.Controller;
 
 import com.be.ac.ulb.g05.Model.Article;
 import com.be.ac.ulb.g05.Model.ArticleService;
+import com.be.ac.ulb.g05.Controller.Router.*;
 import javafx.application.Platform;
 import javafx.fxml.FXML;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextArea;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
+import javafx.scene.input.MouseEvent;
+import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.HBox;
+import javafx.scene.web.WebEngine;
+import javafx.scene.web.WebView;
 
 import javax.sound.midi.Soundbank;
 import java.io.FileOutputStream;
@@ -22,6 +27,7 @@ import java.util.Observer;
 
 /**
  * Article View controller
+ *
  * @author @iyamani
  * @codereview @vtombou
  */
@@ -32,6 +38,7 @@ public class ArticleViewController extends Controller implements Observer {
      */
     @FXML
     public HBox titleContainer;
+
     @FXML
     public Label articleTitle;
 
@@ -47,6 +54,8 @@ public class ArticleViewController extends Controller implements Observer {
     public HBox authorContainer;
     @FXML
     public Label articleAuthor;
+    public Label mediaLabel;
+    public BorderPane mediaView;
 
     @Override
     public void setupView() {
@@ -71,7 +80,25 @@ public class ArticleViewController extends Controller implements Observer {
             // Puts image into the view
             try {
 
-                saveImage(article.getImage(), "file:temp-feedbuzz.jpg", this.articleImage);
+
+                if (!article.getVideo().isEmpty()) {
+
+                    String url = articleService.getArticle().getVideo();
+                    WebView webView = new WebView();
+                    WebEngine webEngine = webView.getEngine();
+                    webEngine.load(url);
+
+                    mediaView.setCenter(webView);
+
+
+                } else {
+
+                    ImageView imageView = new ImageView();
+                    mediaView.setCenter(imageView);
+
+                    saveImage(article.getImage(), "file:temp-feedbuzz.jpg", imageView);
+                }
+
             } catch (IOException e) {
                 e.printStackTrace();
             }
@@ -80,12 +107,12 @@ public class ArticleViewController extends Controller implements Observer {
 
 
     /**
-     * @param imageUrl the URL of the image
+     * @param imageUrl        the URL of the image
      * @param destinationFile the destination file
-     * @param imageView the image container in the window
+     * @param imageView       the image container in the window
      * @throws IOException thrown when problems displaying the image
-     *
-     * Saves the image found on the article. If there is no images, nothing will happen
+     *                     <p>
+     *                     Saves the image found on the article. If there is no images, nothing will happen
      */
     public static void saveImage(String imageUrl, String destinationFile, ImageView imageView) throws IOException {
         System.out.println(imageUrl.isEmpty());
@@ -108,8 +135,6 @@ public class ArticleViewController extends Controller implements Observer {
             image = new Image(destinationFile);
         }
         imageView.setImage(image);
-            
-        
 
 
     }
@@ -118,5 +143,9 @@ public class ArticleViewController extends Controller implements Observer {
     public void update(Observable o, Object arg) {
         pushArticleToView();
 
+    }
+
+    public void openMediaView(MouseEvent mouseEvent) {
+        Router.Instance().changeView(Views.Media);
     }
 }

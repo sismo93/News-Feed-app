@@ -53,6 +53,11 @@ public class Article {
     private String pubDate;
 
     /**
+     * Article video link
+     */
+    private String video;
+
+    /**
      * Image getter
      * @return image URL
      */
@@ -182,5 +187,13 @@ public class Article {
 
     public void setPubDate(String pubdate) {
         this.pubDate = pubdate;
+    }
+
+    public void setVideo(String video) {
+        this.video = video;
+    }
+
+    public String getVideo() {
+        return video;
     }
 }

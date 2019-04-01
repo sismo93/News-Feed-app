@@ -15,6 +15,7 @@ import javafx.fxml.FXML;
 import javafx.scene.control.*;
 import javafx.scene.layout.StackPane;
 import javafx.scene.text.Text;
+
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -82,7 +83,7 @@ public class AddController extends Controller {
     /**
      * Enum of different of website urls
      */
-    public enum WebsiteCategory{
+    public enum WebsiteCategory {
 
         Actualite("Actualite"),
         Culture("Culture"),
@@ -136,8 +137,7 @@ public class AddController extends Controller {
                     "https://assets.guim.co.uk/images/eada8aa27c12fe2d5afa3a89d3fbae0d/fallback-logo.png",
                     "TheGuardian Media",
                     "Royaume Unis");
-        }
-        else if (source.equals(LePoint.source)) {
+        } else if (source.equals(LePoint.source)) {
             website = new Website(
                     Arrays.asList("https://www.lepoint.fr/24h-infos/rss.xml",
                             "https://www.lepoint.fr/culture/rss.xml",
@@ -157,8 +157,7 @@ public class AddController extends Controller {
                     "https://pbs.twimg.com/profile_images/783607856574631936/oqc6S_6P_400x400.jpg",
                     "@LePoint.fr (LePoint Media)",
                     "France");
-        }
-        else if (source.equals(LeMonde.source)) {
+        } else if (source.equals(LeMonde.source)) {
             website = new Website(
                     Arrays.asList(
                             "https://www.lemonde.fr/m-actu/rss_full.xml",
@@ -183,8 +182,7 @@ public class AddController extends Controller {
                     "http://www.acpm.fr/var/ojd/storage/files/logos/A/logo_5691.png",
                     "@LeMonde.fr (LeMonde Media)",
                     "France");
-        }
-        else if (source.equals(LeFigaro.source)) {
+        } else if (source.equals(LeFigaro.source)) {
             website = new Website(
                     Arrays.asList(
                             "http://sport24.lefigaro.fr/rssfeeds/sport24-accueil.xml",
@@ -209,8 +207,7 @@ public class AddController extends Controller {
                     "http://www.agassac.com/files/cache/article/files/files/0/1/4/8/0.jpg",
                     "@LeFigaro.fr (LeFigaro Media)",
                     "France");
-        }
-        else if (source.equals(RTL.source)) {
+        } else if (source.equals(RTL.source)) {
             website = new Website(
                     Arrays.asList("https://feeds.feedburner.com/rtlinfo/belgique",
                             "https://feeds.feedburner.com/RTLEconomie",
@@ -257,7 +254,7 @@ public class AddController extends Controller {
 
         CreateObjectSource((String) SourceArticleBox.getSelectionModel().getSelectedItem());
 
-        if (!website.isCategoryExist(CategoryBox.getSelectionModel().getSelectedItem().toString())){
+        if (!website.isCategoryExist(CategoryBox.getSelectionModel().getSelectedItem().toString())) {
             showAlert("This category does not exist on this website. Please choose another.", "Information", 0, null);
             return;
         }
@@ -278,7 +275,7 @@ public class AddController extends Controller {
     public void FixDescriptionError(String article, Article articleObject) {
         String source = (String) SourceArticleBox.getSelectionModel().getSelectedItem();
         if ((source.equals(Guardian.source)) || (source.equals(RTL.source))) {
-            articleObject.setDescription(article.substring(0, (article.length()<100)? article.length() : 100));
+            articleObject.setDescription(article.substring(0, (article.length() < 100) ? article.length() : 100));
         }
     }
 
@@ -347,7 +344,7 @@ public class AddController extends Controller {
                 FXCollections.observableArrayList(
                         1,
                         2,
-                        3
+                        3, 4, 5, 6, 7, 8, 9
                 );
 
         ArticleNumberBox.setItems(articleNumberList);
@@ -395,6 +392,7 @@ public class AddController extends Controller {
         article.setDefaultThumbnail(website.getDefaultThumbnail()); // add thumbnail
         article.setSource(website.getSourceArticle()); // set the Source
         article.setGeolocation(website.getGeolocation());
+        article.setVideo(parserWebsite.ParserVideo(article.getLink()));
 
         articleService.addArticle(article);
     }
