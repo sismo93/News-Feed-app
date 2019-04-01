@@ -138,7 +138,7 @@ public class Router {
 
         currentView = loadFxml(view.value);
 
-        if (view == Views.Login) {
+        if (view == Views.Login || view == Views.Register) {
             getRoot().setTop(null);
         } else {
             getRoot().setTop(loadFxml(Views.TopPane.value));

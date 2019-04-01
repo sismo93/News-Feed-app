@@ -135,11 +135,17 @@ public class ParserWebSite {
             size = 8;
 
         }
+
         String ytLink = "";
-        Elements l = links.select("div[id~=(?)]");
-        if (l.size() != 0) {
-            ytLink = "https://www.youtube.com/watch?v=";
-            ytLink += l.attr("id").substring(size);
+        Elements l = null;
+
+        if (url.contains("lemonde") || url.contains("theguardian")) {
+            l = links.select("div[id~=(?)]");
+
+            if (l.size() != 0) {
+                ytLink = "https://www.youtube.com/watch?v=";
+                ytLink += l.attr("id").substring(size);
+            }
         }
         return ytLink;
 
