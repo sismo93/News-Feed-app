@@ -1,8 +1,22 @@
 # Histoires
 Informations récapitulatives concernant les différentes histoires.
 
+Histoire 1 : Afficher dans le feed les articles choisis par l'utilisateur. Des informations seront
+affichées avant même que l'utilisateur ne clique sur l'article (titre,photo). Un preview sera affiché 
+avec plusieurs possibilitées (afficher l'article complet,copier le lien,supprimer l'article ect).
+
+Histoire 4 : Récupérer un article depuis un site web donné. L'utilisateur aura le choix de prendre
+ou non l'article (avec un preview de l'article).
+
+Histoire 11 : L'utilisateur va pouvoir se connecter à son propre compte. Si il n'a pas de compte
+il a la possibilité d'en créer un. Ces données sont stockées de manière sécurisé par le système.
+Il a également la possibilité de se déconnecter à tout moment.
+
+Moitié de l'Histoire 12 : Des images/vidéo/audio seront affichés si ils sont présents dans l'article
+
+
 #### Quelques précisions
-Un point correspond à une heure de travail par binôme (approximatif).  Par itération il faut accomplir X points.
+Un point correspond à une heure de travail par binôme (approximatif).  Par itération il faut accomplir 59 points.
 
 ----------------------
 
@@ -11,36 +25,11 @@ Un point correspond à une heure de travail par binôme (approximatif).  Par it�
 
 | Priorité/3 | N° | Description | Difficulté/3 | Risque/3 | Heures/? | Points |
 | ------ | ------ | ------ | ------ | ------ | ------ | ------ |
-| 1 | [1](#Histoire-A) | Histoire A | 7 | 2 | 49 | / |
-|   | 5 | Histoire D | 6 | 1 | 42 |  |
-| 2 | 2 | Histoire B | 5 | 1 | 40 |  |
-|   | 3 | Histoire F | 5 | 2 | 35 |  |
-| 3 | 4 | Histoire C | 5 | 3 | 50 | / |
-|   | 7 | Histoire E | 7 | 1 | 30 |  |
+| 1 | 1  | Histoire A | 2 | 2 | 35 | 35 |
+|   | 4  | Histoire B | 1 | 2 | 50 | 48 |
+| 2 | 11 | Histoire C | 1 | 1 | 23 | 22 |
+|   | 12 | Histoire D | 2 | 2 | 10 |  9 |
+
 
 ----------------------
-
-
-## Description
-
-### Histoire A
-
-**Instructions originales:**           
-- Afficher des "épingle" montrant la position des P.
-- Sélectionner une épingle pour afficher la date et l'heure où ce P. a été repéré.
-- Ajouter un P. sur la carte (via point-and-clic)
-- Possibilité de changer la date et heure de repérage du P. lors de l'ajout (ci-dessus)
-- Possibilité de Zoom/Dezoom
-- Les épingles les plus proches (qui se superposent) devront être fusionnée et n'indiquer que le
-nombre de P. représenté par cette épingle (fusionnée)
-
-**Tâches en plus:**          
-- Système permettant de stoquer les P. sur la carte
-
-:question: **Question:**       
-- Que se passe t'il lorsqu'on clic sur une épingle "fusionnée" (qui regroupe d'autres épingle) ?
-    - On affiche tous les pokemons de cette épingle (possiblement grand :confused:)
-    - On ne fait rien (comme s'il n'y avait rien)
-    - On zoom pour montrer les différentes épingles
-    - Autre ?
 
