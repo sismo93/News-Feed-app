@@ -1,12 +1,12 @@
 package com.be.ac.ulb.infof307.g05;
 
-import junit.framework.TestCase;
 import org.junit.jupiter.api.Test;
-
+import org.testfx.framework.junit.ApplicationTest;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
-
 import static com.be.ac.ulb.g05.HashMD5.hashFunct;
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertTrue;
 
 
 /**
@@ -14,13 +14,13 @@ import static com.be.ac.ulb.g05.HashMD5.hashFunct;
  * @mousbx
  * Class that test the hashing
  */
-public class HashMD5Test extends TestCase {
+public class HashMD5Test extends ApplicationTest {
 
     /**
      * Test if the length of the hashed password
      */
     @Test
-    public void testHashFunct() {
+    public void HashFunctTest() {
         String test = "test";
 
         String hashTest = hashFunct(test);
@@ -33,7 +33,7 @@ public class HashMD5Test extends TestCase {
      * Test if the hash contains letter
      */
     @Test
-    public  void testContainsLetter(){
+    public  void ContainsLetterTest(){
 
         String test = "test";
 
@@ -47,7 +47,7 @@ public class HashMD5Test extends TestCase {
      * Test if the hash contains number
      */
     @Test
-    public  void testContainsNumber(){
+    public  void ContainsNumberTest(){
 
         String test = "test";
 
@@ -58,7 +58,7 @@ public class HashMD5Test extends TestCase {
     }
 
     @Test
-    public void testValidHash() {
+    public void ValidHashTest() {
         String test = "test";
 
         String generatedHash = "098F6BCD4621D373CADE4E832627B4F6";
