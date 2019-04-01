@@ -15,20 +15,18 @@ import java.util.ArrayList;
 
 /**
  * Code that read a RSS feed.
- * Source : https://www.vogella.com/tutorials/RSSFeed/article.html
+ * @Mnrbn
+ * codereview:@Mouscb
  */
 public class RSSFeedParser {
 
     static final String TITLE = "title";
     static final String DESCRIPTION = "description";
-    static final String CHANNEL = "channel";
-    static final String LANGUAGE = "language";
-    static final String COPYRIGHT = "copyright";
+
     static final String LINK = "link";
-    static final String AUTHOR = "author";
+
     static final String ITEM = "item";
     static final String PUB_DATE = "pubDate";
-    static final String GUID = "guid";
 
     final URL url;
 
@@ -43,21 +41,20 @@ public class RSSFeedParser {
     public ArrayList<Article> readRSS() {
         Article article;
         ArrayList<Article> articles = new ArrayList<>();
-        try {
-            // Set header values intial to the empty string
-            String description = "";
-            String title = "";
-            String link = "";
-            String language = "";
-            String copyright = "";
-            String author = "";
-            String pubdate = "";
-            String guid = "";
+        // Set header values intial to the empty string
+        String description = "";
+        String title = "";
+        String link = "";
+        String pubdate = "";
+        // First create a new XMLInputFactory
+        XMLInputFactory inputFactory;
+        InputStream in;
 
-            // First create a new XMLInputFactory
-            XMLInputFactory inputFactory = XMLInputFactory.newInstance();
+        try {
+
+            inputFactory = XMLInputFactory.newInstance();
             // Setup a new eventReader
-            InputStream in = read();
+            in = read();
             XMLEventReader eventReader = inputFactory.createXMLEventReader(in);
             // read the XML document
             while (eventReader.hasNext()) {
@@ -75,28 +72,20 @@ public class RSSFeedParser {
                         case LINK:
                             link = getCharacterData(event, eventReader);
                             break;
-                        case GUID:
-                            guid = getCharacterData(event, eventReader);
-                            break;
-                        case LANGUAGE:
-                            language = getCharacterData(event, eventReader);
-                            break;
-                        case AUTHOR:
-                            author = getCharacterData(event, eventReader);
-                            break;
+
                         case PUB_DATE:
                             pubdate = getCharacterData(event, eventReader);
                             break;
-                        case COPYRIGHT:
-                            copyright = getCharacterData(event, eventReader);
-                            break;
+
                     }
                 } else if (event.isEndElement()) {
-                    if (event.asEndElement().getName().getLocalPart() == (ITEM)) {
-                        article = new Article(title, description, link, pubdate,null, null, null,null);
+                    if (event.asEndElement().getName().getLocalPart().equals(ITEM)) {
+                        article = new Article();
+                        article.setTitle(title);
+                        article.setDescription(description);
+                        article.setLink(link);
+                        article.setPubDate(pubdate);
                         articles.add(article);
-                        event = eventReader.nextEvent();
-                        continue;
                     }
                 }
             }

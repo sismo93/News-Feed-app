@@ -53,30 +53,6 @@ public class Article {
     private String pubDate;
 
     /**
-     * Constructor
-     * @param title article title
-     * @param description article description
-     * @param link article URL
-     * @param pubDate article publicaion date
-     * @param image article image
-     * @param thumbnail article thumbnail
-     * @param source article source
-     * @param geolocation article geolocation
-     */
-    public Article(String title, String description, String link, String pubDate, String image, String thumbnail,
-                   String source,String geolocation) {
-        this.title = title;
-        this.description = description;
-        this.link = link;
-        this.image = image;
-        this.defaultThumbnail = thumbnail;
-        this.source = source;
-        this.geolocation = geolocation;
-        this.pubDate = pubDate;
-    }
-
-
-    /**
      * Image getter
      * @return image URL
      */
@@ -194,5 +170,17 @@ public class Article {
      */
     public void setGeolocation(String geolocation) {
         this.geolocation = geolocation;
+    }
+
+    public void setTitle(String title) {
+        this.title= title;
+    }
+
+    public void setLink(String link) {
+        this.link = link;
+    }
+
+    public void setPubDate(String pubdate) {
+        this.pubDate = pubdate;
     }
 }
