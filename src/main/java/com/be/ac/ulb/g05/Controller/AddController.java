@@ -291,7 +291,7 @@ public class AddController extends Controller {
         for (Article currentArticle : CurrentArticleList) {
             currentArticle.setContent(parserWebsite.ParserArticle(currentArticle.getLink())); // Call the parser
             FixDescriptionError(currentArticle.getContent(), currentArticle); // Change the description
-            showAlert(currentArticle.getDescription(), currentArticle.getTitle(), 1, currentArticle);
+            showAlert(currentArticle.getDescription().substring(0, 70) + "...", currentArticle.getTitle(), 1, currentArticle);
         }
         CurrentArticleList.clear();
     }
