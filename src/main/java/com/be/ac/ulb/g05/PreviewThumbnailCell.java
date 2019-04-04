@@ -3,6 +3,8 @@ package com.be.ac.ulb.g05;
 
 import javafx.scene.image.ImageView;
 
+import java.awt.*;
+
 /**
  * @Author : @Mnrbn
  * @codereview @mouscb
@@ -11,6 +13,10 @@ import javafx.scene.image.ImageView;
  */
 public class PreviewThumbnailCell {
 
+    /**
+     * Little preview of the article
+     */
+    private String previewText;
     /**
      * Image
      */
@@ -50,11 +56,16 @@ public class PreviewThumbnailCell {
         this.image .setPreserveRatio(true);
         this.image .setSmooth(true);
         this.image .setCache(true);
-
         this.title = title;
         this.date = date;
         this.localisation = localisation;
         this.source = source;
+    }
+
+
+    public PreviewThumbnailCell(String title,String previewText){
+        this.title = title;
+        this.previewText = previewText;
     }
 
     /**
@@ -95,6 +106,10 @@ public class PreviewThumbnailCell {
      */
     public String getSource() {
         return source;
+    }
+
+    public String getPreviewText() {
+        return previewText;
     }
 }
 

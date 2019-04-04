@@ -2,17 +2,12 @@ package com.be.ac.ulb.g05.Controller;
 
 import com.be.ac.ulb.g05.*;
 import com.be.ac.ulb.g05.Model.*;
-import com.jfoenix.controls.JFXButton;
-import com.jfoenix.controls.JFXDialog;
-import com.jfoenix.controls.JFXDialogLayout;
 import com.be.ac.ulb.g05.Controller.Router.*;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
-import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.*;
 import javafx.scene.layout.StackPane;
-import javafx.scene.text.Text;
 
 import java.io.IOException;
 import java.util.ArrayList;
@@ -33,8 +28,6 @@ public class AddController extends Controller {
      * Controls elements displayed on screen
      */
     @FXML
-    public ComboBox ArticleNumberBox;
-    @FXML
     public ComboBox CategoryBox;
     @FXML
     public Button AddButton;
@@ -43,21 +36,27 @@ public class AddController extends Controller {
     @FXML
     public StackPane stackPane;
 
+    private static ArrayList<Article> availableArticle;
+
     /**
      * Website object
      */
-    private Website website;
+    private static Website website;
 
-    /**
-     * Holds a list of current articles
-     */
-    private ArrayList<Article> CurrentArticleList;
+
 
     /**
      * Website parser
      */
-    private ParserWebSite parserWebsite;
+    private static ParserWebSite parserWebsite;
 
+
+    public static Website getWebsite(){
+        return website;
+    }
+    public static ParserWebSite getParserWebsite(){
+        return parserWebsite;
+    }
 
     /**
      * Enum of different of website urls
@@ -222,17 +221,22 @@ public class AddController extends Controller {
     }
 
     /**
-     * Add Article to the list
-     * Take the same number of article that the user wants
+     * Take all article available
+     *
      */
-    private void AddCurrentArticleList() {
+    private void AddAllArticleAvailable() {
         RSSFeedParser parser = new RSSFeedParser(website.getLink(CategoryBox.getSelectionModel().getSelectedItem().toString()));
 
-        ArrayList<Article> articles = parser.readRSS();
+        availableArticle = parser.readRSS();
 
-        for (int i = 0; i < (int) ArticleNumberBox.getSelectionModel().getSelectedItem(); i++) { // add Article to the list
-            CurrentArticleList.add(articles.get(i));
-        }
+    }
+
+    /**
+     * Static because we'll use it in ChooseArticleController
+     * @return all the AvailableArticle
+     */
+    public static ArrayList<Article> getAvailableArticle(){
+        return availableArticle;
     }
 
 
@@ -241,50 +245,24 @@ public class AddController extends Controller {
      */
     public void OnButtonPressed() throws IOException {
         if (CategoryBox.getSelectionModel().isEmpty()
-                || ArticleNumberBox.getSelectionModel().isEmpty()
                 || SourceArticleBox.getSelectionModel().isEmpty()) {
-            showAlert("A selection is empty, please fill it", "Information", 0, null);
+            showAlert("A selection is empty, please fill it", "Information");
             return;
         }
 
         CreateObjectSource((String) SourceArticleBox.getSelectionModel().getSelectedItem());
 
         if (!website.isCategoryExist(CategoryBox.getSelectionModel().getSelectedItem().toString())) {
-            showAlert("This category does not exist on this website. Please choose another.", "Information", 0, null);
+            showAlert("This category does not exist on this website. Please choose another.", "Information");
             return;
         }
 
-        AddCurrentArticleList(); // Add Article to the list
-        ShowArticleFound();
-    }
+        AddAllArticleAvailable();
 
-    /**
-     * @param article       the article source
-     * @param articleObject the article object
-     *                      change the description if its TheGuardian or RTLINFO
-     *                      because these 2 websites doesnt handle the description for an article
-     */
-    private void FixDescriptionError(String article, Article articleObject) {
-        String source = (String) SourceArticleBox.getSelectionModel().getSelectedItem();
-        if ((source.equals(Guardian.source)) || (source.equals(RTL.source))) {
-            articleObject.setDescription(article.substring(0, (article.length() < 100) ? article.length() : 100));
-        }
+        Router.Instance().changeView(Views.ChooseArticle); //Open The view ChooseArticleView
     }
 
 
-    /**
-     * Shows a description of the article found
-     * @throws IOException Shows the articles found + title + description
-     *                     The user can accept them or denied them
-     */
-    private void ShowArticleFound() throws IOException {
-        for (Article currentArticle : CurrentArticleList) {
-            currentArticle.setContent(parserWebsite.ParserArticle(currentArticle.getLink())); // Call the parser
-            FixDescriptionError(currentArticle.getContent(), currentArticle); // Change the description
-            showAlert(currentArticle.getDescription().substring(0, (currentArticle.getDescription().length()< 100)? currentArticle.getDescription().length() : 100) + "...", currentArticle.getTitle(), 1, currentArticle);
-        }
-        CurrentArticleList.clear();
-    }
 
 
     @Override
@@ -300,7 +278,7 @@ public class AddController extends Controller {
 
     @Override
     public void setupView() {
-        CurrentArticleList = new ArrayList<>();
+        availableArticle = new ArrayList<>();
         parserWebsite = new ParserWebSite();
 
         ObservableList<String> sourceArticle =
@@ -325,16 +303,6 @@ public class AddController extends Controller {
                         Technologies.category
                 );
 
-
-        ObservableList<Integer> articleNumberList =
-                FXCollections.observableArrayList(
-                        1,
-                        2,
-                        3, 4, 5, 6, 7, 8, 9
-                );
-
-        ArticleNumberBox.setItems(articleNumberList);
-
         CategoryBox.setItems(categoryList);
 
         SourceArticleBox.setItems(sourceArticle);
@@ -345,51 +313,13 @@ public class AddController extends Controller {
      * Shows an alert with a custom title & message
      * @param message Body message
      * @param title Header message
-     * @param flag 0 --> Informational, 1 --> Adding article
-     * @param article the article
      */
-    private void showAlert(String message, String title, int flag, Article article) {
+    public static void showAlert(String message, String title) {
+        Alert alert = new Alert(Alert.AlertType.INFORMATION);
+        alert.setTitle(title);
+        alert.setContentText(message);
+        alert.showAndWait();
 
-        JFXDialogLayout content = new JFXDialogLayout();
-        content.setHeading(new Text(title));
-        content.setBody(new Text(message));
-        JFXDialog dialog = new JFXDialog(stackPane, content, JFXDialog.DialogTransition.CENTER);
-
-        if (flag == 0) {
-            JFXButton button = new JFXButton("Ok");
-            button.setOnAction(event -> dialog.close());
-
-            content.setActions(button);
-            dialog.show();
-        } else if (flag == 1) {
-            JFXButton importButton = new JFXButton("Import");
-            JFXButton cancelButton = new JFXButton("Cancel");
-
-            importButton.setOnAction(event -> {
-                try {
-                    importWebsite(article);
-                    dialog.close();
-                } catch (IOException e) {
-                    e.printStackTrace();
-                }
-            });
-
-            cancelButton.setOnAction(event -> dialog.close());
-            content.setActions(importButton, cancelButton);
-            dialog.show();
-        }
     }
 
-    /**
-     * Imports the website into the service
-     */
-    private void importWebsite(Article article) throws IOException {
-        article.setImage(parserWebsite.ParserImage(article.getLink())); //Add Picture
-        article.setDefaultThumbnail(website.getDefaultThumbnail()); // add thumbnail
-        article.setSource(website.getSourceArticle()); // set the Source
-        article.setGeolocation(website.getGeolocation());
-        article.setVideo(parserWebsite.ParserVideo(article.getLink()));
-
-        articleService.addArticle(article);
-    }
 }

@@ -1,5 +1,6 @@
 package com.be.ac.ulb.g05.Controller;
 
+
 /**
  * TopPaneView controller
  * extends Controller
@@ -20,4 +21,7 @@ public class TopPaneViewController extends Controller {
         Router.Instance().changeView(Router.Views.Login);
     }
 
+    public void OpenFeedView() {
+        Router.Instance().changeView(Router.Views.Feed);
+    }
 }

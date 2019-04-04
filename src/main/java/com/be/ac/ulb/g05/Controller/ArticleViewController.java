@@ -42,8 +42,6 @@ public class ArticleViewController extends Controller implements Observer {
 
     @FXML
     public HBox imageContainer;
-    @FXML
-    public ImageView articleImage;
 
     @FXML
     public TextArea articleContent;

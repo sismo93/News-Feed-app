@@ -12,7 +12,7 @@ public abstract class Controller  {
     /**
      * Article service
      */
-    protected ArticleService articleService;
+    protected  ArticleService articleService;
 
     /**
      * Sets the article service

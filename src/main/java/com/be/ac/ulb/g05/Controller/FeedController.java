@@ -31,6 +31,44 @@ public class FeedController extends Controller implements Observer {
      */
     public VBox articleContainer;
 
+
+    /**
+     * @param cell
+     * @param size
+     * @return a listView
+     * Allow us to click on cell + show the right information
+     * Static because it'll be use by the feed and by the ChooseArticleController
+     */
+    public static ListView<PreviewThumbnailCell> showCell (ObservableList<PreviewThumbnailCell> cell,int size,VBox articleContainer,boolean isFeed){
+        ListView<PreviewThumbnailCell> listView = new ListView<>(cell);
+        listView.setFixedCellSize(size);
+
+        listView.setCellFactory(new Callback<ListView<PreviewThumbnailCell>, ListCell<PreviewThumbnailCell>>() {
+            @Override
+            public ListCell<PreviewThumbnailCell> call(ListView<PreviewThumbnailCell> param) {
+                return new ListCell<PreviewThumbnailCell>(){
+
+                    @Override
+                    protected void updateItem(PreviewThumbnailCell pr, boolean empty){
+                        super.updateItem(pr, empty);
+
+                        if(pr != null && isFeed){
+                            setGraphic(pr.getImage());
+                            setText(pr.getTitle() + "\n\n" +"Date : " +pr.getDate() +
+                                    "\n" + "Source : " + pr.getSource() + "\n" + "Localisation : " +
+                                    pr.getLocalisation());
+                        }
+                        else  if (pr!= null && !isFeed){
+                            setText(pr.getTitle() + "\n\n" +"Preview : "+pr.getPreviewText());
+                        }
+                    }
+                };
+            }
+        });
+        articleContainer.getChildren().add(listView);
+        return listView;
+    }
+
     /**
      * @param articles list of articles
      * Function that allow us to display the picture + the information about the article
@@ -53,30 +91,7 @@ public class FeedController extends Controller implements Observer {
             thumbnailList.add(previewThumbnail);
         });
 
-        ListView<PreviewThumbnailCell> listView = new ListView<>(thumbnailList);
-        listView.setFixedCellSize(150);
-
-        listView.setCellFactory(new Callback<ListView<PreviewThumbnailCell>, ListCell<PreviewThumbnailCell>>() {
-            @Override
-            public ListCell<PreviewThumbnailCell> call(ListView<PreviewThumbnailCell> param) {
-                return new ListCell<PreviewThumbnailCell>(){
-
-                    @Override
-                    protected void updateItem(PreviewThumbnailCell pr, boolean empty){
-                        super.updateItem(pr, empty);
-
-                        if(pr != null){
-                            setGraphic(pr.getImage());
-                            setText(pr.getTitle() + "\n\n" +"Date : " +pr.getDate() +
-                            "\n" + "Source : " + pr.getSource() + "\n" + "Localisation : " +
-                            pr.getLocalisation());
-                        }
-                    }
-                };
-            }
-        });
-
-        articleContainer.getChildren().add(listView);
+        ListView<PreviewThumbnailCell> listView = showCell (thumbnailList,150,articleContainer,true);
 
         listView.getSelectionModel().selectedItemProperty().addListener((ov, oldValue, newValue) -> {
             int selectedArticleIndex = listView.getSelectionModel().getSelectedIndex();
@@ -88,7 +103,10 @@ public class FeedController extends Controller implements Observer {
                 e.printStackTrace();
             }
         });
+
+
     }
+
 
     /**
      * Sets up the article service

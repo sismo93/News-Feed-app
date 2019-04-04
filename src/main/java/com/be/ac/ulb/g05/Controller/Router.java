@@ -48,7 +48,8 @@ public class Router {
         Register ("RegisterFxml.fxml"),
         Root ("RootView.fxml"),
         TopPane ("TopPaneView.fxml"),
-        Media("MediaView.fxml");
+        Media("MediaView.fxml"),
+        ChooseArticle("ChooseArticleView.fxml");
 
         private String value;
 
@@ -135,6 +136,7 @@ public class Router {
      * @param view window view
      */
     public void changeView(Views view) {
+
 
         currentView = loadFxml(view.value);
 
