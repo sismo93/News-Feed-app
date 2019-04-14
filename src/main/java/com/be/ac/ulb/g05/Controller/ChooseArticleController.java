@@ -20,6 +20,7 @@ import java.util.Observer;
 
 import static com.be.ac.ulb.g05.Controller.AddController.*;
 
+
 public class ChooseArticleController extends Controller implements Observer {
 
 
@@ -33,18 +34,25 @@ public class ChooseArticleController extends Controller implements Observer {
 
     private Article articleChosed;
 
+
+
+
+
     @Override
     public void setupView(){
+        getAllObjectFromAddController();
+        allAvailableArticle.addObserver(this); // will call update when AllAvailableArticle change
         articleService.addObserver(this); // will call update when articleService change
 
-        pushAvailableArticleToView();
+        pushAvailableArticlesToView();
 
     }
 
     @Override
     public void update(Observable o, Object arg) {
+        getAllObjectFromAddController();
         deleteChosenArticle();
-        pushAvailableArticleToView();
+        pushAvailableArticlesToView();
     }
 
     /**
@@ -74,8 +82,8 @@ public class ChooseArticleController extends Controller implements Observer {
      * Show Title + preview + button to let the user choose if he want to take the
      * article or not
      */
-    private void pushAvailableArticleToView(){
-        getAllObjectFromAddController();
+    private void pushAvailableArticlesToView(){
+        //getAllObjectFromAddController();
 
         articleContainer.getChildren().clear();
         ObservableList<PreviewThumbnailCell> previewArticlesList = FXCollections.observableArrayList();
@@ -187,4 +195,6 @@ public class ChooseArticleController extends Controller implements Observer {
     public void setAvailableArticle(ArrayList<Article> availableArticle) {
         this.availableArticle = availableArticle;
     }
+
+
 }

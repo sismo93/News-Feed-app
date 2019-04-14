@@ -38,6 +38,10 @@ public class AddController extends Controller {
 
     public static ArrayList<Article> availableArticle;
 
+
+    public static ArticleService allAvailableArticle;
+
+
     /**
      * Website object
      */
@@ -229,15 +233,27 @@ public class AddController extends Controller {
 
         availableArticle = parser.readRSS();
 
+
+
     }
 
+    /**
+     * Function that will allow us to have an ArticleService object with all the available article
+     * needed in order to use Observable (call update when the object change)
+     */
+    private void changeToArticleService(){
+        availableArticle.forEach(article -> {
+            allAvailableArticle.addArticle(article);
+        });
+    }
 
 
     /**
      * Static because we'll use it in ChooseArticleController
      * @return all the AvailableArticle
      *
-    */
+    **/
+
     public static ArrayList<Article> getAvailableArticle(){
         return availableArticle;
     }
@@ -260,8 +276,7 @@ public class AddController extends Controller {
         }
 
         AddAllArticleAvailable();
-
-
+        changeToArticleService();
         Router.Instance().changeView(Views.ChooseArticle); //Open The view ChooseArticleView
     }
 
@@ -283,6 +298,7 @@ public class AddController extends Controller {
     public void setupView() {
         availableArticle = new ArrayList<>();
         parserWebsite = new ParserWebSite();
+        allAvailableArticle = new ArticleService();
 
         ObservableList<String> sourceArticle =
                 FXCollections.observableArrayList(
