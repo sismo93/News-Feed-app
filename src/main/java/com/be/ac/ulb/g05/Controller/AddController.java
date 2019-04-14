@@ -36,7 +36,7 @@ public class AddController extends Controller {
     @FXML
     public StackPane stackPane;
 
-    private static ArrayList<Article> availableArticle;
+    public static ArrayList<Article> availableArticle;
 
     /**
      * Website object
@@ -231,14 +231,16 @@ public class AddController extends Controller {
 
     }
 
+
+
     /**
      * Static because we'll use it in ChooseArticleController
      * @return all the AvailableArticle
-     */
+     *
+    */
     public static ArrayList<Article> getAvailableArticle(){
         return availableArticle;
     }
-
 
     /**
      * Handler when Add button is pressed
@@ -258,6 +260,7 @@ public class AddController extends Controller {
         }
 
         AddAllArticleAvailable();
+
 
         Router.Instance().changeView(Views.ChooseArticle); //Open The view ChooseArticleView
     }

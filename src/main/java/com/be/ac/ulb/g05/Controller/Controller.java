@@ -2,6 +2,7 @@ package com.be.ac.ulb.g05.Controller;
 
 import com.be.ac.ulb.g05.Model.ArticleService;
 
+
 /**
  * @author @borsalinoK
  * @codereview @MnrBn
@@ -13,6 +14,8 @@ public abstract class Controller  {
      * Article service
      */
     protected  ArticleService articleService;
+
+
 
     /**
      * Sets the article service

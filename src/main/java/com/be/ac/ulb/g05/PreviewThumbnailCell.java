@@ -1,9 +1,11 @@
 package com.be.ac.ulb.g05;
 
 
+import com.be.ac.ulb.g05.Model.Article;
+import javafx.scene.Node;
+import javafx.scene.control.Button;
 import javafx.scene.image.ImageView;
 
-import java.awt.*;
 
 /**
  * @Author : @Mnrbn
@@ -13,6 +15,10 @@ import java.awt.*;
  */
 public class PreviewThumbnailCell {
 
+    private Article article;
+
+
+    private Button button;
     /**
      * Little preview of the article
      */
@@ -63,10 +69,13 @@ public class PreviewThumbnailCell {
     }
 
 
-    public PreviewThumbnailCell(String title,String previewText){
+    public PreviewThumbnailCell(String title, String previewText, javafx.scene.control.Button button, Article article){
         this.title = title;
         this.previewText = previewText;
+        this.button = button;
+        this.article = article;
     }
+
 
     /**
      * Image getter
@@ -110,6 +119,14 @@ public class PreviewThumbnailCell {
 
     public String getPreviewText() {
         return previewText;
+    }
+
+    public Button getButton() {
+        return button;
+    }
+
+    public Article getArticle() {
+        return article;
     }
 }
 
