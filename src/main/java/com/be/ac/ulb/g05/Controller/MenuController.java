@@ -26,6 +26,9 @@ public class MenuController extends Controller{
         Router.Instance().changeView(Views.Add);
     }
 
+    public void openSocialNetworkView() {Router.Instance().changeView(Views.SocialNetwork);
+    }
+
     /**
      * Sets the article service
      * @param articleService article service
@@ -34,5 +37,6 @@ public class MenuController extends Controller{
     public void setArticleService(ArticleService articleService) {
         super.setArticleService(articleService);
     }
+
 
 }

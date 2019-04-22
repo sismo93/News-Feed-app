@@ -89,6 +89,7 @@ public class ChooseArticleController extends Controller implements Observer {
         ObservableList<PreviewThumbnailCell> previewArticlesList = FXCollections.observableArrayList();
         availableArticle.forEach(article -> {
             Button button = new Button("Add article");
+            button.setPrefSize(100,100);
             PreviewThumbnailCell previewArticleCell = new PreviewThumbnailCell(article.getTitle(),article.getDescription(),button,article);
             previewArticlesList.add(previewArticleCell);
         });
@@ -118,7 +119,9 @@ public class ChooseArticleController extends Controller implements Observer {
                         super.updateItem(pr, empty);
 
                         if (pr != null) {
+
                             setGraphic(pr.getButton());
+
                             setText(pr.getTitle() + "\n\n" +"Preview : "+pr.getPreviewText());
                             pr.getButton().setOnAction(event -> {
                                 try {
@@ -130,7 +133,6 @@ public class ChooseArticleController extends Controller implements Observer {
                                     e.printStackTrace();
                                 }
                             });
-
 
                         }
                     }

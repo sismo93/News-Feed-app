@@ -49,7 +49,12 @@ public class Router {
         Root ("RootView.fxml"),
         TopPane ("TopPaneView.fxml"),
         Media("MediaView.fxml"),
-        ChooseArticle("ChooseArticleView.fxml");
+        ChooseArticle("ChooseArticleView.fxml"),
+        SocialNetwork("SocialNetworkView.fxml"),
+        Twitter("TwitterView.fxml"),
+        Facebook("FacebookView.fxml"),
+        FacebookData("FacebookDataView.fxml");
+
 
         private String value;
 

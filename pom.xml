@@ -108,5 +108,18 @@
             <artifactId>jfoenix</artifactId>
             <version>8.0.8</version>
         </dependency>
+
+
+        <!-- https://mvnrepository.com/artifact/com.restfb/restfb -->
+        <dependency>
+            <groupId>com.restfb</groupId>
+            <artifactId>restfb</artifactId>
+            <version>2.19.0</version>
+        </dependency>
+
+
+
+
+
     </dependencies>
 </project>
