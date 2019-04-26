@@ -6,6 +6,7 @@ import com.be.ac.ulb.g05.Model.TwitterService;
 import com.be.ac.ulb.g05.PreviewThumbnailCell;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
+import javafx.scene.control.ChoiceBox;
 import javafx.scene.control.ListCell;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.VBox;
@@ -32,18 +33,30 @@ public class FeedController extends AbstractController implements Observer {
      * ArticleViewField displays the content on the page
      */
     public VBox container;
+    public ChoiceBox displayModeChoiceBox;
 
     private TwitterService twitterService;
+    private int cellsize = 150;
+    private enum DisplayMode {
 
+        Rss("Rss"),
+        Facebook("facebook"),
+        Twitter("twitter");
+
+        private String mode;
+
+        DisplayMode(String m) {
+            this.mode = m;
+        }
+    }
 
     /**
      * @param cell
      * @param size
      * @return a listView
      * Allow us to click on cell + show the right information
-     *
      */
-    private ListView<PreviewThumbnailCell> showCell (ObservableList<PreviewThumbnailCell> cell,int size){
+    private ListView<PreviewThumbnailCell> showCell(ObservableList<PreviewThumbnailCell> cell, int size) {
         ListView<PreviewThumbnailCell> listView = new ListView<>(cell);
         listView.setFixedCellSize(size);
 
@@ -67,13 +80,13 @@ public class FeedController extends AbstractController implements Observer {
                 };
             }
         });
-        this.container.getChildren().add(listView);
+
         return listView;
     }
 
     /**
      * @param articles list of articles
-     * Function that allow us to display the picture + the information about the article
+     *                 Function that allow us to display the picture + the information about the article
      */
     private void pushArticleToView(ArrayList<Article> articles) {
         ObservableList<PreviewThumbnailCell> thumbnailList = FXCollections.observableArrayList();
@@ -87,11 +100,13 @@ public class FeedController extends AbstractController implements Observer {
             }
 
             PreviewThumbnailCell previewThumbnail = new PreviewThumbnailCell(imageView, article.getTitle(),
-                    article.getPubDate(), article.getGeolocation(),article.getSource());
+                    article.getPubDate(), article.getGeolocation(), article.getSource());
             thumbnailList.add(previewThumbnail);
         });
 
-        ListView<PreviewThumbnailCell> listView = showCell (thumbnailList,150);
+        ListView<PreviewThumbnailCell> listView = showCell(thumbnailList, cellsize);
+
+        this.container.getChildren().add(listView);
 
         listView.getSelectionModel().selectedItemProperty().addListener((ov, oldValue, newValue) -> {
             int selectedArticleIndex = listView.getSelectionModel().getSelectedIndex();
@@ -101,6 +116,31 @@ public class FeedController extends AbstractController implements Observer {
                 displayArticlePreview(article);
             } catch (IOException e) {
                 e.printStackTrace();
+            }
+        });
+    }
+
+    private void pushStatusToView(ArrayList<Status> statuses) {
+
+        ListView<Status> listView = new ListView<>(FXCollections.observableArrayList(statuses));
+        listView.setFixedCellSize(cellsize);
+
+        listView.setCellFactory(new Callback<ListView<Status>, ListCell<Status>>() {
+            @Override
+            public ListCell<Status> call(ListView<Status> param) {
+                return new ListCell<Status>() {
+
+                    @Override
+                    protected void updateItem(Status pr, boolean empty) {
+                        super.updateItem(pr, empty);
+
+                        if (pr != null) {
+
+                            setText(pr.getText());
+
+                        }
+                    }
+                };
             }
         });
     }
@@ -124,16 +164,23 @@ public class FeedController extends AbstractController implements Observer {
         container.getChildren().clear();
         pushArticleToView(articles);
         pushStatusToView(statuses);
+
+        ObservableList<String> categoryList =
+                FXCollections.observableArrayList(
+                        DisplayMode.Rss.mode,
+                        DisplayMode.Twitter.mode,
+                        DisplayMode.Facebook.mode
+                );
+
+        displayModeChoiceBox.setItems(categoryList);
     }
 
-    private void pushStatusToView(ArrayList<Status> statuses) {
-        // TODO: 26-04-19 add statuses to view
-    }
 
     /**
      * Updates the view
+     *
      * @param observable observable
-     * @param o object type
+     * @param o          object type
      */
     @Override
     public void update(Observable observable, Object o) {
@@ -147,6 +194,7 @@ public class FeedController extends AbstractController implements Observer {
 
     /**
      * Displays article preview
+     *
      * @param article Article object
      * @throws IOException if article cannot be read
      */

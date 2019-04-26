@@ -40,7 +40,6 @@ public class TwitterAuthController extends AbstractTwitterController {
 
 
         try {
-
             String url = twitterService.getAuthUrl();
             webEngine.load(url);
 

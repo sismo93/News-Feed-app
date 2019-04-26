@@ -13,7 +13,7 @@ public class SocialNetworkViewController  extends AbstractController {
     }
 
     public void OpenTwitterView() {
-        Router.Instance().changeView(Views.Twitter);
+        Router.Instance().changeView(Views.TwitterAuth);
 
     }
 }

@@ -11,8 +11,8 @@ import java.util.*;
 
 public class TwitterService extends Observable {
 
-    public static final String CONSUMER_KEY = "c5QH9G5KXl26uwUO83oN3omtD";
-    public static final String CONSUMER_SECRET = "mwPhVED1YhsQgdEEnUQdA80aVFmgzUFEv7UnhccTAOH54yMlFd";
+    private static final String CONSUMER_KEY = "T5DQdNCMJWzXZazViUe06yjrX";
+    private static final String CONSUMER_SECRET = "753z7k9uhcEPsPH0ANnYsrcn19KaiEEzzieElARDuG3MPyTjs3";
     public static final String AUTHENTICATE_URL = "https://api.twitter.com/oauth/authenticate";
     public static final String AUTHORIZED_URL = "https://api.twitter.com/oauth/authorize";
 
@@ -23,6 +23,7 @@ public class TwitterService extends Observable {
     public TwitterService() {
         twitter = TwitterFactory.getSingleton();
         twitter.setOAuthConsumer(CONSUMER_KEY, CONSUMER_SECRET);
+        statuses = new ArrayList<>();
     }
 
 
@@ -45,7 +46,7 @@ public class TwitterService extends Observable {
 
     public void syncTimeline() throws TwitterException {
         setChanged();
-        statuses = twitter.getHomeTimeline();
+        statuses.addAll(twitter.getHomeTimeline());
         for (Status status : statuses) {
             System.out.println(status.getUser().getName() + ":" + status.getText());
         }
@@ -54,7 +55,7 @@ public class TwitterService extends Observable {
 
     public void searchBy(String tag) throws TwitterException {
         setChanged();
-        statuses = twitter.getHomeTimeline();
+        statuses.addAll(twitter.getHomeTimeline());
         for (Status status : statuses) {
             System.out.println(status.getUser().getName() + ":" + status.getText());
         }
@@ -62,6 +63,7 @@ public class TwitterService extends Observable {
     }
 
     public ArrayList<Status> getStatusAll() {
-        return new ArrayList<Status>(statuses);
+        return new ArrayList<>(statuses);
     }
+
 }
