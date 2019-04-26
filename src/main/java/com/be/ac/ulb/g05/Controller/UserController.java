@@ -7,7 +7,7 @@ import com.be.ac.ulb.g05.Model.*;
  * @author @iyamani
  * @codereview @Tanvirul.Hoque
  */
-public class UserController extends Controller{
+public class UserController extends AbstractController {
     private Users model;
 
 

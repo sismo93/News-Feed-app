@@ -1,8 +1,6 @@
 package com.be.ac.ulb.g05.Controller;
 
 
-import com.be.ac.ulb.g05.Controller.Router.*;
-
 import com.restfb.DefaultFacebookClient;
 import com.restfb.FacebookClient;
 import com.restfb.Version;
@@ -14,7 +12,7 @@ import javafx.scene.web.WebEngine;
 import javafx.scene.web.WebView;
 
 
-public class FacebookController extends Controller {
+public class FacebookController extends AbstractController {
     public BorderPane mediaView;
     public static final String SUCCESS_URL = "https://www.facebook.com/connect/login_success.html";
     private WebEngine webEngine;

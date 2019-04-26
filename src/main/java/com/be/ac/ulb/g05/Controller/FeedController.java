@@ -2,7 +2,7 @@ package com.be.ac.ulb.g05.Controller;
 
 import com.be.ac.ulb.g05.Controller.Router.*;
 import com.be.ac.ulb.g05.Model.Article;
-import com.be.ac.ulb.g05.Model.ArticleService;
+import com.be.ac.ulb.g05.Model.TwitterService;
 import com.be.ac.ulb.g05.PreviewThumbnailCell;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -11,6 +11,8 @@ import javafx.scene.image.ImageView;
 import javafx.scene.layout.VBox;
 import javafx.scene.control.ListView;
 import javafx.util.Callback;
+import twitter4j.Status;
+
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Observable;
@@ -19,17 +21,19 @@ import java.util.Observer;
 import static com.be.ac.ulb.g05.Controller.ArticleViewController.saveImage;
 
 /**
- * Controller of the ArticleService View
+ * AbstractController of the ArticleService View
  *
  * @author @MnrBn
  * @codereview @borsalinoK
  */
-public class FeedController extends Controller implements Observer {
+public class FeedController extends AbstractController implements Observer {
 
     /**
      * ArticleViewField displays the content on the page
      */
-    public VBox articleContainer;
+    public VBox container;
+
+    private TwitterService twitterService;
 
 
     /**
@@ -63,7 +67,7 @@ public class FeedController extends Controller implements Observer {
                 };
             }
         });
-        this.articleContainer.getChildren().add(listView);
+        this.container.getChildren().add(listView);
         return listView;
     }
 
@@ -71,9 +75,7 @@ public class FeedController extends Controller implements Observer {
      * @param articles list of articles
      * Function that allow us to display the picture + the information about the article
      */
-    private void pushToArticleView(ArrayList<Article> articles) {
-        articleContainer.getChildren().clear();
-
+    private void pushArticleToView(ArrayList<Article> articles) {
         ObservableList<PreviewThumbnailCell> thumbnailList = FXCollections.observableArrayList();
 
         articles.forEach(article -> {
@@ -101,18 +103,6 @@ public class FeedController extends Controller implements Observer {
                 e.printStackTrace();
             }
         });
-
-
-    }
-
-
-    /**
-     * Sets up the article service
-     * @param articleService article service
-     */
-    @Override
-    public void setArticleService(ArticleService articleService) {
-        super.setArticleService(articleService);
     }
 
     /**
@@ -127,8 +117,17 @@ public class FeedController extends Controller implements Observer {
     @Override
     public void setupView() {
         articleService.addObserver(this);
-        ArrayList<Article> articles = articleService.getArticles();
-        pushToArticleView(articles);
+        twitterService.addObserver(this);
+
+        ArrayList<Status> statuses = twitterService.getStatusAll();
+        ArrayList<Article> articles = articleService.getArticleAll();
+        container.getChildren().clear();
+        pushArticleToView(articles);
+        pushStatusToView(statuses);
+    }
+
+    private void pushStatusToView(ArrayList<Status> statuses) {
+        // TODO: 26-04-19 add statuses to view
     }
 
     /**
@@ -138,8 +137,12 @@ public class FeedController extends Controller implements Observer {
      */
     @Override
     public void update(Observable observable, Object o) {
-        ArrayList<Article> articles = articleService.getArticles();
-        pushToArticleView(articles);
+
+        ArrayList<Article> articles = articleService.getArticleAll();
+        ArrayList<Status> statuses = twitterService.getStatusAll();
+        container.getChildren().clear();
+        pushArticleToView(articles);
+        pushStatusToView(statuses);
     }
 
     /**
@@ -151,5 +154,11 @@ public class FeedController extends Controller implements Observer {
         articleService.selectArticle(article);
         Router.Instance().changeView(Views.Preview);
 
+    }
+
+    @Override
+    public void injectDependencies(DependencyInjector dependencyInjector) {
+        super.injectDependencies(dependencyInjector);
+        twitterService = dependencyInjector.getTwitterService();
     }
 }

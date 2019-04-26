@@ -1,6 +1,5 @@
 package com.be.ac.ulb.g05.Controller;
 
-import com.be.ac.ulb.g05.Model.ArticleService;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Node;
@@ -33,7 +32,7 @@ public class Router {
     /**
      * Article service
      */
-    private ArticleService articleService;
+    private DependencyInjector dependencyInjector;
 
     /**
      * Enum of different views
@@ -52,9 +51,9 @@ public class Router {
         ChooseArticle("ChooseArticleView.fxml"),
         SocialNetwork("SocialNetworkView.fxml"),
         Twitter("TwitterView.fxml"),
+        TwitterAuth("TwitterAuthView.fxml"),
         Facebook("FacebookView.fxml"),
         FacebookData("FacebookDataView.fxml");
-
 
         private String value;
 
@@ -114,8 +113,8 @@ public class Router {
 
             view = loader.load();
 
-            Controller controller = loader.getController();
-            controller.setArticleService(articleService);
+            AbstractController controller = loader.getController();
+            controller.injectDependencies(dependencyInjector);
             controller.setupView();
 
 
@@ -130,10 +129,9 @@ public class Router {
         return view;
     }
 
-    public void setFeed(ArticleService feed) {
-        this.articleService = feed;
+    public void setDependencyInjector(DependencyInjector dependencyInjector) {
+        this.dependencyInjector = dependencyInjector;
     }
-
 
     /**
      * Changes XML view

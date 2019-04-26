@@ -16,11 +16,11 @@ import javafx.scene.text.Text;
 
 
 /**
- * Controller of the Register
+ * AbstractController of the Register
  * @author Mouscb
  * @codereview @@MnrBn
  */
-public class RegisterController extends Controller {
+public class RegisterController extends AbstractController {
 
     /**
      * Username field

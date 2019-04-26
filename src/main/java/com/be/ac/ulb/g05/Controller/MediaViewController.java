@@ -4,7 +4,7 @@ import javafx.scene.layout.HBox;
 import javafx.scene.web.WebEngine;
 import javafx.scene.web.WebView;
 
-public class MediaViewController extends Controller {
+public class MediaViewController extends AbstractController {
 
     public HBox hboxView;
 

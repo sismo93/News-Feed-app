@@ -56,7 +56,7 @@ public class ArticleService extends Observable {
      * List of Articles
      * @return list of articles
      */
-    public ArrayList<Article> getArticles(){
+    public ArrayList<Article> getArticleAll(){
         return new ArrayList<>(articles.values());
     }
 

@@ -3,9 +3,9 @@ package com.be.ac.ulb.g05.Controller;
 
 /**
  * TopPaneView controller
- * extends Controller
+ * extends AbstractController
  */
-public class TopPaneViewController extends Controller {
+public class TopPaneViewController extends AbstractController {
 
     /**
      * Opens menu view

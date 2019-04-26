@@ -17,12 +17,12 @@ import static com.be.ac.ulb.g05.Controller.AddController.WebsiteCategory.*;
 import static com.be.ac.ulb.g05.Controller.AddController.WebsiteSource.*;
 
 /**
- * Controller of the Add View
+ * AbstractController of the Add View
  *
  * @author @MnrBn
  * @codereview @Mouscb
  */
-public class AddController extends Controller {
+public class AddController extends AbstractController {
 
     /**
      * Controls elements displayed on screen

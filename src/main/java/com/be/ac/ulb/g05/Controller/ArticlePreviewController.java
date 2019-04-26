@@ -29,7 +29,7 @@ import com.be.ac.ulb.g05.Controller.Router.*;
  * @author @iyamani
  * @codereview @vtombou
  */
-public class ArticlePreviewController extends Controller implements Observer {
+public class ArticlePreviewController extends AbstractController implements Observer {
     /**
      * Article object
      */
