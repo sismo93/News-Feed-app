@@ -55,14 +55,13 @@ public class FeedController extends AbstractController implements Observer {
 
     /**
      * @param cell
-     * @param size
      * @return a listView
      * Allow us to click on cell + show the right information
      */
-    private ListView<PreviewThumbnailCell> showCell(ObservableList<PreviewThumbnailCell> cell, int size) {
+    private ListView<PreviewThumbnailCell> showCell(ObservableList<PreviewThumbnailCell> cell) {
 
         listView.setItems(cell);
-        listView.setFixedCellSize(size);
+        listView.setFixedCellSize(cellsize);
 
         listView.setCellFactory(new Callback<ListView<PreviewThumbnailCell>, ListCell<PreviewThumbnailCell>>() {
             @Override
@@ -92,7 +91,7 @@ public class FeedController extends AbstractController implements Observer {
      * @param articles list of articles
      *                 Function that allow us to display the picture + the information about the article
      */
-    private void pushArticleToView(ArrayList<Article> articles) {
+    private void fillListViewWith(ArrayList<Article> articles) {
         ObservableList<PreviewThumbnailCell> thumbnailList = FXCollections.observableArrayList();
 
         articles.forEach(article -> {
@@ -108,7 +107,7 @@ public class FeedController extends AbstractController implements Observer {
             thumbnailList.add(previewThumbnail);
         });
 
-        showCell(thumbnailList, cellsize);
+        showCell(thumbnailList);
 
         listView.getSelectionModel().selectedItemProperty().addListener((ov, oldValue, newValue) -> {
             int selectedArticleIndex = listView.getSelectionModel().getSelectedIndex();
@@ -122,15 +121,26 @@ public class FeedController extends AbstractController implements Observer {
         });
     }
 
-
     public void refreshContainer(ActionEvent actionEvent) {
-        listView.getItems().clear();
-        String displayMode = displayModeChoiceBox.getSelectionModel().getSelectedItem().toString();
-        if(displayMode.equals(DisplayMode.Twitter.mode)){
-
-        }
+        displayArticles();
     }
 
+    private void displayArticles() {
+
+        String displayMode = displayModeChoiceBox.getSelectionModel().getSelectedItem().toString();
+
+        System.out.println("display mode " + displayMode);
+        if (displayMode.equals(DisplayMode.Twitter.mode)) {
+            fillListViewWith(twitterService.getStatusAll());
+        } else if (displayMode.equals(DisplayMode.Rss.mode)) {
+
+            ArrayList<Article> twitterArticles = twitterService.getStatusAll();
+            ArrayList<Article> rssArticles = articleService.getArticleAll();
+            rssArticles.addAll(twitterArticles);
+            fillListViewWith(rssArticles);
+        }
+
+    }
 
     /**
      * Called after scene loading
@@ -146,12 +156,6 @@ public class FeedController extends AbstractController implements Observer {
         articleService.addObserver(this);
         twitterService.addObserver(this);
 
-        ArrayList<Article> statuses = twitterService.getStatusAll();
-        ArrayList<Article> articles = articleService.getArticleAll();
-
-        listView.getItems().clear();
-        pushArticleToView(articles);
-
         ObservableList<String> categoryList =
                 FXCollections.observableArrayList(
                         DisplayMode.Rss.mode,
@@ -159,10 +163,12 @@ public class FeedController extends AbstractController implements Observer {
                         DisplayMode.Facebook.mode
                 );
 
+
         displayModeChoiceBox.setItems(categoryList);
+        displayModeChoiceBox.setValue(DisplayMode.Rss.mode);
+        displayArticles();
+
     }
-
-
 
 
     /**
@@ -173,11 +179,7 @@ public class FeedController extends AbstractController implements Observer {
      */
     @Override
     public void update(Observable observable, Object o) {
-
-        ArrayList<Article> articles = articleService.getArticleAll();
-        ArrayList<Article> statuses = twitterService.getStatusAll();
-        listView.getItems().clear();
-        pushArticleToView(articles);
+        displayArticles();
     }
 
     /**
@@ -189,12 +191,16 @@ public class FeedController extends AbstractController implements Observer {
     public void displayArticlePreview(Article article) throws IOException {
         articleService.selectArticle(article);
         Router.Instance().changeView(Views.Preview);
-
     }
 
     @Override
     public void injectDependencies(DependencyInjector dependencyInjector) {
         super.injectDependencies(dependencyInjector);
         twitterService = dependencyInjector.getTwitterService();
+    }
+
+    @Override
+    public void onActive() {
+        displayArticles();
     }
 }

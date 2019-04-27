@@ -70,7 +70,20 @@ public class TwitterService extends Observable {
     }
 
     public ArrayList<Article> getStatusAll() {
-        return new ArrayList<>();
+        ArrayList<Article> articles = new ArrayList<>();
+        Article article;
+        for (Status status : statuses) {
+            article = new Article();
+
+            article.setPubDate(status.getCreatedAt().toString());
+            article.setSource(status.getUser().getName());
+            article.setContent(status.getText());
+            article.setContent(status.getText());
+            article.setTitle("twitter feed");
+            articles.add(article);
+        }
+
+        return articles;
     }
 
     public boolean isAuthenticated() {

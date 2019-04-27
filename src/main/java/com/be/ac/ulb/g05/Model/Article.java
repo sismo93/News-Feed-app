@@ -10,52 +10,52 @@ public class Article {
     /**
      * Article title
      */
-    private String title;
+    private String title = "";
 
     /**
      * Article description
      */
-    private String description;
+    private String description = "";
 
     /**
      * Article link
      */
-    private String link;
+    private String link = "";
 
     /**
      * Article content
      */
-    private String content;
+    private String content = "";
 
     /**
      * Article image
      */
-    private String image;
+    private String image = "";
 
     /**
      * Article default thumbnail
      */
-    private String defaultThumbnail;
+    private String defaultThumbnail = "";
 
     /**
      * Article source
      */
-    private String source;
+    private String source = "";
 
     /**
      * Article geolocation
      */
-    private String geolocation;
+    private String geolocation = "";
 
     /**
      * Article publication date
      */
-    private String pubDate;
+    private String pubDate = "";
 
     /**
      * Article video link
      */
-    private String video;
+    private String video = "";
 
     /**
      * Image getter
