@@ -14,7 +14,7 @@ import javafx.scene.web.WebView;
 
 public class FacebookController extends AbstractController {
     public BorderPane mediaView;
-    public static final String SUCCESS_URL = "https://www.facebook.com/connect/login_success.html";
+    private static final String SUCCESS_URL = "https://www.facebook.com/connect/login_success.html";
     private WebEngine webEngine;
     private String code;
 
@@ -29,7 +29,7 @@ public class FacebookController extends AbstractController {
         mediaView.setCenter(webView);
     }
 
-    public void showLogin(String appId,String appSecret) {
+    public void showLogin(String appId, String appSecret) {
         DefaultFacebookClient facebookClient = new DefaultFacebookClient(Version.LATEST);
         ScopeBuilder scopes = new ScopeBuilder();
         String loadUrl = facebookClient.getLoginDialogUrl(appId, SUCCESS_URL, scopes);
@@ -47,28 +47,15 @@ public class FacebookController extends AbstractController {
                     }
 
                     if (myUrl.startsWith(SUCCESS_URL)) { // connection reussite
-                      //System.out.println(myUrl);
                       int pos = myUrl.indexOf("code=");
                       code = myUrl.substring(pos + "code=".length());
                       FacebookClient.AccessToken token = facebookClient.obtainUserAccessToken(appId,
                               appSecret, SUCCESS_URL, code);
 
-                        //Router.Instance().changeView(Views.FacebookData);
-
-
-                        //System.out.println("Accesstoken: " + token.getAccessToken());
-                      //System.out.println("Expires: " + token.getExpires());
+                      Router.Instance().changeView(Router.Views.FacebookData);
                     }
                 });
 
     }
-
-    public boolean isConnect(){
-        String myUrl = webEngine.getLocation();
-        return myUrl.startsWith(SUCCESS_URL);
-    }
-
-
-
 
 }

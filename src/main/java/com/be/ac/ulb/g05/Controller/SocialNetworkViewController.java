@@ -8,7 +8,6 @@ public class SocialNetworkViewController  extends AbstractController {
 
 
     public void OpenFacebookView() {
-
         Router.Instance().changeView(Views.Facebook);
     }
 
