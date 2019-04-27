@@ -19,6 +19,7 @@ public class TwitterService extends Observable {
     private List<Status> statuses;
 
     private Twitter twitter;
+    private RequestToken requestToken;
 
     public TwitterService() {
         twitter = TwitterFactory.getSingleton();
@@ -28,11 +29,13 @@ public class TwitterService extends Observable {
 
 
     public AccessToken getAccessToken(String pin) throws TwitterException {
-        return twitter.getOAuthAccessToken(twitter.getOAuthRequestToken(), pin);
+
+        return twitter.getOAuthAccessToken(requestToken, pin);
     }
 
     private RequestToken getRequestToken() throws TwitterException {
-        return twitter.getOAuthRequestToken();
+        requestToken = (requestToken == null)? twitter.getOAuthRequestToken() : requestToken;
+        return requestToken;
     }
 
     public String getAuthUrl() throws TwitterException {
