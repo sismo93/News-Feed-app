@@ -8,12 +8,10 @@ public class SocialNetworkViewController  extends Controller{
 
 
     public void OpenFacebookView() {
-
         Router.Instance().changeView(Views.Facebook);
     }
 
     public void OpenTwitterView() {
         Router.Instance().changeView(Views.Twitter);
-
     }
 }
