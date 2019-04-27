@@ -4,6 +4,8 @@ import com.be.ac.ulb.g05.Controller.Router.*;
 import com.be.ac.ulb.g05.Model.Article;
 import com.be.ac.ulb.g05.Model.TwitterService;
 import com.be.ac.ulb.g05.PreviewThumbnailCell;
+import javafx.beans.value.ChangeListener;
+import javafx.beans.value.ObservableValue;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
@@ -39,6 +41,7 @@ public class FeedController extends AbstractController implements Observer {
 
     private TwitterService twitterService;
     private int cellsize = 150;
+    ChangeListener listener;
 
     private enum DisplayMode {
 
@@ -109,16 +112,24 @@ public class FeedController extends AbstractController implements Observer {
 
         showCell(thumbnailList);
 
-        listView.getSelectionModel().selectedItemProperty().addListener((ov, oldValue, newValue) -> {
+        //remove previews listner
+        if(listener != null) {
+            listView.getSelectionModel().selectedItemProperty().removeListener(listener);
+        }
+
+        listener = (ov, oldValue, newValue) -> {
+
             int selectedArticleIndex = listView.getSelectionModel().getSelectedIndex();
             Article article = articles.get(selectedArticleIndex);
-
+            System.out.println(selectedArticleIndex + " " + articles.size());
             try {
-                displayArticlePreview(article);
+                FeedController.this.displayArticlePreview(article);
             } catch (IOException e) {
                 e.printStackTrace();
             }
-        });
+        };
+
+        listView.getSelectionModel().selectedItemProperty().addListener(listener);
     }
 
     public void refreshContainer(ActionEvent actionEvent) {
@@ -128,7 +139,6 @@ public class FeedController extends AbstractController implements Observer {
     private void displayArticles() {
 
         String displayMode = displayModeChoiceBox.getSelectionModel().getSelectedItem().toString();
-
         System.out.println("display mode " + displayMode);
         if (displayMode.equals(DisplayMode.Twitter.mode)) {
             fillListViewWith(twitterService.getStatusAll());
@@ -170,17 +180,6 @@ public class FeedController extends AbstractController implements Observer {
 
     }
 
-
-    /**
-     * Updates the view
-     *
-     * @param observable observable
-     * @param o          object type
-     */
-    @Override
-    public void update(Observable observable, Object o) {
-        displayArticles();
-    }
 
     /**
      * Displays article preview
