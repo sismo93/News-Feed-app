@@ -23,13 +23,16 @@ import java.net.URL;
 import java.util.Observable;
 import java.util.Observer;
 import com.be.ac.ulb.g05.Controller.Router.*;
+import twitter4j.TwitterException;
+
 
 /**
  * Article Preview controller
  * @author @iyamani
  * @codereview @vtombou
  */
-public class ArticlePreviewController extends AbstractController implements Observer {
+public class ArticlePreviewController extends AbstractTwitterController implements Observer  {
+
     /**
      * Article object
      */
@@ -58,7 +61,12 @@ public class ArticlePreviewController extends AbstractController implements Obse
     public Button deleteFromFeed;
 
     @FXML
+    public Button shareTwitter;
+
+    @FXML
     public StackPane stackPane;
+
+
 
 
     /**
@@ -99,7 +107,7 @@ public class ArticlePreviewController extends AbstractController implements Obse
                 StringSelection strSel = new StringSelection(article.getLink());
                 clipboard.setContents(strSel, null);
 
-                displayQuickAlert();
+                displayQuickAlert("Link has been copied to clipboard");
             });
 
             // Deletes the article from the feed
@@ -107,6 +115,22 @@ public class ArticlePreviewController extends AbstractController implements Obse
                 articleService.deleteArticle(article);
                 Router.Instance().changeView(Views.Feed);
             });
+
+            //Share on Twitter
+            this.shareTwitter.setOnAction(event -> {
+                try {
+                    twitterService.postTweet("Je partage cet article via" +
+                            " l'application FeedBuzz "+ article.getLink());
+                }
+                catch (IllegalStateException e){ // Handle exception when the user didnt connect to twitter yet
+                    Router.Instance().changeView(Views.TwitterAuth);
+
+                } catch (TwitterException e) {
+                    //TODO HANDLE
+                }
+                displayQuickAlert("The post has been tweeted");
+            });
+
         });
     }
 
@@ -114,10 +138,10 @@ public class ArticlePreviewController extends AbstractController implements Obse
     /**
      * Displays an information dialog that disappears within 2 seconds
      */
-    private void displayQuickAlert() {
+    private void displayQuickAlert(String text) {
         JFXDialogLayout content = new JFXDialogLayout();
         content.setHeading(new Text("Information"));
-        content.setBody(new Text("Link has been copied to clipboard"));
+        content.setBody(new Text(text));
 
         JFXDialog dialog = new JFXDialog(stackPane, content, JFXDialog.DialogTransition.CENTER);
         JFXButton button = new JFXButton("Ok");
