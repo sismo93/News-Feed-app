@@ -8,7 +8,7 @@ import com.be.ac.ulb.g05.Model.ArticleService;
  * @codereview @MnrBn
  * Abstract class that allow us to use the same List of article through all the views
  */
-public abstract class Controller  {
+public abstract class AbstractController {
 
     /**
      * Article service
@@ -30,4 +30,11 @@ public abstract class Controller  {
      */
     public void setupView(){ }
 
+    public void injectDependencies(DependencyInjector dependencyInjector) {
+        this.articleService = dependencyInjector.getArticleService();
+    }
+
+    public void onActive(){
+
+    }
 }

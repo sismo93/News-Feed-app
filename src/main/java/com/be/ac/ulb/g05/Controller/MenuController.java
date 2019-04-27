@@ -4,12 +4,12 @@ import com.be.ac.ulb.g05.Model.ArticleService;
 import com.be.ac.ulb.g05.Controller.Router.*;
 
 /**
- * Controller of Menu View
+ * AbstractController of Menu View
  * @author @MnrBn
  * @codereview @borsalinoK
  */
 
-public class MenuController extends Controller{
+public class MenuController extends AbstractController {
 
 
     /**

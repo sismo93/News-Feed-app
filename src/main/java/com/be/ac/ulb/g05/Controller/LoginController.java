@@ -13,11 +13,11 @@ import com.be.ac.ulb.g05.Controller.Router.*;
 
 
 /**
- * Controller of the Login
+ * AbstractController of the Login
  * @author @MnrBn
  * @codereview @Mouscb
  */
-public class LoginController extends Controller {
+public class LoginController extends AbstractController {
 
     /**
      * Password field

@@ -1,5 +1,6 @@
 package com.be.ac.ulb.g05;
 
+import com.be.ac.ulb.g05.Controller.DependencyInjector;
 import com.be.ac.ulb.g05.Controller.Router;
 import com.be.ac.ulb.g05.Model.ArticleService;
 import javafx.application.Application;
@@ -13,17 +14,16 @@ public class Main extends Application {
     public void start(final Stage primaryStage) {
 
         // Initialize ArticleService Service
-        ArticleService feed = new ArticleService();
+        DependencyInjector dependencyInjector = new DependencyInjector();
         // Inject Dependency
-        Router.Instance().setFeed(feed);
+        Router.Instance().setDependencyInjector(dependencyInjector);
 
         // Scene assignment
-        final Scene scene = new Scene( Router.Instance().getRoot());
+        final Scene scene = new Scene(Router.Instance().getRoot());
         primaryStage.setScene(scene);
         primaryStage.show();
 
-        Router.Instance().changeView(Views.Menu);
-
+        Router.Instance().changeView(Views.Feed);
 
     }
 

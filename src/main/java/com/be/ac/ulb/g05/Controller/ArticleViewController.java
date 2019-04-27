@@ -1,7 +1,6 @@
 package com.be.ac.ulb.g05.Controller;
 
 import com.be.ac.ulb.g05.Model.Article;
-import com.be.ac.ulb.g05.Model.ArticleService;
 import com.be.ac.ulb.g05.Controller.Router.*;
 import javafx.application.Platform;
 import javafx.fxml.FXML;
@@ -14,7 +13,7 @@ import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.web.WebEngine;
 import javafx.scene.web.WebView;
-import javax.sound.midi.Soundbank;
+
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.InputStream;
@@ -29,7 +28,7 @@ import java.util.Observer;
  * @author @iyamani
  * @codereview @vtombou
  */
-public class ArticleViewController extends Controller implements Observer {
+public class ArticleViewController extends AbstractController implements Observer {
 
     /**
      * FXML control buttons & containers

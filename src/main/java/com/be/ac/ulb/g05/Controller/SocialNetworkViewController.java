@@ -4,7 +4,7 @@ package com.be.ac.ulb.g05.Controller;
 import com.be.ac.ulb.g05.Controller.Router.*;
 
 
-public class SocialNetworkViewController  extends Controller{
+public class SocialNetworkViewController  extends AbstractController {
 
 
     public void OpenFacebookView() {
@@ -12,6 +12,7 @@ public class SocialNetworkViewController  extends Controller{
     }
 
     public void OpenTwitterView() {
-        Router.Instance().changeView(Views.Twitter);
+        Router.Instance().changeView(Views.TwitterAuth);
+
     }
 }

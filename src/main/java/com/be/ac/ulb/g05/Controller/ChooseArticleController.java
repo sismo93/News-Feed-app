@@ -21,7 +21,7 @@ import java.util.Observer;
 import static com.be.ac.ulb.g05.Controller.AddController.*;
 
 
-public class ChooseArticleController extends Controller implements Observer {
+public class ChooseArticleController extends AbstractController implements Observer {
 
 
     public VBox articleContainer;
