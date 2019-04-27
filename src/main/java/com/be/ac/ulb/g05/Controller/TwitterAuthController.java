@@ -54,7 +54,6 @@ public class TwitterAuthController extends AbstractTwitterController {
     private void onWebEngineLocationChanged() throws TwitterException {
         if (webEngine.getLocation().equals(TwitterService.AUTHORIZED_URL) || webEngine.getLocation().equals(TwitterService.AUTHENTICATE_URL)) {
             pin = (String) webEngine.executeScript("document.getElementsByTagName(\"kbd\")[0].innerText");
-
             AccessToken accessToken = twitterService.getAccessToken(pin);
             twitterService.setAccessToken(accessToken);
             Router.Instance().changeView(Views.Twitter);

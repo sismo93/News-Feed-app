@@ -11,8 +11,8 @@ import java.util.*;
 
 public class TwitterService extends Observable {
 
-    private static final String CONSUMER_KEY = "T5DQdNCMJWzXZazViUe06yjrX";
-    private static final String CONSUMER_SECRET = "753z7k9uhcEPsPH0ANnYsrcn19KaiEEzzieElARDuG3MPyTjs3";
+    private static final String CONSUMER_KEY = "c5QH9G5KXl26uwUO83oN3omtD";
+    private static final String CONSUMER_SECRET = "mwPhVED1YhsQgdEEnUQdA80aVFmgzUFEv7UnhccTAOH54yMlFd";
     public static final String AUTHENTICATE_URL = "https://api.twitter.com/oauth/authenticate";
     public static final String AUTHORIZED_URL = "https://api.twitter.com/oauth/authorize";
 
@@ -28,7 +28,7 @@ public class TwitterService extends Observable {
 
 
     public AccessToken getAccessToken(String pin) throws TwitterException {
-        return twitter.getOAuthAccessToken(twitter.getOAuthRequestToken(), pin);
+        return twitter.getOAuthAccessToken(pin);
     }
 
     private RequestToken getRequestToken() throws TwitterException {
