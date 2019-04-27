@@ -3,6 +3,7 @@ package com.be.ac.ulb.g05.Model;
 import com.be.ac.ulb.g05.*;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
+import java.sql.SQLException;
 
 /**
  * @author @mouscb
@@ -10,10 +11,26 @@ import java.sql.ResultSet;
  */
 public class UsersDAO extends DAO<Users> {
 
+
+    /**
+     * @param rs
+     * @return
+     * @throws SQLException
+     */
+    protected  boolean checkInDataBase(ResultSet rs) throws SQLException {
+        boolean recordAdded = false;
+        while(rs.next()){
+            recordAdded = true;
+        }
+        return recordAdded;
+
+    }
+
     /**
      * Adds user (login, password & email) to the database
      * @param obj User object
      */
+
     public void add(Users obj) {
         try {
             PreparedStatement prepare2 = this.connect.prepareStatement(
@@ -42,11 +59,8 @@ public class UsersDAO extends DAO<Users> {
             stmt.setString(1, obj.getName());
             ResultSet rs=stmt.executeQuery();
 
-            boolean recordAdded = false;
-            while(rs.next()){
-                recordAdded = true;
-            }
-            return recordAdded;
+
+            return checkInDataBase(rs);
         }
         catch (Exception e) {
             e.printStackTrace();
@@ -67,12 +81,7 @@ public class UsersDAO extends DAO<Users> {
             stmt.setString(1, obj.getMail());
             ResultSet rs=stmt.executeQuery();
 
-            boolean recordAdded = false;
-            while(rs.next()){
-
-                recordAdded = true;
-            }
-            return recordAdded;
+            return checkInDataBase(rs);
         }
         catch (Exception e) {
             e.printStackTrace();
@@ -93,17 +102,13 @@ public class UsersDAO extends DAO<Users> {
             stmt.setString(2, HashMD5.hashFunct(obj.getPassword()));
             ResultSet rs=stmt.executeQuery();
 
-            boolean recordAdded = false;
-            while(rs.next()){
-
-                recordAdded = true;
-            }
-            return recordAdded;
+            return checkInDataBase(rs);
         }
         catch (Exception e) {
             e.printStackTrace();
             return false;
         }
     }
+
 }
 
