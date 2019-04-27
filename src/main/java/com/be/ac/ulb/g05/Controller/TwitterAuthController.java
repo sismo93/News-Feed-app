@@ -64,10 +64,17 @@ public class TwitterAuthController extends AbstractTwitterController {
             System.out.println("pin" + pin);
             AccessToken accessToken = twitterService.getAccessToken(pin);
             twitterService.setAccessToken(accessToken);
+            twitterService.setAuthenticated(true);
             Router.Instance().changeView(Views.Twitter);
         } else {
             Router.Instance().changeView(Views.Menu);
         }
     }
 
+    @Override
+    public void onActive() {
+        if(twitterService.isAuthenticated()){
+            Router.Instance().changeView(Views.Twitter);
+        }
+    }
 }

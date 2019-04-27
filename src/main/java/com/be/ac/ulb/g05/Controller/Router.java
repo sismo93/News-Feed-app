@@ -27,7 +27,7 @@ public class Router {
     /**
      * HashMap of nodes & their view
      */
-    private HashMap<String, Node> routes;
+    private HashMap<String, Route> routes;
 
     /**
      * Article service
@@ -100,33 +100,33 @@ public class Router {
      * @param fxml XML node
      * @return XML view or null if the view could not be loaded
      */
-    private Node loadFxml(String fxml) {
-        Node view = null;
-        if (routes.containsKey(fxml)) return routes.get(fxml);
+    private Route loadFxml(String fxml) {
+        Route route = null;
 
+        if (routes.containsKey(fxml)) {
+            route = routes.get(fxml);
+            return route;
+        }
 
         FXMLLoader loader = new FXMLLoader(this.getClass().getClassLoader().getResource(fxml));
 
-
-
         try {
-
-            view = loader.load();
+            Node root = loader.load();
 
             AbstractController controller = loader.getController();
             controller.injectDependencies(dependencyInjector);
             controller.setupView();
 
+            route = new Route(root, controller);
 
-
-            routes.put(fxml, view);
+            routes.put(fxml, route);
 
         } catch (IOException e) {
             Alert alert = new Alert(Alert.AlertType.INFORMATION, "GUI could not be loaded", ButtonType.OK);
             alert.showAndWait();
         }
 
-        return view;
+        return route;
     }
 
     public void setDependencyInjector(DependencyInjector dependencyInjector) {
@@ -140,16 +140,19 @@ public class Router {
      */
     public void changeView(Views view) {
 
-
-        currentView = loadFxml(view.value);
+        Route route = loadFxml(view.value);
+        AbstractController controller = route.getController();
+        currentView = route.getRoot();
 
         if (view == Views.Login || view == Views.Register) {
             getRoot().setTop(null);
         } else {
-            getRoot().setTop(loadFxml(Views.TopPane.value));
+            getRoot().setTop(loadFxml(Views.TopPane.value).getRoot());
         }
 
         getRoot().setCenter(currentView);
+
+        controller.onActive();
 
     }
 
@@ -161,7 +164,8 @@ public class Router {
      */
     public BorderPane getRoot() {
         if (root == null) {
-            setRoot((BorderPane) loadFxml(Views.Root.value));
+            Node root = loadFxml(Views.Root.value).getRoot();
+            setRoot((BorderPane) root);
         }
         return root;
     }

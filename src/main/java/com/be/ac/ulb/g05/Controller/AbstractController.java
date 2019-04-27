@@ -33,4 +33,8 @@ public abstract class AbstractController {
     public void injectDependencies(DependencyInjector dependencyInjector) {
         this.articleService = dependencyInjector.getArticleService();
     }
+
+    public void onActive(){
+
+    }
 }

@@ -21,12 +21,13 @@ public class TwitterService extends Observable {
 
     private Twitter twitter;
     private RequestToken requestToken;
+    private boolean authenticated;
 
     public TwitterService() {
         twitter = TwitterFactory.getSingleton();
         twitter.setOAuthConsumer(CONSUMER_KEY, CONSUMER_SECRET);
         statuses = new ArrayList<>();
-
+        authenticated = false;
     }
 
     public AccessToken getAccessToken(String pin) throws TwitterException {
@@ -72,4 +73,11 @@ public class TwitterService extends Observable {
         return new ArrayList<>();
     }
 
+    public boolean isAuthenticated() {
+        return authenticated;
+    }
+
+    public void setAuthenticated(boolean authenticated) {
+        this.authenticated = authenticated;
+    }
 }
