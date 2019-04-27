@@ -11,6 +11,12 @@ import java.util.ArrayList;
 import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertTrue;
 
+/**
+     * @author @otrangan
+     * 
+     */
+
+
 public class ArticleServiceTest extends ApplicationTest {
     RSSFeedParser feeder = new RSSFeedParser("https://www.theguardian.com/uk/business/rss");
     ArticleService feed = new ArticleService();
