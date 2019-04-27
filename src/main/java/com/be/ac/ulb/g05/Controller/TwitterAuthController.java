@@ -12,9 +12,6 @@ import com.be.ac.ulb.g05.Controller.Router.Views;
 
 public class TwitterAuthController extends AbstractTwitterController {
 
-
-    private String pin = null;
-
     public BorderPane mediaView;
     private WebEngine webEngine;
 
@@ -40,9 +37,7 @@ public class TwitterAuthController extends AbstractTwitterController {
 
 
         try {
-            String url = twitterService.getAuthUrl();
-            webEngine.load(url);
-
+            loadAuthPage();
         } catch (TwitterException e) {
             e.printStackTrace();
             if (401 == e.getStatusCode()) {
@@ -51,12 +46,27 @@ public class TwitterAuthController extends AbstractTwitterController {
         }
     }
 
+    private void loadAuthPage() throws TwitterException {
+        String url = twitterService.getAuthUrl();
+        webEngine.load(url);
+    }
+
     private void onWebEngineLocationChanged() throws TwitterException {
-        if (webEngine.getLocation().equals(TwitterService.AUTHORIZED_URL) || webEngine.getLocation().equals(TwitterService.AUTHENTICATE_URL)) {
-            pin = (String) webEngine.executeScript("document.getElementsByTagName(\"kbd\")[0].innerText");
+
+        if (!webEngine.getLocation().equals(TwitterService.AUTHORIZED_URL) && !webEngine.getLocation().equals(TwitterService.AUTHENTICATE_URL))
+            return;
+
+
+        String pin = (String) webEngine.executeScript("(document.getElementsByTagName(\"kbd\")[0])?document.getElementsByTagName(\"kbd\")[0].innerText : ''");
+
+
+        if (!pin.isEmpty()) {
+            System.out.println("pin" + pin);
             AccessToken accessToken = twitterService.getAccessToken(pin);
             twitterService.setAccessToken(accessToken);
             Router.Instance().changeView(Views.Twitter);
+        } else {
+            Router.Instance().changeView(Views.Menu);
         }
     }
 

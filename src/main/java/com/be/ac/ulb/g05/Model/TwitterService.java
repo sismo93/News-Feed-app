@@ -25,16 +25,15 @@ public class TwitterService extends Observable {
         twitter = TwitterFactory.getSingleton();
         twitter.setOAuthConsumer(CONSUMER_KEY, CONSUMER_SECRET);
         statuses = new ArrayList<>();
-    }
 
+    }
 
     public AccessToken getAccessToken(String pin) throws TwitterException {
         return twitter.getOAuthAccessToken(pin);
     }
 
     private RequestToken getRequestToken() throws TwitterException {
-        requestToken = (requestToken == null)? twitter.getOAuthRequestToken() : requestToken;
-        return requestToken;
+        return twitter.getOAuthRequestToken();
     }
 
     public String getAuthUrl() throws TwitterException {
@@ -49,9 +48,6 @@ public class TwitterService extends Observable {
     public void syncTimeline() throws TwitterException {
         setChanged();
         statuses.addAll(twitter.getHomeTimeline());
-        for (Status status : statuses) {
-            System.out.println(status.getUser().getName() + ":" + status.getText());
-        }
         notifyObservers();
     }
 
@@ -64,8 +60,8 @@ public class TwitterService extends Observable {
         notifyObservers();
     }
 
-    public ArrayList<Status> getStatusAll() {
-        return new ArrayList<>(statuses);
+    public ArrayList<Article> getStatusAll() {
+        return new ArrayList<>();
     }
 
 }

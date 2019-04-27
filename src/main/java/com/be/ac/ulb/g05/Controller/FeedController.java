@@ -6,6 +6,7 @@ import com.be.ac.ulb.g05.Model.TwitterService;
 import com.be.ac.ulb.g05.PreviewThumbnailCell;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
+import javafx.event.ActionEvent;
 import javafx.scene.control.ChoiceBox;
 import javafx.scene.control.ListCell;
 import javafx.scene.image.ImageView;
@@ -34,9 +35,11 @@ public class FeedController extends AbstractController implements Observer {
      */
     public VBox container;
     public ChoiceBox displayModeChoiceBox;
+    public ListView listView;
 
     private TwitterService twitterService;
     private int cellsize = 150;
+
     private enum DisplayMode {
 
         Rss("Rss"),
@@ -57,7 +60,8 @@ public class FeedController extends AbstractController implements Observer {
      * Allow us to click on cell + show the right information
      */
     private ListView<PreviewThumbnailCell> showCell(ObservableList<PreviewThumbnailCell> cell, int size) {
-        ListView<PreviewThumbnailCell> listView = new ListView<>(cell);
+
+        listView.setItems(cell);
         listView.setFixedCellSize(size);
 
         listView.setCellFactory(new Callback<ListView<PreviewThumbnailCell>, ListCell<PreviewThumbnailCell>>() {
@@ -104,9 +108,7 @@ public class FeedController extends AbstractController implements Observer {
             thumbnailList.add(previewThumbnail);
         });
 
-        ListView<PreviewThumbnailCell> listView = showCell(thumbnailList, cellsize);
-
-        this.container.getChildren().add(listView);
+        showCell(thumbnailList, cellsize);
 
         listView.getSelectionModel().selectedItemProperty().addListener((ov, oldValue, newValue) -> {
             int selectedArticleIndex = listView.getSelectionModel().getSelectedIndex();
@@ -120,30 +122,15 @@ public class FeedController extends AbstractController implements Observer {
         });
     }
 
-    private void pushStatusToView(ArrayList<Status> statuses) {
 
-        ListView<Status> listView = new ListView<>(FXCollections.observableArrayList(statuses));
-        listView.setFixedCellSize(cellsize);
+    public void refreshContainer(ActionEvent actionEvent) {
+        listView.getItems().clear();
+        String displayMode = displayModeChoiceBox.getSelectionModel().getSelectedItem().toString();
+        if(displayMode.equals(DisplayMode.Twitter.mode)){
 
-        listView.setCellFactory(new Callback<ListView<Status>, ListCell<Status>>() {
-            @Override
-            public ListCell<Status> call(ListView<Status> param) {
-                return new ListCell<Status>() {
-
-                    @Override
-                    protected void updateItem(Status pr, boolean empty) {
-                        super.updateItem(pr, empty);
-
-                        if (pr != null) {
-
-                            setText(pr.getText());
-
-                        }
-                    }
-                };
-            }
-        });
+        }
     }
+
 
     /**
      * Called after scene loading
@@ -159,11 +146,11 @@ public class FeedController extends AbstractController implements Observer {
         articleService.addObserver(this);
         twitterService.addObserver(this);
 
-        ArrayList<Status> statuses = twitterService.getStatusAll();
+        ArrayList<Article> statuses = twitterService.getStatusAll();
         ArrayList<Article> articles = articleService.getArticleAll();
-        container.getChildren().clear();
+
+        listView.getItems().clear();
         pushArticleToView(articles);
-        pushStatusToView(statuses);
 
         ObservableList<String> categoryList =
                 FXCollections.observableArrayList(
@@ -176,6 +163,8 @@ public class FeedController extends AbstractController implements Observer {
     }
 
 
+
+
     /**
      * Updates the view
      *
@@ -186,10 +175,9 @@ public class FeedController extends AbstractController implements Observer {
     public void update(Observable observable, Object o) {
 
         ArrayList<Article> articles = articleService.getArticleAll();
-        ArrayList<Status> statuses = twitterService.getStatusAll();
-        container.getChildren().clear();
+        ArrayList<Article> statuses = twitterService.getStatusAll();
+        listView.getItems().clear();
         pushArticleToView(articles);
-        pushStatusToView(statuses);
     }
 
     /**
