@@ -7,6 +7,7 @@ import twitter4j.TwitterFactory;
 import twitter4j.auth.AccessToken;
 import twitter4j.auth.RequestToken;
 
+
 import java.util.*;
 
 public class TwitterService extends Observable {
@@ -31,6 +32,13 @@ public class TwitterService extends Observable {
     public AccessToken getAccessToken(String pin) throws TwitterException {
         return twitter.getOAuthAccessToken(pin);
     }
+
+
+
+    public void postTweet(String text) throws TwitterException,IllegalStateException {
+        twitter.updateStatus(text);
+    }
+
 
     private RequestToken getRequestToken() throws TwitterException {
         return twitter.getOAuthRequestToken();
