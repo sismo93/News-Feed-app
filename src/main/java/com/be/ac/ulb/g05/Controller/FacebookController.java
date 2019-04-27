@@ -52,7 +52,7 @@ public class FacebookController extends AbstractController {
                       FacebookClient.AccessToken token = facebookClient.obtainUserAccessToken(appId,
                               appSecret, SUCCESS_URL, code);
 
-                      Router.Instance().changeView(Views.FacebookData);
+                      Router.Instance().changeView(Router.Views.FacebookData);
                     }
                 });
 
