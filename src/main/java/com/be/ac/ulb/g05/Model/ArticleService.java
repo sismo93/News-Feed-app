@@ -13,7 +13,7 @@ import java.util.Observable;
  * we can add/delete article from the list.
  * with this class we will have an article list accessible in all the views
  */
-public class ArticleService {
+public class ArticleService extends Observable {
 
     /**
      * Article HashMap
@@ -37,7 +37,11 @@ public class ArticleService {
      * @param article object
      */
     public void addArticle(Article article){
+        setChanged();
+
         articles.put(article.getTitle(), article);
+        notifyObservers();
+
     }
 
     /**
@@ -45,7 +49,10 @@ public class ArticleService {
      * @param article object
      */
     public void deleteArticle(Article article){
+        setChanged();
+
         articles.remove(article.getTitle());
+        notifyObservers();
     }
 
     /**
@@ -69,13 +76,18 @@ public class ArticleService {
      * @param article object
      */
     public void selectArticle(Article article) {
+        setChanged();
         this.article = article;
+        notifyObservers();
     }
 
     /**
      * Clears all articles from feed
      */
     public void reset() {
+        setChanged();
+
         articles.clear();
+        notifyObservers();
     }
 }

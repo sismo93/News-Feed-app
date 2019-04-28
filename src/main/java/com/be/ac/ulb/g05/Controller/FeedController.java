@@ -16,6 +16,8 @@ import javafx.scene.control.ListView;
 import javafx.util.Callback;
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.Observable;
+import java.util.Observer;
 
 import static com.be.ac.ulb.g05.Controller.ArticleViewController.saveImage;
 
@@ -25,7 +27,7 @@ import static com.be.ac.ulb.g05.Controller.ArticleViewController.saveImage;
  * @author @MnrBn
  * @codereview @borsalinoK
  */
-public class FeedController extends AbstractController {
+public class FeedController extends AbstractController implements Observer {
 
     /**
      * ArticleViewField displays the content on the page
@@ -37,6 +39,11 @@ public class FeedController extends AbstractController {
     private TwitterService twitterService;
     private ChangeListener listener;
     private int cellsize = 150;
+
+    @Override
+    public void update(Observable o, Object arg) {
+
+    }
 
     private enum DisplayMode {
 
@@ -158,6 +165,9 @@ public class FeedController extends AbstractController {
      */
     @Override
     public void setupView() {
+        articleService.addObserver(this);
+        twitterService.addObserver(this);
+
 
         ObservableList<String> categoryList =
                 FXCollections.observableArrayList(

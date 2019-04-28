@@ -41,7 +41,10 @@ public class ChooseArticleController extends AbstractController implements Obser
     @Override
     public void setupView(){
 
+
         getAllObjectFromAddController();
+        allAvailableArticle.addObserver(this); // will call update when AllAvailableArticle change
+        articleService.addObserver(this);
         pushAvailableArticlesToView();
 
     }

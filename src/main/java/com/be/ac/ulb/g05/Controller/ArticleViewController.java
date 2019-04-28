@@ -28,7 +28,7 @@ import java.util.Observer;
  * @author @iyamani
  * @codereview @vtombou
  */
-public class ArticleViewController extends AbstractController {
+public class ArticleViewController extends AbstractController implements Observer {
 
     /**
      * FXML control buttons & containers
@@ -57,6 +57,7 @@ public class ArticleViewController extends AbstractController {
      */
     @Override
     public void setupView() {
+        articleService.addObserver(this);
         pushArticleToView();
     }
 
@@ -136,5 +137,10 @@ public class ArticleViewController extends AbstractController {
 
     public void openMediaView(MouseEvent mouseEvent) {
         Router.Instance().changeView(Views.Media);
+    }
+
+    @Override
+    public void update(Observable o, Object arg) {
+        pushArticleToView();
     }
 }

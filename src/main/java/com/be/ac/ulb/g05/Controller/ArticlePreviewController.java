@@ -31,7 +31,7 @@ import twitter4j.TwitterException;
  * @author @iyamani
  * @codereview @vtombou
  */
-public class ArticlePreviewController extends AbstractTwitterController  {
+public class ArticlePreviewController extends AbstractTwitterController implements Observer {
 
     /**
      * Article object
@@ -74,6 +74,7 @@ public class ArticlePreviewController extends AbstractTwitterController  {
      */
     @Override
     public void setupView() {
+        articleService.addObserver(this);
         pushArticleToView(articleService.getArticle());
     }
 
@@ -180,5 +181,10 @@ public class ArticlePreviewController extends AbstractTwitterController  {
         super.setArticleService(articleService);
     }
 
+    @Override
+    public void update(Observable o, Object arg) {
+        pushArticleToView(articleService.getArticle());
+
+    }
 }
 

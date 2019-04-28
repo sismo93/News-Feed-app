@@ -5,15 +5,18 @@ import twitter4j.auth.AccessToken;
 import twitter4j.auth.RequestToken;
 
 
+import java.awt.*;
 import java.util.*;
+import java.util.List;
 
-public class TwitterService {
+public class TwitterService extends Observable {
 
     private static final String CONSUMER_KEY = "c5QH9G5KXl26uwUO83oN3omtD";
     private static final String CONSUMER_SECRET = "mwPhVED1YhsQgdEEnUQdA80aVFmgzUFEv7UnhccTAOH54yMlFd";
     public static final String AUTHENTICATE_URL = "https://api.twitter.com/oauth/authenticate";
     public static final String AUTHORIZED_URL = "https://api.twitter.com/oauth/authorize";
     public static final int RATE_LIMIT = 50;
+    private String TWITTER_IMAGE = "https://abilitynet.org.uk/sites/abilitynet.org.uk/files/admin/alltwitter-twitter-bird-logo-white-on-blue.png";
 
     private List<Status> statuses;
 
@@ -54,23 +57,24 @@ public class TwitterService {
     }
 
     public void searchBy(Query query) throws TwitterException {
-
         QueryResult result;
-        int count = 0;
-        do {
-            result = twitter.search(query);
-            List<Status> tweets = result.getTweets();
-            count++;
-        } while ((query = result.nextQuery()) != null && count < RATE_LIMIT);
+        result = twitter.search(query);
+        List<Status> tweets = result.getTweets();
+        statuses.addAll(tweets);
+
 
     }
 
     public ArrayList<Article> getStatusAll() {
         ArrayList<Article> articles = new ArrayList<>();
         Article article;
+        String url = "https://twitter.com/";
         for (Status status : statuses) {
             article = new Article();
 
+            article.setDefaultThumbnail(TWITTER_IMAGE);
+            article.setLink(url  +status.getUser().getScreenName()
+                    + "/status/" + status.getId());
             article.setPubDate(status.getCreatedAt().toString());
             article.setSource(status.getUser().getName());
             article.setContent(status.getText());
