@@ -1,5 +1,8 @@
 package com.be.ac.ulb.g05.Model;
 
+import java.util.ArrayList;
+import java.util.List;
+
 /**
  * Article Object
  * @author @Mouscb
@@ -56,6 +59,12 @@ public class Article {
      * Article video link
      */
     private String video = "";
+
+
+    /**
+     * list of all the tag for the article
+     */
+    private List<String> tags = new ArrayList<>();
 
     /**
      * Image getter
@@ -207,5 +216,17 @@ public class Article {
 
     public String getVideo() {
         return video;
+    }
+
+    public List<String> getTags() {
+        return tags;
+    }
+
+    /**
+     * @param tag
+     * add a tag so we can sort by tag
+     */
+    public void addTag(String tag) {
+        this.tags.add(tag);
     }
 }

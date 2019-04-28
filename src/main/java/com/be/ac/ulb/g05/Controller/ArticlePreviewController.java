@@ -33,7 +33,6 @@ import static com.be.ac.ulb.g05.Controller.AddController.showAlert;
 
 /**
  * Article Preview controller
- *
  * @author @iyamani
  * @codereview @vtombou
  */
@@ -73,6 +72,8 @@ public class ArticlePreviewController extends AbstractTwitterController implemen
     public StackPane stackPane;
 
 
+
+
     /**
      * Sets up the view. Called the first time UI element is loaded
      */
@@ -83,9 +84,8 @@ public class ArticlePreviewController extends AbstractTwitterController implemen
     }
 
     /**
-     * Initialises the article
-     *
-     * @param article the article
+     * Sets up the preview
+     * Initialises the containers for title, content and buttons
      */
     public void setArticle(Article article) {
         this.article = article;
@@ -123,6 +123,10 @@ public class ArticlePreviewController extends AbstractTwitterController implemen
         Router.Instance().changeView(Views.Article);
     }
 
+    /**
+     * @param actionEvent
+     * Copies the link to the clipboard
+     */
     public void onCopyPressed(ActionEvent actionEvent) {
         Toolkit toolkit = Toolkit.getDefaultToolkit();
         Clipboard clipboard = toolkit.getSystemClipboard();
@@ -132,9 +136,13 @@ public class ArticlePreviewController extends AbstractTwitterController implemen
         showAlert("Link has been copied to clipboard", "information");
     }
 
+    /**
+     * @param actionEvent
+     * Deletes the article from the feed
+     */
     public void onDeletePressed(ActionEvent actionEvent) {
         articleService.deleteArticle(article);
-        twitterService.deleteTweet(article.getContent()); //in case its a tweet
+        twitterService.deleteTweet(article); //in case its a tweet
 
         Router.Instance().changeView(Views.Feed);
     }
@@ -147,6 +155,10 @@ public class ArticlePreviewController extends AbstractTwitterController implemen
         }
     }
 
+    /**
+     * @param actionEvent
+     * Share on Twitter
+     */
     public void onSharePressed(ActionEvent actionEvent) {
         try {
             if (article.getTitle().equals("twitter feed")) { // in case he want to RT a tweet

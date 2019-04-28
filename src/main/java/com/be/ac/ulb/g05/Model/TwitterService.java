@@ -23,15 +23,22 @@ public class TwitterService extends Observable {
     private String TWITTER_IMAGE = "https://abilitynet.org.uk/sites/abilitynet.org.uk/files/admin/alltwitter-twitter-bird-logo-white-on-blue.png";
 
     private List<Status> statuses;
+    private List<String> tagList;
+    private ArrayList<Article> twitterArticleObj;
+
 
     private Twitter twitter;
     private boolean authenticated;
+    private String tag="";
 
     public TwitterService() {
         twitter = TwitterFactory.getSingleton();
         twitter.setOAuthConsumer(CONSUMER_KEY, CONSUMER_SECRET);
         statuses = new ArrayList<>();
+        tagList = new ArrayList<>();
+        twitterArticleObj = new ArrayList<>();
         authenticated = false;
+
     }
 
     public AccessToken getAccessToken(String pin) throws TwitterException {
@@ -69,7 +76,7 @@ public class TwitterService extends Observable {
     public void syncTimeline() throws TwitterException {
 
         statuses.addAll(twitter.getHomeTimeline());
-
+        this.twitterArticleObj.addAll(getStatusAll());
     }
 
     /**
@@ -78,13 +85,22 @@ public class TwitterService extends Observable {
      * search a specific word in twitter and add all tweet with the word
      * on it
      */
-    public void searchBy(Query query) throws TwitterException {
+    public void searchBy(String query) throws TwitterException {
         QueryResult result;
-        result = twitter.search(query);
+        result = twitter.search(new Query(query));
         List<Status> tweets = result.getTweets();
+        tagList.add(query);
+        this.tag = query;
         statuses.addAll(tweets);
+        this.twitterArticleObj.addAll(getStatusAll());
+
+
     }
 
+
+    public List<String> getTagList(){
+        return tagList;
+    }
 
     /**
      * @param username
@@ -113,11 +129,22 @@ public class TwitterService extends Observable {
             article.setSource(status.getUser().getName());
             article.setContent(status.getText());
             article.setContent(status.getText());
-            article.setTitle("twitter feed");
+            article.setTitle("twitter feed | Tag : "+ this.tag);
+
+            // Tag for twitter
+            handleTwitterTag(article,"Twitter");
+            handleTwitterTag(article,this.tag); // in case he added to tweet via the research
+            handleTwitterTag(article,"All");
             articles.add(article);
         }
 
         return articles;
+    }
+
+    private void handleTwitterTag(Article article,String tag){
+        if (!article.getTags().contains(tag)){
+            article.addTag(tag);
+        }
     }
 
     /**
@@ -133,12 +160,11 @@ public class TwitterService extends Observable {
 
 
     /**
-     * @param content
+     * @param article
      * delete a tweet from the list
      */
-    public void deleteTweet(String content) {
-        Status status = findStatus(content);
-        statuses.remove(status);
+    public void deleteTweet(Article article) {
+        twitterArticleObj.remove(article);
     }
 
 
@@ -165,5 +191,9 @@ public class TwitterService extends Observable {
                 requestedStatus = status;}
         }
         return requestedStatus;
+    }
+
+    public ArrayList<Article> getTwitterArticleObj(){
+        return this.twitterArticleObj;
     }
 }

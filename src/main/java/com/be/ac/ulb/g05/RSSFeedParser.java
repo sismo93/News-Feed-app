@@ -112,7 +112,10 @@ public class RSSFeedParser {
                         article.setDescription(description);
                         article.setLink(link);
                         article.setPubDate(pubdate);
+                        article.addTag("Rss");
+                        article.addTag("All");
                         articles.add(article);
+
                     }
                 }
             }

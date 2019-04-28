@@ -14,8 +14,11 @@ import javafx.scene.image.ImageView;
 import javafx.scene.layout.VBox;
 import javafx.scene.control.ListView;
 import javafx.util.Callback;
+
 import java.io.IOException;
+import java.lang.reflect.Array;
 import java.util.ArrayList;
+import java.util.List;
 import java.util.Observable;
 import java.util.Observer;
 
@@ -29,32 +32,20 @@ import static com.be.ac.ulb.g05.Controller.ArticleViewController.saveImage;
  */
 public class FeedController extends AbstractController {
 
+
     /**
-     * ArticleViewField displays the content on the page
+     * UI element
      */
     public VBox container;
     public ChoiceBox displayModeChoiceBox;
     public ListView listView;
 
+    /**
+     * Services in use
+     */
     private TwitterService twitterService;
     private ChangeListener listener;
 
-
-
-    private enum DisplayMode {
-
-        All("All"),
-        Rss("Rss"),
-        Facebook("facebook"),
-        Twitter("twitter");
-
-
-        private String mode;
-
-        DisplayMode(String m) {
-            this.mode = m;
-        }
-    }
 
     /**
      * @param cell
@@ -121,7 +112,8 @@ public class FeedController extends AbstractController {
 
             listener = (ov, oldValue, newValue) -> {
                 int selectedArticleIndex = listView.getSelectionModel().getSelectedIndex();
-                if (selectedArticleIndex == -1) return; // if no item in the listView is selected. Javafx unselect the item when it loses screen focus
+                if (selectedArticleIndex == -1)
+                    return; // if no item in the listView is selected. Javafx unselect the item when it loses screen focus
                 Article article = articles.get(selectedArticleIndex);
                 FeedController.this.displayArticlePreview(article);
             };
@@ -148,20 +140,56 @@ public class FeedController extends AbstractController {
      */
     private void displayArticles() {
 
+        addTagToChoiceBox();
+
         String displayMode = displayModeChoiceBox.getSelectionModel().getSelectedItem().toString();
 
-        if (displayMode.equals(DisplayMode.All.mode)){ // Mean that he want to see everything
-            ArrayList<Article> twitterArticles = twitterService.getStatusAll();
-            ArrayList<Article> rssArticles = articleService.getArticleAll();
-            rssArticles.addAll(twitterArticles);
-            fillListViewWith(rssArticles); }
-        else if (displayMode.equals(DisplayMode.Twitter.mode)) { //only twitter feed
+        ArrayList<Article> articleList = sortByTag(displayMode);
+        fillListViewWith(articleList);
+    }
 
-            fillListViewWith(twitterService.getStatusAll()); }
 
-        else if (displayMode.equals(DisplayMode.Rss.mode)) { // only rss feed
-            fillListViewWith(articleService.getArticleAll()); }
+    /**
+     * @param tag
+     * @return the right list of article
+     * <p>
+     * Allow us to only keep on the feed articles that match the tag
+     */
+    private ArrayList<Article> sortByTag(String tag) {
+        ArrayList<Article> twitterArticles = twitterService.getTwitterArticleObj();
+        ArrayList<Article> allArticle = articleService.getArticleAll();
+        allArticle.addAll(twitterArticles); // we have now all article but we need to sort by tag
+        ArrayList<Article> articlesToShow = new ArrayList<>();
+        for (Article article : allArticle) {
+            for (String differentTag : article.getTags()) {
+                if (differentTag.equals(tag)) {
+                    articlesToShow.add(article);
+                }
+            }
+        }
+        return articlesToShow;
+    }
 
+
+    /**
+     * check if we need to add the tag to the choicebox
+     * if so, add him
+     */
+    private void addTagToChoiceBox() {
+        List<String> tagList = twitterService.getTagList();
+        boolean hasToAdd = true;
+        for (String tag : tagList) {
+            for (int choice = 0; choice < displayModeChoiceBox.getItems().size(); choice++) {
+                if (tag.equals(displayModeChoiceBox.getItems().get(choice))) {
+                    hasToAdd = false;
+                }
+            }
+            if (hasToAdd) {
+                displayModeChoiceBox.getItems().add(tag);
+            }
+            hasToAdd = true;
+
+        }
     }
 
     /**
@@ -178,15 +206,15 @@ public class FeedController extends AbstractController {
 
         ObservableList<String> categoryList =
                 FXCollections.observableArrayList(
-                        DisplayMode.Rss.mode,
-                        DisplayMode.Twitter.mode,
-                        DisplayMode.Facebook.mode,
-                        DisplayMode.All.mode
+                        "All",
+                        "Rss",
+                        "Twitter",
+                        "Facebook"
                 );
 
 
         displayModeChoiceBox.setItems(categoryList);
-        displayModeChoiceBox.setValue(DisplayMode.All.mode);
+        displayModeChoiceBox.setValue("All");
 
         displayArticles();
 
@@ -205,8 +233,8 @@ public class FeedController extends AbstractController {
 
     /**
      * @param dependencyInjector object responsible for delivering the dependency
-     * called on initialization
-     * link the client to his specific services
+     *                           called on initialization
+     *                           link the client to his specific services
      */
     @Override
     public void injectDependencies(DependencyInjector dependencyInjector) {
