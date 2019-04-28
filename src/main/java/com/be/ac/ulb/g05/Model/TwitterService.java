@@ -105,10 +105,12 @@ public class TwitterService extends Observable {
     /**
      * @param username
      * @throws TwitterException
-     * follow username in twitter
+     * follow username in twitter + add his last tweet to the view
      */
     public void searchUser(String username) throws TwitterException {
         twitter.createFriendship("@"+username);
+        statuses.addAll(twitter.getUserTimeline(username));
+        this.twitterArticleObj.addAll(getStatusAll());
     }
 
 

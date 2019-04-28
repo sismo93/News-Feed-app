@@ -27,7 +27,7 @@ public class TwitterController extends AbstractTwitterController {
             twitterService.syncTimeline();
             showAlert("TimeLine has been imported","Information");
         } catch (TwitterException e) {
-            e.printStackTrace();
+            showAlert("An error has occurred","Error");
         }
     }
 
@@ -57,7 +57,7 @@ public class TwitterController extends AbstractTwitterController {
         if (username.isEmpty()) return;
         try {
             twitterService.searchUser(username);
-            showAlert("Now you follow @"+username +" \n Check your timeline maybe he/she tweeted","Information");
+            showAlert("Now you follow @"+username +" \n We added his last tweet go check out !","Information");
         } catch (TwitterException e) {
             showAlert("Failed to find "+ username,"Information");
         }
