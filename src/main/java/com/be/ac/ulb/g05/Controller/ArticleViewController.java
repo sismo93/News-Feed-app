@@ -52,54 +52,13 @@ public class ArticleViewController extends AbstractController implements Observe
     public BorderPane mediaView;
 
     /**
-     * Sets up the view
+     * Sets up the view. Called the first time UI element is loaded
      */
     @Override
     public void setupView() {
         articleService.addObserver(this);
-        pushArticleToView();
+        displayArticle();
     }
-
-
-    /**
-     * Sets up the view
-     */
-    private void pushArticleToView() {
-        Platform.runLater(() -> {
-            Article article = articleService.getArticle();
-            this.articleContent.setEditable(false);
-            // Setting the containers with their appropriate texts
-            this.articleTitle.setText(article.getTitle());
-            this.articleContent.setText(article.getContent());
-            this.articleAuthor.setText(article.getSource());
-
-            // Puts image into the view
-            try {
-
-                if (!article.getVideo().isEmpty()) {
-
-                    String url = articleService.getArticle().getVideo();
-                    WebView webView = new WebView();
-                    WebEngine webEngine = webView.getEngine();
-                    webEngine.load(url);
-
-                    mediaView.setCenter(webView);
-
-
-                } else {
-
-                    ImageView imageView = new ImageView();
-                    mediaView.setCenter(imageView);
-
-                    saveImage(article.getImage(), "file:temp-feedbuzz.jpg", imageView);
-                }
-
-            } catch (IOException e) {
-                e.printStackTrace();
-            }
-        });
-    }
-
 
     /**
      * @param imageUrl        the URL of the image
@@ -109,7 +68,7 @@ public class ArticleViewController extends AbstractController implements Observe
      *                     <p>
      *                     Saves the image found on the article. If there is no images, nothing will happen
      */
-    public static void saveImage(String imageUrl, String destinationFile, ImageView imageView) throws IOException {
+    static void saveImage(String imageUrl, String destinationFile, ImageView imageView) throws IOException {
         Image image = null; // usefull when there is no image to put on the article
         if (!imageUrl.isEmpty()) {
             URL url = new URL(imageUrl);
@@ -133,13 +92,48 @@ public class ArticleViewController extends AbstractController implements Observe
 
     }
 
-
     public void openMediaView() {
         Router.Instance().changeView(Views.Media);
     }
 
     @Override
     public void update(Observable o, Object arg) {
-        pushArticleToView();
+        displayArticle();
+    }
+
+    private void displayArticle() {
+        Article article = articleService.getArticle();
+
+        this.articleContent.setEditable(false);
+        // Setting the containers with their appropriate texts
+        this.articleTitle.setText(article.getTitle());
+        this.articleContent.setText(article.getContent());
+        this.articleAuthor.setText(article.getSource());
+
+        // Puts image into the view
+        try {
+
+            if (!article.getVideo().isEmpty()) {
+
+                String url = articleService.getArticle().getVideo();
+                WebView webView = new WebView();
+                WebEngine webEngine = webView.getEngine();
+                webEngine.load(url);
+
+                mediaView.setCenter(webView);
+
+
+            } else {
+
+                ImageView imageView = new ImageView();
+                mediaView.setCenter(imageView);
+
+                saveImage(article.getImage(), "file:temp-feedbuzz.jpg", imageView);
+            }
+
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+
     }
 }

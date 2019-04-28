@@ -4,6 +4,7 @@ import com.be.ac.ulb.g05.Controller.Router.*;
 import com.be.ac.ulb.g05.Model.Article;
 import com.be.ac.ulb.g05.Model.TwitterService;
 import com.be.ac.ulb.g05.PreviewThumbnailCell;
+import javafx.application.Platform;
 import javafx.beans.value.ChangeListener;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -26,7 +27,7 @@ import static com.be.ac.ulb.g05.Controller.ArticleViewController.saveImage;
  * @author @MnrBn
  * @codereview @borsalinoK
  */
-public class FeedController extends AbstractController implements Observer {
+public class FeedController extends AbstractController {
 
     /**
      * ArticleViewField displays the content on the page
@@ -112,21 +113,24 @@ public class FeedController extends AbstractController implements Observer {
         });
 
 
-        //remove previews listner
-        if (listener != null) {
-            listView.getSelectionModel().selectedItemProperty().removeListener(listener);
-        }
+        Platform.runLater(() -> {
+            //remove previews listner
+            if (listener != null) {
+                listView.getSelectionModel().selectedItemProperty().removeListener(listener);
+            }
 
-        listener = (ov, oldValue, newValue) -> {
-            int selectedArticleIndex = listView.getSelectionModel().getSelectedIndex();
-            if (selectedArticleIndex == -1) return; // if no item in the listView is selected. Javafx unselect the item when it loses screen focus
-            Article article = articles.get(selectedArticleIndex);
-            FeedController.this.displayArticlePreview(article);
-        };
+            listener = (ov, oldValue, newValue) -> {
+                int selectedArticleIndex = listView.getSelectionModel().getSelectedIndex();
+                if (selectedArticleIndex == -1) return; // if no item in the listView is selected. Javafx unselect the item when it loses screen focus
+                Article article = articles.get(selectedArticleIndex);
+                FeedController.this.displayArticlePreview(article);
+            };
 
-        listView.getSelectionModel().selectedItemProperty().addListener(listener);
+            listView.getSelectionModel().selectedItemProperty().addListener(listener);
 
-        showCell(thumbnailList);
+            showCell(thumbnailList);
+
+        });
 
 
     }
@@ -171,9 +175,6 @@ public class FeedController extends AbstractController implements Observer {
      */
     @Override
     public void setupView() {
-        articleService.addObserver(this);
-        twitterService.addObserver(this);
-
 
         ObservableList<String> categoryList =
                 FXCollections.observableArrayList(
@@ -185,14 +186,10 @@ public class FeedController extends AbstractController implements Observer {
 
 
         displayModeChoiceBox.setItems(categoryList);
-        displayModeChoiceBox.setValue(DisplayMode.Rss.mode);
+        displayModeChoiceBox.setValue(DisplayMode.All.mode);
 
         displayArticles();
 
-    }
-
-    @Override
-    public void update(Observable o, Object arg) {
     }
 
     /**
@@ -205,6 +202,12 @@ public class FeedController extends AbstractController implements Observer {
         Router.Instance().changeView(Views.Preview);
     }
 
+
+    /**
+     * @param dependencyInjector object responsible for delivering the dependency
+     * called on initialization
+     * link the client to his specific services
+     */
     @Override
     public void injectDependencies(DependencyInjector dependencyInjector) {
         super.injectDependencies(dependencyInjector);

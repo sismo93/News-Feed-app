@@ -40,15 +40,11 @@ public class ChooseArticleController extends AbstractController implements Obser
     private ArrayList<Article> availableArticle;
 
     private Article articleChosed;
-
-
-
-
-
+    /**
+     * Sets up the view. Called the first time UI element is loaded
+     */
     @Override
     public void setupView(){
-
-
         getAllObjectFromAddController();
         allAvailableArticle.addObserver(this); // will call update when AllAvailableArticle change
         articleService.addObserver(this);
