@@ -3,6 +3,11 @@ package com.be.ac.ulb.g05.Controller;
 import com.be.ac.ulb.g05.Model.ArticleService;
 import com.be.ac.ulb.g05.Model.TwitterService;
 
+/**
+ * @author @borsalinoK
+ * @codereview @tanvir.hoque
+ * Allow us to not use switch case
+ */
 public class DependencyInjector {
 
 

@@ -5,17 +5,21 @@ import twitter4j.auth.AccessToken;
 import twitter4j.auth.RequestToken;
 
 
-import java.awt.*;
 import java.util.*;
 import java.util.List;
 
+/**
+ * @author @borsalinok
+ * @codereview @mnrbnm
+ * TwitterService represent a connexion to twitter
+ * Allow us to do several thing such as post a tweet, retweet, search
+ */
 public class TwitterService extends Observable {
 
     private static final String CONSUMER_KEY = "c5QH9G5KXl26uwUO83oN3omtD";
     private static final String CONSUMER_SECRET = "mwPhVED1YhsQgdEEnUQdA80aVFmgzUFEv7UnhccTAOH54yMlFd";
     public static final String AUTHENTICATE_URL = "https://api.twitter.com/oauth/authenticate";
     public static final String AUTHORIZED_URL = "https://api.twitter.com/oauth/authorize";
-    public static final int RATE_LIMIT = 50;
     private String TWITTER_IMAGE = "https://abilitynet.org.uk/sites/abilitynet.org.uk/files/admin/alltwitter-twitter-bird-logo-white-on-blue.png";
 
     private List<Status> statuses;
@@ -34,6 +38,12 @@ public class TwitterService extends Observable {
         return twitter.getOAuthAccessToken(pin);
     }
 
+    /**
+     * @param text
+     * @throws TwitterException
+     * @throws IllegalStateException
+     * allow us to share an article from the feed
+     */
     public void postTweet(String text) throws TwitterException, IllegalStateException {
         twitter.updateStatus(text);
     }
@@ -51,12 +61,23 @@ public class TwitterService extends Observable {
         twitter.setOAuthAccessToken(accessToken);
     }
 
+
+    /**
+     * @throws TwitterException
+     * get the timeline of the user in order to display it on the Feed
+     */
     public void syncTimeline() throws TwitterException {
 
         statuses.addAll(twitter.getHomeTimeline());
 
     }
 
+    /**
+     * @param query
+     * @throws TwitterException
+     * search a specific word in twitter and add all tweet with the word
+     * on it
+     */
     public void searchBy(Query query) throws TwitterException {
         QueryResult result;
         result = twitter.search(query);
@@ -65,11 +86,19 @@ public class TwitterService extends Observable {
     }
 
 
+    /**
+     * @param username
+     * @throws TwitterException
+     * follow username in twitter
+     */
     public void searchUser(String username) throws TwitterException {
         twitter.createFriendship("@"+username);
     }
 
 
+    /**
+     * @return an arraylist of all tweet in form of Article
+     */
     public ArrayList<Article> getStatusAll() {
         ArrayList<Article> articles = new ArrayList<>();
         Article article;
@@ -91,6 +120,9 @@ public class TwitterService extends Observable {
         return articles;
     }
 
+    /**
+     * @return true if he's log
+     */
     public boolean isAuthenticated() {
         return authenticated;
     }

@@ -21,6 +21,13 @@ import java.util.Observer;
 import static com.be.ac.ulb.g05.Controller.AddController.*;
 
 
+/**
+ * @author @Mnrbn
+ * @codereview @mouscb
+ * Allow us to handle all the article that the use want to add for the feed
+ * It will be a list of different article, each time an article is added, it will be removed from
+ * the available article.
+ */
 public class ChooseArticleController extends AbstractController implements Observer {
 
 
@@ -84,7 +91,6 @@ public class ChooseArticleController extends AbstractController implements Obser
      * article or not
      */
     private void pushAvailableArticlesToView(){
-        //getAllObjectFromAddController();
 
         articleContainer.getChildren().clear();
         ObservableList<PreviewThumbnailCell> previewArticlesList = FXCollections.observableArrayList();

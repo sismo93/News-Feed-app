@@ -11,11 +11,18 @@ import twitter4j.TwitterException;
 import static com.be.ac.ulb.g05.Controller.AddController.showAlert;
 
 
+/**
+ * @author @borsalinoK
+ * @codereview @otrangan
+ */
 public class TwitterController extends AbstractTwitterController {
 
     public TextField addByTagLabel;
     public TextField addByUsernameLabel;
 
+    /**
+     * add the twitter timeline to the article List
+     */
     public void onSyncTimelinePressed() {
         try {
             twitterService.syncTimeline();
@@ -33,11 +40,13 @@ public class TwitterController extends AbstractTwitterController {
         showAlert("Added some tweet talking about "+tag,"Information");
     }
 
+    /**
+     * follow the twitter account of the username
+     */
     public void onSearchByUsernamePressed( ) {
         String username = addByUsernameLabel.getText();
         if (username.isEmpty()) return;
         try {
-            System.out.println("labas");
             twitterService.searchUser(username);
             showAlert("Now you follow @"+username +" \n Check your timeline maybe he/she tweeted","Information");
         } catch (TwitterException e) {
@@ -45,6 +54,11 @@ public class TwitterController extends AbstractTwitterController {
         }
     }
 
+    /**
+     * @param queryString
+     * search on twitter tweet talking about the queryString
+     * will be added to the article list
+     */
     private void searchOnTwitter(String queryString) {
         Query query = new Query(queryString);
         try {

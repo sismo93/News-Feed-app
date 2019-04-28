@@ -12,6 +12,11 @@ import javafx.scene.web.WebEngine;
 import javafx.scene.web.WebView;
 
 
+/**
+ * @author @iyamani
+ * @codereview @otrangan
+ * Allow us to handle the case when the user want to connect to facebook
+ */
 public class FacebookController extends AbstractController {
     public BorderPane mediaView;
     private static final String SUCCESS_URL = "https://www.facebook.com/connect/login_success.html";
@@ -46,7 +51,7 @@ public class FacebookController extends AbstractController {
                       System.exit(0);
                     }
 
-                    if (myUrl.startsWith(SUCCESS_URL)) { // connection reussite
+                    if (myUrl.startsWith(SUCCESS_URL)) { //connexion succesful
                       int pos = myUrl.indexOf("code=");
                       code = myUrl.substring(pos + "code=".length());
                       FacebookClient.AccessToken token = facebookClient.obtainUserAccessToken(appId,

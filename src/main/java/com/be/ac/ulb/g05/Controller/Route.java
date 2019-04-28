@@ -2,6 +2,9 @@ package com.be.ac.ulb.g05.Controller;
 
 import javafx.scene.Node;
 
+/**
+ * Contain information about the rootage for the navigation from view to view
+ */
 public class Route {
 
     private Node root;
@@ -14,10 +17,6 @@ public class Route {
 
     public Node getRoot() {
         return root;
-    }
-
-    public void setRoot(Node root) {
-        this.root = root;
     }
 
     public AbstractController getController() {

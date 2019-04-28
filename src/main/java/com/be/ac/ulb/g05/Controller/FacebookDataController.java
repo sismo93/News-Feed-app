@@ -11,6 +11,10 @@ import java.io.InputStreamReader;
 import java.net.HttpURLConnection;
 import java.net.URL;
 
+/**
+ * @author @iyamani
+ * @codereview @otrangan
+ */
 public class FacebookDataController extends AbstractController {
 
     @FXML
@@ -20,7 +24,10 @@ public class FacebookDataController extends AbstractController {
             "svyQS8vNV22YmseJJ4UTgExXvLzSi8ZAlsaTvyzsa0Urd2G1u6EpXroFAH8Jf5OhnXmGZB0OIfbyjPDhCmVWK8ROUZB1bgunyuIfOvZCe" +
             "k4ZCyEvxKJVoJ1OGr7xPGZA3zL6aSTgcAQHFP5rzOj4kwCepXdpfBSM4MWCMFzAZDZD";
 
-    // Follows account
+    /**
+     * @throws IOException
+     * Follow an account on facebook
+     */
     public void followAccount() throws IOException {
         String followAccount = accountToFollow.getText();
         String url = "https://graph.facebook.com/pages/search?q=" + followAccount + "&access_token=" + accessToken;

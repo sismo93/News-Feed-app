@@ -4,6 +4,12 @@ import javafx.scene.layout.HBox;
 import javafx.scene.web.WebEngine;
 import javafx.scene.web.WebView;
 
+/**
+ *
+ * @author @@sismo93
+ * @codereview @otrangan
+ * Allow us to add a video on the article
+ */
 public class MediaViewController extends AbstractController {
 
     public HBox hboxView;

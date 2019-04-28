@@ -131,10 +131,17 @@ public class FeedController extends AbstractController implements Observer {
 
     }
 
+    /**
+     * refresh the view
+     */
     public void refreshContainer() {
         displayArticles();
     }
 
+
+    /**
+     * Display the right article type of article on the feed (tweet/article/both)
+     */
     private void displayArticles() {
 
         String displayMode = displayModeChoiceBox.getSelectionModel().getSelectedItem().toString();
