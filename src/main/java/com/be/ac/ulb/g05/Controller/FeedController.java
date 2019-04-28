@@ -5,7 +5,6 @@ import com.be.ac.ulb.g05.Model.Article;
 import com.be.ac.ulb.g05.Model.TwitterService;
 import com.be.ac.ulb.g05.PreviewThumbnailCell;
 import javafx.beans.value.ChangeListener;
-import javafx.beans.value.ObservableValue;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
@@ -15,12 +14,8 @@ import javafx.scene.image.ImageView;
 import javafx.scene.layout.VBox;
 import javafx.scene.control.ListView;
 import javafx.util.Callback;
-import twitter4j.Status;
-
 import java.io.IOException;
 import java.util.ArrayList;
-import java.util.Observable;
-import java.util.Observer;
 
 import static com.be.ac.ulb.g05.Controller.ArticleViewController.saveImage;
 
@@ -30,7 +25,7 @@ import static com.be.ac.ulb.g05.Controller.ArticleViewController.saveImage;
  * @author @MnrBn
  * @codereview @borsalinoK
  */
-public class FeedController extends AbstractController implements Observer {
+public class FeedController extends AbstractController {
 
     /**
      * ArticleViewField displays the content on the page
@@ -40,8 +35,8 @@ public class FeedController extends AbstractController implements Observer {
     public ListView listView;
 
     private TwitterService twitterService;
+    private ChangeListener listener;
     private int cellsize = 150;
-    ChangeListener listener;
 
     private enum DisplayMode {
 
@@ -95,6 +90,7 @@ public class FeedController extends AbstractController implements Observer {
      *                 Function that allow us to display the picture + the information about the article
      */
     private void fillListViewWith(ArrayList<Article> articles) {
+
         ObservableList<PreviewThumbnailCell> thumbnailList = FXCollections.observableArrayList();
 
         articles.forEach(article -> {
@@ -110,26 +106,24 @@ public class FeedController extends AbstractController implements Observer {
             thumbnailList.add(previewThumbnail);
         });
 
-        showCell(thumbnailList);
 
         //remove previews listner
-        if(listener != null) {
+        if (listener != null) {
             listView.getSelectionModel().selectedItemProperty().removeListener(listener);
         }
 
         listener = (ov, oldValue, newValue) -> {
-
             int selectedArticleIndex = listView.getSelectionModel().getSelectedIndex();
+            if (selectedArticleIndex == -1) return; // if no item in the listView is selected. Javafx unselect the item when it loses screen focus
             Article article = articles.get(selectedArticleIndex);
-            System.out.println(selectedArticleIndex + " " + articles.size());
-            try {
-                FeedController.this.displayArticlePreview(article);
-            } catch (IOException e) {
-                e.printStackTrace();
-            }
+            FeedController.this.displayArticlePreview(article);
         };
 
         listView.getSelectionModel().selectedItemProperty().addListener(listener);
+
+        showCell(thumbnailList);
+
+
     }
 
     public void refreshContainer(ActionEvent actionEvent) {
@@ -139,17 +133,18 @@ public class FeedController extends AbstractController implements Observer {
     private void displayArticles() {
 
         String displayMode = displayModeChoiceBox.getSelectionModel().getSelectedItem().toString();
-        System.out.println("display mode " + displayMode);
         if (displayMode.equals(DisplayMode.Twitter.mode)) {
+
             fillListViewWith(twitterService.getStatusAll());
+
         } else if (displayMode.equals(DisplayMode.Rss.mode)) {
 
             ArrayList<Article> twitterArticles = twitterService.getStatusAll();
             ArrayList<Article> rssArticles = articleService.getArticleAll();
             rssArticles.addAll(twitterArticles);
             fillListViewWith(rssArticles);
-        }
 
+        }
     }
 
     /**
@@ -163,8 +158,6 @@ public class FeedController extends AbstractController implements Observer {
      */
     @Override
     public void setupView() {
-        articleService.addObserver(this);
-        twitterService.addObserver(this);
 
         ObservableList<String> categoryList =
                 FXCollections.observableArrayList(
@@ -176,18 +169,17 @@ public class FeedController extends AbstractController implements Observer {
 
         displayModeChoiceBox.setItems(categoryList);
         displayModeChoiceBox.setValue(DisplayMode.Rss.mode);
+
         displayArticles();
 
     }
-
 
     /**
      * Displays article preview
      *
      * @param article Article object
-     * @throws IOException if article cannot be read
      */
-    public void displayArticlePreview(Article article) throws IOException {
+    public void displayArticlePreview(Article article) {
         articleService.selectArticle(article);
         Router.Instance().changeView(Views.Preview);
     }

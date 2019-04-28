@@ -36,6 +36,21 @@
                   <Button mnemonicParsing="false" onAction="#onSearchByTagPressed" text="+" />
                </children>
             </HBox>
+            <HBox alignment="CENTER" layoutX="10.0" layoutY="110.0" prefHeight="100.0" prefWidth="200.0">
+               <children>
+                  <Label text="Search by username">
+                     <HBox.margin>
+                        <Insets right="10.0" />
+                     </HBox.margin>
+                  </Label>
+                  <TextField fx:id="addByUsernameLabel">
+                     <HBox.margin>
+                        <Insets right="10.0" />
+                     </HBox.margin>
+                  </TextField>
+                  <Button mnemonicParsing="false" onAction="#onSearchByUsernamePressed" text="+" />
+               </children>
+            </HBox>
          </children>
       </VBox>
    </children>

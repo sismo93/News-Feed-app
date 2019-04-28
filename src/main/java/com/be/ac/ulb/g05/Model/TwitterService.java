@@ -1,26 +1,23 @@
 package com.be.ac.ulb.g05.Model;
 
-import twitter4j.Status;
-import twitter4j.Twitter;
-import twitter4j.TwitterException;
-import twitter4j.TwitterFactory;
+import twitter4j.*;
 import twitter4j.auth.AccessToken;
 import twitter4j.auth.RequestToken;
 
 
 import java.util.*;
 
-public class TwitterService extends Observable {
+public class TwitterService {
 
     private static final String CONSUMER_KEY = "c5QH9G5KXl26uwUO83oN3omtD";
     private static final String CONSUMER_SECRET = "mwPhVED1YhsQgdEEnUQdA80aVFmgzUFEv7UnhccTAOH54yMlFd";
     public static final String AUTHENTICATE_URL = "https://api.twitter.com/oauth/authenticate";
     public static final String AUTHORIZED_URL = "https://api.twitter.com/oauth/authorize";
+    public static final int RATE_LIMIT = 50;
 
     private List<Status> statuses;
 
     private Twitter twitter;
-    private RequestToken requestToken;
     private boolean authenticated;
 
     public TwitterService() {
@@ -34,12 +31,9 @@ public class TwitterService extends Observable {
         return twitter.getOAuthAccessToken(pin);
     }
 
-
-
-    public void postTweet(String text) throws TwitterException,IllegalStateException {
+    public void postTweet(String text) throws TwitterException, IllegalStateException {
         twitter.updateStatus(text);
     }
-
 
     private RequestToken getRequestToken() throws TwitterException {
         return twitter.getOAuthRequestToken();
@@ -55,18 +49,20 @@ public class TwitterService extends Observable {
     }
 
     public void syncTimeline() throws TwitterException {
-        setChanged();
+
         statuses.addAll(twitter.getHomeTimeline());
-        notifyObservers();
     }
 
-    public void searchBy(String tag) throws TwitterException {
-        setChanged();
-        statuses.addAll(twitter.getHomeTimeline());
-        for (Status status : statuses) {
-            System.out.println(status.getUser().getName() + ":" + status.getText());
-        }
-        notifyObservers();
+    public void searchBy(Query query) throws TwitterException {
+
+        QueryResult result;
+        int count = 0;
+        do {
+            result = twitter.search(query);
+            List<Status> tweets = result.getTweets();
+            count++;
+        } while ((query = result.nextQuery()) != null && count < RATE_LIMIT);
+
     }
 
     public ArrayList<Article> getStatusAll() {
@@ -93,4 +89,6 @@ public class TwitterService extends Observable {
     public void setAuthenticated(boolean authenticated) {
         this.authenticated = authenticated;
     }
+
+
 }

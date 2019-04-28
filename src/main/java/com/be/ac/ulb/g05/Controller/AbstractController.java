@@ -15,8 +15,6 @@ public abstract class AbstractController {
      */
     protected  ArticleService articleService;
 
-
-
     /**
      * Sets the article service
      * @param articleService article service
