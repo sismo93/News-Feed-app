@@ -129,22 +129,31 @@ public class TwitterService extends Observable {
             article.setSource(status.getUser().getName());
             article.setContent(status.getText());
             article.setContent(status.getText());
-            article.setTitle("twitter feed | Tag : "+ this.tag);
+
 
             // Tag for twitter
-            handleTwitterTag(article,"Twitter");
-            handleTwitterTag(article,this.tag); // in case he added to tweet via the research
-            handleTwitterTag(article,"All");
+            handleTwitterTag(article);
+
             articles.add(article);
         }
 
         return articles;
     }
 
-    private void handleTwitterTag(Article article,String tag){
-        if (!article.getTags().contains(tag)){
-            article.addTag(tag);
+    /**
+     * @param article
+     * add the tag to the list + add it to the title
+     */
+    private void handleTwitterTag(Article article){
+        article.addTag("All");
+        article.addTag("Twitter");
+        article.addTag(this.tag);
+        String allTag = "";
+        for (String tag:article.getTags()){
+            allTag+=tag;
+            allTag+=" ";
         }
+        article.setTitle("twitter feed | Tag : "+ allTag);
     }
 
     /**
@@ -167,31 +176,6 @@ public class TwitterService extends Observable {
         twitterArticleObj.remove(article);
     }
 
-
-    /**
-     * @param content
-     * @throws TwitterException
-     * retweet a tweet
-     */
-    public void rtTweet(String content) throws TwitterException {
-        Status status = findStatus(content);
-        twitter.retweetStatus(status.getId());
-    }
-
-
-    /**
-     * @param content
-     * @return the right tweet
-     * search a tweet matching the content and return him
-     */
-    public Status findStatus(String content){
-        Status requestedStatus = null;
-        for (Status status : statuses){
-            if (status.getText().equals(content)){
-                requestedStatus = status;}
-        }
-        return requestedStatus;
-    }
 
     public ArrayList<Article> getTwitterArticleObj(){
         return this.twitterArticleObj;

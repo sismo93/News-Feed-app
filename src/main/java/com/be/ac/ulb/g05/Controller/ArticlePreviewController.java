@@ -121,14 +121,9 @@ public class ArticlePreviewController extends AbstractTwitterController implemen
             //Share on Twitter
             this.shareTwitter.setOnAction(event -> {
                 try {
-                    if (article.getTitle().equals("twitter feed")){ // in case he want to RT a tweet
-                        twitterService.rtTweet(article.getContent());
-                    }
-                    else{ // mean that he want to share an article and not rt one
-                        twitterService.postTweet("Je partage cet article via" +
+                    twitterService.postTweet("Je partage cet article via" +
                                 " l'application FeedBuzz "+ article.getLink());
                     }
-                }
                 catch (IllegalStateException e){ // Handle exception when the user didnt connect to twitter yet
                     Router.Instance().changeView(Views.TwitterAuth);
 
