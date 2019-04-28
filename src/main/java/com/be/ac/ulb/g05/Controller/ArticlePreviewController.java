@@ -113,7 +113,7 @@ public class ArticlePreviewController extends AbstractTwitterController implemen
             // Deletes the article from the feed
             this.deleteFromFeed.setOnAction(event -> {
                 articleService.deleteArticle(article);
-                twitterService.deleteTweet(article.getContent());
+                twitterService.deleteTweet(article.getContent()); //in case its a tweet
 
                 Router.Instance().changeView(Views.Feed);
             });
@@ -121,8 +121,13 @@ public class ArticlePreviewController extends AbstractTwitterController implemen
             //Share on Twitter
             this.shareTwitter.setOnAction(event -> {
                 try {
-                    twitterService.postTweet("Je partage cet article via" +
-                            " l'application FeedBuzz "+ article.getLink());
+                    if (article.getTitle().equals("twitter feed")){ // in case he want to RT a tweet
+                        twitterService.rtTweet(article.getContent());
+                    }
+                    else{ // mean that he want to share an article and not rt one
+                        twitterService.postTweet("Je partage cet article via" +
+                                " l'application FeedBuzz "+ article.getLink());
+                    }
                 }
                 catch (IllegalStateException e){ // Handle exception when the user didnt connect to twitter yet
                     Router.Instance().changeView(Views.TwitterAuth);

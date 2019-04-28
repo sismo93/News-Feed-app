@@ -164,7 +164,6 @@ public class FeedController extends AbstractController implements Observer {
      */
     @Override
     public void setupView() {
-        System.out.println("set");
         articleService.addObserver(this);
         twitterService.addObserver(this);
 
@@ -187,7 +186,6 @@ public class FeedController extends AbstractController implements Observer {
 
     @Override
     public void update(Observable o, Object arg) {
-        System.out.println("update");
     }
 
     /**

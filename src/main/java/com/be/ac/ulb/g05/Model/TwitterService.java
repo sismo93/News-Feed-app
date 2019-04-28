@@ -105,12 +105,33 @@ public class TwitterService extends Observable {
      * delete a tweet from the list
      */
     public void deleteTweet(String content) {
-        Status deletedTweet = null;
-        for (Status status: statuses){
+        Status status = findStatus(content);
+        statuses.remove(status);
+    }
+
+
+    /**
+     * @param content
+     * @throws TwitterException
+     * retweet a tweet
+     */
+    public void rtTweet(String content) throws TwitterException {
+        Status status = findStatus(content);
+        twitter.retweetStatus(status.getId());
+    }
+
+
+    /**
+     * @param content
+     * @return the right tweet
+     * search a tweet matching the content and return him
+     */
+    public Status findStatus(String content){
+        Status requestedStatus = null;
+        for (Status status : statuses){
             if (status.getText().equals(content)){
-                deletedTweet = status;
-            }
+                requestedStatus = status;}
         }
-        statuses.remove(deletedTweet);
+        return requestedStatus;
     }
 }
