@@ -1,6 +1,7 @@
 package com.be.ac.ulb.g05.Controller;
 
 import com.be.ac.ulb.g05.Model.ArticleService;
+import com.be.ac.ulb.g05.Model.TwitterService;
 
 
 /**
@@ -22,6 +23,7 @@ public abstract class AbstractController {
     public void setArticleService(ArticleService articleService){
         this.articleService = articleService;
     }
+
 
     /**
      * Sets up the view

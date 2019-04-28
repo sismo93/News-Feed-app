@@ -7,7 +7,6 @@ import com.be.ac.ulb.g05.PreviewThumbnailCell;
 import javafx.beans.value.ChangeListener;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
-import javafx.event.ActionEvent;
 import javafx.scene.control.ChoiceBox;
 import javafx.scene.control.ListCell;
 import javafx.scene.image.ImageView;
@@ -38,18 +37,16 @@ public class FeedController extends AbstractController implements Observer {
 
     private TwitterService twitterService;
     private ChangeListener listener;
-    private int cellsize = 150;
 
-    @Override
-    public void update(Observable o, Object arg) {
 
-    }
 
     private enum DisplayMode {
 
+        All("All"),
         Rss("Rss"),
         Facebook("facebook"),
         Twitter("twitter");
+
 
         private String mode;
 
@@ -66,6 +63,7 @@ public class FeedController extends AbstractController implements Observer {
     private ListView<PreviewThumbnailCell> showCell(ObservableList<PreviewThumbnailCell> cell) {
 
         listView.setItems(cell);
+        int cellsize = 150;
         listView.setFixedCellSize(cellsize);
 
         listView.setCellFactory(new Callback<ListView<PreviewThumbnailCell>, ListCell<PreviewThumbnailCell>>() {
@@ -133,25 +131,26 @@ public class FeedController extends AbstractController implements Observer {
 
     }
 
-    public void refreshContainer(ActionEvent actionEvent) {
+    public void refreshContainer() {
         displayArticles();
     }
 
     private void displayArticles() {
 
         String displayMode = displayModeChoiceBox.getSelectionModel().getSelectedItem().toString();
-        if (displayMode.equals(DisplayMode.Twitter.mode)) {
 
-            fillListViewWith(twitterService.getStatusAll());
-
-        } else if (displayMode.equals(DisplayMode.Rss.mode)) {
-
+        if (displayMode.equals(DisplayMode.All.mode)){ // Mean that he want to see everything
             ArrayList<Article> twitterArticles = twitterService.getStatusAll();
             ArrayList<Article> rssArticles = articleService.getArticleAll();
             rssArticles.addAll(twitterArticles);
-            fillListViewWith(rssArticles);
+            fillListViewWith(rssArticles); }
+        else if (displayMode.equals(DisplayMode.Twitter.mode)) { //only twitter feed
 
-        }
+            fillListViewWith(twitterService.getStatusAll()); }
+
+        else if (displayMode.equals(DisplayMode.Rss.mode)) { // only rss feed
+            fillListViewWith(articleService.getArticleAll()); }
+
     }
 
     /**
@@ -165,6 +164,7 @@ public class FeedController extends AbstractController implements Observer {
      */
     @Override
     public void setupView() {
+        System.out.println("set");
         articleService.addObserver(this);
         twitterService.addObserver(this);
 
@@ -173,7 +173,8 @@ public class FeedController extends AbstractController implements Observer {
                 FXCollections.observableArrayList(
                         DisplayMode.Rss.mode,
                         DisplayMode.Twitter.mode,
-                        DisplayMode.Facebook.mode
+                        DisplayMode.Facebook.mode,
+                        DisplayMode.All.mode
                 );
 
 
@@ -182,6 +183,11 @@ public class FeedController extends AbstractController implements Observer {
 
         displayArticles();
 
+    }
+
+    @Override
+    public void update(Observable o, Object arg) {
+        System.out.println("update");
     }
 
     /**

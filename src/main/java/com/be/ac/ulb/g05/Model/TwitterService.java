@@ -54,6 +54,7 @@ public class TwitterService extends Observable {
     public void syncTimeline() throws TwitterException {
 
         statuses.addAll(twitter.getHomeTimeline());
+
     }
 
     public void searchBy(Query query) throws TwitterException {
@@ -99,4 +100,17 @@ public class TwitterService extends Observable {
     }
 
 
+    /**
+     * @param content
+     * delete a tweet from the list
+     */
+    public void deleteTweet(String content) {
+        Status deletedTweet = null;
+        for (Status status: statuses){
+            if (status.getText().equals(content)){
+                deletedTweet = status;
+            }
+        }
+        statuses.remove(deletedTweet);
+    }
 }

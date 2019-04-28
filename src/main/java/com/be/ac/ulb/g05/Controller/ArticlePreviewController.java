@@ -113,6 +113,8 @@ public class ArticlePreviewController extends AbstractTwitterController implemen
             // Deletes the article from the feed
             this.deleteFromFeed.setOnAction(event -> {
                 articleService.deleteArticle(article);
+                twitterService.deleteTweet(article.getContent());
+
                 Router.Instance().changeView(Views.Feed);
             });
 

@@ -153,7 +153,6 @@ public class ChooseArticleController extends AbstractController implements Obser
      */
     private void AddArticleForFeed(Article article) throws IOException {
         article.setContent(parserWebsite.ParserArticle(article.getLink())); // Call the parser
-        //FixDescriptionError(article.getContent(), article); // Change the description
 
 
         article.setImage(parserWebsite.ParserImage(article.getLink())); //Add Picture
@@ -166,20 +165,6 @@ public class ChooseArticleController extends AbstractController implements Obser
         showAlert("Article Added","Information");
     }
 
-
-
-    /**
-     * @param article       the article source
-     * @param articleObject the article object
-     *                      change the description if its TheGuardian or RTLINFO
-     *                      because these 2 websites doesnt handle the description for an article
-     */
-    /***private void FixDescriptionError(String article, Article articleObject) {
-        String source = (String) SourceArticleBox.getSelectionModel().getSelectedItem();
-        if ((source.equals(Guardian.source)) || (source.equals(RTL.source))) {
-            articleObject.setDescription(article.substring(0, (article.length() < 100) ? article.length() : 100));
-        }
-    }**/
 
     @Override
     public void setArticleService(ArticleService articleService) {

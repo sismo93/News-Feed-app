@@ -178,7 +178,7 @@ public class AddController extends AbstractController {
                             "Sport",
                             "Economie",
                             "Technolgies"),
-                    "http://www.acpm.fr/var/ojd/storage/files/logos/A/logo_5691.png",
+                    "https://www.acpm.fr/var/ojd/storage/files/logos/A/logo_5691.png",
                     "@LeMonde.fr (LeMonde Media)",
                     "France");
         } else if (source.equals(LeFigaro.source)) {
@@ -261,7 +261,7 @@ public class AddController extends AbstractController {
     /**
      * Handler when Add button is pressed
      */
-    public void OnButtonPressed() throws IOException {
+    public void OnButtonPressed()  {
         if (CategoryBox.getSelectionModel().isEmpty()
                 || SourceArticleBox.getSelectionModel().isEmpty()) {
             showAlert("A selection is empty, please fill it", "Information");
