@@ -7,6 +7,7 @@ import javafx.scene.control.TextField;
 import twitter4j.Query;
 import twitter4j.TwitterException;
 
+
 import static com.be.ac.ulb.g05.Controller.AddController.showAlert;
 
 
@@ -33,9 +34,15 @@ public class TwitterController extends AbstractTwitterController {
     }
 
     public void onSearchByUsernamePressed( ) {
-        String username = addByTagLabel.getText();
+        String username = addByUsernameLabel.getText();
         if (username.isEmpty()) return;
-        searchOnTwitter("source:" + username);
+        try {
+            System.out.println("labas");
+            twitterService.searchUser(username);
+            showAlert("Now you follow @"+username +" \n Check your timeline maybe he/she tweeted","Information");
+        } catch (TwitterException e) {
+            showAlert("Failed to find "+ username,"Information");
+        }
     }
 
     private void searchOnTwitter(String queryString) {
@@ -44,7 +51,7 @@ public class TwitterController extends AbstractTwitterController {
             twitterService.searchBy(query);
 
         } catch (TwitterException e) {
-            System.out.println("Failed to search tweets: " + e.getMessage());
+            showAlert("Failed to search tweets: " + e.getMessage(),"Information");
         }
     }
 }

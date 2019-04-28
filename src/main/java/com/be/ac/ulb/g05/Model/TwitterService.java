@@ -61,9 +61,13 @@ public class TwitterService extends Observable {
         result = twitter.search(query);
         List<Status> tweets = result.getTweets();
         statuses.addAll(tweets);
-
-
     }
+
+
+    public void searchUser(String username) throws TwitterException {
+        twitter.createFriendship("@"+username);
+    }
+
 
     public ArrayList<Article> getStatusAll() {
         ArrayList<Article> articles = new ArrayList<>();
