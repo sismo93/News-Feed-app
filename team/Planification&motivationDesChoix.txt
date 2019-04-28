@@ -25,7 +25,12 @@ Flux rss : nous permet de récupérer les informations d’un article.
 observer observable : pour un rafraîchissement automatique de la vue lors du changement de la mise à jour des données
 Singleton : usage dans le routeur, permet de changer de vue et se charge de la logique des transitions entre les vues. 
 
+Itération 3 :
+	Lors de cette troisième itération, le client a décidé de choisir d’intégrer l’histoire 8 (Intégration avec des réseaux sociaux) à l’application en plus de certaines petites fonctionnalités.
+Implémentations des fonctionnalités + difficultés rencontrées :
+	Indépendamment à notre volonté, l’intégration du réseau social Facebook n’a pas été intégré. En effet, Facebook ne donne pas accès à ses informations à n’importe qui. Il faut obligatoirement faire une demande formelle en motivant sa demande (vidéos de l’application, conditions générales…) et attendre une réponse qui prend plusieurs jours (5jours minimum). En concertation avec le coach, nous avons décidé d’intégrer l’architecture de code à l’application. 
+	L’intégration du réseau social Twitter a été faite ainsi que toutes les autres fonctionnalités demandées par le client.
 
-	
+Design pattern + librairies :
 
-
+Twiiter4j : API twiiter
