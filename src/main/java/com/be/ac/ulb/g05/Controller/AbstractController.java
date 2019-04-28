@@ -25,14 +25,24 @@ public abstract class AbstractController {
 
 
     /**
-     * Sets up the view
+     * Sets up the view. Called the first time UI element is loaded
      */
     public void setupView(){ }
 
+    /**
+     * @param dependencyInjector object responsible for delivering the dependency
+     * called on initialization
+     * link the client to his specific services
+     */
     public void injectDependencies(DependencyInjector dependencyInjector) {
         this.articleService = dependencyInjector.getArticleService();
     }
 
+
+    /**
+     * Called whenever whenever the focus is on the view managed by the controller
+     *
+     */
     public void onActive(){
 
     }

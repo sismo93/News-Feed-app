@@ -24,7 +24,9 @@ public class FacebookController extends AbstractController {
     private String code;
 
 
-
+    /**
+     * Sets up the view. Called the first time UI element is loaded
+     */
     @Override
     public void setupView() {
         WebView webView = new WebView();

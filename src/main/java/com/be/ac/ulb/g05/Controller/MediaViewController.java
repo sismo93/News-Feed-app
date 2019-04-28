@@ -14,6 +14,9 @@ public class MediaViewController extends AbstractController {
 
     public HBox hboxView;
 
+    /**
+     * Sets up the view. Called the first time UI element is loaded
+     */
     @Override
     public void setupView() {
         String url = articleService.getArticle().getVideo();

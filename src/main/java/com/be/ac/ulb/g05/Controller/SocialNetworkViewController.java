@@ -3,7 +3,6 @@ package com.be.ac.ulb.g05.Controller;
 
 import com.be.ac.ulb.g05.Controller.Router.*;
 
-
 public class SocialNetworkViewController  extends AbstractController {
 
 

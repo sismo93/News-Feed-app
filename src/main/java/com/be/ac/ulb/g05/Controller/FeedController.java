@@ -4,6 +4,7 @@ import com.be.ac.ulb.g05.Controller.Router.*;
 import com.be.ac.ulb.g05.Model.Article;
 import com.be.ac.ulb.g05.Model.TwitterService;
 import com.be.ac.ulb.g05.PreviewThumbnailCell;
+import javafx.application.Platform;
 import javafx.beans.value.ChangeListener;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -13,6 +14,7 @@ import javafx.scene.image.ImageView;
 import javafx.scene.layout.VBox;
 import javafx.scene.control.ListView;
 import javafx.util.Callback;
+
 import java.io.IOException;
 import java.lang.reflect.Array;
 import java.util.ArrayList;
@@ -28,15 +30,19 @@ import static com.be.ac.ulb.g05.Controller.ArticleViewController.saveImage;
  * @author @MnrBn
  * @codereview @borsalinoK
  */
-public class FeedController extends AbstractController implements Observer {
+public class FeedController extends AbstractController {
+
 
     /**
-     * ArticleViewField displays the content on the page
+     * UI element
      */
     public VBox container;
     public ChoiceBox displayModeChoiceBox;
     public ListView listView;
 
+    /**
+     * Services in use
+     */
     private TwitterService twitterService;
     private ChangeListener listener;
 
@@ -98,21 +104,25 @@ public class FeedController extends AbstractController implements Observer {
         });
 
 
-        //remove previews listner
-        if (listener != null) {
-            listView.getSelectionModel().selectedItemProperty().removeListener(listener);
-        }
+        Platform.runLater(() -> {
+            //remove previews listner
+            if (listener != null) {
+                listView.getSelectionModel().selectedItemProperty().removeListener(listener);
+            }
 
-        listener = (ov, oldValue, newValue) -> {
-            int selectedArticleIndex = listView.getSelectionModel().getSelectedIndex();
-            if (selectedArticleIndex == -1) return; // if no item in the listView is selected. Javafx unselect the item when it loses screen focus
-            Article article = articles.get(selectedArticleIndex);
-            FeedController.this.displayArticlePreview(article);
-        };
+            listener = (ov, oldValue, newValue) -> {
+                int selectedArticleIndex = listView.getSelectionModel().getSelectedIndex();
+                if (selectedArticleIndex == -1)
+                    return; // if no item in the listView is selected. Javafx unselect the item when it loses screen focus
+                Article article = articles.get(selectedArticleIndex);
+                FeedController.this.displayArticlePreview(article);
+            };
 
-        listView.getSelectionModel().selectedItemProperty().addListener(listener);
+            listView.getSelectionModel().selectedItemProperty().addListener(listener);
 
-        showCell(thumbnailList);
+            showCell(thumbnailList);
+
+        });
 
 
     }
@@ -142,17 +152,17 @@ public class FeedController extends AbstractController implements Observer {
     /**
      * @param tag
      * @return the right list of article
-     *
+     * <p>
      * Allow us to only keep on the feed articles that match the tag
      */
-    private ArrayList<Article> sortByTag(String tag){
+    private ArrayList<Article> sortByTag(String tag) {
         ArrayList<Article> twitterArticles = twitterService.getTwitterArticleObj();
         ArrayList<Article> allArticle = articleService.getArticleAll();
         allArticle.addAll(twitterArticles); // we have now all article but we need to sort by tag
-        ArrayList<Article>  articlesToShow = new ArrayList<>();
-        for(Article article: allArticle){
-            for (String differentTag : article.getTags()){
-                if (differentTag.equals(tag)){
+        ArrayList<Article> articlesToShow = new ArrayList<>();
+        for (Article article : allArticle) {
+            for (String differentTag : article.getTags()) {
+                if (differentTag.equals(tag)) {
                     articlesToShow.add(article);
                 }
             }
@@ -168,13 +178,13 @@ public class FeedController extends AbstractController implements Observer {
     private void addTagToChoiceBox() {
         List<String> tagList = twitterService.getTagList();
         boolean hasToAdd = true;
-        for(String tag:tagList){
-            for (int choice=0;choice< displayModeChoiceBox.getItems().size();choice++){
-                if (tag.equals(displayModeChoiceBox.getItems().get(choice))){
-                    hasToAdd= false;
+        for (String tag : tagList) {
+            for (int choice = 0; choice < displayModeChoiceBox.getItems().size(); choice++) {
+                if (tag.equals(displayModeChoiceBox.getItems().get(choice))) {
+                    hasToAdd = false;
                 }
             }
-            if (hasToAdd){
+            if (hasToAdd) {
                 displayModeChoiceBox.getItems().add(tag);
             }
             hasToAdd = true;
@@ -193,16 +203,9 @@ public class FeedController extends AbstractController implements Observer {
      */
     @Override
     public void setupView() {
-        articleService.addObserver(this);
-        twitterService.addObserver(this);
-
 
         ObservableList<String> categoryList =
                 FXCollections.observableArrayList(
-                        /*DisplayMode.Rss.mode,
-                        DisplayMode.Twitter.mode,
-                        DisplayMode.Facebook.mode,
-                        DisplayMode.All.mode*/
                         "All",
                         "Rss",
                         "Twitter",
@@ -217,10 +220,6 @@ public class FeedController extends AbstractController implements Observer {
 
     }
 
-    @Override
-    public void update(Observable o, Object arg) {
-    }
-
     /**
      * Displays article preview
      *
@@ -231,6 +230,12 @@ public class FeedController extends AbstractController implements Observer {
         Router.Instance().changeView(Views.Preview);
     }
 
+
+    /**
+     * @param dependencyInjector object responsible for delivering the dependency
+     *                           called on initialization
+     *                           link the client to his specific services
+     */
     @Override
     public void injectDependencies(DependencyInjector dependencyInjector) {
         super.injectDependencies(dependencyInjector);

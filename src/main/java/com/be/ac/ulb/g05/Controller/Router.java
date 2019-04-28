@@ -9,6 +9,12 @@ import javafx.scene.layout.BorderPane;
 import java.io.IOException;
 import java.util.HashMap;
 
+/**
+ * Router
+ *
+ * transition between views
+ *
+ */
 public class Router {
 
     @FXML

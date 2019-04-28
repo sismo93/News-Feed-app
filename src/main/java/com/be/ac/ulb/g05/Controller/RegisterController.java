@@ -14,6 +14,8 @@ import javafx.scene.control.TextField;
 import javafx.scene.layout.StackPane;
 import javafx.scene.text.Text;
 
+import static com.be.ac.ulb.g05.Controller.AddController.showAlert;
+
 
 /**
  * AbstractController of the Register
@@ -82,15 +84,15 @@ public class RegisterController extends AbstractController {
     @FXML
     private void RegisterButton() {
         if (!isMatch(email.getText(), confirmMail.getText())) {
-            notificationMessage("Emails do not match");
+            showAlert("Emails do not match", "error");
         }
 
         if (!isMatch(password.getText(), confirmPassword.getText())) {
-            notificationMessage("Passwords do not match");
+            showAlert("Passwords do not match", "error");
         }
 
         if (isEmpty()) {
-            notificationMessage("Please fill in all fields");
+            showAlert("Please fill in all fields", "error");
         } else {
             if (!usersDAO.loginExist(user) && !usersDAO.mailExist(user)){
                 user.setName(username.getText());
@@ -101,27 +103,9 @@ public class RegisterController extends AbstractController {
                 Router.Instance().changeView(Views.Menu); // Go to menu
             }
             else {
-                notificationMessage("notInDb");
+                showAlert("Not in database", "error");
             }
         }
-    }
-
-    /**
-     *
-     * @param error the error message
-     * Show a notification with the right error
-     */
-    private void notificationMessage(String error){
-        JFXDialogLayout content = new JFXDialogLayout();
-        content.setHeading(new Text("Error"));
-        content.setBody(new Text(error));
-
-        JFXDialog dialog = new JFXDialog(stackPane, content, JFXDialog.DialogTransition.CENTER);
-        JFXButton button = new JFXButton("Ok");
-        button.setOnAction(event -> dialog.close());
-
-        content.setActions(button);
-        dialog.show();
     }
 
     /**
