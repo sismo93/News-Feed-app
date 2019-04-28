@@ -4,7 +4,6 @@ package com.be.ac.ulb.g05.Controller;
 
 import javafx.scene.control.TextField;
 
-import twitter4j.Query;
 import twitter4j.TwitterException;
 
 
@@ -32,11 +31,21 @@ public class TwitterController extends AbstractTwitterController {
         }
     }
 
+    /**
+     *search on twitter tweet talking about the queryString
+     *will be added to the article list
+     */
     public void onSearchByTagPressed( ) {
         String tag = addByTagLabel.getText();
         if (tag.isEmpty()) return;
 
-        searchOnTwitter("#" + tag);
+        //searchOnTwitter("#" + tag);
+        try {
+            twitterService.searchBy(tag);
+
+        } catch (TwitterException e) {
+            showAlert("Failed to search tweets: " + e.getMessage(),"Information");
+        }
         showAlert("Added some tweet talking about "+tag,"Information");
     }
 
@@ -54,18 +63,4 @@ public class TwitterController extends AbstractTwitterController {
         }
     }
 
-    /**
-     * @param queryString
-     * search on twitter tweet talking about the queryString
-     * will be added to the article list
-     */
-    private void searchOnTwitter(String queryString) {
-        Query query = new Query(queryString);
-        try {
-            twitterService.searchBy(query);
-
-        } catch (TwitterException e) {
-            showAlert("Failed to search tweets: " + e.getMessage(),"Information");
-        }
-    }
 }
