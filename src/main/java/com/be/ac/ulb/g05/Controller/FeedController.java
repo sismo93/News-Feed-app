@@ -8,8 +8,10 @@ import javafx.application.Platform;
 import javafx.beans.value.ChangeListener;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
+import javafx.event.ActionEvent;
 import javafx.scene.control.ChoiceBox;
 import javafx.scene.control.ListCell;
+import javafx.scene.control.TextField;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.VBox;
 import javafx.scene.control.ListView;
@@ -39,6 +41,7 @@ public class FeedController extends AbstractController {
     public VBox container;
     public ChoiceBox displayModeChoiceBox;
     public ListView listView;
+    public TextField accountName;
 
     /**
      * Services in use
@@ -149,48 +152,6 @@ public class FeedController extends AbstractController {
     }
 
 
-    /**
-     * @param tag
-     * @return the right list of article
-     * <p>
-     * Allow us to only keep on the feed articles that match the tag
-     */
-    private ArrayList<Article> sortByTag(String tag) {
-        ArrayList<Article> twitterArticles = twitterService.getTwitterArticleObj();
-        ArrayList<Article> allArticle = articleService.getArticleAll();
-        allArticle.addAll(twitterArticles); // we have now all article but we need to sort by tag
-        ArrayList<Article> articlesToShow = new ArrayList<>();
-        for (Article article : allArticle) {
-            for (String differentTag : article.getTags()) {
-                if (differentTag.equals(tag)) {
-                    articlesToShow.add(article);
-                }
-            }
-        }
-        return articlesToShow;
-    }
-
-
-    /**
-     * check if we need to add the tag to the choicebox
-     * if so, add him
-     */
-    private void addTagToChoiceBox() {
-        List<String> tagList = twitterService.getTagList();
-        boolean hasToAdd = true;
-        for (String tag : tagList) {
-            for (int choice = 0; choice < displayModeChoiceBox.getItems().size(); choice++) {
-                if (tag.equals(displayModeChoiceBox.getItems().get(choice))) {
-                    hasToAdd = false;
-                }
-            }
-            if (hasToAdd) {
-                displayModeChoiceBox.getItems().add(tag);
-            }
-            hasToAdd = true;
-
-        }
-    }
 
     /**
      * Called after scene loading
@@ -245,5 +206,74 @@ public class FeedController extends AbstractController {
     @Override
     public void onActive() {
         displayArticles();
+    }
+
+
+    /**
+     * @return all article from RSS and TWITTER
+     */
+    private ArrayList<Article> allArticleFromRssAndTwitter(){
+
+        ArrayList<Article> twitterArticles = twitterService.getTwitterArticleObj();
+        ArrayList<Article> allArticle = articleService.getArticleAll();
+        allArticle.addAll(twitterArticles); //
+        return allArticle;
+    }
+
+    /**
+     * Show only the article with the right author (@ )
+     */
+    public void Search() {
+        String account= accountName.getText();
+        ArrayList<Article> allArticle = allArticleFromRssAndTwitter();
+        ArrayList<Article> articlesToShow = new ArrayList<>();
+
+        for (Article article : allArticle) {
+            if (article.getSource().equals(account)){
+                articlesToShow.add(article);
+            }
+        }
+        fillListViewWith(articlesToShow);
+    }
+
+    /**
+     * @param tag
+     * @return the right list of article
+     *
+     * Allow us to only keep on the feed articles that match the tag
+     */
+    private ArrayList<Article> sortByTag(String tag) {
+        ArrayList<Article> allArticle = allArticleFromRssAndTwitter();
+        ArrayList<Article> articlesToShow = new ArrayList<>();
+        for (Article article : allArticle) {
+            for (String differentTag : article.getTags()) {
+                if (differentTag.equals(tag)) {
+                    articlesToShow.add(article);
+                }
+            }
+        }
+        return articlesToShow;
+    }
+
+
+    /**
+     * check if we need to add the tag to the choicebox
+     * if so, add him
+     */
+    private void addTagToChoiceBox() {
+        List<String> tagList = twitterService.getTagList();
+        boolean hasToAdd = true;
+        for (String tag : tagList) {
+            for (int choice = 0; choice < displayModeChoiceBox.getItems().size(); choice++) {
+                if (tag.equals(displayModeChoiceBox.getItems().get(choice))) {
+                    hasToAdd = false;
+                }
+            }
+            if (hasToAdd) {
+                displayModeChoiceBox.getItems().add(tag);
+            }
+            hasToAdd = true;
+
+        }
     }
 }

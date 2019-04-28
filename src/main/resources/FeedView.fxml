@@ -18,8 +18,9 @@
                   <Label prefHeight="25.0" prefWidth="80.0" text="Display" AnchorPane.bottomAnchor="10.0" AnchorPane.leftAnchor="10.0" AnchorPane.rightAnchor="1190.0" AnchorPane.topAnchor="10.0" />
                   <ChoiceBox fx:id="displayModeChoiceBox" layoutX="73.0" prefHeight="25.0" prefWidth="95.0" AnchorPane.bottomAnchor="10.0" AnchorPane.leftAnchor="73.0" AnchorPane.topAnchor="10.0" />
                   <Button mnemonicParsing="false" onAction="#refreshContainer" text="refresh" AnchorPane.bottomAnchor="10.0" AnchorPane.leftAnchor="200.0" AnchorPane.topAnchor="10.0" />
-                  <TextField AnchorPane.bottomAnchor="10.0" AnchorPane.leftAnchor="800.0" AnchorPane.rightAnchor="70.0" AnchorPane.topAnchor="10.0" />
-                  <Button mnemonicParsing="false" text="Search" AnchorPane.bottomAnchor="10.0" AnchorPane.rightAnchor="10.0" AnchorPane.topAnchor="10.0" />
+                  <TextField fx:id="accountName" AnchorPane.bottomAnchor="10.0" AnchorPane.leftAnchor="800.0" AnchorPane.rightAnchor="70.0" AnchorPane.topAnchor="10.0" />
+                  <Button mnemonicParsing="false" onAction="#Search" text="Search" AnchorPane.bottomAnchor="10.0" AnchorPane.rightAnchor="10.0" AnchorPane.topAnchor="10.0" />
+                  <Label layoutX="640.0" layoutY="14.0" prefHeight="17.0" prefWidth="150.0" text="Account Name (without @)" />
                </children>
             </AnchorPane>
             <ScrollPane hbarPolicy="ALWAYS" prefHeight="1280.0" prefWidth="720.0" vbarPolicy="ALWAYS" VBox.vgrow="ALWAYS">
