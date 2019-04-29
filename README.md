@@ -17,6 +17,8 @@ Ce logiciel a pour but de regrouper des articles selon les préférences d'un ut
  - Junit Jupiter API (version 5.4.0)
  - Jsoup (version 1.7.0)
  - JFoenix (version 8.0.8)
+ - Twitter4j (version 4.0)
+ - Restfb (version 2.19.0)
 
 **Libraries**:
  - [JavaFX 11](https://openjfx.io/)
@@ -89,13 +91,21 @@ Yamani Imad Eddine, Bounamar Mounir, Mustapha Cherrabi, Tanvirul Hoque, Wassim K
 
 ![Registration](https://i.imgur.com/ZFaEr96.png)
 
-![Main menu](https://i.imgur.com/Tk7gWXV.png)
+![Main menu](https://i.imgur.com/OYGmkU7.png)
 
-![Add articles](https://i.imgur.com/vhyY6gH.png)
+![Add articles](https://i.imgur.com/h4lHMG7.png)
 
-![Feed view](https://i.imgur.com/KhVA9bG.png)
+![Available_articles](https://i.imgur.com/tqxSnbh.png)
 
-![Article preview](https://i.imgur.com/LcK3Tzr.png)
+![Social_Networks](https://i.imgur.com/AXeLMaE.png)
+
+![Twitter log](https://i.imgur.com/PelhBz4.png)
+
+![Twitter_view](https://i.imgur.com/u14FtvC.png)
+
+![Feed view](https://i.imgur.com/AvagTyF.png)
+
+![Article preview](https://i.imgur.com/5kHnXhR.png)
 
 ## License
 [Apache License, Version 2.0](https://www.apache.org/licenses/LICENSE-2.0)
