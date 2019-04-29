@@ -5,6 +5,7 @@ import twitter4j.auth.AccessToken;
 import twitter4j.auth.RequestToken;
 
 
+import java.net.CookieManager;
 import java.util.*;
 import java.util.List;
 
@@ -181,5 +182,16 @@ public class TwitterService extends Observable {
 
     public ArrayList<Article> getTwitterArticleObj(){
         return this.twitterArticleObj;
+    }
+
+    /**
+     * clear list in case he disconnect
+     */
+    public void reset() {
+        statuses.clear();
+        twitterArticleObj.clear();
+        tagList.clear();
+        this.tag = "";
+
     }
 }

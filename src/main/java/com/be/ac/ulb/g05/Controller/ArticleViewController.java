@@ -21,6 +21,8 @@ import java.net.URL;
 import java.util.Observable;
 import java.util.Observer;
 
+import static com.be.ac.ulb.g05.Controller.AddController.showAlert;
+
 /**
  * Article View controller
  *
@@ -132,7 +134,7 @@ public class ArticleViewController extends AbstractController implements Observe
             }
 
         } catch (IOException e) {
-            e.printStackTrace();
+            showAlert("An error has occurred","Error");
         }
 
     }

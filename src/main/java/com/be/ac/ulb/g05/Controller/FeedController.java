@@ -38,7 +38,6 @@ public class FeedController extends AbstractController {
     /**
      * UI element
      */
-    public VBox container;
     public ChoiceBox displayModeChoiceBox;
     public ListView listView;
     public TextField accountName;

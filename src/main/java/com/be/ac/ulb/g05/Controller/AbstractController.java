@@ -1,6 +1,7 @@
 package com.be.ac.ulb.g05.Controller;
 
 import com.be.ac.ulb.g05.Model.ArticleService;
+import com.be.ac.ulb.g05.Model.TwitterService;
 
 
 /**
@@ -14,6 +15,7 @@ public abstract class AbstractController {
      * Article service
      */
     protected  ArticleService articleService;
+    protected TwitterService twitterService;
 
     /**
      * Sets the article service
@@ -36,6 +38,7 @@ public abstract class AbstractController {
      */
     public void injectDependencies(DependencyInjector dependencyInjector) {
         this.articleService = dependencyInjector.getArticleService();
+        this.twitterService = dependencyInjector.getTwitterService();
     }
 
 

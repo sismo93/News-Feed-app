@@ -18,6 +18,7 @@ public class TopPaneViewController extends AbstractController {
      */
     public void OnDisconnect() {
         articleService.reset();
+        twitterService.reset();
         Router.Instance().changeView(Router.Views.Login);
     }
 

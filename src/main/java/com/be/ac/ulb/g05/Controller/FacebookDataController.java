@@ -11,6 +11,8 @@ import java.io.InputStreamReader;
 import java.net.HttpURLConnection;
 import java.net.URL;
 
+import static com.be.ac.ulb.g05.Controller.AddController.showAlert;
+
 /**
  * @author @iyamani
  * @codereview @otrangan
@@ -28,33 +30,39 @@ public class FacebookDataController extends AbstractController {
      * @throws IOException
      * Follow an account on facebook
      */
-    public void followAccount() throws IOException {
-        String followAccount = accountToFollow.getText();
-        String url = "https://graph.facebook.com/pages/search?q=" + followAccount + "&access_token=" + accessToken;
+    public void followAccount() {
+        try{
+            String followAccount = accountToFollow.getText();
+            String url = "https://graph.facebook.com/pages/search?q=" + followAccount + "&access_token=" + accessToken;
 
-        URL apiUrl = new URL(url);
-        HttpURLConnection connection = (HttpURLConnection) apiUrl.openConnection();
+            URL apiUrl = new URL(url);
+            HttpURLConnection connection = (HttpURLConnection) apiUrl.openConnection();
 
-        connection.setRequestMethod("GET");
-        int responseCode = connection.getResponseCode();
+            connection.setRequestMethod("GET");
+            int responseCode = connection.getResponseCode();
 
-        System.out.println("Response code: " + responseCode);
 
-        if (responseCode == 400) {
-            // Well obviously it doesn't work, but the code is here
+            if (responseCode == 400) {
+                // Well obviously it doesn't work, but the code is here
+                // We need to wait for the facebook approval
+            }
+
+            BufferedReader in = new BufferedReader(new InputStreamReader(connection.getInputStream()));
+            String inputLine;
+            StringBuffer response = new StringBuffer();
+
+            while ((inputLine = in.readLine()) != null) {
+                response.append(inputLine);
+            }
+            in.close();
+
+            JSONObject apiResponse = new JSONObject(response.toString());
+
+        }
+        catch (IOException e){
+            showAlert("FeedBuzz App is still waiting for the approval of facebook \n Come back later maybe"
+            ,"Information");
         }
 
-        BufferedReader in = new BufferedReader(new InputStreamReader(connection.getInputStream()));
-        String inputLine;
-        StringBuffer response = new StringBuffer();
-
-        while ((inputLine = in.readLine()) != null) {
-            response.append(inputLine);
-        }
-        in.close();
-
-        JSONObject apiResponse = new JSONObject(response.toString());
-
-        System.out.println(apiResponse);
     }
 }
