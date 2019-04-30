@@ -75,8 +75,9 @@ public class TwitterService extends Observable {
      * get the timeline of the user in order to display it on the Feed
      */
     public void syncTimeline() throws TwitterException {
-
+        statuses.clear();
         statuses.addAll(twitter.getHomeTimeline());
+        this.tag = "TimeLine";
         this.twitterArticleObj.addAll(getStatusAll());
     }
 
@@ -89,9 +90,11 @@ public class TwitterService extends Observable {
     public void searchBy(String query) throws TwitterException {
         QueryResult result;
         result = twitter.search(new Query(query));
+        statuses.clear();
         List<Status> tweets = result.getTweets();
         tagList.add(query);
         this.tag = query;
+
         statuses.addAll(tweets);
         this.twitterArticleObj.addAll(getStatusAll());
 
@@ -110,6 +113,8 @@ public class TwitterService extends Observable {
      */
     public void searchUser(String username) throws TwitterException {
         twitter.createFriendship("@"+username);
+        this.tag = "@"+username;
+        statuses.clear();
         statuses.addAll(twitter.getUserTimeline(username));
         this.twitterArticleObj.addAll(getStatusAll());
     }
