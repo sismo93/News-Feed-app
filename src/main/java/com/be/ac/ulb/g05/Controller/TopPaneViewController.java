@@ -25,4 +25,8 @@ public class TopPaneViewController extends AbstractController {
     public void OpenFeedView() {
         Router.Instance().changeView(Router.Views.Feed);
     }
+
+    public void OpenHelpView() {
+        Router.Instance().changeView(Router.Views.Help);
+    }
 }

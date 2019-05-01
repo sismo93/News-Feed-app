@@ -59,7 +59,8 @@ public class Router {
         Twitter("TwitterView.fxml"),
         TwitterAuth("TwitterAuthView.fxml"),
         Facebook("FacebookView.fxml"),
-        FacebookData("FacebookDataView.fxml");
+        FacebookData("FacebookDataView.fxml"),
+        Help("HelpView.fxml");
 
         private String value;
 
