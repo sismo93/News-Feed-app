@@ -7,6 +7,7 @@ import com.be.ac.ulb.g05.PreviewThumbnailCell;
 import com.be.ac.ulb.g05.Website;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
+import javafx.event.ActionEvent;
 import javafx.scene.control.Button;
 import javafx.scene.control.ListCell;
 import javafx.scene.control.ListView;
@@ -187,4 +188,7 @@ public class ChooseArticleController extends AbstractController implements Obser
     }
 
 
+    public void onAddMapPressed(ActionEvent actionEvent) {
+        Router.Instance().changeView(Router.Views.AddMapView);
+    }
 }
