@@ -33,7 +33,7 @@ public class FacebookDataController extends AbstractController {
     public void followAccount() {
         try{
             String followAccount = accountToFollow.getText();
-            String url = "https://graph.facebook.com/pages/search?q=" + followAccount + "&access_token=" + accessToken;
+            String url = "https://graph.facebook.com/Pages/search?q=" + followAccount + "&access_token=" + accessToken;
 
             URL apiUrl = new URL(url);
             HttpURLConnection connection = (HttpURLConnection) apiUrl.openConnection();

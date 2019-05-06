@@ -1,69 +1,101 @@
 package com.be.ac.ulb.g05.Controller;
 
-import com.lynden.gmapsfx.GoogleMapView;
-import com.lynden.gmapsfx.javascript.event.UIEventType;
-import com.lynden.gmapsfx.javascript.object.*;
-import javafx.fxml.FXML;
-import javafx.scene.control.Label;
-import netscape.javascript.JSObject;
 
-import java.text.DecimalFormat;
+import com.be.ac.ulb.g05.Model.Address;
+import javafx.application.Platform;
+import javafx.beans.value.ChangeListener;
+import javafx.beans.value.ObservableValue;
+import javafx.concurrent.Worker;
+import javafx.scene.control.ListView;
+import javafx.scene.layout.AnchorPane;
+import javafx.scene.layout.BorderPane;
+import javafx.scene.web.WebEngine;
+import javafx.scene.web.WebView;
+import net.java.html.BrwsrCtx;
+import net.java.html.boot.fx.FXBrowsers;
+import net.java.html.leaflet.*;
 
-import static com.be.ac.ulb.g05.Controller.AddMapController.Locations.*;
+import java.net.URL;
 
 public class AddMapController extends AbstractController {
-
-    @FXML
-    private Label latitudeLabel;
-
-    @FXML
-    private Label longitudeLabel;
-
-    @FXML
-    private GoogleMapView googleMapView;
-
-    enum Locations {
-
-        Brussels(50.8, 4.3), Paris(48.8, 2.33331);
-
-        double latitude;
-        double longitude;
-
-        Locations(Double la, Double lo) {
-            latitude = la;
-            longitude = lo;
-        }
-    }
-
-    private GoogleMap map;
-    private LatLong brusselsLatLong;
-    private int zoom = 5;
+    public BorderPane borderPane;
+    private WebView webView;
+    private Map map;
 
     @Override
     public void setupView() {
-        googleMapView.addMapInializedListener(() -> configureMap());
-    }
+        // we define a regular JavaFX WebView that DukeScript can use for rendering
 
-    protected void configureMap() {
-        MapOptions mapOptions = new MapOptions();
+        webView = new WebView();
 
-        Marker paris = new Marker(new MarkerOptions().position(new LatLong(Paris.latitude, Paris.longitude)).title("paris"));
-        Marker brussels = new Marker(new MarkerOptions().position(new LatLong(Brussels.latitude, Brussels.longitude)).title("Brussels"));
+        WebEngine webEngine = webView.getEngine();
+        URL url = this.getClass().getResource("/Pages/index.html");
 
 
-        mapOptions.center(new LatLong(Paris.latitude, Paris.longitude))
-                .mapType(MapTypeIdEnum.ROADMAP)
-                .zoom(zoom);
+        FXBrowsers.load(webView, url, () -> {
 
-        map = googleMapView.createMap(mapOptions, false);
+            map = new Map("map");
 
-        map.addUIEventHandler(UIEventType.click, (JSObject obj) -> {
-            LatLong ll = new LatLong((JSObject) obj.getMember("latLng"));
-            System.out.println("LatLong: lat: " + ll.getLatitude() + " lng: " + ll.getLongitude());
+            // from here we just use the Leaflet API to show some stuff on the map
+            map.setView(new LatLng(51.505, -0.09), 13);
+            map.addLayer(new TileLayer("http://{s}.tile.thunderforest.com/cycle/{z}/{x}/{y}.png",
+                    new TileLayerOptions()
+                            .setAttribution(
+                                    "Map data &copy; <a href='http://www.thunderforest.com/opencyclemap/'>OpenCycleMap</a> contributors, "
+                                            + "<a href='http://creativecommons.org/licenses/by-sa/2.0/'>CC-BY-SA</a>, "
+                                            + "Imagery © <a href='http://www.thunderforest.com/'>Thunderforest</a>")
+                            .setMaxZoom(18)
+                            .setId("eppleton.ia9c2p12")
+            ));
+
+            // sample code showing how to use the Java API
+
+            map.addLayer(new Circle(new LatLng(51.508, -0.11), 500,
+                    new PathOptions().setColor("red").setFillColor("#f03").setOpacity(0.5)
+            ).bindPopup("I am a Circle"));
+
+            map.addLayer(new Polygon(new LatLng[]{
+                    new LatLng(51.509, -0.08),
+                    new LatLng(51.503, -0.06),
+                    new LatLng(51.51, -0.047)
+            }).bindPopup("I am a Polygon"));
+
+
         });
 
-        map.addMarker(paris);
-        map.addMarker(brussels);
+
+        borderPane.setCenter(webView);
+
+        // a regular JavaFX ListView
+        ListView<Address> listView = new ListView<>();
+        listView.getItems().addAll(new Address("Toni", 48.1322840, 11.5361690),
+                new Address("Jarda", 50.0284060, 14.4934400),
+                new Address("JUG Münster", 51.94906770000001, 7.613701100000071));
+        // we listen for the selected item and update the map accordingly
+        // as a demo of how to interact between JavaFX and DukeScript
+        listView.getSelectionModel().selectedItemProperty().addListener(new ChangeListener<Address>() {
+            @Override
+            public void changed(ObservableValue<? extends Address> ov, Address old_val, final Address new_val) {
+                FXBrowsers.runInBrowser(webView, new Runnable() {
+                    @Override
+                    public void run() {
+                        LatLng pos = new LatLng(new_val.getLat(), new_val.getLng());
+                        map.setView(pos, 20);
+                        map.openPopup("Here is " + new_val, pos);
+                    }
+                });
+            }
+        });
+
+        borderPane.setLeft(listView);
+
     }
 
+    public Map getMap() {
+        return map;
+    }
+
+    public WebView getWebView() {
+        return webView;
+    }
 }
