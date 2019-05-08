@@ -91,17 +91,17 @@ public class RSSFeedParser {
                             .getLocalPart();
                     switch (localPart) {
                         case TITLE:
-                            title = getCharacterData(event, eventReader);
+                            title = getCharacterData(eventReader);
                             break;
                         case DESCRIPTION:
-                            description = getCharacterData(event, eventReader);
+                            description = getCharacterData(eventReader);
                             break;
                         case LINK:
-                            link = getCharacterData(event, eventReader);
+                            link = getCharacterData(eventReader);
                             break;
 
                         case PUB_DATE:
-                            pubdate = getCharacterData(event, eventReader);
+                            pubdate = getCharacterData(eventReader);
                             break;
 
                     }
@@ -127,15 +127,14 @@ public class RSSFeedParser {
 
     /**
      * returns the character data
-     * @param event XML event
      * @param eventReader Event reader
      * @return the character data
      * @throws XMLStreamException if exception occurs
      */
-    private String getCharacterData(XMLEvent event, XMLEventReader eventReader)
+    private String getCharacterData(XMLEventReader eventReader)
             throws XMLStreamException {
         String result = "";
-        event = eventReader.nextEvent();
+        XMLEvent event = eventReader.nextEvent();
         if (event instanceof Characters) {
             result = event.asCharacters().getData();
         }

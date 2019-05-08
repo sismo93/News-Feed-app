@@ -21,11 +21,6 @@ public class Router {
     private BorderPane root;
 
     /**
-     * the current View
-     */
-    private Node currentView;
-
-    /**
      * Views router
      */
     private static Router instance;
@@ -149,7 +144,10 @@ public class Router {
 
         Route route = loadFxml(view.value);
         AbstractController controller = route.getController();
-        currentView = route.getRoot();
+        /**
+         * the current View
+         */
+        Node currentView = route.getRoot();
 
         if (view == Views.Login || view == Views.Register) {
             getRoot().setTop(null);

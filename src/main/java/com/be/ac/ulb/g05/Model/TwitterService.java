@@ -21,7 +21,6 @@ public class TwitterService extends Observable {
     private static final String CONSUMER_SECRET = "mwPhVED1YhsQgdEEnUQdA80aVFmgzUFEv7UnhccTAOH54yMlFd";
     public static final String AUTHENTICATE_URL = "https://api.twitter.com/oauth/authenticate";
     public static final String AUTHORIZED_URL = "https://api.twitter.com/oauth/authorize";
-    private String TWITTER_IMAGE = "https://abilitynet.org.uk/sites/abilitynet.org.uk/files/admin/alltwitter-twitter-bird-logo-white-on-blue.png";
 
     private List<Status> statuses;
     private List<String> tagList;
@@ -130,6 +129,7 @@ public class TwitterService extends Observable {
         for (Status status : statuses) {
             article = new Article();
 
+            String TWITTER_IMAGE = "https://abilitynet.org.uk/sites/abilitynet.org.uk/files/admin/alltwitter-twitter-bird-logo-white-on-blue.png";
             article.setDefaultThumbnail(TWITTER_IMAGE);
             article.setLink(url  +status.getUser().getScreenName()
                     + "/status/" + status.getId());

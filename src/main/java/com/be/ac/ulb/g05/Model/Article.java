@@ -210,14 +210,26 @@ public class Article {
         this.pubDate = pubdate;
     }
 
+    /**
+     * Article video setter
+     * @param video article video
+     */
     public void setVideo(String video) {
         this.video = video;
     }
 
+    /**
+     * Article video getter
+     * @return article video link
+     */
     public String getVideo() {
         return video;
     }
 
+    /**
+     * Article tags
+     * @return a list of article tags
+     */
     public List<String> getTags() {
         return tags;
     }

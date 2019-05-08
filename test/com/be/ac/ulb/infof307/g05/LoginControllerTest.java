@@ -24,7 +24,6 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 public class LoginControllerTest extends ApplicationTest {
 
 
-    private  Stage stage;
     private LoginController controller;
 
     /**
@@ -34,8 +33,6 @@ public class LoginControllerTest extends ApplicationTest {
      */
     @Override
     public void start (Stage stage) throws Exception {
-
-        this.stage = stage;
 
         FXMLLoader loader = new FXMLLoader(LoginControllerTest.this.getClass().getResource("/LoginFxml.fxml"));
         Parent mainNode = loader.load();

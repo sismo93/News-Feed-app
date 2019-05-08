@@ -4,7 +4,7 @@ import com.be.ac.ulb.g05.*;
 import java.sql.Connection;
 
 /**
- *@author @mouscb
+ * @author @mouscb
  * @codereview @vtombou
  */
 public abstract class DAO<T> {
