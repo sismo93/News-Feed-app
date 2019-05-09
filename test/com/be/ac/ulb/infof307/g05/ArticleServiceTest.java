@@ -28,7 +28,7 @@ public class ArticleServiceTest extends ApplicationTest {
     public void addArticleTest(){
         ArrayList<Article> articles = feeder.readRSS();
         feed.addArticle(articles.get(0));
-        ArrayList<Article> temp = feed.getArticles();
+        ArrayList<Article> temp = feed.getArticleAll();
         assertTrue(temp.contains(articles.get(0)));
     }
 
@@ -40,7 +40,7 @@ public class ArticleServiceTest extends ApplicationTest {
         ArrayList<Article> articles = feeder.readRSS();
         feed.addArticle(articles.get(0));
         feed.deleteArticle(articles.get(0));
-        ArrayList<Article> temp = feed.getArticles();
+        ArrayList<Article> temp = feed.getArticleAll();
         assertFalse(temp.contains(articles.get(0)));
     }
 
@@ -52,7 +52,7 @@ public class ArticleServiceTest extends ApplicationTest {
         ArrayList<Article> articles = feeder.readRSS();
         feed.addArticle(articles.get(0));
         feed.reset();
-        ArrayList<Article> temp = feed.getArticles();
+        ArrayList<Article> temp = feed.getArticleAll();
         assertFalse(temp.contains(articles.get(0)));
     }
 
