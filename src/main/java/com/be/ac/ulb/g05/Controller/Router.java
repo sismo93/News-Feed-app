@@ -21,11 +21,6 @@ public class Router {
     private BorderPane root;
 
     /**
-     * the current View
-     */
-    private Node currentView;
-
-    /**
      * Views router
      */
     private static Router instance;
@@ -92,6 +87,51 @@ public class Router {
         return instance;
     }
 
+
+    public void setDependencyInjector(DependencyInjector dependencyInjector) {
+        this.dependencyInjector = dependencyInjector;
+    }
+
+    /**
+     * Changes XML view
+     *
+     * @param view window view
+     */
+    public void changeView(Views view) {
+
+        Route route = loadFxml(view.value);
+        AbstractController controller = route.getController();
+        /**
+         * the current View
+         */
+        Node currentView = route.getRoot();
+
+        if (view == Views.Login || view == Views.Register) {
+            getRoot().setTop(null);
+        } else {
+            getRoot().setTop(loadFxml(Views.TopPane.value).getRoot());
+        }
+
+        getRoot().setCenter(currentView);
+
+        controller.onActive();
+
+    }
+
+
+    /**
+     * Gets the root window
+     *
+     * @return the root window
+     */
+    public BorderPane getRoot() {
+        if (root == null) {
+            Node root = loadFxml(Views.Root.value).getRoot();
+            setRoot((BorderPane) root);
+        }
+        return root;
+    }
+
     /**
      * Sets up the AnchorPane
      *
@@ -137,44 +177,4 @@ public class Router {
         return route;
     }
 
-    public void setDependencyInjector(DependencyInjector dependencyInjector) {
-        this.dependencyInjector = dependencyInjector;
-    }
-
-    /**
-     * Changes XML view
-     *
-     * @param view window view
-     */
-    public void changeView(Views view) {
-
-        Route route = loadFxml(view.value);
-        AbstractController controller = route.getController();
-        currentView = route.getRoot();
-
-        if (view == Views.Login || view == Views.Register) {
-            getRoot().setTop(null);
-        } else {
-            getRoot().setTop(loadFxml(Views.TopPane.value).getRoot());
-        }
-
-        getRoot().setCenter(currentView);
-
-        controller.onActive();
-
-    }
-
-
-    /**
-     * Gets the root window
-     *
-     * @return the root window
-     */
-    public BorderPane getRoot() {
-        if (root == null) {
-            Node root = loadFxml(Views.Root.value).getRoot();
-            setRoot((BorderPane) root);
-        }
-        return root;
-    }
 }

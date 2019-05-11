@@ -8,21 +8,16 @@ import javafx.application.Platform;
 import javafx.beans.value.ChangeListener;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
-import javafx.event.ActionEvent;
 import javafx.scene.control.ChoiceBox;
 import javafx.scene.control.ListCell;
 import javafx.scene.control.TextField;
 import javafx.scene.image.ImageView;
-import javafx.scene.layout.VBox;
 import javafx.scene.control.ListView;
 import javafx.util.Callback;
 
 import java.io.IOException;
-import java.lang.reflect.Array;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Observable;
-import java.util.Observer;
 
 import static com.be.ac.ulb.g05.Controller.ArticleViewController.saveImage;
 
@@ -47,6 +42,78 @@ public class FeedController extends AbstractController {
      */
     private TwitterService twitterService;
     private ChangeListener listener;
+
+
+
+    /**
+     * refresh the view
+     */
+    public void refreshContainer() {
+        displayArticles();
+    }
+
+
+    /**
+     * Called after scene loading
+     * <p>
+     * Init GUI
+     * -
+     * - fetch the content
+     * - display the title of each article
+     * -
+     */
+    @Override
+    public void setupView() {
+
+        ObservableList<String> categoryList =
+                FXCollections.observableArrayList(
+                        "All",
+                        "Rss",
+                        "Twitter",
+                        "Facebook"
+                );
+
+
+        displayModeChoiceBox.setItems(categoryList);
+        displayModeChoiceBox.setValue("All");
+
+        displayArticles();
+
+    }
+
+
+    /**
+     * @param dependencyInjector object responsible for delivering the dependency
+     *                           called on initialization
+     *                           link the client to his specific services
+     */
+    @Override
+    public void injectDependencies(DependencyInjector dependencyInjector) {
+        super.injectDependencies(dependencyInjector);
+        twitterService = dependencyInjector.getTwitterService();
+    }
+
+    @Override
+    public void onActive() {
+        displayArticles();
+    }
+
+    /**
+     * Show only the article with the right author (@ )
+     */
+    public void Search() {
+        String account= accountName.getText();
+        ArrayList<Article> allArticle = allArticleFromRssAndTwitter();
+        ArrayList<Article> articlesToShow = new ArrayList<>();
+
+        for (Article article : allArticle) {
+            if (article.getSource().equals(account)){
+                articlesToShow.add(article);
+            }
+        }
+        fillListViewWith(articlesToShow);
+    }
+
 
 
     /**
@@ -130,11 +197,15 @@ public class FeedController extends AbstractController {
     }
 
     /**
-     * refresh the view
+     * Displays article preview
+     *
+     * @param article Article object
      */
-    public void refreshContainer() {
-        displayArticles();
+    private void displayArticlePreview(Article article) {
+        articleService.selectArticle(article);
+        Router.Instance().changeView(Views.Preview);
     }
+
 
 
     /**
@@ -152,61 +223,6 @@ public class FeedController extends AbstractController {
 
 
 
-    /**
-     * Called after scene loading
-     * <p>
-     * Init GUI
-     * -
-     * - fetch the content
-     * - display the title of each article
-     * -
-     */
-    @Override
-    public void setupView() {
-
-        ObservableList<String> categoryList =
-                FXCollections.observableArrayList(
-                        "All",
-                        "Rss",
-                        "Twitter",
-                        "Facebook"
-                );
-
-
-        displayModeChoiceBox.setItems(categoryList);
-        displayModeChoiceBox.setValue("All");
-
-        displayArticles();
-
-    }
-
-    /**
-     * Displays article preview
-     *
-     * @param article Article object
-     */
-    public void displayArticlePreview(Article article) {
-        articleService.selectArticle(article);
-        Router.Instance().changeView(Views.Preview);
-    }
-
-
-    /**
-     * @param dependencyInjector object responsible for delivering the dependency
-     *                           called on initialization
-     *                           link the client to his specific services
-     */
-    @Override
-    public void injectDependencies(DependencyInjector dependencyInjector) {
-        super.injectDependencies(dependencyInjector);
-        twitterService = dependencyInjector.getTwitterService();
-    }
-
-    @Override
-    public void onActive() {
-        displayArticles();
-    }
-
 
     /**
      * @return all article from RSS and TWITTER
@@ -219,21 +235,7 @@ public class FeedController extends AbstractController {
         return allArticle;
     }
 
-    /**
-     * Show only the article with the right author (@ )
-     */
-    public void Search() {
-        String account= accountName.getText();
-        ArrayList<Article> allArticle = allArticleFromRssAndTwitter();
-        ArrayList<Article> articlesToShow = new ArrayList<>();
 
-        for (Article article : allArticle) {
-            if (article.getSource().equals(account)){
-                articlesToShow.add(article);
-            }
-        }
-        fillListViewWith(articlesToShow);
-    }
 
     /**
      * @param tag

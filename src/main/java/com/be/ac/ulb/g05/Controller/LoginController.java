@@ -53,6 +53,16 @@ public class LoginController extends AbstractController {
     }
 
     /**
+     * Sets up the article service
+     * @param articleService article service
+     */
+    @Override
+    public void setArticleService(ArticleService articleService) {
+        super.setArticleService(articleService);
+    }
+
+
+    /**
      * Defines the login button
      * Checks whether the login information matches the database
      * Otherwise, throw an alert error
@@ -85,13 +95,13 @@ public class LoginController extends AbstractController {
      */
     @FXML
     private void OnRegisterButtonPressed() {
-        RegisterReglement();
+        RegisterTerm();
     }
 
     /**
      * Defines the "Terms & Conditions" pop up
      */
-    public void RegisterReglement(){
+    private void RegisterTerm(){
         JFXDialogLayout content = new JFXDialogLayout();
         content.setHeading(new Text("Règlement"));
         content.setBody(new Text("Les présentes « conditions générales\n d'utilisation » ont pour objet" +
@@ -114,13 +124,5 @@ public class LoginController extends AbstractController {
         dialog.show();
     }
 
-    /**
-     * Sets up the article service
-     * @param articleService article service
-     */
-    @Override
-    public void setArticleService(ArticleService articleService) {
-        super.setArticleService(articleService);
-    }
 
 }

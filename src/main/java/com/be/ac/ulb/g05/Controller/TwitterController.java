@@ -16,6 +16,10 @@ import static com.be.ac.ulb.g05.Controller.AddFromMapController.showAlert;
  */
 public class TwitterController extends AbstractTwitterController {
 
+
+    /**
+     * FXML TextField
+     */
     public TextField addByTagLabel;
     public TextField addByUsernameLabel;
 
@@ -39,7 +43,6 @@ public class TwitterController extends AbstractTwitterController {
         String tag = addByTagLabel.getText();
         if (tag.isEmpty()) return;
 
-        //searchOnTwitter("#" + tag);
         try {
             twitterService.searchBy(tag);
 

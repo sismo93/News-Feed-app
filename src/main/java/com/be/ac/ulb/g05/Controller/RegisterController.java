@@ -67,10 +67,21 @@ public class RegisterController extends AbstractController {
     /**
      * Constructor
      */
-    public RegisterController(){
+    public RegisterController() {
         user = new Users();
         usersDAO = new UsersDAO();
     }
+
+    /**
+     * Sets up the article service
+     *
+     * @param articleService article service
+     */
+    @Override
+    public void setArticleService(ArticleService articleService) {
+        super.setArticleService(articleService);
+    }
+
 
     /**
      * Defines the register button
@@ -81,24 +92,25 @@ public class RegisterController extends AbstractController {
     private void RegisterButton() {
         if (!isMatch(email.getText(), confirmMail.getText())) {
             showAlert("Emails do not match", "error");
+            return;
         }
 
         if (!isMatch(password.getText(), confirmPassword.getText())) {
             showAlert("Passwords do not match", "error");
+            return;
         }
 
         if (isEmpty()) {
             showAlert("Please fill in all fields", "error");
         } else {
-            if (!usersDAO.loginExist(user) && !usersDAO.mailExist(user)){
+            if (!usersDAO.loginExist(user) && !usersDAO.mailExist(user)) {
                 user.setName(username.getText());
                 user.setPassword(password.getText());
                 user.setMail(email.getText());
 
                 usersDAO.add(user); // Add in database
                 Router.Instance().changeView(Views.Menu); // Go to menu
-            }
-            else {
+            } else {
                 showAlert("Not in database", "error");
             }
         }
@@ -107,7 +119,7 @@ public class RegisterController extends AbstractController {
     /**
      * @return true if the user forgot to fill a box
      */
-    private boolean isEmpty(){
+    private boolean isEmpty() {
         return username.getText().trim().isEmpty() || password.getText().trim().isEmpty() ||
                 email.getText().trim().isEmpty();
     }
@@ -121,11 +133,4 @@ public class RegisterController extends AbstractController {
         return field1.equals(field2);
     }
 
-    /**
-     * Sets up the article service
-     * @param articleService article service
-     */
-    @Override
-    public void setArticleService(ArticleService articleService) {
-        super.setArticleService(articleService);
-    }}
+}

@@ -2,7 +2,6 @@ package com.be.ac.ulb.g05;
 
 
 import com.be.ac.ulb.g05.Model.Article;
-import javafx.scene.Node;
 import javafx.scene.control.Button;
 import javafx.scene.image.ImageView;
 

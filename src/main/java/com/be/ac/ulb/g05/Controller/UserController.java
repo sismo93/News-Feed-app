@@ -8,6 +8,10 @@ import com.be.ac.ulb.g05.Model.*;
  * @codereview @Tanvirul.Hoque
  */
 public class UserController extends AbstractController {
+
+    /**
+     * Model
+     */
     private Users model;
 
 

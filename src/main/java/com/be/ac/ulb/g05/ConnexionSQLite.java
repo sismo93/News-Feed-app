@@ -20,22 +20,11 @@ public class ConnexionSQLite{
         loadDriver();
     }
 
-    //This function is used to load the connection driver between SQLite and JDBC
-    private static void loadDriver(){
-        try{
-            //Driver loading
-            Class.forName("org.sqlite.JDBC");
-        }catch (ClassNotFoundException e){
-            Alert alert = new Alert(Alert.AlertType.ERROR, "Database not functioning"+"\n"+e.getMessage(), ButtonType.OK);
-            alert.showAndWait();
-            System.err.println(e.getMessage());
-            Platform.exit();
-        }
 
-    }
-
-
-    //Method that will return us our Connection instance or create one if it does not exist
+    /**
+     * @return Connection instance
+     * Method that will return us our Connection instance or create one if it does not exist
+     */
     public static Connection getInstance() {
 
         loadDriver();
@@ -56,5 +45,25 @@ public class ConnexionSQLite{
 
         return connect;
     }
+
+
+    /**
+     * This function is used to load the connection driver between SQLite and JDBC
+     */
+    private static void loadDriver(){
+        try{
+            //Driver loading
+            Class.forName("org.sqlite.JDBC");
+        }catch (ClassNotFoundException e){
+            Alert alert = new Alert(Alert.AlertType.ERROR, "Database not functioning"+"\n"+e.getMessage(), ButtonType.OK);
+            alert.showAndWait();
+            System.err.println(e.getMessage());
+            Platform.exit();
+        }
+
+    }
+
+
+
 
 }

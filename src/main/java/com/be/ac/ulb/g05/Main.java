@@ -2,7 +2,6 @@ package com.be.ac.ulb.g05;
 
 import com.be.ac.ulb.g05.Controller.DependencyInjector;
 import com.be.ac.ulb.g05.Controller.Router;
-import com.be.ac.ulb.g05.Model.ArticleService;
 import javafx.application.Application;
 import javafx.scene.Scene;
 import javafx.stage.Stage;

@@ -12,6 +12,9 @@ import javafx.scene.web.WebView;
  */
 public class MediaViewController extends AbstractController {
 
+    /**
+     * FXML
+     */
     public HBox hboxView;
 
     /**

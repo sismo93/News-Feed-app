@@ -1,17 +1,64 @@
 package com.be.ac.ulb.g05.Controller;
 
+import com.be.ac.ulb.g05.Model.Article;
+import com.be.ac.ulb.g05.ParserWebSite;
 import com.be.ac.ulb.g05.Website;
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 import javafx.scene.control.Alert;
 
+import java.io.IOException;
 import java.util.Arrays;
 
+import static com.be.ac.ulb.g05.Controller.AddController.WebsiteCategory.*;
+import static com.be.ac.ulb.g05.Controller.AddController.WebsiteCategory.Technologies;
 import static com.be.ac.ulb.g05.Controller.AddController.WebsiteSource.*;
 
 public class AddController extends AbstractController {
 
 
+    /**
+     * used in both AddFromWebSiteController and AddFromMapController
+     * so we init only one time and we get him every time we want to
+     */
+    private ObservableList<String> categoryList =
+            FXCollections.observableArrayList(
+                    Actualite.category,
+                    Politique.category,
+                    Environnement.category,
+                    Belgique.category,
+                    International.category,
+                    Culture.category,
+                    Sante.category,
+                    Economie.category,
+                    Sport.category,
+                    Technologies.category
+            );
 
 
+    /**
+     * @param article
+     * @param parserWebSite
+     * @param website
+     * @return article with the right information in it
+     * @throws IOException
+     *
+     * This function will be used when the user add from the map and from the view ChooseArticleView
+     * We have to make it static so we can acces it from other class.
+     */
+    public static Article fixChangeForArticle(Article article, ParserWebSite parserWebSite,Website website) throws IOException {
+        article.setContent(parserWebSite.ParserArticle(article.getLink())); // Call the parser
+        article.setImage(parserWebSite.ParserImage(article.getLink())); //Add Picture
+        article.setDefaultThumbnail(website.getDefaultThumbnail()); // add thumbnail
+        article.setSource(website.getSourceArticle()); // set the Source
+        article.setGeolocation(website.getGeolocation());
+        article.setVideo(parserWebSite.ParserVideo(article.getLink()));
+        return article;
+    }
+
+    public ObservableList<String> getCategoryList() {
+        return categoryList;
+    }
 
 
     /**
@@ -104,7 +151,7 @@ public class AddController extends AbstractController {
                             "Economie",
                             "Technologies"),
                     "https://pbs.twimg.com/profile_images/783607856574631936/oqc6S_6P_400x400.jpg",
-                    "@LePoint.fr (LePoint Media)",
+                    "@LePoint.fr",
                     "France",
                     44.8404,
                     -0.5805);
@@ -131,7 +178,7 @@ public class AddController extends AbstractController {
                             "Economie",
                             "Technolgies"),
                     "https://www.acpm.fr/var/ojd/storage/files/logos/A/logo_5691.png",
-                    "@LeMonde.fr (LeMonde Media)",
+                    "@LeMonde.fr",
                     "France",
                     48.8534,
                     2.3488 );
@@ -158,7 +205,7 @@ public class AddController extends AbstractController {
                             "Technologies",
                             "Environnement"),
                     "http://www.agassac.com/files/cache/article/files/files/0/1/4/8/0.jpg",
-                    "@LeFigaro.fr (LeFigaro Media)",
+                    "@LeFigaro.fr",
                     "France",
                     45.75,
                     4.85 );
@@ -175,7 +222,7 @@ public class AddController extends AbstractController {
                             "Actualite",
                             "Sport"),
                     "https://www.rtl.be/info/GED/00030000/37100/37148.jpg",
-                    "newmedia@rtl.be (RTL NewMedia)",
+                    "@RTL.be",
                     "Belgique",
                     50.8466,
                     4.3528 );
@@ -185,6 +232,7 @@ public class AddController extends AbstractController {
 
     /**
      * Shows an alert with a custom title & message
+     * function used in the whole project
      * @param message Body message
      * @param title Header message
      */
@@ -195,6 +243,7 @@ public class AddController extends AbstractController {
         alert.showAndWait();
 
     }
+
 
 
 }

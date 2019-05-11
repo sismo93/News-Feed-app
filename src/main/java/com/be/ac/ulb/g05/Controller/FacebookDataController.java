@@ -19,9 +19,16 @@ import static com.be.ac.ulb.g05.Controller.AddFromMapController.showAlert;
  */
 public class FacebookDataController extends AbstractController {
 
+    /**
+     * Text Field on the FXML
+     */
     @FXML
     public JFXTextField accountToFollow;
 
+
+    /**
+     * AccessToken given us by Facebook
+     */
     private static final String accessToken = "EAAJ0YUQvIMQBAGBxCRFOk8PM6IOoSfmabqARoUCbjEt3lAziOMnrQjnhfvVibUjUVH3I" +
             "svyQS8vNV22YmseJJ4UTgExXvLzSi8ZAlsaTvyzsa0Urd2G1u6EpXroFAH8Jf5OhnXmGZB0OIfbyjPDhCmVWK8ROUZB1bgunyuIfOvZCe" +
             "k4ZCyEvxKJVoJ1OGr7xPGZA3zL6aSTgcAQHFP5rzOj4kwCepXdpfBSM4MWCMFzAZDZD";

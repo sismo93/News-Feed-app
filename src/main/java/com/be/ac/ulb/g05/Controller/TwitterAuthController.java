@@ -20,7 +20,14 @@ import static com.be.ac.ulb.g05.Controller.AddFromMapController.showAlert;
  */
 public class TwitterAuthController extends AbstractTwitterController {
 
+    /**
+     * FXML media View
+     */
     public BorderPane mediaView;
+
+    /**
+     * WebEngine
+     */
     private WebEngine webEngine;
 
     /**
@@ -40,12 +47,23 @@ public class TwitterAuthController extends AbstractTwitterController {
                 try {
                     onWebEngineLocationChanged();
                 } catch (TwitterException e) {
-                    e.printStackTrace();
+                    showAlert("An Error has occurred","Information");
                 }
             }
         });
+    }
 
-
+    /**
+     * Called whenever whenever the focus is on the view managed by the controller
+     *
+     */
+    @Override
+    public void onActive() {
+        if(twitterService.isAuthenticated()){
+            Router.Instance().changeView(Views.Twitter);
+        } else {
+            loadAuthPage();
+        }
     }
 
     /**
@@ -87,16 +105,5 @@ public class TwitterAuthController extends AbstractTwitterController {
         }
     }
 
-    /**
-     * Called whenever whenever the focus is on the view managed by the controller
-     *
-     */
-    @Override
-    public void onActive() {
-        if(twitterService.isAuthenticated()){
-            Router.Instance().changeView(Views.Twitter);
-        } else {
-            loadAuthPage();
-        }
-    }
+
 }

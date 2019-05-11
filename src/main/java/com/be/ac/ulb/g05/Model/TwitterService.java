@@ -5,7 +5,6 @@ import twitter4j.auth.AccessToken;
 import twitter4j.auth.RequestToken;
 
 
-import java.net.CookieManager;
 import java.util.*;
 import java.util.List;
 
@@ -17,19 +16,48 @@ import java.util.List;
  */
 public class TwitterService extends Observable {
 
-    private static final String CONSUMER_KEY = "c5QH9G5KXl26uwUO83oN3omtD";
-    private static final String CONSUMER_SECRET = "mwPhVED1YhsQgdEEnUQdA80aVFmgzUFEv7UnhccTAOH54yMlFd";
+    /**
+     * Authentication Information
+     */
     public static final String AUTHENTICATE_URL = "https://api.twitter.com/oauth/authenticate";
     public static final String AUTHORIZED_URL = "https://api.twitter.com/oauth/authorize";
-    private String TWITTER_IMAGE = "https://abilitynet.org.uk/sites/abilitynet.org.uk/files/admin/alltwitter-twitter-bird-logo-white-on-blue.png";
+    /**
+     * Twitter Api App information
+     */
+    private static final String CONSUMER_KEY = "c5QH9G5KXl26uwUO83oN3omtD";
+    private static final String CONSUMER_SECRET = "mwPhVED1YhsQgdEEnUQdA80aVFmgzUFEv7UnhccTAOH54yMlFd";
 
+    /**
+     * Twitter Image for download
+     */
+    private final String TWITTER_IMAGE = "https://abilitynet.org.uk/sites/abilitynet.org.uk/files/admin/alltwitter-twitter-bird-logo-white-on-blue.png";
+    /**
+     * Statuses
+     */
     private List<Status> statuses;
+
+    /**
+     * List with all Tag
+     */
     private List<String> tagList;
+    /**
+     * Statutes in Article object
+     */
     private ArrayList<Article> twitterArticleObj;
 
-
+    /**
+     * Twitter
+     */
     private Twitter twitter;
+
+    /**
+     * Authenticated
+     */
     private boolean authenticated;
+
+    /**
+     * Tag
+     */
     private String tag="";
 
     public TwitterService() {
@@ -119,11 +147,45 @@ public class TwitterService extends Observable {
         this.twitterArticleObj.addAll(getStatusAll());
     }
 
+    /**
+     * @return true if he's log
+     */
+    public boolean isAuthenticated() {
+        return authenticated;
+    }
 
+    public void setAuthenticated(boolean authenticated) {
+        this.authenticated = authenticated;
+    }
+
+
+    /**
+     * @param article
+     * delete a tweet from the list
+     */
+    public void deleteTweet(Article article) {
+        twitterArticleObj.remove(article);
+    }
+
+
+    public ArrayList<Article> getTwitterArticleObj(){
+        return this.twitterArticleObj;
+    }
+
+    /**
+     * clear list in case he disconnect
+     */
+    public void reset() {
+        statuses.clear();
+        twitterArticleObj.clear();
+        tagList.clear();
+        this.tag = "";
+
+    }
     /**
      * @return an arraylist of all tweet in form of Article
      */
-    public ArrayList<Article> getStatusAll() {
+    private ArrayList<Article> getStatusAll() {
         ArrayList<Article> articles = new ArrayList<>();
         Article article;
         String url = "https://twitter.com/";
@@ -164,39 +226,5 @@ public class TwitterService extends Observable {
         article.setTitle("twitter feed | Tag : "+ allTag);
     }
 
-    /**
-     * @return true if he's log
-     */
-    public boolean isAuthenticated() {
-        return authenticated;
-    }
 
-    public void setAuthenticated(boolean authenticated) {
-        this.authenticated = authenticated;
-    }
-
-
-    /**
-     * @param article
-     * delete a tweet from the list
-     */
-    public void deleteTweet(Article article) {
-        twitterArticleObj.remove(article);
-    }
-
-
-    public ArrayList<Article> getTwitterArticleObj(){
-        return this.twitterArticleObj;
-    }
-
-    /**
-     * clear list in case he disconnect
-     */
-    public void reset() {
-        statuses.clear();
-        twitterArticleObj.clear();
-        tagList.clear();
-        this.tag = "";
-
-    }
 }

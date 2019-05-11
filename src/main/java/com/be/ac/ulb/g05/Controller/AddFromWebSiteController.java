@@ -11,7 +11,6 @@ import javafx.scene.layout.StackPane;
 
 import java.util.ArrayList;
 
-import static com.be.ac.ulb.g05.Controller.AddController.WebsiteCategory.*;
 import static com.be.ac.ulb.g05.Controller.AddController.WebsiteSource.*;
 
 
@@ -35,44 +34,50 @@ public class AddFromWebSiteController extends AddController {
     @FXML
     public StackPane stackPane;
 
-    public static ArrayList<Article> availableArticleStatic;
-
-
-    public static ArticleService allAvailableArticle;
-
 
     /**
      * Website object
+     * Will be used in chooseArticleController
      */
-    private static Website website;
+    protected static Website website;
 
 
 
     /**
      * Website parser
+     * Will be used in chooseArticleController
      */
-    private static ParserWebSite parserWebsite;
+    protected static ParserWebSite parserWebsite;
+
+
+
+    /**
+     * List of All available article
+     * Will be used in chooseArticleController
+     */
+    protected static ArrayList<Article> availableArticleStatic;
+
+
+    /**
+     * All availableArticle but ArticleService object
+     * when this variable change, the view on ChooseArticleController will be update
+     * (design pattern observer)
+     */
+    protected static ArticleService allAvailableArticle;
+
 
 
     /**
      * Take all article available
      *
      */
-    private void AddAllArticleAvailable() {
+    private void addAllArticleAvailable() {
         RSSFeedParser parser = new RSSFeedParser(website.getLink(CategoryBox.getSelectionModel().getSelectedItem().toString()));
 
         availableArticleStatic = parser.readRSS();
 
 
 
-    }
-
-    public static ParserWebSite getParserWebsite(){
-        return parserWebsite;
-    }
-
-    public static Website getWebsite(){
-        return website;
     }
 
     /**
@@ -104,7 +109,7 @@ public class AddFromWebSiteController extends AddController {
             return;
         }
 
-        AddAllArticleAvailable();
+        addAllArticleAvailable();
         changeToArticleService();
         Router.Instance().changeView(Views.ChooseArticle); //Open The view ChooseArticleView
     }
@@ -137,21 +142,8 @@ public class AddFromWebSiteController extends AddController {
                         RTL.source,
                         LeMonde.source
                 );
-        ObservableList<String> categoryList =
-                FXCollections.observableArrayList(
-                        Actualite.category,
-                        Politique.category,
-                        Environnement.category,
-                        Belgique.category,
-                        International.category,
-                        Culture.category,
-                        Sante.category,
-                        Economie.category,
-                        Sport.category,
-                        Technologies.category
-                );
 
-        CategoryBox.setItems(categoryList);
+        CategoryBox.setItems(getCategoryList());
 
         SourceArticleBox.setItems(sourceArticle);
 

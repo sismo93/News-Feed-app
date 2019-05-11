@@ -2,8 +2,6 @@ package com.be.ac.ulb.g05.Controller;
 
 import com.be.ac.ulb.g05.*;
 import com.be.ac.ulb.g05.Model.*;
-import javafx.collections.FXCollections;
-import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.scene.control.*;
 import javafx.scene.layout.AnchorPane;
@@ -18,7 +16,6 @@ import java.io.IOException;
 import java.net.URL;
 import java.util.*;
 
-import static com.be.ac.ulb.g05.Controller.AddController.WebsiteCategory.*;
 
 
 /**
@@ -38,7 +35,7 @@ public class AddFromMapController extends AddController {
     @FXML
     public StackPane stackPane;
 
-    public AnchorPane mapcontainer;
+    public AnchorPane mapContainer;
 
 
     /**
@@ -46,12 +43,6 @@ public class AddFromMapController extends AddController {
      */
     private ArrayList<Article> availableArticle;
 
-
-
-    /**
-     * Website object
-     */
-    private Article currentArticle;
 
     /**
      * Website parser
@@ -67,12 +58,6 @@ public class AddFromMapController extends AddController {
      * Map
      */
     private Map map;
-
-    /**
-     * CurrentWebSite
-     * WebSite of the chosen article
-     */
-    private Website currentWebSite;
 
 
 
@@ -92,7 +77,7 @@ public class AddFromMapController extends AddController {
 
         for (String source: diffSource) {
             Website web= CreateObjectSource(source);
-            if (web.isCategoryExist(category)) {
+            if (web.isCategoryExist(category)) { // check if the category exist
                 RSSFeedParser parser = new RSSFeedParser(web.getLink(category));
                 ArrayList<Article> availableArticleEachCity = parser.readRSS();
                 displayArticleOnMap(availableArticleEachCity,web);
@@ -117,6 +102,7 @@ public class AddFromMapController extends AddController {
         return isExist;
     }
 
+
     /**
      * @param availableArticleEachCity
      * @param web
@@ -134,10 +120,8 @@ public class AddFromMapController extends AddController {
                 map.addLayer(new Circle(new LatLng(web.getLatitude() + rdDoubleLat, web.getLongitude() + rdDoubleLon), 500,
                         new PathOptions().setColor("red").setFillColor("#f03").setOpacity(0.5)
                 ).bindPopup(article.getTitle()).addMouseListener(MouseEvent.Type.CLICK, mouseEvent -> {
-                    currentArticle = article;
-                    currentWebSite = web;
                     try {
-                        selectedArticleImport();
+                        selectedArticleImport(web,article);
                     } catch (IOException e) {
                         showAlert("We could not import this article, try later","Information");
                     }
@@ -147,21 +131,19 @@ public class AddFromMapController extends AddController {
 
     }
 
-    public void selectedArticleImport( ) throws IOException {
-        Article article = currentArticle;
-        article.setContent(parserWebsite.ParserArticle(article.getLink())); // Call the parser
-
-        article.setImage(parserWebsite.ParserImage(article.getLink())); //Add Picture
-
-        article.setDefaultThumbnail(currentWebSite.getDefaultThumbnail()); // add thumbnail
-        article.setSource(currentWebSite.getSourceArticle()); // set the Source
-        article.setGeolocation(currentWebSite.getGeolocation());
-        article.setVideo(parserWebsite.ParserVideo(article.getLink()));
+    /**
+     * @param web
+     * @param currentArticle
+     * @throws IOException
+     * Show a popup to the user and he chose whether he want to add or not
+     */
+    public void selectedArticleImport(Website web,Article currentArticle) throws IOException {
+        Article article = fixChangeForArticle(currentArticle,parserWebsite,web);
 
         Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
         alert.setTitle("Confirmation Import");
-        alert.setHeaderText(article.getTitle());
-        alert.setContentText(article.getDescription());
+        alert.setHeaderText("Do you want to import this article ?");
+        alert.setContentText(article.getTitle());
 
         Optional<ButtonType> result = alert.showAndWait();
         if (result.get() == ButtonType.OK) {
@@ -190,21 +172,8 @@ public class AddFromMapController extends AddController {
         availableArticle = new ArrayList<>();
         parserWebsite = new ParserWebSite();
 
-        ObservableList<String> categoryList =
-                FXCollections.observableArrayList(
-                        Actualite.category,
-                        Politique.category,
-                        Environnement.category,
-                        Belgique.category,
-                        International.category,
-                        Culture.category,
-                        Sante.category,
-                        Economie.category,
-                        Sport.category,
-                        Technologies.category
-                );
 
-        CategoryBox.setItems(categoryList);
+        CategoryBox.setItems(getCategoryList());
 
         displayMap();
 
@@ -241,7 +210,7 @@ public class AddFromMapController extends AddController {
 
         });
 
-        mapcontainer.getChildren().add(webView);
+        mapContainer.getChildren().add(webView);
 
 
 
