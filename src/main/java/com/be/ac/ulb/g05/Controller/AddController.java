@@ -1,6 +1,7 @@
 package com.be.ac.ulb.g05.Controller;
 
 import com.be.ac.ulb.g05.Website;
+import javafx.scene.control.Alert;
 
 import java.util.Arrays;
 
@@ -54,11 +55,11 @@ public class AddController extends AbstractController {
             this.category = c;
         }
     }
+
     public Website CreateObjectSource(String source) {
 
-        Website website;
         if (source.equals(Guardian.source)) {
-            return website= new Website(
+            return new Website(
                     Arrays.asList(
                             "https://www.theguardian.com/uk/business/rss",
                             "https://www.theguardian.com/uk/culture/rss",
@@ -86,7 +87,7 @@ public class AddController extends AbstractController {
                     51.5085,
                     -0.1257);
         } else if (source.equals(LePoint.source)) {
-            return website = new Website(
+            return  new Website(
                     Arrays.asList("https://www.lepoint.fr/24h-infos/rss.xml",
                             "https://www.lepoint.fr/culture/rss.xml",
                             "https://www.lepoint.fr/politique/rss.xml",
@@ -108,7 +109,7 @@ public class AddController extends AbstractController {
                     44.8404,
                     -0.5805);
         } else if (source.equals(LeMonde.source)) {
-            return website = new Website(
+            return  new Website(
                     Arrays.asList(
                             "https://www.lemonde.fr/m-actu/rss_full.xml",
                             "https://www.lemonde.fr/culture/rss_full.xml",
@@ -135,7 +136,7 @@ public class AddController extends AbstractController {
                     48.8534,
                     2.3488 );
         } else if (source.equals(LeFigaro.source)) {
-            return website = new Website(
+            return  new Website(
                     Arrays.asList(
                             "http://sport24.lefigaro.fr/rssfeeds/sport24-accueil.xml",
                             "http://www.lefigaro.fr/rss/figaro_culture.xml",
@@ -162,7 +163,7 @@ public class AddController extends AbstractController {
                     45.75,
                     4.85 );
         } else  {
-            return website = new Website(
+            return new Website(
                     Arrays.asList("https://feeds.feedburner.com/rtlinfo/belgique",
                             "https://feeds.feedburner.com/RTLEconomie",
                             "https://feeds.feedburner.com/RTLInternational",
@@ -181,6 +182,19 @@ public class AddController extends AbstractController {
         }
     }
 
+
+    /**
+     * Shows an alert with a custom title & message
+     * @param message Body message
+     * @param title Header message
+     */
+    public static void showAlert(String message, String title) {
+        Alert alert = new Alert(Alert.AlertType.INFORMATION);
+        alert.setTitle(title);
+        alert.setContentText(message);
+        alert.showAndWait();
+
+    }
 
 
 }

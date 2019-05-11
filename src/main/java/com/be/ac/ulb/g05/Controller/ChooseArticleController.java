@@ -18,7 +18,6 @@ import java.util.ArrayList;
 import java.util.Observable;
 import java.util.Observer;
 
-import static com.be.ac.ulb.g05.Controller.AddFromMapController.*;
 import static com.be.ac.ulb.g05.Controller.AddFromWebSiteController.*;
 import static com.be.ac.ulb.g05.Controller.AddFromWebSiteController.allAvailableArticle;
 
@@ -135,7 +134,7 @@ public class ChooseArticleController extends AbstractController implements Obser
 
 
                                 } catch (IOException e) {
-                                    showAlert("An Error occurred with your choice of Article","Error");
+                                    AddFromMapController.showAlert("An Error occurred with your choice of Article","Error");
                                 }
                             });
 
@@ -166,7 +165,7 @@ public class ChooseArticleController extends AbstractController implements Obser
         article.setVideo(parserWebsite.ParserVideo(article.getLink()));
 
         articleService.addArticle(article);
-        showAlert("Article Added","Information");
+        AddFromMapController.showAlert("Article Added","Information");
     }
 
 

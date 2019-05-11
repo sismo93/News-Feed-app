@@ -8,18 +8,15 @@ import javafx.fxml.FXML;
 import javafx.scene.control.*;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.StackPane;
-import javafx.scene.web.WebEngine;
 import javafx.scene.web.WebView;
 import net.java.html.boot.fx.FXBrowsers;
 import net.java.html.leaflet.*;
+import net.java.html.leaflet.Map;
 import net.java.html.leaflet.event.MouseEvent;
 
 import java.io.IOException;
 import java.net.URL;
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.List;
-import java.util.Random;
+import java.util.*;
 
 import static com.be.ac.ulb.g05.Controller.AddController.WebsiteCategory.*;
 
@@ -41,11 +38,13 @@ public class AddFromMapController extends AddController {
     @FXML
     public StackPane stackPane;
 
-    public static ArrayList<Article> availableArticle;
+    public AnchorPane mapcontainer;
 
 
-    public static ArticleService allAvailableArticle;
-    public Label selectedArticle;
+    /**
+     * List With All available Article on the Map
+     */
+    private ArrayList<Article> availableArticle;
 
 
 
@@ -57,14 +56,30 @@ public class AddFromMapController extends AddController {
     /**
      * Website parser
      */
-    private static ParserWebSite parserWebsite;
-    public AnchorPane mapcontainer;
+    private  ParserWebSite parserWebsite;
+
+    /**
+     * WebView
+     */
     private WebView webView;
+
+    /**
+     * Map
+     */
     private Map map;
+
+    /**
+     * CurrentWebSite
+     * WebSite of the chosen article
+     */
     private Website currentWebSite;
 
 
 
+    /**
+     * Will Allow us to find each article from the 5 website
+     * These articles will be display on the right city
+     */
     public void OnAddMapButtonPressed( ) {
 
         if ( CategoryBox.getSelectionModel().isEmpty()) {
@@ -80,7 +95,6 @@ public class AddFromMapController extends AddController {
             if (web.isCategoryExist(category)) {
                 RSSFeedParser parser = new RSSFeedParser(web.getLink(category));
                 ArrayList<Article> availableArticleEachCity = parser.readRSS();
-
                 displayArticleOnMap(availableArticleEachCity,web);
             }
         }
@@ -100,12 +114,16 @@ public class AddFromMapController extends AddController {
             if (availableArt.getTitle().equals(article.getTitle())){
                 isExist = true;
             }
-        ;
         return isExist;
     }
 
+    /**
+     * @param availableArticleEachCity
+     * @param web
+     * Will allow us to display article on the map
+     * Each article will have the form of a red cercle
+     */
     private void displayArticleOnMap(ArrayList<Article> availableArticleEachCity, Website web) {
-
         Random random = new Random();
         FXBrowsers.runInBrowser(webView, () -> availableArticleEachCity.forEach(article -> {
             if (!isArticleAlreadyOnTheMap(article)) {
@@ -116,43 +134,48 @@ public class AddFromMapController extends AddController {
                 map.addLayer(new Circle(new LatLng(web.getLatitude() + rdDoubleLat, web.getLongitude() + rdDoubleLon), 500,
                         new PathOptions().setColor("red").setFillColor("#f03").setOpacity(0.5)
                 ).bindPopup(article.getTitle()).addMouseListener(MouseEvent.Type.CLICK, mouseEvent -> {
-                    selectedArticle.setText(article.getTitle());
                     currentArticle = article;
                     currentWebSite = web;
+                    try {
+                        selectedArticleImport();
+                    } catch (IOException e) {
+                        showAlert("We could not import this article, try later","Information");
+                    }
                 }));
             }
         }));
 
     }
 
-    public void selectedArticleImport( ) {
+    public void selectedArticleImport( ) throws IOException {
         Article article = currentArticle;
-        try {
-            article.setContent(parserWebsite.ParserArticle(article.getLink())); // Call the parser
+        article.setContent(parserWebsite.ParserArticle(article.getLink())); // Call the parser
 
-            article.setImage(parserWebsite.ParserImage(article.getLink())); //Add Picture
+        article.setImage(parserWebsite.ParserImage(article.getLink())); //Add Picture
 
-            article.setDefaultThumbnail(currentWebSite.getDefaultThumbnail()); // add thumbnail
-            article.setSource(currentWebSite.getSourceArticle()); // set the Source
-            article.setGeolocation(currentWebSite.getGeolocation());
-            article.setVideo(parserWebsite.ParserVideo(article.getLink()));
+        article.setDefaultThumbnail(currentWebSite.getDefaultThumbnail()); // add thumbnail
+        article.setSource(currentWebSite.getSourceArticle()); // set the Source
+        article.setGeolocation(currentWebSite.getGeolocation());
+        article.setVideo(parserWebsite.ParserVideo(article.getLink()));
 
+        Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
+        alert.setTitle("Confirmation Import");
+        alert.setHeaderText(article.getTitle());
+        alert.setContentText(article.getDescription());
+
+        Optional<ButtonType> result = alert.showAndWait();
+        if (result.get() == ButtonType.OK) {
             articleService.addArticle(article);
             showAlert("Article Added","Information");
-        } catch (IOException e) {
-            e.printStackTrace();
+
+
         }
+
 
     }
 
 
 
-
-
-    /**
-     * @param source is the website that the user want article from
-     *               Create the right Object for the right website
-     */
 
 
 
@@ -166,7 +189,6 @@ public class AddFromMapController extends AddController {
     public void setupView() {
         availableArticle = new ArrayList<>();
         parserWebsite = new ParserWebSite();
-        allAvailableArticle = new ArticleService();
 
         ObservableList<String> categoryList =
                 FXCollections.observableArrayList(
@@ -195,7 +217,7 @@ public class AddFromMapController extends AddController {
 
         webView = new WebView();
 
-        WebEngine webEngine = webView.getEngine();
+
         URL url = this.getClass().getResource("/Pages/index.html");
 
 
@@ -205,7 +227,7 @@ public class AddFromMapController extends AddController {
 
             // from here we just use the Leaflet API to show some stuff on the map
             map.setView(new LatLng(51.505, -0.09), 7);
-            map.addLayer(new TileLayer("http://{s}.tile.thunderforest.com/cycle/{z}/{x}/{y}.png",
+            map.addLayer(new TileLayer("https://tile.thunderforest.com/transport/{z}/{x}/{y}.png",
                     new TileLayerOptions()
                             .setAttribution(
                                     "Map data &copy; <a href='http://www.thunderforest.com/opencyclemap/'>OpenCycleMap</a> contributors, "
@@ -219,25 +241,12 @@ public class AddFromMapController extends AddController {
 
         });
 
-
         mapcontainer.getChildren().add(webView);
 
 
 
     }
 
-    /**
-     * Shows an alert with a custom title & message
-     * @param message Body message
-     * @param title Header message
-     */
-    public static void showAlert(String message, String title) {
-        Alert alert = new Alert(Alert.AlertType.INFORMATION);
-        alert.setTitle(title);
-        alert.setContentText(message);
-        alert.showAndWait();
-
-    }
 
 
 }

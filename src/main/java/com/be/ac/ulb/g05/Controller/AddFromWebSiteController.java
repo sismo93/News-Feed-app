@@ -11,7 +11,6 @@ import javafx.scene.layout.StackPane;
 
 import java.util.ArrayList;
 
-import static com.be.ac.ulb.g05.Controller.AddFromMapController.showAlert;
 import static com.be.ac.ulb.g05.Controller.AddController.WebsiteCategory.*;
 import static com.be.ac.ulb.g05.Controller.AddController.WebsiteSource.*;
 
