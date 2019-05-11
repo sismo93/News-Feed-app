@@ -23,7 +23,7 @@ public class Main extends Application {
         primaryStage.setScene(scene);
         primaryStage.show();
 
-        Router.Instance().changeView(Views.Add);
+        Router.Instance().changeView(Views.Menu);
 
     }
 

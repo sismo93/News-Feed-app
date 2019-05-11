@@ -7,7 +7,6 @@ import com.be.ac.ulb.g05.PreviewThumbnailCell;
 import com.be.ac.ulb.g05.Website;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
-import javafx.event.ActionEvent;
 import javafx.scene.control.Button;
 import javafx.scene.control.ListCell;
 import javafx.scene.control.ListView;
@@ -19,7 +18,9 @@ import java.util.ArrayList;
 import java.util.Observable;
 import java.util.Observer;
 
-import static com.be.ac.ulb.g05.Controller.AddController.*;
+import static com.be.ac.ulb.g05.Controller.AddFromMapController.*;
+import static com.be.ac.ulb.g05.Controller.AddFromWebSiteController.*;
+import static com.be.ac.ulb.g05.Controller.AddFromWebSiteController.allAvailableArticle;
 
 
 /**
@@ -72,7 +73,7 @@ public class ChooseArticleController extends AbstractController implements Obser
      * Get all object that will be needed for the controller
      */
     private void getAllObjectFromAddController(){
-        ArrayList<Article> allArticleAvailable = getAvailableArticle();
+        ArrayList<Article> allArticleAvailable = availableArticleStatic;
         setAvailableArticle(allArticleAvailable);
 
         Website website = getWebsite();
@@ -188,7 +189,4 @@ public class ChooseArticleController extends AbstractController implements Obser
     }
 
 
-    public void onAddMapPressed(ActionEvent actionEvent) {
-        Router.Instance().changeView(Router.Views.AddMapView);
-    }
 }

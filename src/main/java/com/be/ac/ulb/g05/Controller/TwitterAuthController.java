@@ -9,7 +9,7 @@ import twitter4j.TwitterException;
 import twitter4j.auth.AccessToken;
 import com.be.ac.ulb.g05.Controller.Router.Views;
 
-import static com.be.ac.ulb.g05.Controller.AddController.showAlert;
+import static com.be.ac.ulb.g05.Controller.AddFromMapController.showAlert;
 
 
 /**

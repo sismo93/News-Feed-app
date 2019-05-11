@@ -2,7 +2,6 @@ package com.be.ac.ulb.g05.Controller;
 
 import com.be.ac.ulb.g05.Model.Article;
 import com.be.ac.ulb.g05.Controller.Router.*;
-import javafx.application.Platform;
 import javafx.fxml.FXML;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextArea;
@@ -21,7 +20,7 @@ import java.net.URL;
 import java.util.Observable;
 import java.util.Observer;
 
-import static com.be.ac.ulb.g05.Controller.AddController.showAlert;
+import static com.be.ac.ulb.g05.Controller.AddFromMapController.showAlert;
 
 /**
  * Article View controller

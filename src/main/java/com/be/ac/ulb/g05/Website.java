@@ -44,6 +44,11 @@ public class Website {
     private String geolocation;
 
 
+    private double latitude;
+
+    private double longitude ;
+
+
     /**
      * Constructor
      * @param urls website URL
@@ -52,12 +57,14 @@ public class Website {
      * @param sourceArticle source article
      * @param geolocation geolocation
      */
-    public Website(List urls, List categories, String defaultThumbnail, String sourceArticle, String geolocation) {
+    public Website(List urls, List categories, String defaultThumbnail, String sourceArticle, String geolocation,double latitude,double longitude) {
         this.categoryList = categories;
         this.urlList = urls;
         this.defaultThumbnail = defaultThumbnail;
         this.sourceArticle = sourceArticle;
         this.geolocation = geolocation;
+        this.latitude = latitude;
+        this.longitude = longitude;
         this.initDico();
     }
 
@@ -110,5 +117,15 @@ public class Website {
      */
     public String getGeolocation(){
         return geolocation;
+    }
+
+
+
+    public double getLatitude() {
+        return latitude;
+    }
+
+    public double getLongitude() {
+        return longitude;
     }
 }

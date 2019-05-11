@@ -7,7 +7,7 @@ import javafx.scene.control.TextField;
 import twitter4j.TwitterException;
 
 
-import static com.be.ac.ulb.g05.Controller.AddController.showAlert;
+import static com.be.ac.ulb.g05.Controller.AddFromMapController.showAlert;
 
 
 /**

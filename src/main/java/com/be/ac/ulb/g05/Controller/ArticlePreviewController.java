@@ -2,19 +2,12 @@ package com.be.ac.ulb.g05.Controller;
 
 import com.be.ac.ulb.g05.Model.Article;
 import com.be.ac.ulb.g05.Model.ArticleService;
-import com.jfoenix.controls.JFXButton;
-import com.jfoenix.controls.JFXDialog;
-import com.jfoenix.controls.JFXDialogLayout;
-import javafx.animation.PauseTransition;
-import javafx.application.Platform;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.StackPane;
-import javafx.scene.text.Text;
-import javafx.util.Duration;
 
 import java.awt.*;
 import java.awt.datatransfer.Clipboard;
@@ -28,7 +21,7 @@ import java.util.Observer;
 import com.be.ac.ulb.g05.Controller.Router.*;
 import twitter4j.TwitterException;
 
-import static com.be.ac.ulb.g05.Controller.AddController.showAlert;
+import static com.be.ac.ulb.g05.Controller.AddFromMapController.showAlert;
 
 
 /**

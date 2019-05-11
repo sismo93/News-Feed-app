@@ -11,7 +11,7 @@ import java.io.InputStreamReader;
 import java.net.HttpURLConnection;
 import java.net.URL;
 
-import static com.be.ac.ulb.g05.Controller.AddController.showAlert;
+import static com.be.ac.ulb.g05.Controller.AddFromMapController.showAlert;
 
 /**
  * @author @iyamani

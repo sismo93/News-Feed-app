@@ -5,16 +5,12 @@ import com.be.ac.ulb.g05.Model.ArticleService;
 import com.be.ac.ulb.g05.Model.DAO;
 import com.be.ac.ulb.g05.Model.Users;
 import com.be.ac.ulb.g05.Model.UsersDAO;
-import com.jfoenix.controls.JFXButton;
-import com.jfoenix.controls.JFXDialog;
-import com.jfoenix.controls.JFXDialogLayout;
 import javafx.fxml.FXML;
 import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.StackPane;
-import javafx.scene.text.Text;
 
-import static com.be.ac.ulb.g05.Controller.AddController.showAlert;
+import static com.be.ac.ulb.g05.Controller.AddFromMapController.showAlert;
 
 
 /**

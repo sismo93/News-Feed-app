@@ -44,7 +44,7 @@ public class Router {
      * Enum of different views
      */
     public enum Views{
-        Add ("AddView.fxml"),
+        AddWithMap ("AddView.fxml"),
         Article ("ArticleView.fxml"),
         Feed ("FeedView.fxml"),
         Login ("LoginFxml.fxml"),
@@ -60,7 +60,8 @@ public class Router {
         TwitterAuth("TwitterAuthView.fxml"),
         Facebook("FacebookView.fxml"),
         FacebookData("FacebookDataView.fxml"),
-        AddMapView("AddMapView.fxml"), AddArticle("AddArticleMenuView.fxml");
+        AddFromWebSite("AddFromWebSiteView.fxml"),
+        AddArticle("AddArticleMenuView.fxml");
 
         private String value;
 

@@ -1,14 +1,14 @@
 package com.be.ac.ulb.g05.Controller;
 
-import javafx.event.ActionEvent;
 
 public class AddArticleMenuController  extends  AbstractController{
 
-    public void onAddArticlePressed(ActionEvent actionEvent) {
-        Router.Instance().changeView(Router.Views.Add);
+    public void onAddByMapPressed( ) {
+
+        Router.Instance().changeView(Router.Views.AddWithMap);
     }
 
-    public void onAddMapPressed(ActionEvent actionEvent) {
-        Router.Instance().changeView(Router.Views.AddMapView);
+    public void onAddByWebSitePressed( ) {
+        Router.Instance().changeView(Router.Views.AddFromWebSite);
     }
 }
