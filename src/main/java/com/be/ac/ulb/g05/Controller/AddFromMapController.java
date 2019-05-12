@@ -117,10 +117,10 @@ public class AddFromMapController extends AddController {
 
                 double rdDoubleLat = (random.nextDouble() - .5) * .5;
                 double rdDoubleLon = (random.nextDouble() - .5) * .5;
-                map.addLayer(new Circle(new LatLng(web.getLatitude() + rdDoubleLat, web.getLongitude() + rdDoubleLon), 500,
+                map.addLayer(new Circle(new LatLng(web.getLatitude() + rdDoubleLat, web.getLongitude() + rdDoubleLon), 800,
                         new PathOptions().setColor("red").setFillColor("#f03").setOpacity(0.5)
                 ).bindPopup(article.getTitle()).addMouseListener(MouseEvent.Type.CLICK, mouseEvent -> {
-                    try {
+                   try {
                         selectedArticleImport(web,article);
                     } catch (IOException e) {
                         showAlert("We could not import this article, try later","Information");
@@ -189,7 +189,7 @@ public class AddFromMapController extends AddController {
 
         URL url = this.getClass().getResource("/Pages/index.html");
 
-
+        System.out.println(webView);
         FXBrowsers.load(webView, url, () -> {
 
             map = new Map("map");
