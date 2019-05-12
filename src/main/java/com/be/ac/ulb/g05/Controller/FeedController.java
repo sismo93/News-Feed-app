@@ -29,11 +29,10 @@ import static com.be.ac.ulb.g05.Controller.ArticleViewController.saveImage;
  */
 public class FeedController extends AbstractController {
 
-
     /**
      * UI element
      */
-    public ChoiceBox displayModeChoiceBox;
+    public ChoiceBox<String> displayModeChoiceBox;
     public ListView listView;
     public TextField accountName;
 
@@ -42,8 +41,6 @@ public class FeedController extends AbstractController {
      */
     private TwitterService twitterService;
     private ChangeListener listener;
-
-
 
     /**
      * refresh the view
@@ -78,7 +75,6 @@ public class FeedController extends AbstractController {
         displayModeChoiceBox.setValue("All");
 
         displayArticles();
-
     }
 
 
@@ -93,6 +89,9 @@ public class FeedController extends AbstractController {
         twitterService = dependencyInjector.getTwitterService();
     }
 
+    /**
+     * Displays active articles
+     */
     @Override
     public void onActive() {
         displayArticles();
@@ -117,11 +116,10 @@ public class FeedController extends AbstractController {
 
 
     /**
-     * @param cell
-     * @return a listView
-     * Allow us to click on cell + show the right information
+     * @param cell cell listview
      */
-    private ListView<PreviewThumbnailCell> showCell(ObservableList<PreviewThumbnailCell> cell) {
+    @SuppressWarnings({"unchecked", "unused"})
+    private void showCell(ObservableList<PreviewThumbnailCell> cell) {
 
         listView.setItems(cell);
         int cellsize = 150;
@@ -141,20 +139,18 @@ public class FeedController extends AbstractController {
                             setText(pr.getTitle() + "\n\n" + "Date : " + pr.getDate() +
                                     "\n" + "Source : " + pr.getSource() + "\n" + "Localisation : " +
                                     pr.getLocalisation());
-
                         }
                     }
                 };
             }
         });
-
-        return listView;
     }
 
     /**
      * @param articles list of articles
      *                 Function that allow us to display the picture + the information about the article
      */
+    @SuppressWarnings("unchecked")
     private void fillListViewWith(ArrayList<Article> articles) {
 
         ObservableList<PreviewThumbnailCell> thumbnailList = FXCollections.observableArrayList();
@@ -212,11 +208,8 @@ public class FeedController extends AbstractController {
      * Display the right article type of article on the feed (tweet/article/both)
      */
     private void displayArticles() {
-
         addTagToChoiceBox();
-
-        String displayMode = displayModeChoiceBox.getSelectionModel().getSelectedItem().toString();
-
+        String displayMode = displayModeChoiceBox.getSelectionModel().getSelectedItem();
         ArrayList<Article> articleList = sortByTag(displayMode);
         fillListViewWith(articleList);
     }
@@ -228,7 +221,6 @@ public class FeedController extends AbstractController {
      * @return all article from RSS and TWITTER
      */
     private ArrayList<Article> allArticleFromRssAndTwitter(){
-
         ArrayList<Article> twitterArticles = twitterService.getTwitterArticleObj();
         ArrayList<Article> allArticle = articleService.getArticleAll();
         allArticle.addAll(twitterArticles); //
@@ -238,7 +230,7 @@ public class FeedController extends AbstractController {
 
 
     /**
-     * @param tag
+     * @param tag article tag
      * @return the right list of article
      *
      * Allow us to only keep on the feed articles that match the tag

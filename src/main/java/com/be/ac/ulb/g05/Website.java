@@ -65,7 +65,7 @@ public class Website {
      * @param latitude latitude
      * @param longitude longitude
      */
-    public Website(List urls, List categories, String defaultThumbnail, String sourceArticle, String geolocation,double latitude,double longitude) {
+    public Website(List<String> urls, List<String> categories, String defaultThumbnail, String sourceArticle, String geolocation, double latitude, double longitude) {
         this.categoryList = categories;
         this.urlList = urls;
         this.defaultThumbnail = defaultThumbnail;
@@ -118,12 +118,18 @@ public class Website {
         return geolocation;
     }
 
-
-
+    /**
+     * Latitude getter
+     * @return latitude
+     */
     public double getLatitude() {
         return latitude;
     }
 
+    /**
+     * Longitude getter
+     * @return longitude
+     */
     public double getLongitude() {
         return longitude;
     }

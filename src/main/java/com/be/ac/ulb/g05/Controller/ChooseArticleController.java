@@ -52,6 +52,11 @@ public class ChooseArticleController extends AbstractController implements Obser
 
     }
 
+    /**
+     * Updates the article feed
+     * @param o observable
+     * @param arg object argument
+     */
     @Override
     public void update(Observable o, Object arg) {
         deleteChosenArticle();
@@ -59,12 +64,14 @@ public class ChooseArticleController extends AbstractController implements Obser
     }
 
 
+    /**
+     * Sets the article service
+     * @param articleService article service
+     */
     @Override
     public void setArticleService(ArticleService articleService) {
         super.setArticleService(articleService);
     }
-
-
 
     /**
      * Remove the chosen article from all the available article
@@ -90,8 +97,6 @@ public class ChooseArticleController extends AbstractController implements Obser
         });
 
        showCell(previewArticlesList);
-
-
     }
 
 
@@ -138,9 +143,6 @@ public class ChooseArticleController extends AbstractController implements Obser
 
     }
 
-
-
-
     /**
      * Add the article that the user choose to the List
      * Set different information about the added article
@@ -150,8 +152,4 @@ public class ChooseArticleController extends AbstractController implements Obser
         articleService.addArticle(fixedArticle);
         AddFromMapController.showAlert("Article Added","Information");
     }
-
-
-
-
 }

@@ -30,8 +30,6 @@ import static com.be.ac.ulb.g05.Controller.AddFromMapController.showAlert;
  */
 public class ArticlePreviewController extends AbstractTwitterController implements Observer {
 
-
-
     /**
      * FXML control buttons & containers
      */

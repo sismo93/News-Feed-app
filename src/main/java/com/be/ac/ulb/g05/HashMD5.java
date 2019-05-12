@@ -5,13 +5,13 @@ import java.security.NoSuchAlgorithmException;
 
 
 /**
- * @mouscb
+ * @author @mouscb
  * Class that hash a password
  */
 public class HashMD5
 {
     /**
-     * @param password
+     * @param password password
      * @return the hashed password
      */
     public static String hashFunct(String password)
@@ -27,9 +27,8 @@ public class HashMD5
             //This bytes[] has bytes in decimal format;
             //Convert it to hexadecimal format
             StringBuilder sb = new StringBuilder();
-            for(int i=0; i< bytes.length ;i++)
-            {
-                sb.append(Integer.toString((bytes[i] & 0xff) + 0x100, 16).substring(1));
+            for (byte aByte : bytes) {
+                sb.append(Integer.toString((aByte & 0xff) + 0x100, 16).substring(1));
             }
             //Get complete hashed password in hex format
             generatedPassword = sb.toString();

@@ -5,9 +5,7 @@ import org.jsoup.Jsoup;
 import org.jsoup.nodes.Document;
 import org.jsoup.nodes.Element;
 import org.jsoup.select.Elements;
-
 import java.io.IOException;
-import java.util.ArrayList;
 
 /**
  * @author @Mouscb
@@ -17,14 +15,13 @@ import java.util.ArrayList;
  */
 public class ParserWebSite {
 
-
     /**
-     * @param url
+     * @param url article url
      * @return text corresponding to the article
      * @throws IOException Parse the website
      */
     public String ParserArticle(String url) throws IOException {
-        String article = "";
+        StringBuilder article = new StringBuilder();
 
         Document doc;
 
@@ -41,19 +38,19 @@ public class ParserWebSite {
             if (test.text().equals("Les plus lus") || !access) {
                 access = false;
             } else {
-                article += test.text();
-                article += "\n";
+                article.append(test.text());
+                article.append("\n");
             }
         }
 
-        return article;
+        return article.toString();
 
     }
 
     /**
-     * @param url
+     * @param url image url
      * @return a string corresponding to the url of the image
-     * @throws IOException
+     * @throws IOException if IO problems
      */
     public String ParserImage(String url) throws IOException {
         Document doc;
@@ -61,7 +58,6 @@ public class ParserWebSite {
         Jsoup.connect(url).execute();
 
         doc = Jsoup.connect(url).get();
-
 
         Elements images = doc.select("article");
         if (url.contains("rtl") || url.contains("Rtl") || url.contains("RTL")) {
@@ -107,10 +103,11 @@ public class ParserWebSite {
     }
 
     /**
-     * @param url
+     * @param url video url
      * @return a string corresponding to the url of the video
-     * @throws IOException
+     * @throws IOException if IO problems
      */
+    @SuppressWarnings("ConstantConditions")
     public String ParserVideo(String url) throws IOException {
         String doc = Jsoup.connect(url).get().toString();
         Document document = Jsoup.parse(doc);
@@ -134,8 +131,10 @@ public class ParserWebSite {
 
 
         if (url.contains("lemonde") || url.contains("theguardian")) {
-            Elements l;
-            l = links.select("div[id~=(?)]");
+            Elements l = null;
+            if (links != null) {
+                l = links.select("div[id~=(?)]");
+            }
 
             if (l.size() != 0) {
                 ytLink = "https://www.youtube.com/watch?v=";
@@ -143,8 +142,5 @@ public class ParserWebSite {
             }
         }
         return ytLink;
-
     }
-
-
 }

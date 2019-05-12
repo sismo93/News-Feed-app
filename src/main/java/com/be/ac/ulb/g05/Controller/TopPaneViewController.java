@@ -15,6 +15,7 @@ public class TopPaneViewController extends AbstractController {
     }
 
     /**
+     * Logs off the user from application
      */
     public void OnDisconnect() {
         articleService.reset();
@@ -22,10 +23,16 @@ public class TopPaneViewController extends AbstractController {
         Router.Instance().changeView(Router.Views.Login);
     }
 
+    /**
+     * Opens Feed view
+     */
     public void OpenFeedView() {
         Router.Instance().changeView(Router.Views.Feed);
     }
 
+    /**
+     * Opens Help view
+     */
     public void OpenHelpView() {
         Router.Instance().changeView(Router.Views.Help);
     }

@@ -15,7 +15,7 @@ import java.util.ArrayList;
 
 /**
  * Code that read a RSS feed.
- * @Mnrbn
+ * @author @Mnrbn
  * codereview:@Mouscb
  */
 public class RSSFeedParser {
@@ -23,32 +23,32 @@ public class RSSFeedParser {
     /**
      * Title
      */
-    static final String TITLE = "title";
+    private static final String TITLE = "title";
 
     /**
      * Description
      */
-    static final String DESCRIPTION = "description";
+    private static final String DESCRIPTION = "description";
 
     /**
      * Link
      */
-    static final String LINK = "link";
+    private static final String LINK = "link";
 
     /**
      * Item
      */
-    static final String ITEM = "item";
+    private static final String ITEM = "item";
 
     /**
      * Publication date
      */
-    static final String PUB_DATE = "pubDate";
+    private static final String PUB_DATE = "pubDate";
 
     /**
      * URL
      */
-    final URL url;
+    private final URL url;
 
     /**
      * Constructor

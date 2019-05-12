@@ -28,10 +28,6 @@ public class TwitterService extends Observable {
     private static final String CONSUMER_SECRET = "mwPhVED1YhsQgdEEnUQdA80aVFmgzUFEv7UnhccTAOH54yMlFd";
 
     /**
-     * Twitter Image for download
-     */
-    private final String TWITTER_IMAGE = "https://abilitynet.org.uk/sites/abilitynet.org.uk/files/admin/alltwitter-twitter-bird-logo-white-on-blue.png";
-    /**
      * Statuses
      */
     private List<Status> statuses;
@@ -60,6 +56,9 @@ public class TwitterService extends Observable {
      */
     private String tag="";
 
+    /**
+     * Constructor
+     */
     public TwitterService() {
         twitter = TwitterFactory.getSingleton();
         twitter.setOAuthConsumer(CONSUMER_KEY, CONSUMER_SECRET);
@@ -67,32 +66,51 @@ public class TwitterService extends Observable {
         tagList = new ArrayList<>();
         twitterArticleObj = new ArrayList<>();
         authenticated = false;
-
     }
 
+    /**
+     * Access token getter
+     * @param pin pin code
+     * @return access token object
+     * @throws TwitterException if pin wrong
+     */
     public AccessToken getAccessToken(String pin) throws TwitterException {
         return twitter.getOAuthAccessToken(pin);
     }
 
     /**
-     * @param text
-     * @throws TwitterException
-     * @throws IllegalStateException
+     * @param text tweet content
+     * @throws TwitterException twitter exception
+     * @throws IllegalStateException if not authorised
      * allow us to share an article from the feed
      */
     public void postTweet(String text) throws TwitterException, IllegalStateException {
         twitter.updateStatus(text);
     }
 
+    /**
+     * Request token getter
+     * @return request token object
+     * @throws TwitterException twitter exception
+     */
     private RequestToken getRequestToken() throws TwitterException {
         return twitter.getOAuthRequestToken();
     }
 
+    /**
+     * Authentication url getter
+     * @return authentication url
+     * @throws TwitterException twitter exception
+     */
     public String getAuthUrl() throws TwitterException {
         RequestToken requestToken = getRequestToken();
         return requestToken.getAuthenticationURL();
     }
 
+    /**
+     * Access token setter
+     * @param accessToken access token object
+     */
     public void setAccessToken(AccessToken accessToken) {
         twitter.setOAuthAccessToken(accessToken);
     }
@@ -110,7 +128,7 @@ public class TwitterService extends Observable {
     }
 
     /**
-     * @param query
+     * @param query search content
      * @throws TwitterException
      * search a specific word in twitter and add all tweet with the word
      * on it
@@ -125,17 +143,19 @@ public class TwitterService extends Observable {
 
         statuses.addAll(tweets);
         this.twitterArticleObj.addAll(getStatusAll());
-
-
     }
 
 
+    /**
+     * Gets a list of tags
+     * @return list of tags
+     */
     public List<String> getTagList(){
         return tagList;
     }
 
     /**
-     * @param username
+     * @param username twitter username
      * @throws TwitterException
      * follow username in twitter + add his last tweet to the view
      */
@@ -154,20 +174,27 @@ public class TwitterService extends Observable {
         return authenticated;
     }
 
+    /**
+     * Sets authenticated
+     * @param authenticated boolean
+     */
     public void setAuthenticated(boolean authenticated) {
         this.authenticated = authenticated;
     }
 
 
     /**
-     * @param article
+     * @param article tweet
      * delete a tweet from the list
      */
     public void deleteTweet(Article article) {
         twitterArticleObj.remove(article);
     }
 
-
+    /**
+     * Twitter articles
+     * @return list of twitter in articles format
+     */
     public ArrayList<Article> getTwitterArticleObj(){
         return this.twitterArticleObj;
     }
@@ -219,10 +246,10 @@ public class TwitterService extends Observable {
         article.addTag("All");
         article.addTag("Twitter");
         article.addTag(this.tag);
-        String allTag = "";
+        StringBuilder allTag = new StringBuilder();
         for (String tag:article.getTags()){
-            allTag+=tag;
-            allTag+=" ";
+            allTag.append(tag);
+            allTag.append(" ");
         }
         article.setTitle("twitter feed | Tag : "+ allTag);
     }

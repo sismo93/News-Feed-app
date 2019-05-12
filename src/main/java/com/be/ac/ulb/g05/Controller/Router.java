@@ -81,6 +81,10 @@ public class Router {
     }
 
 
+    /**
+     * Router instance
+     * @return instance
+     */
     public static Router Instance() {
         if (instance == null) {
             instance = new Router();
@@ -134,6 +138,10 @@ public class Router {
         return route;
     }
 
+    /**
+     * Dependency injector
+     * @param dependencyInjector object responsible for injection
+     */
     public void setDependencyInjector(DependencyInjector dependencyInjector) {
         this.dependencyInjector = dependencyInjector;
     }

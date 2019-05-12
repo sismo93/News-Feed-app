@@ -47,19 +47,18 @@ public class FacebookController extends AbstractController {
         WebView webView = new WebView();
         this.webEngine = new WebEngine();
         webEngine = webView.getEngine();
-        showLogin("401846287318859","3405fe498624fca379bf6c53846e0d56");
+        showLogin();
         mediaView.setCenter(webView);
     }
 
+
     /**
-     * @param appId
-     * @param appSecret
-     * Show the login interface and allow us to connect to facebook
+     * Shows the login page of facebook
      */
-    public void showLogin(String appId, String appSecret) {
+    private void showLogin() {
         DefaultFacebookClient facebookClient = new DefaultFacebookClient(Version.LATEST);
         ScopeBuilder scopes = new ScopeBuilder();
-        String loadUrl = facebookClient.getLoginDialogUrl(appId, SUCCESS_URL, scopes);
+        String loadUrl = facebookClient.getLoginDialogUrl("401846287318859", SUCCESS_URL, scopes);
         webEngine.load(loadUrl + "&display=popup&response_type=code");
         webEngine.getLoadWorker().stateProperty().addListener(
                 (ObservableValue<? extends Worker.State> observable, Worker.State oldValue, Worker.State newValue) -> {
@@ -75,13 +74,12 @@ public class FacebookController extends AbstractController {
                     if (myUrl.startsWith(SUCCESS_URL)) { //connexion succesful
                       int pos = myUrl.indexOf("code=");
                       code = myUrl.substring(pos + "code=".length());
-                      FacebookClient.AccessToken token = facebookClient.obtainUserAccessToken(appId,
-                              appSecret, SUCCESS_URL, code);
+                      FacebookClient.AccessToken token = facebookClient.obtainUserAccessToken("401846287318859",
+                              "3405fe498624fca379bf6c53846e0d56", SUCCESS_URL, code);
 
                       Router.Instance().changeView(Router.Views.FacebookData);
                     }
                 });
 
     }
-
 }

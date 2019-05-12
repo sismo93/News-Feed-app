@@ -1,4 +1,5 @@
 package com.be.ac.ulb.g05;
+
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.SQLException;
@@ -13,8 +14,14 @@ import javafx.application.Platform;
  */
 public class ConnexionSQLite{
 
+    /**
+     * Connection object
+     */
     private static Connection connect = null;
 
+    /**
+     * SQLite connection
+     */
     public ConnexionSQLite() {
         //Driver loading
         loadDriver();
@@ -26,7 +33,6 @@ public class ConnexionSQLite{
      * Method that will return us our Connection instance or create one if it does not exist
      */
     public static Connection getInstance() {
-
         loadDriver();
 
         try
@@ -62,8 +68,4 @@ public class ConnexionSQLite{
         }
 
     }
-
-
-
-
 }

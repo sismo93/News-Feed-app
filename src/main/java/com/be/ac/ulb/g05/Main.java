@@ -7,6 +7,9 @@ import javafx.scene.Scene;
 import javafx.stage.Stage;
 import com.be.ac.ulb.g05.Controller.Router.Views;
 
+/**
+ * Main class
+ */
 public class Main extends Application {
 
     @Override
@@ -22,8 +25,7 @@ public class Main extends Application {
         primaryStage.setScene(scene);
         primaryStage.show();
 
-        Router.Instance().changeView(Views.Menu);
-
+        Router.Instance().changeView(Views.Login);
     }
 
     public static void main(String[] args) {

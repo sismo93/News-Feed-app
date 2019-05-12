@@ -21,15 +21,26 @@ public class DependencyInjector {
      */
     private TwitterService twitterService;
 
+    /**
+     * Constructor
+     */
     public DependencyInjector() {
         this.articleService = new ArticleService();
         this.twitterService = new TwitterService();
     }
 
+    /**
+     * Gets article service
+     * @return article service
+     */
     public ArticleService getArticleService() {
         return articleService;
     }
 
+    /**
+     * Gets twitter service
+     * @return twitter service
+     */
     public TwitterService getTwitterService(){
         return twitterService;
     }

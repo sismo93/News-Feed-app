@@ -16,8 +16,6 @@ import java.io.IOException;
 import java.net.URL;
 import java.util.*;
 
-
-
 /**
  * AbstractController of the Add View
  *
@@ -30,11 +28,10 @@ public class AddFromMapController extends AddController {
      * Controls elements displayed on screen
      */
     @FXML
-    public ComboBox CategoryBox;
-
+    public ComboBox<String> CategoryBox;
     @FXML
     public StackPane stackPane;
-
+    @FXML
     public AnchorPane mapContainer;
 
 
@@ -66,14 +63,12 @@ public class AddFromMapController extends AddController {
      * These articles will be display on the right city
      */
     public void OnAddMapButtonPressed( ) {
-
-        if ( CategoryBox.getSelectionModel().isEmpty()) {
+        if (CategoryBox.getSelectionModel().isEmpty()) {
             showAlert("A selection is empty, please fill it", "Information");
             return;
         }
         List<String> diffSource = Arrays.asList("TheGuardian","Lepoint","LeMonde","LeFigaro","RTLinfo");
-        String category = (String) CategoryBox.getSelectionModel().getSelectedItem();
-
+        String category = CategoryBox.getSelectionModel().getSelectedItem();
 
         for (String source: diffSource) {
             Website web= CreateObjectSource(source);
@@ -89,12 +84,12 @@ public class AddFromMapController extends AddController {
     }
 
     /**
-     * @param article
+     * @param article article
      * @return boolean
      * Function that will check if we already have the article on the list
      */
     private boolean isArticleAlreadyOnTheMap(Article article){
-        Boolean isExist = false;
+        boolean isExist = false;
         for (Article availableArt: availableArticle)
             if (availableArt.getTitle().equals(article.getTitle())){
                 isExist = true;
@@ -104,10 +99,10 @@ public class AddFromMapController extends AddController {
 
 
     /**
-     * @param availableArticleEachCity
-     * @param web
+     * @param availableArticleEachCity list of articles for each city
+     * @param web website
      * Will allow us to display article on the map
-     * Each article will have the form of a red cercle
+     * Each article will have the form of a red circle
      */
     private void displayArticleOnMap(ArrayList<Article> availableArticleEachCity, Website web) {
         Random random = new Random();
@@ -132,12 +127,12 @@ public class AddFromMapController extends AddController {
     }
 
     /**
-     * @param web
-     * @param currentArticle
+     * @param web website object
+     * @param currentArticle the current article
      * @throws IOException
      * Show a popup to the user and he chose whether he want to add or not
      */
-    public void selectedArticleImport(Website web,Article currentArticle) throws IOException {
+    private void selectedArticleImport(Website web, Article currentArticle) throws IOException {
         Article article = fixChangeForArticle(currentArticle,parserWebsite,web);
 
         Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
@@ -149,11 +144,7 @@ public class AddFromMapController extends AddController {
         if (result.get() == ButtonType.OK) {
             articleService.addArticle(article);
             showAlert("Article Added","Information");
-
-
         }
-
-
     }
 
 
@@ -166,12 +157,10 @@ public class AddFromMapController extends AddController {
      * <p>
      * Initialize the various controls on the screen
      */
-
     @Override
     public void setupView() {
         availableArticle = new ArrayList<>();
         parserWebsite = new ParserWebSite();
-
 
         CategoryBox.setItems(getCategoryList());
 
@@ -180,18 +169,15 @@ public class AddFromMapController extends AddController {
     }
 
 
-    void displayMap() {
-
+    /**
+     * Displays the map
+     */
+    private void displayMap() {
         // we define a regular JavaFX WebView that DukeScript can use for rendering
-
         webView = new WebView();
-
-
         URL url = this.getClass().getResource("/Pages/index.html");
 
-
         FXBrowsers.load(webView, url, () -> {
-
             map = new Map("map");
 
             // from here we just use the Leaflet API to show some stuff on the map
@@ -205,17 +191,8 @@ public class AddFromMapController extends AddController {
                             .setMaxZoom(18)
                             .setId("eppleton.ia9c2p12")
             ));
-
-
-
         });
 
         mapContainer.getChildren().add(webView);
-
-
-
     }
-
-
-
 }

@@ -2,7 +2,7 @@ package com.be.ac.ulb.g05.Model;
 
 /**
  * User model
- *@author @iyamani, @mouscb
+ * @author @iyamani, @mouscb
  * @codereview @vtombou
  */
 public class Users {

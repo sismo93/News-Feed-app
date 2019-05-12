@@ -1,54 +1,52 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <?import com.jfoenix.controls.*?>
-<?import java.lang.*?>
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
 <?import javafx.scene.text.*?>
-<?import com.jfoenix.controls.JFXButton?>
-<?import javafx.scene.control.Label?>
-<?import javafx.scene.layout.AnchorPane?>
-<?import javafx.scene.layout.HBox?>
-<?import javafx.scene.layout.StackPane?>
-<?import javafx.scene.text.Font?>
 
-<AnchorPane prefHeight="720.0" prefWidth="1280.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.be.ac.ulb.g05.Controller.ArticlePreviewController">
-   <children>
-      <StackPane fx:id="stackPane" layoutY="100.0" prefHeight="441.0" prefWidth="1280.0">
-         <children>
-            <HBox fx:id="articlePreviewContentContainer" prefHeight="506.0" prefWidth="1280.0">
-               <children>
-                  <Label fx:id="articlePreviewContentArea" prefHeight="449.0" prefWidth="1280.0" wrapText="true">
-                     <font>
-                        <Font size="18.0" />
-                     </font>
-                  </Label>
-               </children>
-            </HBox>
-         </children>
-      </StackPane>
-      <HBox fx:id="articleTitleContainer" layoutX="14.0" layoutY="14.0" prefHeight="69.0" prefWidth="1255.0">
-         <children>
-            <Label fx:id="articleTitleArea" prefHeight="88.0" prefWidth="1255.0" wrapText="true">
-               <font>
-                  <Font name="System Bold" size="23.0" />
-               </font>
-            </Label>
-         </children>
+<AnchorPane prefHeight="720.0" prefWidth="1280.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1"
+            fx:controller="com.be.ac.ulb.g05.Controller.ArticlePreviewController">
+   <StackPane fx:id="stackPane" layoutY="100.0" prefHeight="441.0" prefWidth="1280.0">
+      <HBox fx:id="articlePreviewContentContainer" prefHeight="506.0" prefWidth="1280.0">
+         <Label fx:id="articlePreviewContentArea" prefHeight="449.0" prefWidth="1280.0" wrapText="true">
+            <font>
+               <Font size="18.0"/>
+            </font>
+         </Label>
       </HBox>
-      <JFXButton fx:id="readArticle" buttonType="RAISED" layoutX="14.0" layoutY="558.0" onAction="#onReadPressed" prefHeight="30.0" prefWidth="100.0" ripplerFill="WHITE" style="-fx-background-color: #0069c0; -fx-background-radius: 20;" text="READ" textFill="WHITE">
+   </StackPane>
+   <HBox fx:id="articleTitleContainer" layoutX="14.0" layoutY="14.0" prefHeight="69.0" prefWidth="1255.0">
+      <Label fx:id="articleTitleArea" prefHeight="88.0" prefWidth="1255.0" wrapText="true">
          <font>
-            <Font name="System Bold" size="15.0" />
+            <Font name="System Bold" size="23.0"/>
          </font>
-      </JFXButton>
-      <JFXButton fx:id="copyLink" buttonType="RAISED" layoutX="334.0" layoutY="558.0" onAction="#onCopyPressed" prefHeight="30.0" prefWidth="150.0" ripplerFill="WHITE" style="-fx-background-color: #2196f3; -fx-background-radius: 20;" text="COPY LINK" textFill="WHITE" />
-      <JFXButton fx:id="deleteFromFeed" buttonType="RAISED" layoutX="1098.0" layoutY="558.0" onAction="#onDeletePressed" prefHeight="30.0" prefWidth="170.0" ripplerFill="WHITE" style="-fx-background-color: #b71c1c; -fx-background-radius: 20;" text="DELETE FROM FEED" textFill="WHITE">
-         <font>
-            <Font name="System Bold" size="15.0" />
-         </font>
-      </JFXButton>
-      <JFXButton fx:id="openLink" buttonType="RAISED" layoutX="175.0" layoutY="558.0" onAction="#onOpenPressed" prefHeight="30.0" prefWidth="150.0" ripplerFill="WHITE" style="-fx-background-color: #2196f3; -fx-background-radius: 20;" text="OPEN LINK" textFill="WHITE">
-            </JFXButton>
-      <JFXButton fx:id="shareTwitter" buttonType="RAISED" layoutX="928.0" layoutY="559.0" onAction="#onSharePressed" prefHeight="31.0" prefWidth="159.0" ripplerFill="WHITE" style="-fx-background-color: #2196f3; -fx-background-radius: 20;" text="SHARE ON TWITTER" textFill="WHITE" />
-   </children>
+      </Label>
+   </HBox>
+   <JFXButton fx:id="readArticle" buttonType="RAISED" layoutX="14.0" layoutY="558.0" onAction="#onReadPressed"
+              prefHeight="30.0" prefWidth="100.0" ripplerFill="WHITE"
+              style="-fx-background-color: #0069c0; -fx-background-radius: 20;" text="READ" textFill="WHITE">
+      <font>
+         <Font name="System Bold" size="15.0"/>
+      </font>
+   </JFXButton>
+   <JFXButton fx:id="copyLink" buttonType="RAISED" layoutX="334.0" layoutY="558.0" onAction="#onCopyPressed"
+              prefHeight="30.0" prefWidth="150.0" ripplerFill="WHITE"
+              style="-fx-background-color: #2196f3; -fx-background-radius: 20;" text="COPY LINK" textFill="WHITE"/>
+   <JFXButton fx:id="deleteFromFeed" buttonType="RAISED" layoutX="1098.0" layoutY="558.0" onAction="#onDeletePressed"
+              prefHeight="30.0" prefWidth="170.0" ripplerFill="WHITE"
+              style="-fx-background-color: #b71c1c; -fx-background-radius: 20;" text="DELETE FROM FEED"
+              textFill="WHITE">
+      <font>
+         <Font name="System Bold" size="15.0"/>
+      </font>
+   </JFXButton>
+   <JFXButton fx:id="openLink" buttonType="RAISED" layoutX="175.0" layoutY="558.0" onAction="#onOpenPressed"
+              prefHeight="30.0" prefWidth="150.0" ripplerFill="WHITE"
+              style="-fx-background-color: #2196f3; -fx-background-radius: 20;" text="OPEN LINK" textFill="WHITE">
+   </JFXButton>
+   <JFXButton fx:id="shareTwitter" buttonType="RAISED" layoutX="928.0" layoutY="559.0" onAction="#onSharePressed"
+              prefHeight="31.0" prefWidth="159.0" ripplerFill="WHITE"
+              style="-fx-background-color: #2196f3; -fx-background-radius: 20;" text="SHARE ON TWITTER"
+              textFill="WHITE"/>
 </AnchorPane>

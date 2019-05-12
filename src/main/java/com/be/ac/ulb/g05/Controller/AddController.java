@@ -14,6 +14,9 @@ import static com.be.ac.ulb.g05.Controller.AddController.WebsiteCategory.*;
 import static com.be.ac.ulb.g05.Controller.AddController.WebsiteCategory.Technologies;
 import static com.be.ac.ulb.g05.Controller.AddController.WebsiteSource.*;
 
+/**
+ * Class responsible for adding articles
+ */
 public class AddController extends AbstractController {
 
 
@@ -37,16 +40,16 @@ public class AddController extends AbstractController {
 
 
     /**
-     * @param article
-     * @param parserWebSite
-     * @param website
+     * @param article Article
+     * @param parserWebSite the website parser
+     * @param website website url
      * @return article with the right information in it
      * @throws IOException
      *
      * This function will be used when the user add from the map and from the view ChooseArticleView
-     * We have to make it static so we can acces it from other class.
+     * We have to make it static so we can access it from other class.
      */
-    public static Article fixChangeForArticle(Article article, ParserWebSite parserWebSite,Website website) throws IOException {
+    static Article fixChangeForArticle(Article article, ParserWebSite parserWebSite, Website website) throws IOException {
         article.setContent(parserWebSite.ParserArticle(article.getLink())); // Call the parser
         article.setImage(parserWebSite.ParserImage(article.getLink())); //Add Picture
         article.setDefaultThumbnail(website.getDefaultThumbnail()); // add thumbnail
@@ -56,7 +59,11 @@ public class AddController extends AbstractController {
         return article;
     }
 
-    public ObservableList<String> getCategoryList() {
+    /**
+     * Gets the category list
+     * @return a list of categories
+     */
+    ObservableList<String> getCategoryList() {
         return categoryList;
     }
 
@@ -103,8 +110,12 @@ public class AddController extends AbstractController {
         }
     }
 
-    public Website CreateObjectSource(String source) {
-
+    /**
+     * Creates a source object for each website
+     * @param source source URL
+     * @return website object
+     */
+    Website CreateObjectSource(String source) {
         if (source.equals(Guardian.source)) {
             return new Website(
                     Arrays.asList(
@@ -243,7 +254,4 @@ public class AddController extends AbstractController {
         alert.showAndWait();
 
     }
-
-
-
 }
