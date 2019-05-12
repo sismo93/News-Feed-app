@@ -14,7 +14,7 @@ public abstract class DAO<T> {
     /**
      * Create an entry in the database
      * relative to an object
-     * @param obj
+     * @param obj obj
      */
     public abstract void add(T obj);
     public abstract boolean loginExist(T obj);

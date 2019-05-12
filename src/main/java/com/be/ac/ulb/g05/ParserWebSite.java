@@ -7,7 +7,6 @@ import org.jsoup.nodes.Element;
 import org.jsoup.select.Elements;
 
 import java.io.IOException;
-import java.util.ArrayList;
 
 /**
  * @author @Mouscb
@@ -19,7 +18,7 @@ public class ParserWebSite {
 
 
     /**
-     * @param url
+     * @param url url
      * @return text corresponding to the article
      * @throws IOException Parse the website
      */
@@ -51,9 +50,9 @@ public class ParserWebSite {
     }
 
     /**
-     * @param url
+     * @param url url of the image
      * @return a string corresponding to the url of the image
-     * @throws IOException
+     * @throws IOException error
      */
     public String ParserImage(String url) throws IOException {
         Document doc;
@@ -107,9 +106,9 @@ public class ParserWebSite {
     }
 
     /**
-     * @param url
+     * @param url url of the video
      * @return a string corresponding to the url of the video
-     * @throws IOException
+     * @throws IOException error
      */
     public String ParserVideo(String url) throws IOException {
         String doc = Jsoup.connect(url).get().toString();

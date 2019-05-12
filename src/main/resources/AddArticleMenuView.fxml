@@ -1,35 +1,31 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import com.jfoenix.controls.*?>
-<?import java.lang.*?>
-<?import javafx.scene.control.*?>
-<?import javafx.scene.layout.*?>
-<?import javafx.scene.text.*?>
 <?import com.jfoenix.controls.JFXButton?>
-<?import javafx.scene.layout.AnchorPane?>
-<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.layout.*?>
 <?import javafx.scene.text.Font?>
-
-<AnchorPane prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.be.ac.ulb.g05.Controller.AddArticleMenuController">
-   <children>
-       <VBox alignment="CENTER" prefHeight="200.0" prefWidth="100.0" spacing="20.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
-          <children>
-            <Label text="ADD ARTICLE FROM:">
-               <font>
-                  <Font name="Arial Bold" size="27.0" />
-               </font>
-            </Label>
-              <JFXButton buttonType="RAISED" onAction="#onAddByMapPressed" prefHeight="31.0" prefWidth="275.0" ripplerFill="WHITE" style="-fx-background-color: #2196f3; -fx-background-radius: 20;" text="MAP" textFill="WHITE">
-                  <font>
-                      <Font name="System Bold" size="15.0" />
-                  </font>
-              </JFXButton>
-              <JFXButton buttonType="RAISED" onAction="#onAddByWebSitePressed" prefHeight="31.0" prefWidth="275.0" ripplerFill="WHITE" style="-fx-background-color: #2196f3; -fx-background-radius: 20;" text="WEBSITE" textFill="WHITE">
-                  <font>
-                      <Font name="System Bold" size="15.0" />
-                  </font>
-              </JFXButton>
-          </children>
-       </VBox>
-   </children>
+<AnchorPane prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1"
+            fx:controller="com.be.ac.ulb.g05.Controller.AddArticleMenuController">
+    <VBox alignment="CENTER" prefHeight="200.0" prefWidth="100.0" spacing="20.0" AnchorPane.bottomAnchor="0.0"
+          AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+        <Label text="ADD ARTICLE FROM:">
+            <font>
+                <Font name="Arial Bold" size="27.0"/>
+            </font>
+        </Label>
+        <JFXButton buttonType="RAISED" onAction="#onAddByMapPressed" prefHeight="31.0" prefWidth="275.0"
+                   ripplerFill="WHITE" style="-fx-background-color: #2196f3; -fx-background-radius: 20;" text="MAP"
+                   textFill="WHITE">
+            <font>
+                <Font name="System Bold" size="15.0"/>
+            </font>
+        </JFXButton>
+        <JFXButton buttonType="RAISED" onAction="#onAddByWebSitePressed" prefHeight="31.0" prefWidth="275.0"
+                   ripplerFill="WHITE" style="-fx-background-color: #2196f3; -fx-background-radius: 20;"
+                   text="WEBSITE" textFill="WHITE">
+            <font>
+                <Font name="System Bold" size="15.0"/>
+            </font>
+        </JFXButton>
+    </VBox>
 </AnchorPane>

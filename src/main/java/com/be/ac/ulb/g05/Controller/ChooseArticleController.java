@@ -16,7 +16,6 @@ import java.util.Observable;
 import java.util.Observer;
 
 import static com.be.ac.ulb.g05.Controller.AddFromWebSiteController.*;
-import static com.be.ac.ulb.g05.Controller.AddFromWebSiteController.allAvailableArticle;
 
 
 /**

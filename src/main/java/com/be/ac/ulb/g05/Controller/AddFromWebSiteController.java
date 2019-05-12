@@ -26,11 +26,11 @@ public class AddFromWebSiteController extends AddController {
      * Controls elements displayed on screen
      */
     @FXML
-    public ComboBox CategoryBox;
+    public ComboBox<String> CategoryBox;
     @FXML
     public Button AddButton;
     @FXML
-    public ComboBox SourceArticleBox;
+    public ComboBox<String> SourceArticleBox;
     @FXML
     public StackPane stackPane;
 
@@ -72,7 +72,7 @@ public class AddFromWebSiteController extends AddController {
      *
      */
     private void addAllArticleAvailable() {
-        RSSFeedParser parser = new RSSFeedParser(website.getLink(CategoryBox.getSelectionModel().getSelectedItem().toString()));
+        RSSFeedParser parser = new RSSFeedParser(website.getLink(CategoryBox.getSelectionModel().getSelectedItem()));
 
         availableArticleStatic = parser.readRSS();
 
@@ -85,9 +85,7 @@ public class AddFromWebSiteController extends AddController {
      * needed in order to use Observable (call update when the object change)
      */
     private void changeToArticleService(){
-        availableArticleStatic.forEach(article -> {
-            allAvailableArticle.addArticle(article);
-        });
+        availableArticleStatic.forEach(article -> allAvailableArticle.addArticle(article));
     }
 
 
@@ -102,9 +100,9 @@ public class AddFromWebSiteController extends AddController {
             return;
         }
 
-        website = CreateObjectSource((String) SourceArticleBox.getSelectionModel().getSelectedItem());
+        website = CreateObjectSource(SourceArticleBox.getSelectionModel().getSelectedItem());
 
-        if (!website.isCategoryExist(CategoryBox.getSelectionModel().getSelectedItem().toString())) {
+        if (!website.isCategoryExist(CategoryBox.getSelectionModel().getSelectedItem())) {
             showAlert("This category does not exist on this website. Please choose another.", "Information");
             return;
         }

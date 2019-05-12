@@ -33,7 +33,7 @@ public class FeedController extends AbstractController {
     /**
      * UI element
      */
-    public ChoiceBox displayModeChoiceBox;
+    public ChoiceBox<String> displayModeChoiceBox;
     public ListView listView;
     public TextField accountName;
 
@@ -118,10 +118,9 @@ public class FeedController extends AbstractController {
 
     /**
      * @param cell
-     * @return a listView
      * Allow us to click on cell + show the right information
      */
-    private ListView<PreviewThumbnailCell> showCell(ObservableList<PreviewThumbnailCell> cell) {
+    private void showCell(ObservableList<PreviewThumbnailCell> cell) {
 
         listView.setItems(cell);
         int cellsize = 150;
@@ -147,8 +146,6 @@ public class FeedController extends AbstractController {
                 };
             }
         });
-
-        return listView;
     }
 
     /**
@@ -215,7 +212,7 @@ public class FeedController extends AbstractController {
 
         addTagToChoiceBox();
 
-        String displayMode = displayModeChoiceBox.getSelectionModel().getSelectedItem().toString();
+        String displayMode = displayModeChoiceBox.getSelectionModel().getSelectedItem();
 
         ArrayList<Article> articleList = sortByTag(displayMode);
         fillListViewWith(articleList);
@@ -238,7 +235,7 @@ public class FeedController extends AbstractController {
 
 
     /**
-     * @param tag
+     * @param tag tag present on the article
      * @return the right list of article
      *
      * Allow us to only keep on the feed articles that match the tag

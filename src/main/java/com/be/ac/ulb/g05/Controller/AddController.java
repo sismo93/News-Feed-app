@@ -11,7 +11,6 @@ import java.io.IOException;
 import java.util.Arrays;
 
 import static com.be.ac.ulb.g05.Controller.AddController.WebsiteCategory.*;
-import static com.be.ac.ulb.g05.Controller.AddController.WebsiteCategory.Technologies;
 import static com.be.ac.ulb.g05.Controller.AddController.WebsiteSource.*;
 
 public class AddController extends AbstractController {
@@ -37,9 +36,9 @@ public class AddController extends AbstractController {
 
 
     /**
-     * @param article
-     * @param parserWebSite
-     * @param website
+     * @param article its the article that the user want to add
+     * @param parserWebSite object that will allow us to parse
+     * @param website object of the right website
      * @return article with the right information in it
      * @throws IOException
      *

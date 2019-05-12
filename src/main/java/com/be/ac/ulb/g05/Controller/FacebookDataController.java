@@ -34,7 +34,7 @@ public class FacebookDataController extends AbstractController {
             "k4ZCyEvxKJVoJ1OGr7xPGZA3zL6aSTgcAQHFP5rzOj4kwCepXdpfBSM4MWCMFzAZDZD";
 
     /**
-     * @throws IOException
+     * @throws IOException error
      * Follow an account on facebook
      */
     public void followAccount() {

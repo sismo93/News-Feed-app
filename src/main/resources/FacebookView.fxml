@@ -3,8 +3,7 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.BorderPane?>
 
-<AnchorPane prefHeight="720.0" prefWidth="1280.0" xmlns="http://javafx.com/javafx/8.0.172-ea" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.be.ac.ulb.g05.Controller.FacebookController">
-   <children>
-      <BorderPane fx:id="mediaView" prefHeight="720.0" prefWidth="1280.0" />
-   </children>
+<AnchorPane prefHeight="720.0" prefWidth="1280.0" xmlns="http://javafx.com/javafx/8.0.172-ea"
+            xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.be.ac.ulb.g05.Controller.FacebookController">
+    <BorderPane fx:id="mediaView" prefHeight="720.0" prefWidth="1280.0"/>
 </AnchorPane>

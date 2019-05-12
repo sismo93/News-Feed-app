@@ -13,9 +13,9 @@ public class UsersDAO extends DAO<Users> {
 
 
     /**
-     * @param rs
-     * @return
-     * @throws SQLException
+     * @param rs result
+     * @return a boolean meaning finding the rs
+     * @throws SQLException error
      */
     protected  boolean checkInDataBase(ResultSet rs) throws SQLException {
         boolean recordAdded = false;

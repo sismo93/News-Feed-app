@@ -90,12 +90,12 @@ public class RegisterController extends AbstractController {
      */
     @FXML
     private void RegisterButton() {
-        if (!isMatch(email.getText(), confirmMail.getText())) {
+        if (isMatch(email.getText(), confirmMail.getText())) {
             showAlert("Emails do not match", "error");
             return;
         }
 
-        if (!isMatch(password.getText(), confirmPassword.getText())) {
+        if (isMatch(password.getText(), confirmPassword.getText())) {
             showAlert("Passwords do not match", "error");
             return;
         }
@@ -130,7 +130,7 @@ public class RegisterController extends AbstractController {
      * @return true if fields match, otherwise not
      */
     private boolean isMatch(String field1, String field2) {
-        return field1.equals(field2);
+        return !field1.equals(field2);
     }
 
 }

@@ -6,7 +6,6 @@ import twitter4j.auth.RequestToken;
 
 
 import java.util.*;
-import java.util.List;
 
 /**
  * @author @borsalinok
@@ -75,9 +74,9 @@ public class TwitterService extends Observable {
     }
 
     /**
-     * @param text
-     * @throws TwitterException
-     * @throws IllegalStateException
+     * @param text text
+     * @throws TwitterException error
+     * @throws IllegalStateException error
      * allow us to share an article from the feed
      */
     public void postTweet(String text) throws TwitterException, IllegalStateException {
@@ -110,8 +109,8 @@ public class TwitterService extends Observable {
     }
 
     /**
-     * @param query
-     * @throws TwitterException
+     * @param query text we want to look for
+     * @throws TwitterException error
      * search a specific word in twitter and add all tweet with the word
      * on it
      */
@@ -135,7 +134,7 @@ public class TwitterService extends Observable {
     }
 
     /**
-     * @param username
+     * @param username username
      * @throws TwitterException
      * follow username in twitter + add his last tweet to the view
      */

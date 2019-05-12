@@ -52,11 +52,11 @@ public class FacebookController extends AbstractController {
     }
 
     /**
-     * @param appId
-     * @param appSecret
+     * @param appId AppId of the facebook API
+     * @param appSecret secredt code of facebook API
      * Show the login interface and allow us to connect to facebook
      */
-    public void showLogin(String appId, String appSecret) {
+    private void showLogin(String appId, String appSecret) {
         DefaultFacebookClient facebookClient = new DefaultFacebookClient(Version.LATEST);
         ScopeBuilder scopes = new ScopeBuilder();
         String loadUrl = facebookClient.getLoginDialogUrl(appId, SUCCESS_URL, scopes);

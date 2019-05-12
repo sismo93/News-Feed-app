@@ -30,7 +30,7 @@ public class AddFromMapController extends AddController {
      * Controls elements displayed on screen
      */
     @FXML
-    public ComboBox CategoryBox;
+    public ComboBox<String> CategoryBox;
 
     @FXML
     public StackPane stackPane;
@@ -72,7 +72,7 @@ public class AddFromMapController extends AddController {
             return;
         }
         List<String> diffSource = Arrays.asList("TheGuardian","Lepoint","LeMonde","LeFigaro","RTLinfo");
-        String category = (String) CategoryBox.getSelectionModel().getSelectedItem();
+        String category = CategoryBox.getSelectionModel().getSelectedItem();
 
 
         for (String source: diffSource) {
@@ -89,12 +89,12 @@ public class AddFromMapController extends AddController {
     }
 
     /**
-     * @param article
+     * @param article article that the user choose
      * @return boolean
      * Function that will check if we already have the article on the list
      */
     private boolean isArticleAlreadyOnTheMap(Article article){
-        Boolean isExist = false;
+        boolean isExist = false;
         for (Article availableArt: availableArticle)
             if (availableArt.getTitle().equals(article.getTitle())){
                 isExist = true;
@@ -104,8 +104,8 @@ public class AddFromMapController extends AddController {
 
 
     /**
-     * @param availableArticleEachCity
-     * @param web
+     * @param availableArticleEachCity list of available article specific to a city
+     * @param web object WebSite relative to the right journal
      * Will allow us to display article on the map
      * Each article will have the form of a red cercle
      */
@@ -132,12 +132,12 @@ public class AddFromMapController extends AddController {
     }
 
     /**
-     * @param web
-     * @param currentArticle
+     * @param web object WebSite relative to the right journal
+     * @param currentArticle the choosed article
      * @throws IOException
      * Show a popup to the user and he chose whether he want to add or not
      */
-    public void selectedArticleImport(Website web,Article currentArticle) throws IOException {
+    private void selectedArticleImport(Website web,Article currentArticle) throws IOException {
         Article article = fixChangeForArticle(currentArticle,parserWebsite,web);
 
         Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
@@ -180,7 +180,7 @@ public class AddFromMapController extends AddController {
     }
 
 
-    void displayMap() {
+    private void displayMap() {
 
         // we define a regular JavaFX WebView that DukeScript can use for rendering
 
