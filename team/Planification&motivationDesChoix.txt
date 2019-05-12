@@ -34,3 +34,15 @@ Implémentations des fonctionnalités + difficultés rencontrées :
 Design pattern + librairies :
 
 Twiiter4j : API twiiter
+
+Itération 4 :
+	Lors de cette quatrième itération, le client a décidé d’intégrer à l’application les histoires 14 (filtrage des articles sur base de la relevance géographique) et 15 (section d’aide) 
+
+Implémentations des fonctionnalités + difficultés rencontrées :
+	Le client voulait qu’on lui affiche les articles sur le lieu dont parle l’article. Nous lui avons signifié que le flux rss ne fournissait pas le lieu. Alors il a décidé qu’on lui affiche selon le lieu du journal dont provient l’article. 
+	Toutes les fonctionnalités demandées par le client pour cette itération ont été implémenté. 
+
+Design pattern + librairies :
+
+Openstreetmap : Api qui sert à afficher une carte géographique
+
