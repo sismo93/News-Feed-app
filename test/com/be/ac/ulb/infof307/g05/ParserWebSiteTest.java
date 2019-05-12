@@ -1,12 +1,12 @@
 package com.be.ac.ulb.infof307.g05;
 
 import com.be.ac.ulb.g05.ParserWebSite;
-import junit.framework.TestCase;
 import org.junit.Test;
 import org.testfx.framework.junit.ApplicationTest;
 
 import java.io.IOException;
 
+import static com.be.ac.ulb.g05.Controller.AddController.showAlert;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
