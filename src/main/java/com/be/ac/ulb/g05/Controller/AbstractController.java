@@ -15,6 +15,10 @@ public abstract class AbstractController {
      * Article service
      */
     protected  ArticleService articleService;
+
+    /**
+     * Twitter Service
+     */
     protected TwitterService twitterService;
 
     /**

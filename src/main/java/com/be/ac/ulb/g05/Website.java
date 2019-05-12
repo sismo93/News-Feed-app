@@ -45,19 +45,34 @@ public class Website {
 
 
     /**
+     * Latitude
+     */
+    private double latitude;
+
+    /**
+     * Longitude
+     */
+    private double longitude ;
+
+
+    /**
      * Constructor
      * @param urls website URL
      * @param categories category
      * @param defaultThumbnail website thumbnail
      * @param sourceArticle source article
      * @param geolocation geolocation
+     * @param latitude latitude
+     * @param longitude longitude
      */
-    public Website(List urls, List categories, String defaultThumbnail, String sourceArticle, String geolocation) {
+    public Website(List urls, List categories, String defaultThumbnail, String sourceArticle, String geolocation,double latitude,double longitude) {
         this.categoryList = categories;
         this.urlList = urls;
         this.defaultThumbnail = defaultThumbnail;
         this.sourceArticle = sourceArticle;
         this.geolocation = geolocation;
+        this.latitude = latitude;
+        this.longitude = longitude;
         this.initDico();
     }
 
@@ -69,15 +84,6 @@ public class Website {
         return categoryList.contains(category);
     }
 
-    /**
-     * initialize the dictionary
-     * Dict :{Category : URL }
-     */
-    private void initDico(){
-        for(int i=0;i<urlList.size();i++){
-            categoryDict.put(categoryList.get(i),urlList.get(i));
-        }
-    }
 
     /**
      * @param category website category
@@ -111,4 +117,25 @@ public class Website {
     public String getGeolocation(){
         return geolocation;
     }
+
+
+
+    public double getLatitude() {
+        return latitude;
+    }
+
+    public double getLongitude() {
+        return longitude;
+    }
+
+    /**
+     * initialize the dictionary
+     * Dict :{Category : URL }
+     */
+    private void initDico(){
+        for(int i=0;i<urlList.size();i++){
+            categoryDict.put(categoryList.get(i),urlList.get(i));
+        }
+    }
+
 }

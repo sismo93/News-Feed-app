@@ -1,6 +1,5 @@
 package com.be.ac.ulb.g05.Controller;
 
-
 import com.restfb.DefaultFacebookClient;
 import com.restfb.FacebookClient;
 import com.restfb.Version;
@@ -18,9 +17,25 @@ import javafx.scene.web.WebView;
  * Allow us to handle the case when the user want to connect to facebook
  */
 public class FacebookController extends AbstractController {
+
+    /**
+     * Media View
+     */
     public BorderPane mediaView;
+
+    /**
+     * URL when we succeed the login
+     */
     private static final String SUCCESS_URL = "https://www.facebook.com/connect/login_success.html";
+
+    /**
+     * Web Engine
+     */
     private WebEngine webEngine;
+
+    /**
+     * Code
+     */
     private String code;
 
 
@@ -36,6 +51,11 @@ public class FacebookController extends AbstractController {
         mediaView.setCenter(webView);
     }
 
+    /**
+     * @param appId
+     * @param appSecret
+     * Show the login interface and allow us to connect to facebook
+     */
     public void showLogin(String appId, String appSecret) {
         DefaultFacebookClient facebookClient = new DefaultFacebookClient(Version.LATEST);
         ScopeBuilder scopes = new ScopeBuilder();
@@ -49,7 +69,6 @@ public class FacebookController extends AbstractController {
                     String myUrl = webEngine.getLocation();
 
                     if ("https://www.facebook.com/dialog/close".equals(myUrl)) {
-                      System.out.println("dialog closed");
                       System.exit(0);
                     }
 

@@ -1,10 +1,6 @@
 package com.be.ac.ulb.g05;
 
 
-import javafx.scene.control.Alert;
-import javafx.scene.control.ButtonType;
-import org.jsoup.Connection;
-import org.jsoup.HttpStatusException;
 import org.jsoup.Jsoup;
 import org.jsoup.nodes.Document;
 import org.jsoup.nodes.Element;
@@ -66,8 +62,6 @@ public class ParserWebSite {
 
         doc = Jsoup.connect(url).get();
 
-
-        ArrayList<String> listImages;
 
         Elements images = doc.select("article");
         if (url.contains("rtl") || url.contains("Rtl") || url.contains("RTL")) {
@@ -137,9 +131,10 @@ public class ParserWebSite {
         }
 
         String ytLink = "";
-        Elements l = null;
+
 
         if (url.contains("lemonde") || url.contains("theguardian")) {
+            Elements l;
             l = links.select("div[id~=(?)]");
 
             if (l.size() != 0) {

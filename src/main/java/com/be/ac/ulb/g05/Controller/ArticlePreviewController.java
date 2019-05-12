@@ -2,19 +2,11 @@ package com.be.ac.ulb.g05.Controller;
 
 import com.be.ac.ulb.g05.Model.Article;
 import com.be.ac.ulb.g05.Model.ArticleService;
-import com.jfoenix.controls.JFXButton;
-import com.jfoenix.controls.JFXDialog;
-import com.jfoenix.controls.JFXDialogLayout;
-import javafx.animation.PauseTransition;
-import javafx.application.Platform;
-import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.StackPane;
-import javafx.scene.text.Text;
-import javafx.util.Duration;
 
 import java.awt.*;
 import java.awt.datatransfer.Clipboard;
@@ -28,7 +20,7 @@ import java.util.Observer;
 import com.be.ac.ulb.g05.Controller.Router.*;
 import twitter4j.TwitterException;
 
-import static com.be.ac.ulb.g05.Controller.AddController.showAlert;
+import static com.be.ac.ulb.g05.Controller.AddFromMapController.showAlert;
 
 
 /**
@@ -38,10 +30,7 @@ import static com.be.ac.ulb.g05.Controller.AddController.showAlert;
  */
 public class ArticlePreviewController extends AbstractTwitterController implements Observer {
 
-    /**
-     * Article object
-     */
-    private Article article;
+
 
     /**
      * FXML control buttons & containers
@@ -72,7 +61,10 @@ public class ArticlePreviewController extends AbstractTwitterController implemen
     public StackPane stackPane;
 
 
-
+    /**
+     * Article object
+     */
+    private Article article;
 
     /**
      * Sets up the view. Called the first time UI element is loaded
@@ -91,15 +83,7 @@ public class ArticlePreviewController extends AbstractTwitterController implemen
         this.article = article;
     }
 
-    /**
-     * Displays the article
-     *
-     */
-    private void displayArticle() {
-        this.article = articleService.getArticle();
-        this.articleTitleArea.setText(article.getTitle());
-        this.articlePreviewContentArea.setText(article.getContent());
-    }
+
 
 
     /**
@@ -118,16 +102,15 @@ public class ArticlePreviewController extends AbstractTwitterController implemen
 
     }
 
-    public void onReadPressed(ActionEvent actionEvent) {
+    public void onReadPressed( ) {
         articleService.selectArticle(article);
         Router.Instance().changeView(Views.Article);
     }
 
     /**
-     * @param actionEvent
      * Copies the link to the clipboard
      */
-    public void onCopyPressed(ActionEvent actionEvent) {
+    public void onCopyPressed() {
         Toolkit toolkit = Toolkit.getDefaultToolkit();
         Clipboard clipboard = toolkit.getSystemClipboard();
         StringSelection strSel = new StringSelection(article.getLink());
@@ -137,39 +120,49 @@ public class ArticlePreviewController extends AbstractTwitterController implemen
     }
 
     /**
-     * @param actionEvent
      * Deletes the article from the feed
      */
-    public void onDeletePressed(ActionEvent actionEvent) {
+    public void onDeletePressed( ) {
         articleService.deleteArticle(article);
         twitterService.deleteTweet(article); //in case its a tweet
 
         Router.Instance().changeView(Views.Feed);
     }
 
-    public void onOpenPressed(ActionEvent actionEvent) {
+    public void onOpenPressed() {
         try {
             Desktop.getDesktop().browse(new URL(article.getLink()).toURI());
         } catch (IOException | URISyntaxException e) {
-            e.printStackTrace();
+            showAlert("An Error has occurred","Error");
         }
     }
 
     /**
-     * @param actionEvent
      * Share on Twitter
      */
-    public void onSharePressed(ActionEvent actionEvent) {
+    public void onSharePressed() {
         try {
             twitterService.postTweet("Je partage cet article via" +
                     " l'application FeedBuzz " + article.getLink());
+            showAlert("The post has been tweeted", "Information");
         } catch (IllegalStateException e) { // Handle exception when the user didnt connect to twitter yet
+            showAlert("You have to log in first. Come back when you are connected","Information");
             Router.Instance().changeView(Views.TwitterAuth);
 
         } catch (TwitterException e) {
             showAlert("An error has occurred", "Error");
         }
-        showAlert("The post has been tweeted", "Information");
+
+    }
+
+    /**
+     * Displays the article
+     *
+     */
+    private void displayArticle() {
+        this.article = articleService.getArticle();
+        this.articleTitleArea.setText(article.getTitle());
+        this.articlePreviewContentArea.setText(article.getContent());
     }
 }
 

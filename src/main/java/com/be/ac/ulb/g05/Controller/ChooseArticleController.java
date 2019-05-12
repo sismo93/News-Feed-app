@@ -2,9 +2,7 @@ package com.be.ac.ulb.g05.Controller;
 
 import com.be.ac.ulb.g05.Model.Article;
 import com.be.ac.ulb.g05.Model.ArticleService;
-import com.be.ac.ulb.g05.ParserWebSite;
 import com.be.ac.ulb.g05.PreviewThumbnailCell;
-import com.be.ac.ulb.g05.Website;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.scene.control.Button;
@@ -14,11 +12,11 @@ import javafx.scene.layout.VBox;
 import javafx.util.Callback;
 
 import java.io.IOException;
-import java.util.ArrayList;
 import java.util.Observable;
 import java.util.Observer;
 
-import static com.be.ac.ulb.g05.Controller.AddController.*;
+import static com.be.ac.ulb.g05.Controller.AddFromWebSiteController.*;
+import static com.be.ac.ulb.g05.Controller.AddFromWebSiteController.allAvailableArticle;
 
 
 /**
@@ -31,21 +29,23 @@ import static com.be.ac.ulb.g05.Controller.AddController.*;
 public class ChooseArticleController extends AbstractController implements Observer {
 
 
+    /**
+     * Container for the Article
+     */
     public VBox articleContainer;
 
 
-    private Website website;
-    private ParserWebSite parserWebsite;
+    /**
+     * Chosen article by user
+     */
+    private Article articleChosen;
 
-    private ArrayList<Article> availableArticle;
 
-    private Article articleChosed;
     /**
      * Sets up the view. Called the first time UI element is loaded
      */
     @Override
     public void setupView(){
-        getAllObjectFromAddController();
         allAvailableArticle.addObserver(this); // will call update when AllAvailableArticle change
         articleService.addObserver(this);
         pushAvailableArticlesToView();
@@ -54,33 +54,25 @@ public class ChooseArticleController extends AbstractController implements Obser
 
     @Override
     public void update(Observable o, Object arg) {
-        getAllObjectFromAddController();
         deleteChosenArticle();
         pushAvailableArticlesToView();
     }
+
+
+    @Override
+    public void setArticleService(ArticleService articleService) {
+        super.setArticleService(articleService);
+    }
+
+
 
     /**
      * Remove the chosen article from all the available article
      */
     private void deleteChosenArticle() {
-        availableArticle.remove(articleChosed);
+        availableArticleStatic.remove(articleChosen);
     }
 
-
-    /**
-     * Get all object that will be needed for the controller
-     */
-    private void getAllObjectFromAddController(){
-        ArrayList<Article> allArticleAvailable = getAvailableArticle();
-        setAvailableArticle(allArticleAvailable);
-
-        Website website = getWebsite();
-
-        setWebsite(website);
-
-        ParserWebSite parserWebSite = getParserWebsite();
-        setParserWebsite(parserWebSite);
-    }
 
     /**
      * Show Title + preview + button to let the user choose if he want to take the
@@ -90,14 +82,14 @@ public class ChooseArticleController extends AbstractController implements Obser
 
         articleContainer.getChildren().clear();
         ObservableList<PreviewThumbnailCell> previewArticlesList = FXCollections.observableArrayList();
-        availableArticle.forEach(article -> {
+        availableArticleStatic.forEach(article -> {
             Button button = new Button("Add article");
             button.setPrefSize(100,100);
             PreviewThumbnailCell previewArticleCell = new PreviewThumbnailCell(article.getTitle(),article.getDescription(),button,article);
             previewArticlesList.add(previewArticleCell);
         });
 
-       showCell(previewArticlesList); //call
+       showCell(previewArticlesList);
 
 
     }
@@ -128,12 +120,12 @@ public class ChooseArticleController extends AbstractController implements Obser
                             setText(pr.getTitle() + "\n\n" +"Preview : "+pr.getPreviewText());
                             pr.getButton().setOnAction(event -> {
                                 try {
-                                    articleChosed = pr.getArticle();
-                                    AddArticleForFeed(articleChosed);
+                                    articleChosen = pr.getArticle();
+                                    addArticleForFeed(articleChosen);
 
 
                                 } catch (IOException e) {
-                                    showAlert("An Error occurred with your choice of Article","Error");
+                                    AddFromMapController.showAlert("An Error occurred with your choice of Article","Error");
                                 }
                             });
 
@@ -142,7 +134,7 @@ public class ChooseArticleController extends AbstractController implements Obser
                 };
             }
         });
-        this.articleContainer.getChildren().add(listView);
+        articleContainer.getChildren().add(listView);
 
     }
 
@@ -150,41 +142,16 @@ public class ChooseArticleController extends AbstractController implements Obser
 
 
     /**
-     * Add the article that the use choose to the List
+     * Add the article that the user choose to the List
      * Set different information about the added article
      */
-    private void AddArticleForFeed(Article article) throws IOException {
-        article.setContent(parserWebsite.ParserArticle(article.getLink())); // Call the parser
-
-
-        article.setImage(parserWebsite.ParserImage(article.getLink())); //Add Picture
-        article.setDefaultThumbnail(website.getDefaultThumbnail()); // add thumbnail
-        article.setSource(website.getSourceArticle()); // set the Source
-        article.setGeolocation(website.getGeolocation());
-        article.setVideo(parserWebsite.ParserVideo(article.getLink()));
-
-        articleService.addArticle(article);
-        showAlert("Article Added","Information");
+    private void addArticleForFeed(Article article) throws IOException {
+        Article fixedArticle = fixChangeForArticle(article,parserWebsite,website);
+        articleService.addArticle(fixedArticle);
+        AddFromMapController.showAlert("Article Added","Information");
     }
 
 
-    @Override
-    public void setArticleService(ArticleService articleService) {
-        super.setArticleService(articleService);
-    }
-
-
-    private void setWebsite(Website website) {
-        this.website = website;
-    }
-
-    private void setParserWebsite(ParserWebSite parserWebsite) {
-        this.parserWebsite = parserWebsite;
-    }
-
-    public void setAvailableArticle(ArrayList<Article> availableArticle) {
-        this.availableArticle = availableArticle;
-    }
 
 
 }

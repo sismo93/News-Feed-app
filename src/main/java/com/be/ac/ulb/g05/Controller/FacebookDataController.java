@@ -11,7 +11,7 @@ import java.io.InputStreamReader;
 import java.net.HttpURLConnection;
 import java.net.URL;
 
-import static com.be.ac.ulb.g05.Controller.AddController.showAlert;
+import static com.be.ac.ulb.g05.Controller.AddFromMapController.showAlert;
 
 /**
  * @author @iyamani
@@ -19,9 +19,16 @@ import static com.be.ac.ulb.g05.Controller.AddController.showAlert;
  */
 public class FacebookDataController extends AbstractController {
 
+    /**
+     * Text Field on the FXML
+     */
     @FXML
     public JFXTextField accountToFollow;
 
+
+    /**
+     * AccessToken given us by Facebook
+     */
     private static final String accessToken = "EAAJ0YUQvIMQBAGBxCRFOk8PM6IOoSfmabqARoUCbjEt3lAziOMnrQjnhfvVibUjUVH3I" +
             "svyQS8vNV22YmseJJ4UTgExXvLzSi8ZAlsaTvyzsa0Urd2G1u6EpXroFAH8Jf5OhnXmGZB0OIfbyjPDhCmVWK8ROUZB1bgunyuIfOvZCe" +
             "k4ZCyEvxKJVoJ1OGr7xPGZA3zL6aSTgcAQHFP5rzOj4kwCepXdpfBSM4MWCMFzAZDZD";
@@ -33,7 +40,7 @@ public class FacebookDataController extends AbstractController {
     public void followAccount() {
         try{
             String followAccount = accountToFollow.getText();
-            String url = "https://graph.facebook.com/pages/search?q=" + followAccount + "&access_token=" + accessToken;
+            String url = "https://graph.facebook.com/Pages/search?q=" + followAccount + "&access_token=" + accessToken;
 
             URL apiUrl = new URL(url);
             HttpURLConnection connection = (HttpURLConnection) apiUrl.openConnection();

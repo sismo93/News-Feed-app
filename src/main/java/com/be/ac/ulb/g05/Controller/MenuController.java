@@ -23,7 +23,7 @@ public class MenuController extends AbstractController {
      * Opens the add view
      */
     public void OpenAddView() {
-        Router.Instance().changeView(Views.Add);
+        Router.Instance().changeView(Views.AddArticle);
     }
 
     public void openSocialNetworkView() {Router.Instance().changeView(Views.SocialNetwork);
