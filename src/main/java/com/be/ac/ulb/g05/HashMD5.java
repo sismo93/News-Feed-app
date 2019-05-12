@@ -3,6 +3,8 @@ package com.be.ac.ulb.g05;
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
 
+import static com.be.ac.ulb.g05.Controller.AddController.showAlert;
+
 
 /**
  * @mouscb
@@ -35,7 +37,7 @@ public class HashMD5
         }
         catch (NoSuchAlgorithmException e)
         {
-            e.printStackTrace();
+            showAlert("An error has occurred","Error");
         }
         return generatedPassword;
     }

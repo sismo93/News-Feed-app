@@ -10,6 +10,7 @@ import java.io.IOException;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
+
 /**
      * @author @OrestisTranganidas
      * 
@@ -34,7 +35,7 @@ public class ParserWebSiteTest extends ApplicationTest {
             article = web.ParserArticle("https://www.theguardian.com/world/2019/mar/28/bangladesh-high-rise-fire-dhaka-prompts-people-to-jump-from-buildin");
             assertTrue(article.equals(""));
         } catch (IOException e) {
-            e.printStackTrace();
+            showAlert("An error has occurred","Error");
         }
     }
 
@@ -51,7 +52,7 @@ public class ParserWebSiteTest extends ApplicationTest {
             image = web.ParserImage("https://www.theguardian.com/cities/2019/mar/28/kumbh-mela-cleaning-up-after-the-worlds-largest-human-gatherin");
             assertTrue(image.equals(""));
         } catch (IOException e) {
-            e.printStackTrace();
+            showAlert("An error has occurred","Error");
         }
 
     }

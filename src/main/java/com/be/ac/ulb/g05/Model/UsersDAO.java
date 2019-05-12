@@ -5,6 +5,8 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 
+import static com.be.ac.ulb.g05.Controller.AddController.showAlert;
+
 /**
  * @author @mouscb
  * @codereview @vtombou
@@ -42,7 +44,7 @@ public class UsersDAO extends DAO<Users> {
             prepare2.executeUpdate();
         }
         catch (Exception e) {
-            e.printStackTrace();
+            showAlert("An error has occurred","Error");
         }
     }
 
@@ -63,7 +65,7 @@ public class UsersDAO extends DAO<Users> {
             return checkInDataBase(rs);
         }
         catch (Exception e) {
-            e.printStackTrace();
+            showAlert("An error has occurred","Error");
             return false;
         }
     }
@@ -84,7 +86,7 @@ public class UsersDAO extends DAO<Users> {
             return checkInDataBase(rs);
         }
         catch (Exception e) {
-            e.printStackTrace();
+            showAlert("An error has occurred","Error");
             return false;
         }
     }
@@ -105,7 +107,7 @@ public class UsersDAO extends DAO<Users> {
             return checkInDataBase(rs);
         }
         catch (Exception e) {
-            e.printStackTrace();
+            showAlert("An error has occurred","Error");
             return false;
         }
     }
