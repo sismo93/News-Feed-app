@@ -19,6 +19,7 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
+import static com.be.ac.ulb.g05.Controller.AddController.showAlert;
 import static com.be.ac.ulb.g05.Controller.ArticleViewController.saveImage;
 
 /**
@@ -160,7 +161,7 @@ public class FeedController extends AbstractController {
             try {
                 saveImage(article.getDefaultThumbnail(), "file:temp-feedbuzz-v.jpg", imageView);
             } catch (IOException e) {
-                e.printStackTrace();
+                showAlert("An error occured saving the image", "Error");
             }
 
             PreviewThumbnailCell previewThumbnail = new PreviewThumbnailCell(imageView, article.getTitle(),
