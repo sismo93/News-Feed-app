@@ -39,7 +39,7 @@ public class AddFromWebSiteController extends AddController {
      * Website object
      * Will be used in chooseArticleController
      */
-    protected static Website website;
+    static Website website;
 
 
 

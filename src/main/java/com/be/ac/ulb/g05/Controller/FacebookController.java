@@ -55,6 +55,7 @@ public class FacebookController extends AbstractController {
     /**
      * Shows the login page of facebook
      */
+    @SuppressWarnings("unused")
     private void showLogin() {
         DefaultFacebookClient facebookClient = new DefaultFacebookClient(Version.LATEST);
         ScopeBuilder scopes = new ScopeBuilder();

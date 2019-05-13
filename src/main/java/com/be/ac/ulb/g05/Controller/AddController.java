@@ -90,6 +90,7 @@ public class AddController extends AbstractController {
     /**
      * Enum of different of website urls
      */
+    @SuppressWarnings("unused")
     public enum WebsiteCategory {
 
         Actualite("Actualite"),

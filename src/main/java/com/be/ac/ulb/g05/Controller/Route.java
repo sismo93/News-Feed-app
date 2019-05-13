@@ -20,7 +20,7 @@ public class Route {
      */
     private AbstractController controller;
 
-    public Route(Node root, AbstractController controller) {
+    Route(Node root, AbstractController controller) {
         this.root = root;
         this.controller = controller;
     }
@@ -29,7 +29,7 @@ public class Route {
      * Node getter
      * @return root node
      */
-    public Node getRoot() {
+    Node getRoot() {
         return root;
     }
 

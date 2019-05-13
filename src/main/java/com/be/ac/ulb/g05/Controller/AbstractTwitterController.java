@@ -12,7 +12,7 @@ public abstract class AbstractTwitterController extends AbstractController {
     /**
      * Twitter service
      */
-    protected TwitterService twitterService;
+    TwitterService twitterService;
 
     /**
      * @param dependencyInjector object responsible for delivering the dependency

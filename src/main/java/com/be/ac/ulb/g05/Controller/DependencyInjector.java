@@ -41,7 +41,7 @@ public class DependencyInjector {
      * Gets twitter service
      * @return twitter service
      */
-    public TwitterService getTwitterService(){
+    TwitterService getTwitterService(){
         return twitterService;
     }
 }

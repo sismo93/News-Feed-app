@@ -19,7 +19,7 @@ public class UsersDAO extends DAO<Users> {
      * @return a boolean meaning finding the rs
      * @throws SQLException error
      */
-    protected  boolean checkInDataBase(ResultSet rs) throws SQLException {
+    private boolean checkInDataBase(ResultSet rs) throws SQLException {
         boolean recordAdded = false;
         while(rs.next()){
             recordAdded = true;

@@ -19,7 +19,7 @@ public abstract class AbstractController {
     /**
      * Twitter Service
      */
-    protected TwitterService twitterService;
+    TwitterService twitterService;
 
     /**
      * Sets the article service
