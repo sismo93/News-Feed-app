@@ -135,5 +135,7 @@ public class ChooseArticleController extends AbstractController {
         Article fixedArticle = fixChangeForArticle(article,parserWebsite,website);
         articleService.addArticle(fixedArticle);
         Router.showAlert("Article Added","Information");
+        deleteChosenArticle();
+        pushAvailableArticlesToView();
     }
 }
