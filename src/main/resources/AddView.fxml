@@ -22,7 +22,7 @@
                <Label layoutX="32.0" layoutY="25.0" text="Category:"/>
                <JFXComboBox fx:id="CategoryBox" focusColor="#2196f3" layoutX="106.0" layoutY="20.0"
                             prefHeight="31.0" prefWidth="192.0"/>
-               <JFXButton fx:id="AddMap" buttonType="RAISED" layoutX="32.0" layoutY="82.0"
+               <JFXButton   buttonType="RAISED" layoutX="32.0" layoutY="82.0"
                           onAction="#OnAddMapButtonPressed" prefHeight="31.0" prefWidth="275.0"
                           ripplerFill="WHITE"
                           style="-fx-background-color: #2196f3; -fx-background-radius: 20;" text="SEARCH"

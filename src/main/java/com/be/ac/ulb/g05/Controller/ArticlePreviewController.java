@@ -14,21 +14,18 @@ import java.awt.datatransfer.StringSelection;
 import java.io.IOException;
 import java.net.URISyntaxException;
 import java.net.URL;
-import java.util.Observable;
-import java.util.Observer;
 
 import com.be.ac.ulb.g05.Controller.Router.*;
 import twitter4j.TwitterException;
 
-import static com.be.ac.ulb.g05.Controller.AddFromMapController.showAlert;
-
 
 /**
  * Article Preview controller
+ *
  * @author @iyamani
  * @codereview @vtombou
  */
-public class ArticlePreviewController extends AbstractTwitterController implements Observer {
+public class ArticlePreviewController extends AbstractTwitterController {
 
     /**
      * FXML control buttons & containers
@@ -65,11 +62,10 @@ public class ArticlePreviewController extends AbstractTwitterController implemen
     private Article article;
 
     /**
-     * Sets up the view. Called the first time UI element is loaded
+     * Sets up the view. Called the every time UI element is loaded
      */
     @Override
-    public void setupView() {
-        articleService.addObserver(this);
+    public void onActive() {
         displayArticle();
     }
 
@@ -82,8 +78,6 @@ public class ArticlePreviewController extends AbstractTwitterController implemen
     }
 
 
-
-
     /**
      * Sets up the articleService
      *
@@ -94,13 +88,8 @@ public class ArticlePreviewController extends AbstractTwitterController implemen
         super.setArticleService(articleService);
     }
 
-    @Override
-    public void update(Observable o, Object arg) {
-        displayArticle();
 
-    }
-
-    public void onReadPressed( ) {
+    public void onReadPressed() {
         articleService.selectArticle(article);
         Router.Instance().changeView(Views.Article);
     }
@@ -114,13 +103,13 @@ public class ArticlePreviewController extends AbstractTwitterController implemen
         StringSelection strSel = new StringSelection(article.getLink());
         clipboard.setContents(strSel, null);
 
-        showAlert("Link has been copied to clipboard", "information");
+        Router.showAlert("Link has been copied to clipboard", "information");
     }
 
     /**
      * Deletes the article from the feed
      */
-    public void onDeletePressed( ) {
+    public void onDeletePressed() {
         articleService.deleteArticle(article);
         twitterService.deleteTweet(article); //in case its a tweet
 
@@ -131,7 +120,7 @@ public class ArticlePreviewController extends AbstractTwitterController implemen
         try {
             Desktop.getDesktop().browse(new URL(article.getLink()).toURI());
         } catch (IOException | URISyntaxException e) {
-            showAlert("An Error has occurred","Error");
+            Router.showAlert("An Error has occurred", "Error");
         }
     }
 
@@ -142,20 +131,19 @@ public class ArticlePreviewController extends AbstractTwitterController implemen
         try {
             twitterService.postTweet("Je partage cet article via" +
                     " l'application FeedBuzz " + article.getLink());
-            showAlert("The post has been tweeted", "Information");
+            Router.showAlert("The post has been tweeted", "Information");
         } catch (IllegalStateException e) { // Handle exception when the user didnt connect to twitter yet
-            showAlert("You have to log in first. Come back when you are connected","Information");
+            Router.showAlert("You have to log in first. Come back when you are connected", "Information");
             Router.Instance().changeView(Views.TwitterAuth);
 
         } catch (TwitterException e) {
-            showAlert("An error has occurred", "Error");
+            Router.showAlert("An error has occurred", "Error");
         }
 
     }
 
     /**
      * Displays the article
-     *
      */
     private void displayArticle() {
         this.article = articleService.getArticle();

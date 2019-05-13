@@ -17,10 +17,6 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.io.OutputStream;
 import java.net.URL;
-import java.util.Observable;
-import java.util.Observer;
-
-import static com.be.ac.ulb.g05.Controller.AddFromMapController.showAlert;
 
 /**
  * Article View controller
@@ -28,7 +24,7 @@ import static com.be.ac.ulb.g05.Controller.AddFromMapController.showAlert;
  * @author @iyamani
  * @codereview @vtombou
  */
-public class ArticleViewController extends AbstractController implements Observer {
+public class ArticleViewController extends AbstractController {
 
     /**
      * FXML control buttons & containers
@@ -58,12 +54,12 @@ public class ArticleViewController extends AbstractController implements Observe
     public BorderPane mediaView;
 
     /**
-     * Sets up the view. Called the first time UI element is loaded
+     * Sets up the view. Called the every time UI element is loaded
      */
     @Override
-    public void setupView() {
-        articleService.addObserver(this);
+    public void onActive() {
         displayArticle();
+
     }
 
     /**
@@ -106,16 +102,6 @@ public class ArticleViewController extends AbstractController implements Observe
     }
 
     /**
-     * Updates the article view
-     * @param o observable
-     * @param arg object argument
-     */
-    @Override
-    public void update(Observable o, Object arg) {
-        displayArticle();
-    }
-
-    /**
      * Displays the article content
      */
     private void displayArticle() {
@@ -146,7 +132,7 @@ public class ArticleViewController extends AbstractController implements Observe
             }
 
         } catch (IOException e) {
-            showAlert("An error has occurred","Error");
+            Router.showAlert("An error has occurred","Error");
         }
 
     }

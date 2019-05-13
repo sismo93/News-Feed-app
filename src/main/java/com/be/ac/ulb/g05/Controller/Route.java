@@ -7,7 +7,7 @@ import javafx.scene.Node;
  * @author @borsalinoK
  * @codereview @Tanvir.Hoque
  */
-public class Route {
+class Route {
 
 
     /**

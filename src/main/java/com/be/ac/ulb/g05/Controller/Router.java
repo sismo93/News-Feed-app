@@ -35,29 +35,30 @@ public class Router {
      */
     private DependencyInjector dependencyInjector;
 
+
     /**
      * Enum of different views
      */
     public enum Views{
+        AddArticle("AddArticleMenuView.fxml"),
         AddWithMap ("AddView.fxml"),
+        AddFromWebSite("AddFromWebsiteView.fxml"),
         Article ("ArticleView.fxml"),
-        Feed ("FeedView.fxml"),
+        ChooseArticle("ChooseArticleView.fxml"),
+        Help("HelpView.fxml"),
         Login ("LoginFxml.fxml"),
+        Media("MediaView.fxml"),
         Menu ("MenuView.fxml"),
         Preview ("ArticlePreview.fxml"),
+        Facebook("FacebookView.fxml"),
+        FacebookData("FacebookDataView.fxml"),
+        Feed ("FeedView.fxml"),
         Register ("RegisterFxml.fxml"),
         Root ("RootView.fxml"),
         TopPane ("TopPaneView.fxml"),
-        Media("MediaView.fxml"),
-        ChooseArticle("ChooseArticleView.fxml"),
         SocialNetwork("SocialNetworkView.fxml"),
         Twitter("TwitterView.fxml"),
-        TwitterAuth("TwitterAuthView.fxml"),
-        Facebook("FacebookView.fxml"),
-        FacebookData("FacebookDataView.fxml"),
-        AddFromWebSite("AddFromWebsiteView.fxml"),
-        AddArticle("AddArticleMenuView.fxml"),
-        Help("HelpView.fxml");
+        TwitterAuth("TwitterAuthView.fxml");
 
         private String value;
 
@@ -76,7 +77,7 @@ public class Router {
     /**
      * Constructor
      */
-    public Router() {
+    private Router() {
         this.routes = new HashMap<>();
     }
 
@@ -101,7 +102,19 @@ public class Router {
     private void setRoot(BorderPane root) {
         this.root = root;
     }
+    /**
+     * Shows an alert with a custom title & message
+     * function used in the whole project
+     * @param message Body message
+     * @param title Header message
+     */
+    public static void showAlert(String message, String title) {
+        Alert alert = new Alert(Alert.AlertType.INFORMATION);
+        alert.setTitle(title);
+        alert.setContentText(message);
+        alert.showAndWait();
 
+    }
 
     /**
      * Loads XML windows

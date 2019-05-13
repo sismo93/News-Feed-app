@@ -3,7 +3,7 @@ package com.be.ac.ulb.g05;
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
 
-import static com.be.ac.ulb.g05.Controller.AddController.showAlert;
+import static com.be.ac.ulb.g05.Controller.Router.showAlert;
 
 
 /**

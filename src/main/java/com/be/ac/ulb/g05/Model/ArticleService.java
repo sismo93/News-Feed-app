@@ -2,18 +2,17 @@ package com.be.ac.ulb.g05.Model;
 
 import java.util.ArrayList;
 import java.util.HashMap;
-import java.util.Observable;
 
 
 /**
  * @author @borsalinoK
  * @codereview @mouscb
- *
+ * <p>
  * Class that allow us to store Article object
  * we can add/delete article from the list.
  * with this class we will have an article list accessible in all the views
  */
-public class ArticleService extends Observable {
+public class ArticleService {
 
     /**
      * Article HashMap
@@ -34,37 +33,34 @@ public class ArticleService extends Observable {
 
     /**
      * Adds article into HashMap
+     *
      * @param article object
      */
-    public void addArticle(Article article){
-        setChanged();
-
+    public void addArticle(Article article) {
         articles.put(article.getTitle(), article);
-        notifyObservers();
-
     }
 
     /**
      * Deletes article from HashMap
+     *
      * @param article object
      */
-    public void deleteArticle(Article article){
-        setChanged();
-
+    public void deleteArticle(Article article) {
         articles.remove(article.getTitle());
-        notifyObservers();
     }
 
     /**
      * List of Articles
+     *
      * @return list of articles
      */
-    public ArrayList<Article> getArticleAll(){
+    public ArrayList<Article> getArticleAll() {
         return new ArrayList<>(articles.values());
     }
 
     /**
      * Article getter
+     *
      * @return article object
      */
     public Article getArticle() {
@@ -73,21 +69,17 @@ public class ArticleService extends Observable {
 
     /**
      * Article setter
+     *
      * @param article object
      */
     public void selectArticle(Article article) {
-        setChanged();
         this.article = article;
-        notifyObservers();
     }
 
     /**
      * Clears all articles from feed
      */
     public void reset() {
-        setChanged();
-
         articles.clear();
-        notifyObservers();
     }
 }

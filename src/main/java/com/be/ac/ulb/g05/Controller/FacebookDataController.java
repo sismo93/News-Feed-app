@@ -10,8 +10,6 @@ import java.io.InputStreamReader;
 import java.net.HttpURLConnection;
 import java.net.URL;
 
-import static com.be.ac.ulb.g05.Controller.AddFromMapController.showAlert;
-
 /**
  * Controller for FacebookData
  * @author @iyamani
@@ -60,7 +58,7 @@ public class FacebookDataController extends AbstractController {
 
         }
         catch (IOException e){
-            showAlert("FeedBuzz App is still waiting for the approval of facebook \n Come back later maybe"
+            Router.showAlert("FeedBuzz App is still waiting for the approval of facebook \n Come back later maybe"
             ,"Information");
         }
 

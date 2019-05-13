@@ -9,8 +9,6 @@ import twitter4j.TwitterException;
 import twitter4j.auth.AccessToken;
 import com.be.ac.ulb.g05.Controller.Router.Views;
 
-import static com.be.ac.ulb.g05.Controller.AddFromMapController.showAlert;
-
 
 /**
  * TwitterAuthController
@@ -47,7 +45,7 @@ public class TwitterAuthController extends AbstractTwitterController {
                 try {
                     onWebEngineLocationChanged();
                 } catch (TwitterException e) {
-                    showAlert("An Error has occurred","Information");
+                    Router.showAlert("An Error has occurred","Information");
                 }
             }
         });
@@ -76,7 +74,7 @@ public class TwitterAuthController extends AbstractTwitterController {
             webEngine.load(url);
 
         } catch (TwitterException e) {
-            showAlert("unable to get the authentication url", "error");
+            Router.showAlert("unable to get the authentication url", "error");
         }
     }
 

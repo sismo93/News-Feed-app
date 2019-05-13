@@ -64,7 +64,7 @@ public class AddFromMapController extends AddController {
      */
     public void OnAddMapButtonPressed( ) {
         if (CategoryBox.getSelectionModel().isEmpty()) {
-            showAlert("A selection is empty, please fill it", "Information");
+            Router.showAlert("A selection is empty, please fill it", "Information");
             return;
         }
         List<String> diffSource = Arrays.asList("TheGuardian","Lepoint","LeMonde","LeFigaro","RTLinfo");
@@ -118,7 +118,7 @@ public class AddFromMapController extends AddController {
                     try {
                         selectedArticleImport(web,article);
                     } catch (IOException e) {
-                        showAlert("We could not import this article, try later","Information");
+                        Router.showAlert("We could not import this article, try later","Information");
                     }
                 }));
             }
@@ -141,9 +141,9 @@ public class AddFromMapController extends AddController {
         alert.setContentText(article.getTitle());
 
         Optional<ButtonType> result = alert.showAndWait();
-        if (result.get() == ButtonType.OK) {
+        if (result.isPresent()  && result.get() == ButtonType.OK) {
             articleService.addArticle(article);
-            showAlert("Article Added","Information");
+            Router.showAlert("Article Added","Information");
         }
     }
 

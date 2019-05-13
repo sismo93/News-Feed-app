@@ -6,7 +6,6 @@ import twitter4j.auth.RequestToken;
 
 
 import java.util.*;
-import java.util.List;
 
 /**
  * @author @borsalinok

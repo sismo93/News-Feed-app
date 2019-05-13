@@ -42,13 +42,11 @@ public class AddFromWebSiteController extends AddController {
     static Website website;
 
 
-
     /**
      * Website parser
      * Will be used in chooseArticleController
      */
     static ParserWebSite parserWebsite;
-
 
 
     /**
@@ -66,10 +64,8 @@ public class AddFromWebSiteController extends AddController {
     static ArticleService allAvailableArticle;
 
 
-
     /**
      * Take all article available
-     *
      */
     private void addAllArticleAvailable() {
         RSSFeedParser parser = new RSSFeedParser(website.getLink(CategoryBox.getSelectionModel().getSelectedItem()));
@@ -80,24 +76,24 @@ public class AddFromWebSiteController extends AddController {
      * Function that will allow us to have an ArticleService object with all the available article
      * needed in order to use Observable (call update when the object change)
      */
-    private void changeToArticleService(){
+    private void changeToArticleService() {
         availableArticleStatic.forEach(article -> allAvailableArticle.addArticle(article));
     }
 
     /**
      * Handler when Add button is pressed
      */
-    public void OnButtonPressed()  {
+    public void OnButtonPressed() {
         if (CategoryBox.getSelectionModel().isEmpty()
                 || SourceArticleBox.getSelectionModel().isEmpty()) {
-            showAlert("A selection is empty, please fill it", "Information");
+            Router.showAlert("A selection is empty, please fill it", "Information");
             return;
         }
 
         website = CreateObjectSource(SourceArticleBox.getSelectionModel().getSelectedItem());
 
         if (!website.isCategoryExist(CategoryBox.getSelectionModel().getSelectedItem())) {
-            showAlert("This category does not exist on this website. Please choose another.", "Information");
+            Router.showAlert("This category does not exist on this website. Please choose another.", "Information");
             return;
         }
 
@@ -105,8 +101,6 @@ public class AddFromWebSiteController extends AddController {
         changeToArticleService();
         Router.Instance().changeView(Views.ChooseArticle); //Open The view ChooseArticleView
     }
-
-
 
 
     @Override

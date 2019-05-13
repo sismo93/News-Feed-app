@@ -10,8 +10,6 @@ import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.StackPane;
 
-import static com.be.ac.ulb.g05.Controller.AddFromMapController.showAlert;
-
 
 /**
  * AbstractController of the Register
@@ -91,17 +89,17 @@ public class RegisterController extends AbstractController {
     @FXML
     private void RegisterButton() {
         if (isNotMatch(email.getText(), confirmMail.getText())) {
-            showAlert("Emails do not match", "error");
+            Router.showAlert("Emails do not match", "error");
             return;
         }
 
         if (isNotMatch(password.getText(), confirmPassword.getText())) {
-            showAlert("Passwords do not match", "error");
+            Router.showAlert("Passwords do not match", "error");
             return;
         }
 
         if (isEmpty()) {
-            showAlert("Please fill in all fields", "error");
+            Router.showAlert("Please fill in all fields", "error");
         } else {
             if (!usersDAO.loginExist(user) && !usersDAO.mailExist(user)) {
                 user.setName(username.getText());
@@ -111,7 +109,7 @@ public class RegisterController extends AbstractController {
                 usersDAO.add(user); // Add in database
                 Router.Instance().changeView(Views.Menu); // Go to menu
             } else {
-                showAlert("Not in database", "error");
+                Router.showAlert("Not in database", "error");
             }
         }
     }

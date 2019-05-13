@@ -9,7 +9,7 @@ import java.sql.Connection;
  */
 public abstract class DAO<T> {
 
-    Connection connect = ConnexionSQLite.getInstance();
+    final Connection connect = ConnexionSQLite.getInstance();
 
     /**
      * Create an entry in the database

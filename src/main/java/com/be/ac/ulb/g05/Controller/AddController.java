@@ -5,13 +5,11 @@ import com.be.ac.ulb.g05.ParserWebSite;
 import com.be.ac.ulb.g05.Website;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
-import javafx.scene.control.Alert;
 
 import java.io.IOException;
 import java.util.Arrays;
 
 import static com.be.ac.ulb.g05.Controller.AddController.WebsiteCategory.*;
-import static com.be.ac.ulb.g05.Controller.AddController.WebsiteCategory.Technologies;
 import static com.be.ac.ulb.g05.Controller.AddController.WebsiteSource.*;
 
 /**
@@ -40,14 +38,12 @@ public class AddController extends AbstractController {
 
 
     /**
-     * @param article Article
+     * @param article       Article
      * @param parserWebSite the website parser
-     * @param website website url
+     * @param website       website url
      * @return article with the right information in it
-     * @throws IOException
-     *
-     * This function will be used when the user add from the map and from the view ChooseArticleView
-     * We have to make it static so we can access it from other class.
+     * @throws IOException This function will be used when the user add from the map and from the view ChooseArticleView
+     *                     We have to make it static so we can access it from other class.
      */
     static Article fixChangeForArticle(Article article, ParserWebSite parserWebSite, Website website) throws IOException {
         article.setContent(parserWebSite.ParserArticle(article.getLink())); // Call the parser
@@ -61,6 +57,7 @@ public class AddController extends AbstractController {
 
     /**
      * Gets the category list
+     *
      * @return a list of categories
      */
     ObservableList<String> getCategoryList() {
@@ -113,6 +110,7 @@ public class AddController extends AbstractController {
 
     /**
      * Creates a source object for each website
+     *
      * @param source source URL
      * @return website object
      */
@@ -146,7 +144,7 @@ public class AddController extends AbstractController {
                     51.5085,
                     -0.1257);
         } else if (source.equals(LePoint.source)) {
-            return  new Website(
+            return new Website(
                     Arrays.asList("https://www.lepoint.fr/24h-infos/rss.xml",
                             "https://www.lepoint.fr/culture/rss.xml",
                             "https://www.lepoint.fr/politique/rss.xml",
@@ -168,7 +166,7 @@ public class AddController extends AbstractController {
                     44.8404,
                     -0.5805);
         } else if (source.equals(LeMonde.source)) {
-            return  new Website(
+            return new Website(
                     Arrays.asList(
                             "https://www.lemonde.fr/m-actu/rss_full.xml",
                             "https://www.lemonde.fr/culture/rss_full.xml",
@@ -193,9 +191,9 @@ public class AddController extends AbstractController {
                     "@LeMonde.fr",
                     "France",
                     48.8534,
-                    2.3488 );
+                    2.3488);
         } else if (source.equals(LeFigaro.source)) {
-            return  new Website(
+            return new Website(
                     Arrays.asList(
                             "http://sport24.lefigaro.fr/rssfeeds/sport24-accueil.xml",
                             "http://www.lefigaro.fr/rss/figaro_culture.xml",
@@ -220,8 +218,8 @@ public class AddController extends AbstractController {
                     "@LeFigaro.fr",
                     "France",
                     45.75,
-                    4.85 );
-        } else  {
+                    4.85);
+        } else {
             return new Website(
                     Arrays.asList("https://feeds.feedburner.com/rtlinfo/belgique",
                             "https://feeds.feedburner.com/RTLEconomie",
@@ -237,22 +235,9 @@ public class AddController extends AbstractController {
                     "@RTL.be",
                     "Belgique",
                     50.8466,
-                    4.3528 );
+                    4.3528);
         }
     }
 
 
-    /**
-     * Shows an alert with a custom title & message
-     * function used in the whole project
-     * @param message Body message
-     * @param title Header message
-     */
-    public static void showAlert(String message, String title) {
-        Alert alert = new Alert(Alert.AlertType.INFORMATION);
-        alert.setTitle(title);
-        alert.setContentText(message);
-        alert.showAndWait();
-
-    }
 }

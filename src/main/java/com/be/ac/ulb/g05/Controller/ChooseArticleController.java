@@ -12,8 +12,6 @@ import javafx.scene.layout.VBox;
 import javafx.util.Callback;
 
 import java.io.IOException;
-import java.util.Observable;
-import java.util.Observer;
 
 import static com.be.ac.ulb.g05.Controller.AddFromWebSiteController.*;
 
@@ -25,7 +23,7 @@ import static com.be.ac.ulb.g05.Controller.AddFromWebSiteController.*;
  * It will be a list of different article, each time an article is added, it will be removed from
  * the view.
  */
-public class ChooseArticleController extends AbstractController implements Observer {
+public class ChooseArticleController extends AbstractController {
 
 
     /**
@@ -41,25 +39,12 @@ public class ChooseArticleController extends AbstractController implements Obser
 
 
     /**
-     * Sets up the view. Called the first time UI element is loaded
+     * Sets up the view. Called the first every UI element is loaded
      */
     @Override
-    public void setupView(){
-        allAvailableArticle.addObserver(this); // will call update when AllAvailableArticle change
-        articleService.addObserver(this);
+    public void onActive() {
         pushAvailableArticlesToView();
 
-    }
-
-    /**
-     * Updates the article feed
-     * @param o observable
-     * @param arg object argument
-     */
-    @Override
-    public void update(Observable o, Object arg) {
-        deleteChosenArticle();
-        pushAvailableArticlesToView();
     }
 
 
@@ -129,7 +114,7 @@ public class ChooseArticleController extends AbstractController implements Obser
 
 
                                 } catch (IOException e) {
-                                    AddFromMapController.showAlert("An Error occurred with your choice of Article","Error");
+                                    Router.showAlert("An Error occurred with your choice of Article","Error");
                                 }
                             });
 
@@ -149,6 +134,6 @@ public class ChooseArticleController extends AbstractController implements Obser
     private void addArticleForFeed(Article article) throws IOException {
         Article fixedArticle = fixChangeForArticle(article,parserWebsite,website);
         articleService.addArticle(fixedArticle);
-        AddFromMapController.showAlert("Article Added","Information");
+        Router.showAlert("Article Added","Information");
     }
 }

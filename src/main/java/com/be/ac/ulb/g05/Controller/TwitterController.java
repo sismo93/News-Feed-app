@@ -2,7 +2,6 @@ package com.be.ac.ulb.g05.Controller;
 
 import javafx.scene.control.TextField;
 import twitter4j.TwitterException;
-import static com.be.ac.ulb.g05.Controller.AddFromMapController.showAlert;
 
 
 /**
@@ -23,9 +22,9 @@ public class TwitterController extends AbstractTwitterController {
     public void onSyncTimelinePressed() {
         try {
             twitterService.syncTimeline();
-            showAlert("TimeLine has been imported","Information");
+            Router.showAlert("TimeLine has been imported","Information");
         } catch (TwitterException e) {
-            showAlert("An error has occurred","Error");
+            Router.showAlert("An error has occurred","Error");
         }
     }
 
@@ -41,9 +40,9 @@ public class TwitterController extends AbstractTwitterController {
             twitterService.searchBy(tag);
 
         } catch (TwitterException e) {
-            showAlert("Failed to search tweets: " + e.getMessage(),"Information");
+            Router.showAlert("Failed to search tweets: " + e.getMessage(),"Information");
         }
-        showAlert("Added some tweet talking about "+tag,"Information");
+        Router.showAlert("Added some tweet talking about "+tag,"Information");
     }
 
     /**
@@ -54,9 +53,9 @@ public class TwitterController extends AbstractTwitterController {
         if (username.isEmpty()) return;
         try {
             twitterService.searchUser(username);
-            showAlert("Now you follow @"+username +" \n We added his last tweet go check out !","Information");
+            Router.showAlert("Now you follow @"+username +" \n We added his last tweet go check out !","Information");
         } catch (TwitterException e) {
-            showAlert("Failed to find "+ username,"Information");
+            Router.showAlert("Failed to find "+ username,"Information");
         }
     }
 
