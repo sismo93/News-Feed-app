@@ -25,14 +25,26 @@ public class Route {
         this.controller = controller;
     }
 
+    /**
+     * Node getter
+     * @return root node
+     */
     public Node getRoot() {
         return root;
     }
 
+    /**
+     * Abstract controller
+     * @return abstract controller
+     */
     public AbstractController getController() {
         return controller;
     }
 
+    /**
+     * Controller setter
+     * @param controller abstract controller
+     */
     public void setController(AbstractController controller) {
         this.controller = controller;
     }

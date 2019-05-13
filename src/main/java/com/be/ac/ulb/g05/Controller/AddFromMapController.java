@@ -16,8 +16,6 @@ import java.io.IOException;
 import java.net.URL;
 import java.util.*;
 
-
-
 /**
  * AbstractController of the Add View
  *
@@ -31,10 +29,9 @@ public class AddFromMapController extends AddController {
      */
     @FXML
     public ComboBox<String> CategoryBox;
-
     @FXML
     public StackPane stackPane;
-
+    @FXML
     public AnchorPane mapContainer;
 
 
@@ -66,14 +63,12 @@ public class AddFromMapController extends AddController {
      * These articles will be display on the right city
      */
     public void OnAddMapButtonPressed( ) {
-
-        if ( CategoryBox.getSelectionModel().isEmpty()) {
+        if (CategoryBox.getSelectionModel().isEmpty()) {
             showAlert("A selection is empty, please fill it", "Information");
             return;
         }
         List<String> diffSource = Arrays.asList("TheGuardian","Lepoint","LeMonde","LeFigaro","RTLinfo");
         String category = CategoryBox.getSelectionModel().getSelectedItem();
-
 
         for (String source: diffSource) {
             Website web= CreateObjectSource(source);
@@ -89,7 +84,7 @@ public class AddFromMapController extends AddController {
     }
 
     /**
-     * @param article article that the user choose
+     * @param article article
      * @return boolean
      * Function that will check if we already have the article on the list
      */
@@ -104,10 +99,10 @@ public class AddFromMapController extends AddController {
 
 
     /**
-     * @param availableArticleEachCity list of available article specific to a city
-     * @param web object WebSite relative to the right journal
+     * @param availableArticleEachCity list of articles for each city
+     * @param web website
      * Will allow us to display article on the map
-     * Each article will have the form of a red cercle
+     * Each article will have the form of a red circle
      */
     private void displayArticleOnMap(ArrayList<Article> availableArticleEachCity, Website web) {
         Random random = new Random();
@@ -132,12 +127,12 @@ public class AddFromMapController extends AddController {
     }
 
     /**
-     * @param web object WebSite relative to the right journal
-     * @param currentArticle the choosed article
+     * @param web website object
+     * @param currentArticle the current article
      * @throws IOException
      * Show a popup to the user and he chose whether he want to add or not
      */
-    private void selectedArticleImport(Website web,Article currentArticle) throws IOException {
+    private void selectedArticleImport(Website web, Article currentArticle) throws IOException {
         Article article = fixChangeForArticle(currentArticle,parserWebsite,web);
 
         Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
@@ -149,11 +144,7 @@ public class AddFromMapController extends AddController {
         if (result.get() == ButtonType.OK) {
             articleService.addArticle(article);
             showAlert("Article Added","Information");
-
-
         }
-
-
     }
 
 
@@ -166,12 +157,10 @@ public class AddFromMapController extends AddController {
      * <p>
      * Initialize the various controls on the screen
      */
-
     @Override
     public void setupView() {
         availableArticle = new ArrayList<>();
         parserWebsite = new ParserWebSite();
-
 
         CategoryBox.setItems(getCategoryList());
 
@@ -180,18 +169,15 @@ public class AddFromMapController extends AddController {
     }
 
 
+    /**
+     * Displays the map
+     */
     private void displayMap() {
-
         // we define a regular JavaFX WebView that DukeScript can use for rendering
-
         webView = new WebView();
-
-
         URL url = this.getClass().getResource("/Pages/index.html");
 
-
         FXBrowsers.load(webView, url, () -> {
-
             map = new Map("map");
 
             // from here we just use the Leaflet API to show some stuff on the map
@@ -205,17 +191,8 @@ public class AddFromMapController extends AddController {
                             .setMaxZoom(18)
                             .setId("eppleton.ia9c2p12")
             ));
-
-
-
         });
 
         mapContainer.getChildren().add(webView);
-
-
-
     }
-
-
-
 }

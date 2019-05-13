@@ -26,9 +26,6 @@ public class MediaViewController extends AbstractController {
         WebView webView = new WebView();
         WebEngine webEngine = webView.getEngine();
         webEngine.load(url);
-
-
         hboxView.getChildren().add(webView);
-
     }
 }

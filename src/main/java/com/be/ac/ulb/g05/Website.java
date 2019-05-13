@@ -118,12 +118,18 @@ public class Website {
         return geolocation;
     }
 
-
-
+    /**
+     * Latitude getter
+     * @return latitude
+     */
     public double getLatitude() {
         return latitude;
     }
 
+    /**
+     * Longitude getter
+     * @return longitude
+     */
     public double getLongitude() {
         return longitude;
     }

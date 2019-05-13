@@ -47,7 +47,7 @@ public class AddFromWebSiteController extends AddController {
      * Website parser
      * Will be used in chooseArticleController
      */
-    protected static ParserWebSite parserWebsite;
+    static ParserWebSite parserWebsite;
 
 
 
@@ -55,7 +55,7 @@ public class AddFromWebSiteController extends AddController {
      * List of All available article
      * Will be used in chooseArticleController
      */
-    protected static ArrayList<Article> availableArticleStatic;
+    static ArrayList<Article> availableArticleStatic;
 
 
     /**
@@ -63,7 +63,7 @@ public class AddFromWebSiteController extends AddController {
      * when this variable change, the view on ChooseArticleController will be update
      * (design pattern observer)
      */
-    protected static ArticleService allAvailableArticle;
+    static ArticleService allAvailableArticle;
 
 
 
@@ -73,11 +73,7 @@ public class AddFromWebSiteController extends AddController {
      */
     private void addAllArticleAvailable() {
         RSSFeedParser parser = new RSSFeedParser(website.getLink(CategoryBox.getSelectionModel().getSelectedItem()));
-
         availableArticleStatic = parser.readRSS();
-
-
-
     }
 
     /**
@@ -87,8 +83,6 @@ public class AddFromWebSiteController extends AddController {
     private void changeToArticleService(){
         availableArticleStatic.forEach(article -> allAvailableArticle.addArticle(article));
     }
-
-
 
     /**
      * Handler when Add button is pressed
@@ -142,11 +136,7 @@ public class AddFromWebSiteController extends AddController {
                 );
 
         CategoryBox.setItems(getCategoryList());
-
         SourceArticleBox.setItems(sourceArticle);
-
     }
-
-
 
 }

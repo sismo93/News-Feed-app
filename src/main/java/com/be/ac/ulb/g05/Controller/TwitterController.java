@@ -1,12 +1,7 @@
 package com.be.ac.ulb.g05.Controller;
 
-
-
 import javafx.scene.control.TextField;
-
 import twitter4j.TwitterException;
-
-
 import static com.be.ac.ulb.g05.Controller.AddFromMapController.showAlert;
 
 
@@ -15,7 +10,6 @@ import static com.be.ac.ulb.g05.Controller.AddFromMapController.showAlert;
  * @codereview @otrangan
  */
 public class TwitterController extends AbstractTwitterController {
-
 
     /**
      * FXML TextField

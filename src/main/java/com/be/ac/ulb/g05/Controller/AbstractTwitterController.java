@@ -9,8 +9,15 @@ import com.be.ac.ulb.g05.Model.TwitterService;
  */
 public abstract class AbstractTwitterController extends AbstractController {
 
+    /**
+     * Twitter service
+     */
     protected TwitterService twitterService;
 
+    /**
+     * @param dependencyInjector object responsible for delivering the dependency
+     * called on initialization
+     */
     @Override
     public void injectDependencies(DependencyInjector dependencyInjector) {
         super.injectDependencies(dependencyInjector);

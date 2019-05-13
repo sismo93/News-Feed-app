@@ -7,7 +7,7 @@ import static com.be.ac.ulb.g05.Controller.AddController.showAlert;
 
 
 /**
- * @mouscb
+ * @author @mouscb
  * Class that hash a password
  */
 public class HashMD5

@@ -81,5 +81,4 @@ public class UserController extends AbstractController {
         super.setArticleService(articleService);
     }
 
-
 }

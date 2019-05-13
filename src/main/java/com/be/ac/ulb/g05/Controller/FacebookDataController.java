@@ -1,6 +1,5 @@
 package com.be.ac.ulb.g05.Controller;
 
-
 import com.jfoenix.controls.JFXTextField;
 import javafx.fxml.FXML;
 import org.json.JSONObject;
@@ -14,6 +13,7 @@ import java.net.URL;
 import static com.be.ac.ulb.g05.Controller.AddFromMapController.showAlert;
 
 /**
+ * Controller for FacebookData
  * @author @iyamani
  * @codereview @otrangan
  */
@@ -34,11 +34,11 @@ public class FacebookDataController extends AbstractController {
             "k4ZCyEvxKJVoJ1OGr7xPGZA3zL6aSTgcAQHFP5rzOj4kwCepXdpfBSM4MWCMFzAZDZD";
 
     /**
-     * @throws IOException error
      * Follow an account on facebook
      */
+    @SuppressWarnings({"unused"})
     public void followAccount() {
-        try{
+        try {
             String followAccount = accountToFollow.getText();
             String url = "https://graph.facebook.com/Pages/search?q=" + followAccount + "&access_token=" + accessToken;
 
@@ -46,17 +46,10 @@ public class FacebookDataController extends AbstractController {
             HttpURLConnection connection = (HttpURLConnection) apiUrl.openConnection();
 
             connection.setRequestMethod("GET");
-            int responseCode = connection.getResponseCode();
-
-
-            if (responseCode == 400) {
-                // Well obviously it doesn't work, but the code is here
-                // We need to wait for the facebook approval
-            }
 
             BufferedReader in = new BufferedReader(new InputStreamReader(connection.getInputStream()));
             String inputLine;
-            StringBuffer response = new StringBuffer();
+            StringBuilder response = new StringBuilder();
 
             while ((inputLine = in.readLine()) != null) {
                 response.append(inputLine);
