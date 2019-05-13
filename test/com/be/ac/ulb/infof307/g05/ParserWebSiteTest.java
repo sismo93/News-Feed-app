@@ -6,7 +6,7 @@ import org.testfx.framework.junit.ApplicationTest;
 
 import java.io.IOException;
 
-import static com.be.ac.ulb.g05.Controller.AddController.showAlert;
+import static com.be.ac.ulb.g05.Controller.Router.showAlert;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
