@@ -53,7 +53,7 @@ Pour compiler l'application, il suffit de lancer la commande suivante:
 
 ## Démarrage 
 
-Pour exécuter l'application, il suffit de lancer le fichier `g05-iteration-2.jar` disponible dans le dossier `dist` du dépôt Gitlab.
+Pour exécuter l'application, il suffit de lancer le fichier `g05-iteration-4.jar` disponible dans le dossier `dist` du dépôt Gitlab.
 
 # Configuration :
 
