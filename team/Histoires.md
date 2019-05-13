@@ -24,6 +24,12 @@ site. En effet, à la base il devait mettre le nombre d'article qu'il souhaitait
 le nombre demandé. Dorénavant, une fenêtre avec tous les articles disponible est affichée. C'est à l'utilisateur de prendre
 ce qu'il veut.  
 
+Histoire 14 part 1 : L'utilisateur veut avoir la possibilité de rajouter des articles en parcourant la map. Les articles seront 
+triés par type d'information (actualité, internationale,économie ect). Chaque marqueur sur la map représentera un article.
+
+Histoire 15 : L'utilisateur va pouvoir avoir accés à une section d'aide, il s'agit d'une petite vidéo qui montre comment
+utiliser l'application. 
+
 #### Quelques précisions
 Un point correspond à une heure de travail par binôme (approximatif).  Par itération il faut accomplir 59 points.
 
@@ -40,6 +46,7 @@ Un point correspond à une heure de travail par binôme (approximatif).  Par it�
 |   | 12 | Histoire 12| 2 | 2 | 10 |  9 |
 | 3 | 8  | Histoire 8 | 2 | 2 | 50 | 47 |
 | 1 | /  | Demande Client | 3 | 3 | 9 | 7
-
+| 2 | 14 | Histoire 14 part 1 | 2 | 3 | 45 |
+| 3 |15 | Histoire 15 | 3 | 3 | 14 | 
 ----------------------
 
